@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  MOMENTUM MILL : one-page site (standalone, no build step)
+  ------------------------------------------------------------
+  Brand: espresso #2B221D (the "Momentum" ink) + warm gold #D69946 (the "Mill")
+         on ivory, with a deeper gold for small accents.
+  Type:  Acme (display) + Hanken Grotesk (body), via Google Fonts.
+  Stack: hand-written CSS (no framework) + a little vanilla JS.
+
+  WHERE TO EDIT CONTENT: search for "EDIT:" comments:
+    • Hero copy            (section.hero)
+    • Sprint methodologies (section#sprints)
+    • About Kateryna       (section#about)   <-- personalise this
+    • Contact email        (section#contact)
+  All colours/fonts live in :root so they're easy to retune.
+  ============================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum Mill | Where momentum is made</title>
+<meta name="description" content="Momentum Mill helps founders gain momentum through fundraising, strategic partnerships, and recognition, run as focused sprints.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- DESIGN TOKENS ---------- */
+  :root{
+    --ivory:#F6F1E7;        /* base canvas */
+    --bisque:#EBD6B4;       /* soft warm fill */
+    --gold:#D69946;         /* "Mill", warm gold */
+    --gold-deep:#9C7128;    /* darker gold for small accents and readability */
+    --espresso:#2B221D;     /* "Momentum", ink */
+    --espresso-soft:#5A4B3F;
+    --line:rgba(43,34,29,.14);
+    --display:'Acme','Trebuchet MS',sans-serif;
+    --body:'Hanken Grotesk',system-ui,sans-serif;
+    --maxw:1140px;
+  }
+
+  /* ---------- RESET ---------- */
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--ivory);
+    color:var(--espresso);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* subtle warm grain for depth */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  a{color:inherit}
+
+  /* ---------- SHARED BITS ---------- */
+  .eyebrow{
+    font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold-deep);display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;background:var(--espresso);color:var(--gold);
+    font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;
+    transition:transform .25s ease,background .25s ease,color .25s ease;
+  }
+  .btn:hover{background:var(--gold);color:var(--espresso);transform:translateX(4px)}
+  .btn.gold{background:var(--gold);color:var(--espresso)}
+  .btn.gold:hover{background:var(--espresso);color:var(--gold)}
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  /* hero load-in */
+  .fadeup{opacity:0;animation:fadeup .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .fadeup.d1{animation-delay:.05s}.fadeup.d2{animation-delay:.25s}.fadeup.d3{animation-delay:.45s}
+  @keyframes fadeup{to{opacity:1;transform:none}}
+  .fadeup{transform:translateY(24px)}
+
+  /* ============ HERO ============ */
+  .hero{padding:84px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .wordmark{font-family:var(--display);font-weight:400;line-height:.84;font-size:clamp(64px,11vw,128px);letter-spacing:-.01em}
+  .wordmark .m1{color:var(--espresso);display:block}
+  .wordmark .m2{color:var(--gold);display:block}
+  .hero .lede{font-size:clamp(18px,2vw,22px);max-width:34ch;margin:26px 0 32px;color:var(--espresso-soft);font-weight:500}
+  .hero .lede b{color:var(--espresso);font-weight:700}
+
+  /* the rotating wheel + word-ring */
+  .wheel-stage{display:flex;justify-content:center;align-items:center}
+  .mill{width:min(440px,90%);height:auto}
+  .ring-text{font-family:var(--body);font-weight:800;font-size:18px;letter-spacing:.04em;fill:var(--gold);text-transform:uppercase}
+  .ring-rotate{transform-origin:150px 150px;animation:spin 38s linear infinite}
+  .wheel-rotate{transform-origin:150px 150px;animation:spin 16s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ============ PILLARS STRIP ============ */
+  .pillars{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bisque)}
+  .pillars .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .pillar{padding:30px 22px;text-align:center;border-right:1px solid var(--line)}
+  .pillar:last-child{border-right:none}
+  .pillar .n{font-family:var(--display);color:var(--espresso);font-size:20px;letter-spacing:.02em}
+  .pillar p{margin-top:4px;font-size:13.5px;color:var(--espresso-soft);font-weight:600}
+  @media(max-width:720px){.pillars .wrap{grid-template-columns:1fr}.pillar{border-right:none;border-bottom:1px solid var(--line)}.pillar:last-child{border-bottom:none}}
+
+  /* ============ SPRINTS ============ */
+  section{padding:84px 0}
+  .head{max-width:620px;margin-bottom:48px}
+  .head h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,60px);line-height:.98;letter-spacing:-.01em;margin:14px 0 12px}
+  .head p{font-size:18px;color:var(--espresso-soft);font-weight:500}
+
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .track{
+    background:var(--ivory);border:1px solid var(--line);border-radius:22px;padding:40px 36px;
+    position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+  }
+  .track:hover{transform:translateY(-6px);box-shadow:0 24px 50px -28px rgba(43,34,29,.45);border-color:var(--gold)}
+  .track .num{font-family:var(--display);font-size:74px;line-height:.8;color:var(--bisque);position:absolute;top:22px;right:28px}
+  .track h3{font-family:var(--display);font-weight:400;font-size:34px;line-height:1;color:var(--espresso)}
+  .track .rule{width:54px;height:4px;background:var(--gold);border-radius:4px;margin:16px 0 18px}
+  .track .intro{font-size:17px;color:var(--espresso-soft);font-weight:500;margin-bottom:22px}
+  .track ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
+  .track li::before{content:"›";color:var(--gold-deep);font-weight:800;font-size:20px;line-height:1.2}
+  @media(max-width:760px){.tracks{grid-template-columns:1fr}}
+
+  /* ============ ABOUT ============ */
+  #about{background:var(--espresso);color:var(--ivory)}
+  #about .eyebrow{color:var(--gold)}
+  #about .eyebrow::before{background:var(--gold)}
+  #about .head h2{color:var(--ivory)}
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+  .about-card{background:rgba(246,241,231,.05);border:1px solid rgba(246,241,231,.16);border-radius:22px;padding:36px}
+  .about-card p{color:#E7DECF;font-size:17px;margin-bottom:16px}
+  .about-card a{color:var(--gold);font-weight:700;text-decoration:none}
+  .about-card a:hover{text-decoration:underline}
+  .about-mark{display:flex;justify-content:center}
+  .about-mark svg{width:min(260px,80%);animation:spin 22s linear infinite}
+  @media(max-width:780px){.about-grid{grid-template-columns:1fr;gap:32px}.about-mark{order:-1}}
+
+  /* ============ CONTACT ============ */
+  #contact{text-align:center}
+  #contact h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,7vw,68px);line-height:.98;margin-bottom:18px}
+  #contact h2 em{font-style:normal;color:var(--gold)}
+  #contact p{font-size:18px;color:var(--espresso-soft);font-weight:500;max-width:46ch;margin:0 auto 30px}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--espresso);color:var(--bisque);padding:52px 0 60px;text-align:center}
+  footer .fm{font-family:var(--display);font-size:30px}
+  footer .fm .g{color:var(--gold)}
+  footer .tag{color:#D8C7A8;font-weight:500;margin:6px 0 18px}
+  footer .meta{font-size:13px;color:rgba(235,214,180,.6)}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+
+  @media (prefers-reduced-motion:reduce){
+    .ring-rotate,.wheel-rotate,.about-mark svg{animation:none}
+    .reveal{opacity:1;transform:none;transition:none}
+    .fadeup{opacity:1;animation:none;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow fadeup d1">Momentum Mill</span>
+      <!-- EDIT: wordmark -->
+      <h1 class="wordmark fadeup d1" aria-label="Momentum Mill">
+        <span class="m1">Momentum</span>
+        <span class="m2">Mill</span>
+      </h1>
+      <!-- EDIT: hero description -->
+      <p class="lede fadeup d2">
+        Momentum isn't luck. It's <b>made</b>. We run fundraising, strategic
+        partnerships, and recognition as focused sprints, turning early traction
+        into <b>a round that closes</b>, partners who commit, and an ecosystem
+        that knows your name.
+      </p>
+      <a href="#sprints" class="btn fadeup d3">Explore the sprints →</a>
+    </div>
+
+    <!-- WHEEL: inner mill spins one way, the word-ring orbits the other -->
+    <div class="wheel-stage fadeup d2">
+      <svg class="mill" viewBox="0 0 300 300" role="img"
+           aria-label="A turning mill wheel ringed by the words Fundraising, Strategic Partnerships, and Brand Recognition">
+        <defs>
+          <path id="ring" d="M150,150 m-120,0 a120,120 0 1,1 240,0 a120,120 0 1,1 -240,0"/>
+        </defs>
+
+        <!-- rotating word ring -->
+        <g class="ring-rotate">
+          <text class="ring-text">
+            <textPath href="#ring" startOffset="0" textLength="754" lengthAdjust="spacing">
+              Fundraising&#160;&#160;•&#160;&#160;Strategic Partnerships&#160;&#160;•&#160;&#160;Brand Recognition&#160;&#160;•&#160;&#160;
+            </textPath>
+          </text>
+        </g>
+
+        <!-- inner mill wheel -->
+        <g class="wheel-rotate">
+          <circle cx="150" cy="150" r="84" fill="none" stroke="#2B221D" stroke-width="3"/>
+          <!-- spokes -->
+          <g stroke="#2B221D" stroke-width="4" stroke-linecap="round">
+            <line x1="150" y1="150" x2="222"   y2="150"/>
+            <line x1="150" y1="150" x2="200.9" y2="200.9"/>
+            <line x1="150" y1="150" x2="150"   y2="222"/>
+            <line x1="150" y1="150" x2="99.1"  y2="200.9"/>
+            <line x1="150" y1="150" x2="78"    y2="150"/>
+            <line x1="150" y1="150" x2="99.1"  y2="99.1"/>
+            <line x1="150" y1="150" x2="150"   y2="78"/>
+            <line x1="150" y1="150" x2="200.9" y2="99.1"/>
+          </g>
+          <!-- gold paddles at the rim -->
+          <g stroke="#D69946" stroke-width="7" stroke-linecap="round">
+            <line x1="224"   y1="150"   x2="242" y2="150"/>
+            <line x1="202.3" y1="202.3" x2="215" y2="215"/>
+            <line x1="150"   y1="224"   x2="150" y2="242"/>
+            <line x1="97.7"  y1="202.3" x2="85"  y2="215"/>
+            <line x1="76"    y1="150"   x2="58"  y2="150"/>
+            <line x1="97.7"  y1="97.7"  x2="85"  y2="85"/>
+            <line x1="150"   y1="76"    x2="150" y2="58"/>
+            <line x1="202.3" y1="97.7"  x2="215" y2="85"/>
+          </g>
+          <circle cx="150" cy="150" r="22" fill="#2B221D"/>
+          <circle cx="150" cy="150" r="7"  fill="#D69946"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PILLARS STRIP ================= -->
+<div class="pillars">
+  <div class="wrap">
+    <div class="pillar"><div class="n">Fundraising</div><p>Capital, on a timeline</p></div>
+    <div class="pillar"><div class="n">Strategic Partnerships</div><p>Deals that compound</p></div>
+    <div class="pillar"><div class="n">Brand Recognition</div><p>An ecosystem that notices</p></div>
+  </div>
+</div>
+
+<!-- ================= SPRINTS ================= -->
+<section id="sprints">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Solutions</span>
+      <h2>Two sprints. Each with its own engine.</h2>
+      <p>Pick the gear you need now. Both are run as deliberate sprints: sequenced, measured, and built to create momentum rather than wait for it.</p>
+    </div>
+
+    <div class="tracks">
+      <!-- EDIT: Fundraising methodology -->
+      <article class="track reveal">
+        <div class="num">01</div>
+        <h3>Fundraising<br>Sprint</h3>
+        <div class="rule"></div>
+        <p class="intro">We run your raise like a marketing campaign, not a cold scramble. Scheduled, sequenced, and built to make the round feel inevitable.</p>
+        <ul>
+          <li>Scheduled activities on a real timeline, so every week has a job</li>
+          <li>Founder personal brand built so investors arrive already warm</li>
+          <li>Structured fundraising sprints with clear milestones and checkpoints</li>
+          <li>Demand engineered across the raise, not improvised meeting to meeting</li>
+        </ul>
+      </article>
+
+      <!-- EDIT: Partnerships methodology -->
+      <article class="track reveal">
+        <div class="num">02</div>
+        <h3>Partnerships<br>Sprint</h3>
+        <div class="rule"></div>
+        <p class="intro">The right partner for the stage you're actually in, chosen for traction, not logos for the deck.</p>
+        <ul>
+          <li>Identify the partnerships that matter most at your current stage</li>
+          <li>Prioritise the ones that drive real user traction</li>
+          <li>Shape an offer that's genuinely appealing to the partner in question</li>
+          <li>Align both sides so the deal compounds, not just closes</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Who's behind it</span>
+      <h2>About Kateryna</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-mark reveal" aria-hidden="true">
+        <!-- the mark alone -->
+        <svg viewBox="0 0 300 300">
+          <circle cx="150" cy="150" r="84" fill="none" stroke="#D69946" stroke-width="3"/>
+          <g stroke="#D69946" stroke-width="4" stroke-linecap="round">
+            <line x1="150" y1="150" x2="222" y2="150"/><line x1="150" y1="150" x2="200.9" y2="200.9"/>
+            <line x1="150" y1="150" x2="150" y2="222"/><line x1="150" y1="150" x2="99.1" y2="200.9"/>
+            <line x1="150" y1="150" x2="78" y2="150"/><line x1="150" y1="150" x2="99.1" y2="99.1"/>
+            <line x1="150" y1="150" x2="150" y2="78"/><line x1="150" y1="150" x2="200.9" y2="99.1"/>
+          </g>
+          <circle cx="150" cy="150" r="22" fill="#F6F1E7"/>
+          <circle cx="150" cy="150" r="7" fill="#D69946"/>
+        </svg>
+      </div>
+      <!-- EDIT: personalise this bio if you want -->
+      <div class="about-card reveal">
+        <p>Momentum Mill is led by <strong style="color:#fff">Kateryna Golushko</strong>, who brings a background in venture capital and early-stage GTM.</p>
+        <p>She has worked with over 80 startups on establishing partnerships and fundraising, across Ultra.vc, Amazon, Launch Club Capital, and RBC Group.</p>
+        <p>She built Momentum Mill on a simple conviction: fundraising and partnerships shouldn't be left to chance or charisma. Run as deliberate sprints, with real timelines, founder brand-building, and stage-right targeting, they become repeatable engines for momentum.</p>
+        <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer">More about Kateryna →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap reveal">
+    <span class="eyebrow" style="justify-content:center">Let's talk</span>
+    <h2>Let's <em>build momentum.</em></h2>
+    <p>If you're raising, forging partnerships, or trying to get noticed, and you'd rather run it as a sprint than wing it, get in touch.</p>
+    <!-- EDIT: contact email -->
+    <a class="btn gold" href="mailto:hello@momentummill.com">Start a conversation →</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="fm">Momentum<span class="g">Mill</span></div>
+    <p class="tag">Where momentum is made.</p>
+    <p class="meta">© <span id="year"></span> Momentum Mill · <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer">katerynagolushko.com</a></p>
+  </div>
+</footer>
+
+<script>
+  // current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
