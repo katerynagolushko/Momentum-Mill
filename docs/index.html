@@ -110,24 +110,25 @@
   .track{
     background:var(--ivory);border:1px solid var(--line);border-radius:22px;padding:40px 36px;
     position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+    display:flex;flex-direction:column;
   }
   .track:hover{transform:translateY(-6px);box-shadow:0 24px 50px -28px rgba(43,34,29,.45);border-color:var(--gold)}
   .track .num{font-family:var(--display);font-size:74px;line-height:.8;color:var(--bisque);position:absolute;top:22px;right:28px}
   .track h3{font-family:var(--display);font-weight:400;font-size:34px;line-height:1;color:var(--espresso)}
   .track .rule{width:54px;height:4px;background:var(--gold);border-radius:4px;margin:16px 0 18px}
   .track .intro{font-size:17px;color:var(--espresso-soft);font-weight:500;margin-bottom:22px}
-  .track ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .track ul{list-style:none;display:flex;flex-direction:column;gap:12px;flex-grow:1}
   .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
   .track li::before{content:"›";color:var(--gold-deep);font-weight:800;font-size:20px;line-height:1.2}
   .proposal-btn{
-    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+    display:inline-flex;align-items:center;gap:8px;margin-top:auto;
     padding:12px 24px;border-radius:999px;text-decoration:none;
     background:#C65D5D;color:#fff;font-weight:600;font-size:15px;
     transition:background .3s,transform .3s;
   }
   .proposal-btn:hover{background:#A84545;transform:translateX(4px)}
   .coming-soon-btn{
-    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+    display:inline-flex;align-items:center;gap:8px;margin-top:auto;
     padding:12px 24px;border-radius:999px;
     background:var(--espresso);color:#fff;font-weight:600;font-size:15px;
     cursor:not-allowed;opacity:0.7;
