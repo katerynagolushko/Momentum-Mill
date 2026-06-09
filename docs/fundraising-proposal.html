@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundraising Sprint Proposal | Momentum Mill</title>
+<meta name="description" content="Three entry points for your fundraising sprint, based on when you need term sheets in hand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F1E7;
+    --bisque:#EBD6B4;
+    --gold:#D69946;
+    --gold-deep:#9C7128;
+    --espresso:#2B221D;
+    --espresso-soft:#5A4B3F;
+    --line:rgba(43,34,29,.14);
+    --display:'Acme','Trebuchet MS',sans-serif;
+    --body:'Hanken Grotesk',system-ui,sans-serif;
+    --maxw:840px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--ivory);
+    color:var(--espresso);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    padding:60px 28px;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--espresso-soft);text-decoration:none;font-weight:600;margin-bottom:40px;transition:color .3s}
+  .back:hover{color:var(--espresso)}
+
+  h1{font-family:var(--display);font-size:clamp(40px,8vw,64px);color:var(--espresso);line-height:1;margin-bottom:16px}
+  .subtitle{font-size:clamp(18px,3vw,24px);color:var(--gold-deep);font-weight:600;margin-bottom:48px}
+
+  .intro{font-size:20px;line-height:1.6;color:var(--espresso-soft);margin-bottom:56px;max-width:680px}
+  .intro strong{color:var(--espresso);font-weight:700}
+
+  .options{display:grid;gap:32px;margin-bottom:64px}
+  .option{
+    background:white;border:2px solid var(--line);border-radius:18px;padding:36px;
+    transition:transform .3s,border-color .3s,box-shadow .3s;
+  }
+  .option:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold);
+    box-shadow:0 12px 40px -20px rgba(43,34,29,.25);
+  }
+
+  .option-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:20px}
+  .option-title{font-family:var(--display);font-size:32px;color:var(--espresso);line-height:1.1}
+  .option-timing{
+    background:var(--bisque);color:var(--espresso);
+    font-weight:700;font-size:14px;padding:8px 16px;border-radius:999px;
+    white-space:nowrap;letter-spacing:.02em;
+  }
+
+  .option-desc{font-size:18px;line-height:1.7;color:var(--espresso-soft)}
+  .option-desc strong{color:var(--espresso);font-weight:700}
+
+  .cta-section{text-align:center;padding:48px 0}
+  .cta-section h2{font-family:var(--display);font-size:36px;color:var(--espresso);margin-bottom:16px}
+  .cta-section p{font-size:18px;color:var(--espresso-soft);margin-bottom:28px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--espresso);color:var(--gold);
+    font-weight:700;font-size:17px;padding:16px 32px;
+    border-radius:999px;text-decoration:none;
+    transition:transform .25s,background .25s,color .25s;
+  }
+  .btn:hover{background:var(--gold);color:var(--espresso);transform:translateX(4px)}
+
+  @media(max-width:640px){
+    .option-header{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back">← Back to home</a>
+
+    <h1>Fundraising Sprint</h1>
+    <p class="subtitle">Where you start depends on when you're raising</p>
+
+    <div class="intro">
+      One campaign, three entry points. The only qualifying question is: <strong>when do you want term sheets in hand?</strong>
+    </div>
+
+    <div class="options">
+      <div class="option">
+        <div class="option-header">
+          <h3 class="option-title">Full Campaign</h3>
+          <div class="option-timing">~6 weeks out</div>
+        </div>
+        <p class="option-desc">
+          Narrative sharpening + a concentrated visibility push + investor warm-up, then the sprint. <strong>Most prep, strongest momentum walking in.</strong>
+        </p>
+      </div>
+
+      <div class="option">
+        <div class="option-header">
+          <h3 class="option-title">Demand + Raise</h3>
+          <div class="option-timing">~3 weeks out</div>
+        </div>
+        <p class="option-desc">
+          You already have some presence; we amplify it, build the pipeline and momentum signals, then sprint. <strong>Faster path, still builds heat before launch.</strong>
+        </p>
+      </div>
+
+      <div class="option">
+        <div class="option-header">
+          <h3 class="option-title">Raise Sprint</h3>
+          <div class="option-timing">Raising now</div>
+        </div>
+        <p class="option-desc">
+          Straight to execution: process, pipeline, daily prep, competitive tension built from the assets you've already got. <strong>Sprint-only, maximum intensity.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Let's figure out which one fits</h2>
+      <p>Book a quick call to map your timeline and pick the right entry point.</p>
+      <a href="mailto:kateryna@momentummill.com" class="btn">Start a conversation →</a>
+    </div>
+  </div>
+</body>
+</html>

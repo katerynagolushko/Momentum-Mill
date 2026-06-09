@@ -119,6 +119,13 @@
   .track ul{list-style:none;display:flex;flex-direction:column;gap:12px}
   .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
   .track li::before{content:"›";color:var(--gold-deep);font-weight:800;font-size:20px;line-height:1.2}
+  .proposal-btn{
+    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+    padding:12px 24px;border-radius:999px;text-decoration:none;
+    background:#C65D5D;color:#fff;font-weight:600;font-size:15px;
+    transition:background .3s,transform .3s;
+  }
+  .proposal-btn:hover{background:#A84545;transform:translateX(4px)}
   @media(max-width:760px){.tracks{grid-template-columns:1fr}}
 
   /* ============ ABOUT ============ */
@@ -264,6 +271,7 @@
           <li>Structured fundraising sprints with clear milestones and checkpoints</li>
           <li>Demand engineered across the raise, not improvised meeting to meeting</li>
         </ul>
+        <a href="fundraising-proposal.html" class="proposal-btn">View the proposal →</a>
       </article>
 
       <!-- EDIT: Partnerships methodology -->
