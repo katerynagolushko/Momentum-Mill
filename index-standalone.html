@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Mill - Building Momentum for Ambitious Founders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-espresso': '#2B221D',
+                        'warm-gold': '#D69946',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotating {
+            animation: rotate 8s linear infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards;
+        }
+
+        .fade-in-delay-2 {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50/30 to-slate-50">
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 py-20">
+        <div class="max-w-6xl mx-auto text-center">
+            <!-- Logo -->
+            <div class="fade-in flex items-center justify-center gap-6 mb-12">
+                <div class="flex flex-col items-end">
+                    <h1 class="text-5xl md:text-6xl font-bold text-dark-espresso mb-0 leading-none">
+                        Momentum
+                    </h1>
+                    <h1 class="text-5xl md:text-6xl font-bold text-warm-gold leading-none">
+                        Mill
+                    </h1>
+                </div>
+
+                <!-- Animated Mill Wheel -->
+                <div class="rotating relative w-20 h-20 md:w-24 md:h-24">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <!-- Outer circle -->
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#D69946" stroke-width="3"/>
+
+                        <!-- Center hub -->
+                        <circle cx="50" cy="50" r="12" fill="#2B221D"/>
+
+                        <!-- Spokes -->
+                        <line x1="50" y1="50" x2="83" y2="50" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="73.4" y2="73.4" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="83" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="26.6" y2="73.4" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="17" y2="50" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="26.6" y2="26.6" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="17" stroke="#D69946" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="73.4" y2="26.6" stroke="#D69946" stroke-width="2"/>
+
+                        <!-- Paddles/blades -->
+                        <rect x="81" y="44" width="4" height="12" fill="#2B221D"/>
+                        <rect x="71.4" y="71.4" width="4" height="12" fill="#2B221D" transform="rotate(45 73.4 73.4)"/>
+                        <rect x="44" y="81" width="4" height="12" fill="#2B221D" transform="rotate(90 50 83)"/>
+                        <rect x="24.6" y="71.4" width="4" height="12" fill="#2B221D" transform="rotate(135 26.6 73.4)"/>
+                        <rect x="15" y="44" width="4" height="12" fill="#2B221D" transform="rotate(180 17 50)"/>
+                        <rect x="24.6" y="24.6" width="4" height="12" fill="#2B221D" transform="rotate(225 26.6 26.6)"/>
+                        <rect x="44" y="15" width="4" height="12" fill="#2B221D" transform="rotate(270 50 17)"/>
+                        <rect x="71.4" y="24.6" width="4" height="12" fill="#2B221D" transform="rotate(315 73.4 26.6)"/>
+                    </svg>
+                </div>
+            </div>
+
+            <p class="fade-in-delay text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Helping founders gain momentum through strategic fundraising,
+                partnerships, and recognition in the startup ecosystem.
+            </p>
+
+            <div class="fade-in-delay-2 mt-12">
+                <a href="#services"
+                   class="inline-block bg-dark-espresso text-warm-gold px-8 py-4 rounded-full text-lg font-semibold hover:bg-warm-gold hover:text-dark-espresso transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    Explore Our Sprints
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="slide-up text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-dark-espresso mb-4">
+                    Our Sprint Tracks
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Two focused methodologies designed to accelerate your startup's growth
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Fundraising Card -->
+                <div class="slide-up bg-white rounded-2xl shadow-xl p-8 md:p-10 border-2 border-warm-gold/20 hover:border-warm-gold/50 transition-all duration-300">
+                    <div class="mb-6">
+                        <h2 class="text-3xl md:text-4xl font-bold text-dark-espresso mb-3">
+                            Fundraising Sprint
+                        </h2>
+                        <div class="w-20 h-1 bg-warm-gold mx-auto"></div>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        We treat fundraising like a marketing campaign with scheduled activities,
+                        founder personal brand building, and structured sprints.
+                    </p>
+
+                    <ul class="space-y-3 text-left">
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Scheduled activities and strategic timeline planning</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Founder personal brand building and visibility</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Structured fundraising sprints with clear milestones</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Campaign-style approach to investor engagement</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Partnerships Card -->
+                <div class="slide-up bg-white rounded-2xl shadow-xl p-8 md:p-10 border-2 border-warm-gold/20 hover:border-warm-gold/50 transition-all duration-300">
+                    <div class="mb-6">
+                        <h2 class="text-3xl md:text-4xl font-bold text-dark-espresso mb-3">
+                            Partnerships Sprint
+                        </h2>
+                        <div class="w-20 h-1 bg-warm-gold mx-auto"></div>
+                    </div>
+
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Identifying the most valuable partnerships for your stage, maximizing user
+                        traction, and creating compelling value propositions.
+                    </p>
+
+                    <ul class="space-y-3 text-left">
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Stage-appropriate partnership identification</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">User traction and growth optimization strategies</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Partner value proposition development</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-warm-gold text-xl mt-1">•</span>
+                            <span class="text-gray-700 flex-1">Strategic alignment for maximum impact</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-dark-espresso/5">
+        <div class="max-w-4xl mx-auto">
+            <div class="slide-up text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-dark-espresso mb-8">
+                    About Kateryna
+                </h2>
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-warm-gold/20">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Kateryna Golushko brings deep expertise in helping founders navigate
+                        the complex landscape of fundraising and strategic partnerships.
+                    </p>
+
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        With a unique methodology that treats fundraising as a marketing campaign
+                        and partnerships as strategic growth levers, she has helped numerous
+                        startups gain the momentum they need to succeed.
+                    </p>
+
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Her approach combines tactical execution with strategic thinking,
+                        ensuring founders don't just raise capital or form partnerships,
+                        but do so in a way that maximizes their startup's trajectory.
+                    </p>
+
+                    <div class="mt-8">
+                        <a href="https://katerynagolushko.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="inline-block text-warm-gold hover:text-dark-espresso font-semibold transition-colors duration-300">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-dark-espresso text-warm-gold">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold mb-2">Momentum Mill</h3>
+                <p class="text-warm-gold/80">
+                    Building momentum for ambitious founders
+                </p>
+            </div>
+
+            <p class="text-warm-gold/60 text-sm">
+                © <span id="year"></span> Momentum Mill. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with slide-up class
+        document.querySelectorAll('.slide-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

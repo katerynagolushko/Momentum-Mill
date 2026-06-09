@@ -100,6 +100,15 @@
   .wheel-rotate{transform-origin:150px 150px;animation:spin 16s linear infinite reverse}
   @keyframes spin{to{transform:rotate(360deg)}}
 
+  /* ============ PILLARS STRIP ============ */
+  .pillars{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bisque)}
+  .pillars .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .pillar{padding:30px 22px;text-align:center;border-right:1px solid var(--line)}
+  .pillar:last-child{border-right:none}
+  .pillar .n{font-family:var(--display);color:var(--espresso);font-size:20px;letter-spacing:.02em}
+  .pillar p{margin-top:4px;font-size:13.5px;color:var(--espresso-soft);font-weight:600}
+  @media(max-width:720px){.pillars .wrap{grid-template-columns:1fr}.pillar{border-right:none;border-bottom:1px solid var(--line)}.pillar:last-child{border-bottom:none}}
+
   /* ============ SPRINTS ============ */
   section{padding:84px 0}
   .head{max-width:620px;margin-bottom:48px}
@@ -119,13 +128,6 @@
   .track ul{list-style:none;display:flex;flex-direction:column;gap:12px}
   .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
   .track li::before{content:"›";color:var(--gold-deep);font-weight:800;font-size:20px;line-height:1.2}
-  .proposal-btn{
-    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
-    padding:12px 24px;border-radius:999px;text-decoration:none;
-    background:#C65D5D;color:#fff;font-weight:600;font-size:15px;
-    transition:background .3s,transform .3s;
-  }
-  .proposal-btn:hover{background:#A84545;transform:translateX(4px)}
   @media(max-width:760px){.tracks{grid-template-columns:1fr}}
 
   /* ============ ABOUT ============ */
@@ -138,22 +140,8 @@
   .about-card p{color:#E7DECF;font-size:17px;margin-bottom:16px}
   .about-card a{color:var(--gold);font-weight:700;text-decoration:none}
   .about-card a:hover{text-decoration:underline}
-  .about-mark{display:flex;justify-content:center;align-items:center}
-  .photo-frame{position:relative;width:min(280px,80%);height:min(280px,80%)}
-  .photo-frame img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--gold);position:relative;z-index:2}
-  .photo-frame::before{
-    content:"";position:absolute;inset:-20px;border-radius:50%;
-    border:3px solid var(--gold);z-index:1;
-    background:
-      linear-gradient(0deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(45deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(90deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(135deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(180deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(225deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(270deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%,
-      linear-gradient(315deg, var(--gold) 2px, transparent 2px) 50% 0/2px 100%;
-  }
+  .about-mark{display:flex;justify-content:center}
+  .about-mark svg{width:min(260px,80%);animation:spin 22s linear infinite}
   @media(max-width:780px){.about-grid{grid-template-columns:1fr;gap:32px}.about-mark{order:-1}}
 
   /* ============ CONTACT ============ */
@@ -211,7 +199,7 @@
         <g class="ring-rotate">
           <text class="ring-text">
             <textPath href="#ring" startOffset="0" textLength="754" lengthAdjust="spacing">
-              PARTNERSHIPS&#160;&#160;•&#160;&#160;<tspan fill="#2B221D">FUNDRAISING</tspan>&#160;&#160;•&#160;&#160;RECOGNITION&#160;&#160;•&#160;&#160;
+              Fundraising&#160;&#160;•&#160;&#160;Strategic Partnerships&#160;&#160;•&#160;&#160;Brand Recognition&#160;&#160;•&#160;&#160;
             </textPath>
           </text>
         </g>
@@ -249,6 +237,15 @@
   </div>
 </header>
 
+<!-- ================= PILLARS STRIP ================= -->
+<div class="pillars">
+  <div class="wrap">
+    <div class="pillar"><div class="n">Fundraising</div><p>Capital, on a timeline</p></div>
+    <div class="pillar"><div class="n">Strategic Partnerships</div><p>Deals that compound</p></div>
+    <div class="pillar"><div class="n">Brand Recognition</div><p>An ecosystem that notices</p></div>
+  </div>
+</div>
+
 <!-- ================= SPRINTS ================= -->
 <section id="sprints">
   <div class="wrap">
@@ -271,7 +268,6 @@
           <li>Structured fundraising sprints with clear milestones and checkpoints</li>
           <li>Demand engineered across the raise, not improvised meeting to meeting</li>
         </ul>
-        <a href="raise-campaign-offer.html" class="proposal-btn">View the proposal →</a>
       </article>
 
       <!-- EDIT: Partnerships methodology -->
@@ -299,10 +295,19 @@
       <h2>About Kateryna</h2>
     </div>
     <div class="about-grid">
-      <div class="about-mark reveal">
-        <div class="photo-frame">
-          <img src="kateryna.png" alt="Kateryna Golushko">
-        </div>
+      <div class="about-mark reveal" aria-hidden="true">
+        <!-- the mark alone -->
+        <svg viewBox="0 0 300 300">
+          <circle cx="150" cy="150" r="84" fill="none" stroke="#D69946" stroke-width="3"/>
+          <g stroke="#D69946" stroke-width="4" stroke-linecap="round">
+            <line x1="150" y1="150" x2="222" y2="150"/><line x1="150" y1="150" x2="200.9" y2="200.9"/>
+            <line x1="150" y1="150" x2="150" y2="222"/><line x1="150" y1="150" x2="99.1" y2="200.9"/>
+            <line x1="150" y1="150" x2="78" y2="150"/><line x1="150" y1="150" x2="99.1" y2="99.1"/>
+            <line x1="150" y1="150" x2="150" y2="78"/><line x1="150" y1="150" x2="200.9" y2="99.1"/>
+          </g>
+          <circle cx="150" cy="150" r="22" fill="#F6F1E7"/>
+          <circle cx="150" cy="150" r="7" fill="#D69946"/>
+        </svg>
       </div>
       <!-- EDIT: personalise this bio if you want -->
       <div class="about-card reveal">
@@ -322,7 +327,7 @@
     <h2>Let's <em>build momentum.</em></h2>
     <p>If you're raising, forging partnerships, or trying to get noticed, and you'd rather run it as a sprint than wing it, get in touch.</p>
     <!-- EDIT: contact email -->
-    <a class="btn gold" href="mailto:kateryna@momentummill.com">Start a conversation →</a>
+    <a class="btn gold" href="mailto:hello@momentummill.com">Start a conversation →</a>
   </div>
 </section>
 
