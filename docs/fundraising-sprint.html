@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundraising Sprint | Momentum Mill</title>
+<meta name="description" content="We run your raise like a campaign. 8 weeks to make you shine, then a 2-week raise sprint where investors come to you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F1E7;--bisque:#EBD6B4;--gold:#D69946;--gold-deep:#9C7128;
+    --espresso:#2B221D;--espresso-soft:#5A4B3F;--line:rgba(43,34,29,.14);
+    --display:'Acme','Trebuchet MS',sans-serif;--body:'Hanken Grotesk',system-ui,sans-serif;--maxw:980px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--ivory);color:var(--espresso);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  a{color:inherit}
+
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--espresso-soft);text-decoration:none;font-weight:600;padding:28px 0 0;transition:color .3s}
+  .back:hover{color:var(--espresso)}
+  .eyebrow{font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--espresso);color:var(--gold);font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;transition:transform .25s,background .25s,color .25s}
+  .btn:hover{background:var(--gold);color:var(--espresso);transform:translateX(4px)}
+  .btn.ghost{background:transparent;color:var(--espresso);border:2px solid var(--espresso)}
+  .btn.ghost:hover{background:var(--espresso);color:var(--gold)}
+
+  /* HERO */
+  .hero{padding:40px 0 36px}
+  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,7vw,72px);line-height:.98;letter-spacing:-.01em;margin:16px 0 18px;max-width:16ch}
+  .hero h1 .g{color:var(--gold)}
+  .hero .lede{font-size:clamp(18px,2.2vw,22px);color:var(--espresso-soft);font-weight:500;max-width:46ch;margin-bottom:28px}
+  .hero .lede b{color:var(--espresso);font-weight:700}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+  /* THESIS strip */
+  .thesis{background:var(--espresso);color:var(--ivory);border-radius:20px;padding:34px 40px;margin:8px 0 0}
+  .thesis .tag{font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+  .thesis p{font-family:var(--display);font-weight:400;font-size:clamp(24px,3.6vw,34px);line-height:1.16}
+  .thesis p .g{color:var(--gold)}
+
+  section{padding:64px 0}
+  .head{max-width:620px;margin-bottom:28px}
+  .head h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,48px);line-height:1;margin:12px 0 10px}
+  .head p{font-size:17px;color:var(--espresso-soft);font-weight:500}
+
+  /* timeline */
+  .viz{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 28px 22px}
+  .viz .cap{font-size:13.5px;color:var(--espresso-soft);font-weight:600;text-align:center;margin-top:6px}
+  .viz .cap b{color:var(--gold-deep)}
+  svg{display:block;width:100%;height:auto}
+  .tl-phase{font-family:var(--display);font-weight:400}
+  .tl-week{font-weight:700;font-size:11px;letter-spacing:.06em;fill:var(--gold-deep);text-transform:uppercase}
+  .tl-milestone{font-weight:600;font-size:11px;fill:var(--espresso-soft)}
+
+  /* what you get */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 30px;transition:transform .3s,box-shadow .3s,border-color .3s}
+  .card:hover{transform:translateY(-5px);box-shadow:0 22px 46px -28px rgba(43,34,29,.5);border-color:var(--gold)}
+  .card .ic{font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:400;margin-bottom:10px;display:block}
+  .card h3{font-family:var(--display);font-weight:400;font-size:24px;color:var(--espresso);margin-bottom:8px;line-height:1.1}
+  .card p{font-size:15.5px;color:var(--espresso-soft);font-weight:500;line-height:1.6}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+
+  /* booking section */
+  .book-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:36px;align-items:center}
+  @media(max-width:820px){.book-wrap{grid-template-columns:1fr;gap:24px}}
+  .booking{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(43,34,29,.65)}
+  .booking-top{display:flex;align-items:center;gap:8px;background:var(--espresso);padding:11px 16px}
+  .booking-top .dots{display:flex;gap:6px}
+  .booking-top .dots i{width:10px;height:10px;border-radius:50%;display:block;background:rgba(246,241,231,.35)}
+  .booking-top .url{color:#D8C7A8;font-size:12.5px;font-weight:600;margin-left:6px}
+  .booking-body{padding:20px 22px}
+  .booking-body .day{font-weight:700;font-size:13px;color:var(--espresso);margin-bottom:6px}
+  .booking-body .sub{font-size:12.5px;color:var(--espresso-soft);font-weight:600;margin-bottom:14px}
+  .slots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .slot{display:flex;flex-direction:column;gap:3px;align-items:center;border-radius:9px;padding:9px 6px;font-size:13px;font-weight:700;border:1px solid var(--line)}
+  .slot.booked{background:#F3EFE6;color:#B6A893;border-style:dashed}
+  .slot.booked .t{text-decoration:line-through}
+  .slot.open{background:var(--espresso);color:var(--gold);border-color:var(--espresso)}
+  .slot .tick{font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+  .scarcity{display:flex;align-items:center;gap:8px;background:#FFF8E7;border:1px solid var(--gold);border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700;color:var(--espresso);margin-top:12px}
+  .scarcity .pulse{width:8px;height:8px;border-radius:50%;background:#C65D5D;flex:none}
+
+  /* commit strip */
+  .commit{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px}
+  @media(max-width:720px){.commit{grid-template-columns:1fr 1fr}}
+  .stat{background:var(--ivory);border:1px solid var(--line);border-radius:16px;padding:22px 20px;text-align:center}
+  .stat .big{font-family:var(--display);font-size:38px;line-height:1;color:var(--gold);margin-bottom:6px}
+  .stat .lbl{font-size:14px;color:var(--espresso-soft);font-weight:600;line-height:1.3}
+
+  /* CTA */
+  .cta{text-align:center}
+  .cta h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,60px);line-height:1;margin-bottom:14px}
+  .cta h2 .g{color:var(--gold)}
+  .cta p{font-size:18px;color:var(--espresso-soft);font-weight:500;max-width:44ch;margin:0 auto 26px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+  footer{background:var(--espresso);color:var(--bisque);padding:46px 0 54px;text-align:center;margin-top:40px}
+  footer .fm{font-family:var(--display);font-size:28px}
+  footer .fm .g{color:var(--gold)}
+  footer .tag{color:#D8C7A8;font-weight:500;margin-top:6px}
+</style>
+</head>
+<body>
+
+  <div class="wrap"><a href="index.html" class="back">← Back to home</a></div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Fundraising Sprint</span>
+      <h1>We run your raise like a <span class="g">campaign.</span></h1>
+      <p class="lede">Fundraising is a sales process. <b>Investors are attracted to shiny things, so we make you shine</b> before you ever ask for a check.</p>
+      <div class="hero-cta">
+        <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call →</a>
+        <a class="btn ghost" href="raise-campaign-offer.html">Read the full program</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="thesis">
+      <span class="tag">The thesis</span>
+      <p>Before the raise, become someone investors will be <span class="g">obsessed with.</span> Then announce your raise.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">The timeline</span>
+        <h2>8 weeks to build, a 2-week raise.</h2>
+        <p>One fixed path, so every week has a job. We build your brand and your demand, then run the raise as a tight sprint.</p>
+      </div>
+      <div class="viz">
+        <svg viewBox="0 0 760 230" role="img" aria-label="Timeline: weeks 1 to 2 Strategy and Setup, weeks 3 to 6 Build Your Brand, weeks 7 to 8 Get Raise-Ready, weeks 9 to 10 The Raise Sprint">
+          <text class="tl-week" x="100" y="30" text-anchor="middle">Weeks 1-2</text>
+          <text class="tl-week" x="310" y="30" text-anchor="middle">Weeks 3-6</text>
+          <text class="tl-week" x="520" y="30" text-anchor="middle">Weeks 7-8</text>
+          <text class="tl-week" x="660" y="30" text-anchor="middle">Weeks 9-10</text>
+
+          <rect x="33"  y="46" width="134" height="54" rx="11" fill="#EBD6B4"/>
+          <rect x="173" y="46" width="274" height="54" rx="11" fill="#D69946"/>
+          <rect x="453" y="46" width="134" height="54" rx="11" fill="#9C7128"/>
+          <rect x="593" y="46" width="134" height="54" rx="11" fill="#2B221D"/>
+
+          <text class="tl-phase" x="100" y="79" text-anchor="middle" font-size="14" fill="#2B221D">Strategy &amp; Setup</text>
+          <text class="tl-phase" x="310" y="79" text-anchor="middle" font-size="16" fill="#2B221D">Build Your Brand</text>
+          <text class="tl-phase" x="520" y="79" text-anchor="middle" font-size="14" fill="#F6F1E7">Get Raise-Ready</text>
+          <text class="tl-phase" x="660" y="79" text-anchor="middle" font-size="14" fill="#D69946">The Raise Sprint</text>
+
+          <g stroke="#9C7128" stroke-width="1.5">
+            <line x1="275" y1="100" x2="275" y2="128"/>
+            <line x1="380" y1="100" x2="380" y2="128"/>
+            <line x1="555" y1="100" x2="555" y2="128"/>
+            <line x1="660" y1="100" x2="660" y2="128"/>
+          </g>
+          <g fill="#D69946">
+            <circle cx="275" cy="130" r="4.5"/>
+            <circle cx="380" cy="130" r="4.5"/>
+            <circle cx="555" cy="130" r="4.5"/>
+            <circle cx="660" cy="130" r="4.5"/>
+          </g>
+
+          <text class="tl-milestone" x="275" y="156" text-anchor="middle">Your big</text>
+          <text class="tl-milestone" x="275" y="170" text-anchor="middle">content piece</text>
+          <text class="tl-milestone" x="380" y="156" text-anchor="middle">The Salon</text>
+          <text class="tl-milestone" x="380" y="170" text-anchor="middle">(dinner / stage)</text>
+          <text class="tl-milestone" x="555" y="156" text-anchor="middle">Announce to</text>
+          <text class="tl-milestone" x="555" y="170" text-anchor="middle">Tier 1 investors</text>
+          <text class="tl-milestone" x="660" y="156" text-anchor="middle">Calendar</text>
+          <text class="tl-milestone" x="660" y="170" text-anchor="middle">books up solid</text>
+
+          <line x1="33" y1="198" x2="727" y2="198" stroke="rgba(43,34,29,.14)" stroke-width="1"/>
+          <text x="33" y="220" font-size="12" font-weight="700" fill="#5A4B3F">~10h / week before the raise</text>
+          <text x="727" y="220" font-size="12" font-weight="700" fill="#5A4B3F" text-anchor="end">40h+ during the sprint</text>
+        </svg>
+        <p class="cap">8 weeks of <b>brand + prep</b>, then a focused <b>2-week raise</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">What you get</span>
+        <h2>The whole engine, not just a deck.</h2>
+        <p>Most fundraising help stops at the deck. This is the part that makes investors want the meeting in the first place.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <span class="ic">Brand</span>
+          <h3>A founder people follow</h3>
+          <p>Regular X, LinkedIn and Substack content in your style of speech, plus your one big piece that your network pushes far. You become someone investors already know.</p>
+        </div>
+        <div class="card">
+          <span class="ic">The room</span>
+          <h3>The Salon</h3>
+          <p>An intimate dinner, a panel spot, or the right podcasts. You're at the center of the conversation IRL, around the topic, not the pitch. No raise mentioned.</p>
+        </div>
+        <div class="card">
+          <span class="ic">Prep</span>
+          <h3>Investor-ready materials</h3>
+          <p>Deck, one-pager, market and competition research, and your pitch in multiple versions. Plus the full investor pipeline, documented and prioritized.</p>
+        </div>
+        <div class="card">
+          <span class="ic">The sprint</span>
+          <h3>A raise that converts</h3>
+          <p>Tier 1 investors get first access, then everyone warm sees a calendar that's already filling up. Daily prep before meetings, daily debrief after.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="book-wrap">
+        <div>
+          <span class="eyebrow">The sprint move</span>
+          <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(28px,4.5vw,40px);line-height:1.02;margin:12px 0 12px">Investors come to a calendar that's already booked.</h2>
+          <p style="font-size:17px;color:var(--espresso-soft);font-weight:500">7 days before the raise, every warm investor whose thesis fits sees a custom booking page. The calendar is nearly full and meetings are stacking up. Scarcity does the selling for you.</p>
+        </div>
+        <div class="booking" aria-label="A custom meeting booking interface showing a calendar that is almost fully booked">
+          <div class="booking-top">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="url">book.momentummill.com / your-raise</span>
+          </div>
+          <div class="booking-body">
+            <div class="day">Wednesday</div>
+            <div class="sub">2 of 10 slots left this week</div>
+            <div class="slots">
+              <div class="slot booked"><span class="t">9:00</span><span class="tick">Booked</span></div>
+              <div class="slot booked"><span class="t">9:30</span><span class="tick">Booked</span></div>
+              <div class="slot booked"><span class="t">10:00</span><span class="tick">Booked</span></div>
+              <div class="slot open"><span class="t">10:30</span><span class="tick">Open</span></div>
+              <div class="slot booked"><span class="t">11:00</span><span class="tick">Booked</span></div>
+              <div class="slot booked"><span class="t">11:30</span><span class="tick">Booked</span></div>
+              <div class="slot booked"><span class="t">1:00</span><span class="tick">Booked</span></div>
+              <div class="slot open"><span class="t">2:00</span><span class="tick">Open</span></div>
+              <div class="slot booked"><span class="t">2:30</span><span class="tick">Booked</span></div>
+            </div>
+            <div class="scarcity"><span class="pulse"></span> Calendar's nearly full, grab a slot before it's gone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMITMENT -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">The deal</span>
+        <h2>What it takes.</h2>
+        <p>Up to 5 startups. Cohort starts July 2026, on a heavily discounted founding-cohort rate, because you're our design partner.</p>
+      </div>
+      <div class="commit">
+        <div class="stat"><div class="big">5</div><div class="lbl">founders<br>in the cohort</div></div>
+        <div class="stat"><div class="big">8+2</div><div class="lbl">weeks of brand,<br>then the raise</div></div>
+        <div class="stat"><div class="big">~10h</div><div class="lbl">a week<br>before the raise</div></div>
+        <div class="stat"><div class="big">40h+</div><div class="lbl">during the<br>raise sprint</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" style="padding-top:0">
+    <div class="wrap">
+      <h2>Wanna be <span class="g">in?</span></h2>
+      <p>A quick call to see if you're a fit and when we'd kick off the eight weeks.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call →</a>
+        <a class="btn ghost" href="raise-campaign-offer.html">Read the full program</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="fm">Momentum<span class="g">Mill</span></div>
+      <p class="tag">Where momentum is made.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
