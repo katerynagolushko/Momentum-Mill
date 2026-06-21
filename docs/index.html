@@ -6,7 +6,7 @@
   ------------------------------------------------------------
   Brand: espresso #2B221D (the "Momentum" ink) + warm gold #D69946 (the "Mill")
          on ivory, with a deeper gold for small accents.
-  Type:  Acme (display) + Hanken Grotesk (body), via Google Fonts.
+  Type:  Newsreader (display) + Hanken Grotesk (body) + Space Mono (labels), via Google Fonts.
   Stack: hand-written CSS (no framework) + a little vanilla JS.
 
   WHERE TO EDIT CONTENT: search for "EDIT:" comments:
@@ -21,10 +21,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Momentum Mill | Where momentum is made</title>
-<meta name="description" content="Momentum Mill helps founders gain momentum through fundraising, strategic partnerships, and recognition, run as focused sprints.">
+<meta name="description" content="Momentum Mill helps founders raise money and land partnerships, run as short, focused sprints.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Acme&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* ---------- DESIGN TOKENS ---------- */
   :root{
@@ -35,7 +35,7 @@
     --espresso:#2B221D;     /* "Momentum", ink */
     --espresso-soft:#5A4B3F;
     --line:rgba(43,34,29,.14);
-    --display:'Acme','Trebuchet MS',sans-serif;
+    --display:'Newsreader','Georgia',serif;
     --body:'Hanken Grotesk',system-ui,sans-serif;
     --maxw:1140px;
   }
@@ -61,10 +61,10 @@
 
   /* ---------- SHARED BITS ---------- */
   .eyebrow{
-    font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--gold-deep);display:inline-flex;align-items:center;gap:10px;
+    display:inline-block;font-family:'Space Mono',monospace;font-weight:400;
+    font-size:12.5px;letter-spacing:0;text-transform:lowercase;color:var(--gold-deep);
   }
-  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
+  .eyebrow::before{content:"/ ";opacity:.5}
   .btn{
     display:inline-flex;align-items:center;gap:10px;background:var(--espresso);color:var(--gold);
     font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;
@@ -86,10 +86,10 @@
   /* ============ HERO ============ */
   .hero{padding:84px 0 72px}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-  .wordmark{font-family:var(--display);font-weight:400;line-height:.84;font-size:clamp(64px,11vw,128px);letter-spacing:-.01em}
+  .wordmark{font-family:var(--display);font-weight:700;line-height:.9;font-size:clamp(64px,11vw,128px);letter-spacing:-.01em}
   .wordmark .m1{color:var(--espresso);display:block}
-  .wordmark .m2{color:var(--gold);display:block}
-  .hero .lede{font-size:clamp(18px,2vw,22px);max-width:34ch;margin:26px 0 32px;color:var(--espresso-soft);font-weight:500}
+  .wordmark .m2{color:var(--gold);display:block;font-style:italic}
+  .hero .lede{font-size:clamp(18px,2vw,22px);max-width:34ch;margin:26px 0 32px;color:var(--espresso-soft);font-weight:600}
   .hero .lede b{color:var(--espresso);font-weight:700}
 
   /* the rotating wheel + word-ring */
@@ -103,8 +103,8 @@
   /* ============ SPRINTS ============ */
   section{padding:84px 0}
   .head{max-width:620px;margin-bottom:48px}
-  .head h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,60px);line-height:.98;letter-spacing:-.01em;margin:14px 0 12px}
-  .head p{font-size:18px;color:var(--espresso-soft);font-weight:500}
+  .head h2{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,60px);line-height:.98;letter-spacing:-.01em;margin:14px 0 12px}
+  .head p{font-size:18px;color:var(--espresso-soft);font-weight:600}
 
   .tracks{display:grid;grid-template-columns:1fr 1fr;gap:26px}
   .track{
@@ -113,10 +113,10 @@
     display:flex;flex-direction:column;
   }
   .track:hover{transform:translateY(-6px);box-shadow:0 24px 50px -28px rgba(43,34,29,.45);border-color:var(--gold)}
-  .track .num{font-family:var(--display);font-size:74px;line-height:.8;color:var(--bisque);position:absolute;top:22px;right:28px}
-  .track h3{font-family:var(--display);font-weight:400;font-size:34px;line-height:1;color:var(--espresso)}
+  .track .num{font-family:var(--display);font-weight:700;font-size:74px;line-height:.8;color:var(--bisque);position:absolute;top:22px;right:28px}
+  .track h3{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;color:var(--espresso)}
   .track .rule{width:54px;height:4px;background:var(--gold);border-radius:4px;margin:16px 0 18px}
-  .track .intro{font-size:17px;color:var(--espresso-soft);font-weight:500;margin-bottom:22px}
+  .track .intro{font-size:17px;color:var(--espresso-soft);font-weight:600;margin-bottom:22px}
   .track ul{list-style:none;display:flex;flex-direction:column;gap:12px;flex-grow:1;margin-bottom:16px}
   .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
   .track li::before{content:"›";color:var(--gold-deep);font-weight:800;font-size:20px;line-height:1.2}
@@ -138,7 +138,6 @@
   /* ============ ABOUT ============ */
   #about{background:var(--espresso);color:var(--ivory)}
   #about .eyebrow{color:var(--gold)}
-  #about .eyebrow::before{background:var(--gold)}
   #about .head h2{color:var(--ivory)}
   .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
   .about-card{background:rgba(246,241,231,.05);border:1px solid rgba(246,241,231,.16);border-radius:22px;padding:36px}
@@ -165,14 +164,14 @@
 
   /* ============ CONTACT ============ */
   #contact{text-align:center}
-  #contact h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,7vw,68px);line-height:.98;margin-bottom:18px}
-  #contact h2 em{font-style:normal;color:var(--gold)}
-  #contact p{font-size:18px;color:var(--espresso-soft);font-weight:500;max-width:46ch;margin:0 auto 30px}
+  #contact h2{font-family:var(--display);font-weight:700;font-size:clamp(36px,7vw,68px);line-height:.98;margin-bottom:18px}
+  #contact h2 em{font-style:italic;color:var(--gold)}
+  #contact p{font-size:18px;color:var(--espresso-soft);font-weight:600;max-width:46ch;margin:0 auto 30px}
 
   /* ============ FOOTER ============ */
   footer{background:var(--espresso);color:var(--bisque);padding:52px 0 60px;text-align:center}
-  footer .fm{font-family:var(--display);font-size:30px}
-  footer .fm .g{color:var(--gold)}
+  footer .fm{font-family:var(--display);font-weight:700;font-size:30px}
+  footer .fm .g{color:var(--gold);font-style:italic}
   footer .tag{color:#D8C7A8;font-weight:500;margin:6px 0 18px}
   footer .meta{font-size:13px;color:rgba(235,214,180,.6)}
   footer a{color:var(--gold);text-decoration:none;font-weight:600}
@@ -198,12 +197,12 @@
       </h1>
       <!-- EDIT: hero description -->
       <p class="lede fadeup d2">
-        Momentum isn't luck. It's <b>made</b>. We run fundraising, strategic
-        partnerships, and recognition as focused sprints, turning early traction
-        into <b>a round that closes</b>, partners who commit, and an ecosystem
-        that knows your name.
+        We help founders get the raise and the partnerships done, run as short
+        sprints with a real plan and a deadline. The flagship is the
+        <b>Fundraising Sprint</b>: 8 weeks building your brand, then a
+        2-week raise.
       </p>
-      <a href="#sprints" class="btn fadeup d3">Explore the sprints →</a>
+      <a href="#sprints" class="btn fadeup d3">See the sprints →</a>
     </div>
 
     <!-- WHEEL: inner mill spins one way, the word-ring orbits the other -->
@@ -261,8 +260,8 @@
   <div class="wrap">
     <div class="head reveal">
       <span class="eyebrow">Solutions</span>
-      <h2>Two sprints. Each with its own engine.</h2>
-      <p>Pick the gear you need now. Both are run as deliberate sprints: sequenced, measured, and built to create momentum rather than wait for it.</p>
+      <h2>Two sprints.</h2>
+      <p>One for raising, one for partnerships. Both run on a fixed timeline with weekly work, not open-ended advice.</p>
     </div>
 
     <div class="tracks">
@@ -271,12 +270,12 @@
         <div class="num">01</div>
         <h3>Fundraising<br>Sprint</h3>
         <div class="rule"></div>
-        <p class="intro">We run your raise like a marketing campaign, not a cold scramble. Scheduled, sequenced, and built to make the round feel inevitable.</p>
+        <p class="intro">We run your raise like a campaign. You build a founder brand investors already follow, then we line up the meetings and close in a tight sprint.</p>
         <ul>
-          <li>Scheduled activities on a real timeline, so every week has a job</li>
-          <li>Founder personal brand built so investors arrive already warm</li>
-          <li>Structured fundraising sprints with clear milestones and checkpoints</li>
-          <li>Demand engineered across the raise, not improvised meeting to meeting</li>
+          <li>8 weeks building your personal brand, so investors know you before you ask</li>
+          <li>A real schedule: content, events, and the Salon, week by week</li>
+          <li>Deck, one-pager, and a documented investor pipeline</li>
+          <li>A 2-week raise sprint with daily prep and back to back calls</li>
         </ul>
         <a href="fundraising-sprint.html" class="proposal-btn">See the program →</a>
       </article>
@@ -286,12 +285,12 @@
         <div class="num">02</div>
         <h3>Partnerships<br>Sprint</h3>
         <div class="rule"></div>
-        <p class="intro">The right partner for the stage you're actually in, chosen for traction, not logos for the deck.</p>
+        <p class="intro">The right partner for the stage you're actually at, picked for real traction, not a logo on the deck.</p>
         <ul>
-          <li>Identify the partnerships that matter most at your current stage</li>
-          <li>Prioritise the ones that drive real user traction</li>
-          <li>Shape an offer that's genuinely appealing to the partner in question</li>
-          <li>Align both sides so the deal compounds, not just closes</li>
+          <li>Find the partners that matter at your current stage</li>
+          <li>Focus on the ones that actually drive users</li>
+          <li>Build an offer the partner genuinely wants</li>
+          <li>Set up both sides so the deal keeps paying off</li>
         </ul>
         <span class="coming-soon-btn">Coming soon</span>
       </article>
@@ -314,9 +313,9 @@
       </div>
       <!-- EDIT: personalise this bio if you want -->
       <div class="about-card reveal">
-        <p>Momentum Mill is led by <strong style="color:#fff">Kateryna Golushko</strong>, who brings a background in venture capital and early-stage GTM.</p>
-        <p>She has worked with over 80 startups on establishing partnerships and fundraising, across Ultra.vc, Amazon, Launch Club Capital, and RBC Group.</p>
-        <p>She built Momentum Mill on a simple conviction: fundraising and partnerships shouldn't be left to chance or charisma. Run as deliberate sprints, with real timelines, founder brand-building, and stage-right targeting, they become repeatable engines for momentum.</p>
+        <p>Momentum Mill is <strong style="color:#fff">Kateryna Golushko</strong>. Her background is venture capital and early-stage go-to-market.</p>
+        <p>She has worked with over 80 startups on partnerships and fundraising, across Ultra.vc, Amazon, Launch Club Capital, and RBC Group.</p>
+        <p>She started Momentum Mill because most founders raise and partner on charisma and luck. Run as a sprint, with a real plan and a deadline, it gets a lot more predictable.</p>
         <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer">More about Kateryna →</a>
       </div>
     </div>
@@ -328,7 +327,7 @@
   <div class="wrap reveal">
     <span class="eyebrow" style="justify-content:center">Let's talk</span>
     <h2>Let's <em>build momentum.</em></h2>
-    <p>If you're raising, forging partnerships, or trying to get noticed, and you'd rather run it as a sprint than wing it, get in touch.</p>
+    <p>If you're raising soon, or you want a partnership that actually moves the numbers, get in touch.</p>
     <!-- EDIT: contact email -->
     <a class="btn gold" href="mailto:kateryna@momentummill.com">Start a conversation →</a>
   </div>

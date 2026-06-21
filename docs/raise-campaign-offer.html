@@ -7,7 +7,7 @@
 <meta name="description" content="Before the raise, become someone investors are obsessed with. An 8-week brand build, then a 2-week raise sprint. Momentum Mill.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Acme&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ivory:#F6F1E7;
@@ -17,7 +17,7 @@
     --espresso:#2B221D;
     --espresso-soft:#5A4B3F;
     --line:rgba(43,34,29,.14);
-    --display:'Acme','Trebuchet MS',sans-serif;
+    --display:'Newsreader','Georgia',serif;
     --body:'Hanken Grotesk',system-ui,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -41,13 +41,13 @@
   .pdf-btn svg{width:15px;height:15px;fill:currentColor}
 
   /* eyebrow */
-  .eyebrow{font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
-  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold)}
+  .eyebrow{display:inline-block;font-family:'Space Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:lowercase;color:var(--gold-deep);margin-bottom:14px}
+  .eyebrow::before{content:"/ ";opacity:.5}
 
   /* hero */
-  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
-  .hero h1 .g{color:var(--gold)}
-  .lede{font-size:clamp(17px,2.2vw,20px);color:var(--espresso-soft);font-weight:500;max-width:60ch;margin-bottom:8px}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,52px);line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
+  .hero h1 .g{color:var(--gold);font-style:italic}
+  .lede{font-size:clamp(17px,2.2vw,20px);color:var(--espresso-soft);font-weight:600;max-width:60ch;margin-bottom:8px}
   .lede b{color:var(--espresso);font-weight:700}
 
   /* pull quote / thesis */
@@ -55,15 +55,16 @@
     background:var(--espresso);color:var(--ivory);border-radius:18px;
     padding:32px 36px;margin:36px 0;position:relative;overflow:hidden;
   }
-  .thesis .tag{font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
-  .thesis p{font-family:var(--display);font-weight:400;font-size:clamp(22px,3.4vw,30px);line-height:1.18;color:var(--ivory)}
-  .thesis p .g{color:var(--gold)}
+  .thesis .tag{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:lowercase;color:var(--gold);margin-bottom:12px}
+  .thesis .tag::before{content:"/ ";opacity:.55}
+  .thesis p{font-family:var(--display);font-weight:700;font-size:clamp(22px,3.4vw,30px);line-height:1.18;color:var(--ivory)}
+  .thesis p .g{color:var(--gold);font-style:italic}
 
   p{font-size:16px;color:var(--espresso-soft);margin-bottom:14px;line-height:1.65}
   p strong{color:var(--espresso);font-weight:700}
   .section-intro{max-width:64ch}
 
-  h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(26px,4.5vw,38px);line-height:1.02;margin:56px 0 6px}
+  h2.sec{font-family:var(--display);font-weight:700;font-size:clamp(26px,4.5vw,38px);line-height:1.02;margin:56px 0 6px}
   .sec-rule{width:54px;height:4px;background:var(--gold);border-radius:4px;margin-bottom:22px}
 
   /* timeline visual */
@@ -71,7 +72,7 @@
   .viz .cap{font-size:13px;color:var(--espresso-soft);font-weight:600;text-align:center;margin-top:4px}
   .viz .cap b{color:var(--gold-deep)}
   svg{display:block;width:100%;height:auto}
-  .tl-phase{font-family:var(--display);font-weight:400}
+  .tl-phase{font-family:var(--display);font-weight:700}
   .tl-week{font-weight:700;font-size:11px;letter-spacing:.06em;fill:var(--gold-deep);text-transform:uppercase}
   .tl-milestone{font-weight:600;font-size:11px;fill:var(--espresso-soft)}
 
@@ -82,8 +83,8 @@
     position:relative;transition:transform .3s,box-shadow .3s,border-color .3s;
   }
   .step:hover{transform:translateY(-3px);box-shadow:0 18px 40px -26px rgba(43,34,29,.5);border-color:var(--gold)}
-  .step .n{font-family:var(--display);font-size:30px;line-height:.8;color:var(--gold);position:absolute;top:22px;right:26px}
-  .step h3{font-family:var(--display);font-weight:400;font-size:21px;color:var(--espresso);margin-bottom:4px;padding-right:48px}
+  .step .n{font-family:var(--display);font-weight:700;font-size:30px;line-height:.8;color:var(--gold);position:absolute;top:22px;right:26px}
+  .step h3{font-family:var(--display);font-weight:700;font-size:21px;color:var(--espresso);margin-bottom:4px;padding-right:48px}
   .step p{font-size:15.5px;margin-bottom:10px}
   .step p:last-child{margin-bottom:0}
   .step ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:6px 0 0}
@@ -91,7 +92,7 @@
   .step li::before{content:"›";position:absolute;left:0;top:0;color:var(--gold-deep);font-weight:800;font-size:18px}
   .step li strong{color:var(--espresso);font-weight:700}
   .sub{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
-  .sub .lbl{display:inline-block;font-weight:700;color:var(--espresso);background:var(--bisque);border-radius:6px;padding:1px 8px;font-size:13px;margin-bottom:6px}
+  .sub .lbl{display:inline-block;font-family:'Space Mono',monospace;font-weight:700;color:var(--gold-deep);font-size:12.5px;text-transform:lowercase;margin-bottom:6px}
   .note{font-size:14px;color:var(--gold-deep);font-weight:600;font-style:italic;margin-top:12px}
 
   /* booking UI */
@@ -102,7 +103,7 @@
   .booking-top .url{color:#D8C7A8;font-size:12.5px;font-weight:600;margin-left:6px;letter-spacing:.01em}
   .booking-body{display:grid;grid-template-columns:1fr 1.25fr;gap:0}
   .booking-left{padding:22px 22px;border-right:1px solid var(--line)}
-  .booking-left .who{font-family:var(--display);font-size:19px;color:var(--espresso);line-height:1.1;margin-bottom:4px}
+  .booking-left .who{font-family:var(--display);font-weight:700;font-size:19px;color:var(--espresso);line-height:1.1;margin-bottom:4px}
   .booking-left .role{font-size:13px;color:var(--espresso-soft);font-weight:600;margin-bottom:16px}
   .mini-week{display:flex;gap:6px;margin-bottom:16px}
   .mini-week .d{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:7px 0;font-size:11px;font-weight:700;color:var(--espresso-soft)}
@@ -123,7 +124,7 @@
 
   /* logistics box */
   .logistics{background:#FFF8E7;border:2px solid var(--gold);border-radius:16px;padding:26px 28px;margin:24px 0}
-  .logistics h3{font-family:var(--display);font-weight:400;font-size:22px;margin-bottom:14px;color:var(--espresso)}
+  .logistics h3{font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:14px;color:var(--espresso)}
   .logistics ul{list-style:none;display:flex;flex-direction:column;gap:12px}
   .logistics li{position:relative;padding-left:22px;font-size:16px;color:var(--espresso);font-weight:500;line-height:1.55}
   .logistics li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
@@ -131,8 +132,8 @@
 
   /* cta */
   .cta{text-align:center;margin-top:56px;padding:40px 28px;background:var(--espresso);border-radius:20px;color:var(--ivory)}
-  .cta h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,46px);margin-bottom:10px;color:var(--ivory)}
-  .cta h2 .g{color:var(--gold)}
+  .cta h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,46px);margin-bottom:10px;color:var(--ivory)}
+  .cta h2 .g{color:var(--gold);font-style:italic}
   .cta p{color:#E7DECF;font-size:16px;margin-bottom:22px}
   .btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--espresso);font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px;text-decoration:none;transition:transform .25s,background .25s,color .25s}
   .btn:hover{background:var(--ivory);color:var(--espresso);transform:translateX(4px)}
@@ -181,7 +182,7 @@
   <!-- TIMELINE -->
   <h2 class="sec">The timeline</h2>
   <div class="sec-rule"></div>
-  <p class="section-intro">8 weeks to build your brand and your demand, then a 2-week raise. One fixed path, so every week has a job.</p>
+  <p class="section-intro">8 weeks of brand and prep, then a 2-week raise.</p>
 
   <div class="viz">
     <svg viewBox="0 0 760 268" role="img" aria-label="Timeline: weeks 1 to 2 Strategy and Setup, weeks 3 to 6 Build Your Brand, weeks 7 to 8 Get Raise-Ready, weeks 9 to 10 The Raise Sprint">
@@ -328,7 +329,7 @@
               <div class="d full">THU<span>full</span></div>
               <div class="d full">FRI<span>full</span></div>
             </div>
-            <div class="scarcity"><span class="pulse"></span> Calendar's nearly full, grab a slot before it's gone</div>
+            <div class="scarcity"><span class="pulse"></span> Only 2 slots left this week</div>
           </div>
           <div class="booking-right">
             <div class="day">Wednesday, available times</div>
@@ -347,7 +348,7 @@
           </div>
         </div>
       </div>
-      <p class="cap" style="text-align:left;margin-top:10px">What every investor sees: your calendar, already filling up. Scarcity does the selling.</p>
+      <p class="cap" style="text-align:left;margin-top:10px">The custom meeting booking UI, showing a calendar that's already almost full.</p>
     </div>
 
     <div class="step">
@@ -385,7 +386,7 @@
   <!-- CTA -->
   <div class="cta">
     <h2>Wanna be <span class="g">in?</span></h2>
-    <p>Up to 5 founders. Cohort starts July 2026. Heavily discounted founding-cohort rate.</p>
+    <p>Up to 5 founders. Cohort starts July 2026. Heavily discounted rate.</p>
     <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call →</a>
   </div>
 
