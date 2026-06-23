@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Momentum Mill: Fundraising Sprint program page. -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,125 +11,195 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#F6F1E7;--bisque:#EBD6B4;--gold:#D69946;--gold-deep:#9C7128;
-    --espresso:#2B221D;--espresso-soft:#5A4B3F;--line:rgba(43,34,29,.14);
-    --display:'Newsreader','Georgia',serif;--body:'Hanken Grotesk',system-ui,sans-serif;--maxw:980px;
+    --ivory:#F6F1E7;--cream:#FBF8F1;--bisque:#EBD6B4;--bisque-soft:#F0E2C8;
+    --gold:#D69946;--gold-deep:#9C7128;--espresso:#2B221D;--espresso-2:#241C18;--espresso-soft:#5A4B3F;
+    --line:rgba(43,34,29,.12);--line-strong:rgba(43,34,29,.22);
+    --display:'Newsreader','Georgia',serif;--body:'Hanken Grotesk',system-ui,sans-serif;--mono:'Space Mono',monospace;
+    --maxw:1040px;--ease:cubic-bezier(.2,.7,.2,1);--z-nav:100;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:var(--body);background:var(--ivory);color:var(--espresso);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  body{font-family:var(--body);background:var(--ivory);color:var(--espresso);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
   a{color:inherit}
+  ::selection{background:var(--gold);color:var(--espresso)}
+  :focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:3px;border-radius:4px}
+  svg{display:block;width:100%;height:auto}
 
-  .back{display:inline-flex;align-items:center;gap:8px;color:var(--espresso-soft);text-decoration:none;font-weight:600;padding:28px 0 0;transition:color .3s}
-  .back:hover{color:var(--espresso)}
-  .eyebrow{display:inline-block;font-family:'Space Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:lowercase;color:var(--gold-deep)}
-  .eyebrow::before{content:"/ ";opacity:.5}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--espresso);color:var(--gold);font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;transition:transform .25s,background .25s,color .25s}
-  .btn:hover{background:var(--gold);color:var(--espresso);transform:translateX(4px)}
-  .btn.ghost{background:transparent;color:var(--espresso);border:2px solid var(--espresso)}
-  .btn.ghost:hover{background:var(--espresso);color:var(--gold)}
+  .kicker{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:400;font-size:12.5px;letter-spacing:.02em;text-transform:lowercase;color:var(--gold-deep)}
+  .kicker::before{content:"/";font-weight:700;opacity:.5}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--espresso);color:var(--gold);font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;border:1px solid var(--espresso);transition:transform .3s var(--ease),background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease)}
+  .btn:hover{background:var(--gold);color:var(--espresso);border-color:var(--gold);transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(43,34,29,.6)}
+  .btn .arr{transition:transform .3s var(--ease)}
+  .btn:hover .arr{transform:translateX(4px)}
+  .btn.gold{background:var(--gold);color:var(--espresso);border-color:var(--gold)}
+  .btn.gold:hover{background:var(--espresso);color:var(--gold);border-color:var(--espresso)}
+  .btn.ghost{background:transparent;color:var(--espresso);border:1.5px solid var(--line-strong)}
+  .btn.ghost:hover{background:var(--espresso);color:var(--gold);border-color:var(--espresso);box-shadow:none}
+  .btn.sm{font-size:14px;padding:11px 20px}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(246,241,231,.82);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:border-color .3s var(--ease),background .3s var(--ease)}
+  .nav.scrolled{border-bottom-color:var(--line);background:rgba(246,241,231,.92)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em;text-decoration:none;line-height:1;display:inline-flex;align-items:center;gap:9px}
+  .brand .g{color:var(--gold);font-style:italic}
+  .brand .home{font-family:var(--body);font-weight:600;font-size:13px;color:var(--espresso-soft);border-left:1px solid var(--line-strong);padding-left:10px}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta .txt{font-weight:600;font-size:15px;text-decoration:none;color:var(--espresso-soft);transition:color .25s var(--ease)}
+  .nav-cta .txt:hover{color:var(--espresso)}
+  .nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:none;background:transparent;color:var(--espresso);border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s var(--ease)}
+  .nav-toggle:hover{background:rgba(43,34,29,.06)}
+  .nav-toggle .bars{position:relative;display:block;width:20px;height:14px}
+  .nav-toggle .bars span{position:absolute;left:0;width:100%;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .15s var(--ease),top .3s var(--ease)}
+  .nav-toggle .bars span:nth-child(1){top:0}
+  .nav-toggle .bars span:nth-child(2){top:6px}
+  .nav-toggle .bars span:nth-child(3){top:12px}
+  .nav.open .nav-toggle .bars span:nth-child(1){top:6px;transform:rotate(45deg)}
+  .nav.open .nav-toggle .bars span:nth-child(2){opacity:0}
+  .nav.open .nav-toggle .bars span:nth-child(3){top:6px;transform:rotate(-45deg)}
+  .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 22px 44px -26px rgba(43,34,29,.45);padding:6px 0 12px}
+  .nav.open .nav-menu{display:block;animation:navdrop .26s var(--ease)}
+  @keyframes navdrop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .nav-menu a{display:block;font-weight:600;font-size:17px;color:var(--espresso-soft);text-decoration:none;padding:14px 32px;transition:color .2s var(--ease),background .2s var(--ease)}
+  .nav-menu a:hover,.nav-menu a:focus-visible{color:var(--espresso);background:rgba(43,34,29,.05)}
+  .brand{white-space:nowrap}
+  .nav .btn{white-space:nowrap}
+  @media(max-width:720px){.nav-cta .txt{display:none}.nav-toggle{display:inline-flex}.nav .wrap{padding:0 20px}.nav-menu a{padding-left:20px;padding-right:20px}}
+  @media(max-width:460px){.brand{font-size:18px}.nav-cta{gap:10px}.nav .btn.sm{font-size:13px;padding:9px 15px}.nav-toggle{width:40px;height:40px}}
+  @media (prefers-reduced-motion:reduce){.nav.open .nav-menu{animation:none}.nav-toggle .bars span{transition:none}}
 
   /* HERO */
-  .hero{padding:40px 0 36px}
-  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(38px,7vw,72px);line-height:.98;letter-spacing:-.01em;margin:16px 0 18px;max-width:16ch}
+  .hero{padding:clamp(40px,6vw,72px) 0 clamp(24px,3vw,36px)}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,7vw,76px);line-height:.96;letter-spacing:-.025em;margin:18px 0 20px;max-width:16ch;text-wrap:balance}
   .hero h1 .g{color:var(--gold);font-style:italic}
-  .hero .lede{font-size:clamp(18px,2.2vw,22px);color:var(--espresso-soft);font-weight:600;max-width:46ch;margin-bottom:28px}
+  .hero .lede{font-size:clamp(18px,2vw,22px);color:var(--espresso-soft);font-weight:500;max-width:48ch;margin-bottom:30px;line-height:1.5;text-wrap:pretty}
   .hero .lede b{color:var(--espresso);font-weight:700}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 
-  /* THESIS strip */
-  .thesis{background:var(--espresso);color:var(--ivory);border-radius:20px;padding:34px 40px;margin:8px 0 0}
-  .thesis .tag{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:lowercase;color:var(--gold);margin-bottom:12px}
-  .thesis .tag::before{content:"/ ";opacity:.55}
-  .thesis p{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.6vw,34px);line-height:1.16}
+  /* THESIS */
+  .thesis{background:var(--espresso);color:var(--ivory);border-radius:22px;padding:clamp(30px,4vw,42px);margin:8px 0 0;position:relative;overflow:hidden}
+  .thesis::after{content:"";position:absolute;top:-100px;right:-100px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(214,153,70,.16),transparent 65%);pointer-events:none}
+  .thesis .kicker{color:var(--gold);margin-bottom:14px}
+  .thesis .kicker::before{opacity:.6}
+  .thesis p{font-family:var(--display);font-weight:700;font-size:clamp(25px,3.6vw,36px);line-height:1.16;position:relative}
   .thesis p .g{color:var(--gold);font-style:italic}
 
-  section{padding:64px 0}
-  .head{max-width:620px;margin-bottom:28px}
-  .head h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,48px);line-height:1;margin:12px 0 10px}
-  .head p{font-size:17px;color:var(--espresso-soft);font-weight:600}
+  section{padding:clamp(52px,7vw,84px) 0}
+  .head{max-width:660px;margin-bottom:clamp(26px,3vw,36px)}
+  .head h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.6vw,50px);line-height:1;margin:14px 0 12px;letter-spacing:-.02em;text-wrap:balance}
+  .head p{font-size:clamp(16px,1.5vw,18px);color:var(--espresso-soft);font-weight:500;text-wrap:pretty}
 
   /* timeline */
-  .viz{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 28px 22px}
-  .viz .cap{font-size:13.5px;color:var(--espresso-soft);font-weight:600;text-align:center;margin-top:6px}
+  .viz{background:var(--cream);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,3vw,34px) clamp(20px,2.5vw,30px) 22px;box-shadow:0 18px 44px -36px rgba(43,34,29,.5)}
+  .viz .cap{font-size:13.5px;color:var(--espresso-soft);font-weight:600;text-align:center;margin-top:10px}
   .viz .cap b{color:var(--gold-deep)}
-  svg{display:block;width:100%;height:auto}
   .tl-phase{font-family:var(--display);font-weight:700}
   .tl-week{font-weight:700;font-size:11px;letter-spacing:.06em;fill:var(--gold-deep);text-transform:uppercase}
   .tl-milestone{font-weight:600;font-size:11px;fill:var(--espresso-soft)}
 
   /* what you get */
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 30px;transition:transform .3s,box-shadow .3s,border-color .3s}
-  .card:hover{transform:translateY(-5px);box-shadow:0 22px 46px -28px rgba(43,34,29,.5);border-color:var(--gold)}
-  .card .ic{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:lowercase;color:var(--gold-deep);margin-bottom:10px}
-  .card .ic::before{content:"/ ";opacity:.5}
-  .card h3{font-family:var(--display);font-weight:700;font-size:24px;color:var(--espresso);margin-bottom:8px;line-height:1.1}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,2.6vw,32px);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+  .card:hover{transform:translateY(-5px);box-shadow:0 24px 50px -30px rgba(43,34,29,.5);border-color:var(--gold)}
+  .card .kicker{margin-bottom:12px}
+  .card h3{font-family:var(--display);font-weight:700;font-size:clamp(21px,2.2vw,26px);color:var(--espresso);margin-bottom:10px;line-height:1.08}
   .card p{font-size:15.5px;color:var(--espresso-soft);font-weight:500;line-height:1.6}
   @media(max-width:720px){.grid{grid-template-columns:1fr}}
 
-  /* booking section */
-  .book-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:36px;align-items:center}
-  @media(max-width:820px){.book-wrap{grid-template-columns:1fr;gap:24px}}
-  .booking{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(43,34,29,.65)}
-  .booking-top{display:flex;align-items:center;gap:8px;background:var(--espresso);padding:11px 16px}
+  /* booking */
+  .book-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,4vw,48px);align-items:center}
+  @media(max-width:820px){.book-wrap{grid-template-columns:1fr;gap:28px}}
+  .book-copy h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,42px);line-height:1.02;margin:12px 0 14px;letter-spacing:-.02em;text-wrap:balance}
+  .book-copy p{font-size:17px;color:var(--espresso-soft);font-weight:500;line-height:1.55}
+  .book-copy p+p{margin-top:16px}
+  .booking{background:var(--cream);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 26px 56px -34px rgba(43,34,29,.7)}
+  .booking-top{display:flex;align-items:center;gap:8px;background:var(--espresso);padding:12px 16px}
   .booking-top .dots{display:flex;gap:6px}
-  .booking-top .dots i{width:10px;height:10px;border-radius:50%;display:block;background:rgba(246,241,231,.35)}
+  .booking-top .dots i{width:10px;height:10px;border-radius:50%;display:block;background:rgba(246,241,231,.32)}
   .booking-top .url{color:#D8C7A8;font-size:12.5px;font-weight:600;margin-left:6px}
-  .booking-body{padding:20px 22px}
+  .booking-body{padding:22px}
   .booking-body .day{font-weight:700;font-size:13px;color:var(--espresso);margin-bottom:6px}
   .booking-body .sub{font-size:12.5px;color:var(--espresso-soft);font-weight:600;margin-bottom:14px}
   .slots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-  .slot{display:flex;flex-direction:column;gap:3px;align-items:center;border-radius:9px;padding:9px 6px;font-size:13px;font-weight:700;border:1px solid var(--line)}
-  .slot.booked{background:#F3EFE6;color:#B6A893;border-style:dashed}
+  .slot{display:flex;flex-direction:column;gap:3px;align-items:center;border-radius:10px;padding:10px 6px;font-size:13px;font-weight:700;border:1px solid var(--line)}
+  .slot.booked{background:#F1ECE1;color:#A89A85;border-style:dashed}
   .slot.booked .t{text-decoration:line-through}
-  .slot.open{background:var(--espresso);color:var(--gold);border-color:var(--espresso)}
+  .slot.open{background:var(--espresso);color:var(--gold);border-color:var(--espresso);box-shadow:0 8px 18px -10px rgba(43,34,29,.5)}
   .slot .tick{font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-  .scarcity{display:flex;align-items:center;gap:8px;background:#FFF8E7;border:1px solid var(--gold);border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700;color:var(--espresso);margin-top:12px}
-  .scarcity .pulse{width:8px;height:8px;border-radius:50%;background:#C65D5D;flex:none}
+  .scarcity{display:flex;align-items:center;gap:9px;background:#FBEFD3;border:1px solid var(--gold);border-radius:11px;padding:11px 13px;font-size:13px;font-weight:700;color:var(--espresso);margin-top:13px}
+  .scarcity .pulse{width:9px;height:9px;border-radius:50%;background:var(--gold-deep);flex:none;box-shadow:0 0 0 0 rgba(156,113,40,.5);animation:pulse 2.4s var(--ease) infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(156,113,40,.45)}70%{box-shadow:0 0 0 8px rgba(156,113,40,0)}100%{box-shadow:0 0 0 0 rgba(156,113,40,0)}}
 
-  /* commit strip */
-  .commit{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px}
+  /* commit stats */
+  .commit{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
   @media(max-width:720px){.commit{grid-template-columns:1fr 1fr}}
-  .stat{background:var(--ivory);border:1px solid var(--line);border-radius:16px;padding:22px 20px;text-align:center}
-  .stat .big{font-family:var(--display);font-weight:700;font-size:38px;line-height:1;color:var(--gold);margin-bottom:6px}
-  .stat .lbl{font-size:14px;color:var(--espresso-soft);font-weight:600;line-height:1.3}
+  .stat{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:26px 22px;text-align:center;transition:transform .3s var(--ease),border-color .3s var(--ease)}
+  .stat:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .stat .big{font-family:var(--display);font-weight:700;font-size:clamp(34px,4vw,42px);line-height:1;color:var(--gold-deep);margin-bottom:8px}
+  .stat .lbl{font-size:14px;color:var(--espresso-soft);font-weight:600;line-height:1.35}
 
-  /* CTA */
-  .cta{text-align:center}
-  .cta h2{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,60px);line-height:1;margin-bottom:14px}
-  .cta h2 .g{color:var(--gold);font-style:italic}
-  .cta p{font-size:18px;color:var(--espresso-soft);font-weight:600;max-width:44ch;margin:0 auto 26px}
+  /* CTA band */
+  .cta-band{background:linear-gradient(160deg,var(--bisque-soft),var(--bisque));text-align:center}
+  .cta-band .inner{max-width:640px;margin:0 auto}
+  .cta-band h2{font-family:var(--display);font-weight:700;font-size:clamp(36px,6vw,64px);line-height:1;margin-bottom:14px;letter-spacing:-.02em;color:var(--espresso)}
+  .cta-band h2 .g{color:var(--gold-deep);font-style:italic}
+  .cta-band p{font-size:clamp(17px,1.6vw,19px);color:var(--espresso-soft);font-weight:500;max-width:44ch;margin:0 auto 28px;text-wrap:pretty}
   .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
 
-  footer{background:var(--espresso);color:var(--bisque);padding:46px 0 54px;text-align:center;margin-top:40px}
+  footer{background:var(--espresso-2);color:var(--bisque);padding:clamp(44px,6vw,58px) 0;text-align:center}
   footer .fm{font-family:var(--display);font-weight:700;font-size:28px}
   footer .fm .g{color:var(--gold);font-style:italic}
-  footer .tag{color:#D8C7A8;font-weight:500;margin-top:6px}
+  footer .tag{color:#D8C7A8;font-weight:500;margin-top:8px}
+
+  /* motion: enhance an already-visible default */
+  .reveal{opacity:1}
+  html.is-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  html.is-ready .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .scarcity .pulse{animation:none}
+    html.is-ready .reveal{opacity:1!important;transform:none!important;transition:none}
+  }
 </style>
 </head>
 <body>
 
-  <div class="wrap"><a href="/" class="back">← Back to home</a></div>
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand">Momentum<span class="g">Mill</span></a>
+      <div class="nav-cta">
+        <a class="txt" href="raise-campaign-offer">Full program</a>
+        <a class="btn gold sm" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call</a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+          <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-menu" id="navMenu">
+      <a href="/">Home</a>
+      <a href="raise-campaign-offer">Full program</a>
+    </div>
+  </nav>
 
   <!-- HERO -->
   <header class="hero">
-    <div class="wrap">
-      <span class="eyebrow">Fundraising Sprint</span>
+    <div class="wrap reveal">
+      <span class="kicker">fundraising sprint</span>
       <h1>We run your raise like a <span class="g">campaign.</span></h1>
       <p class="lede">Most raises drag on for months because the founder starts cold. We work with you for 8 weeks on your brand and <b>warm up the right investors</b>, then in 1-2 weeks we close the round.</p>
       <div class="hero-cta">
-        <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call →</a>
+        <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
         <a class="btn ghost" href="raise-campaign-offer">Read the full program</a>
       </div>
     </div>
   </header>
 
   <div class="wrap">
-    <div class="thesis">
-      <span class="tag">The thesis</span>
+    <div class="thesis reveal">
+      <span class="kicker">the thesis</span>
       <p>Before the raise, become someone investors will be <span class="g">obsessed with.</span> Then announce your raise.</p>
     </div>
   </div>
@@ -136,12 +207,12 @@
   <!-- TIMELINE -->
   <section>
     <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">The timeline</span>
+      <div class="head reveal">
+        <span class="kicker">the timeline</span>
         <h2>8 weeks to build, a 2-week raise.</h2>
         <p>We spend 8 weeks building your brand and getting you investor-ready, then run the raise in 2 weeks.</p>
       </div>
-      <div class="viz">
+      <div class="viz reveal">
         <svg viewBox="0 0 760 268" role="img" aria-label="Timeline: weeks 1 to 2 Strategy and Setup, weeks 3 to 6 Build Your Brand, weeks 7 to 8 Get Raise-Ready, weeks 9 to 10 The Raise Sprint">
           <text class="tl-week" x="100" y="30" text-anchor="middle">Weeks 1-2</text>
           <text class="tl-week" x="310" y="30" text-anchor="middle">Weeks 3-6</text>
@@ -197,28 +268,28 @@
   <!-- WHAT YOU GET -->
   <section style="padding-top:0">
     <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">What you get</span>
+      <div class="head reveal">
+        <span class="kicker">what you get</span>
         <h2>What we'll do</h2>
       </div>
       <div class="grid">
-        <div class="card">
-          <span class="ic">Brand</span>
+        <div class="card reveal">
+          <span class="kicker">brand</span>
           <h3>A founder people follow</h3>
           <p>Regular X, LinkedIn and Substack content in your style of speech, plus your one big piece that your network pushes far. You become someone investors already know.</p>
         </div>
-        <div class="card">
-          <span class="ic">The room</span>
+        <div class="card reveal">
+          <span class="kicker">the room</span>
           <h3>The Salon</h3>
           <p>An intimate dinner, a panel spot, or the right podcasts. You're at the center of the conversation IRL, around the topic, not the pitch. No raise mentioned.</p>
         </div>
-        <div class="card">
-          <span class="ic">Prep</span>
+        <div class="card reveal">
+          <span class="kicker">prep</span>
           <h3>Investor-ready materials</h3>
           <p>Deck, one-pager, market and competition research, and your pitch in multiple versions. Plus the full investor pipeline, documented and prioritized.</p>
         </div>
-        <div class="card">
-          <span class="ic">The sprint</span>
+        <div class="card reveal">
+          <span class="kicker">the sprint</span>
           <h3>The raise sprint</h3>
           <p>Tier 1 investors get first access to your calendar, then every warm investor whose thesis fits. Daily prep before meetings, daily debrief after.</p>
         </div>
@@ -230,13 +301,13 @@
   <section style="padding-top:0">
     <div class="wrap">
       <div class="book-wrap">
-        <div>
-          <span class="eyebrow">The sprint move</span>
-          <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(28px,4.5vw,40px);line-height:1.02;margin:12px 0 12px">Investors only get limited time to chat with you.</h2>
-          <p style="font-size:17px;color:var(--espresso-soft);font-weight:500">7-10 days before the raise we send emails from "you" to investors announcing the raise, saying it will only happen this week and there are only these slots available. When they click the booking link they will see that a lot of the meetings are booked already.</p>
-          <p style="font-size:17px;color:var(--espresso-soft);font-weight:500;margin-top:16px">Investors live for the FOMO, why not give it to them?</p>
+        <div class="book-copy reveal">
+          <span class="kicker">the sprint move</span>
+          <h2>Investors only get limited time to chat with you.</h2>
+          <p>7-10 days before the raise we send emails from "you" to investors announcing the raise, saying it will only happen this week and there are only these slots available. When they click the booking link they will see that a lot of the meetings are booked already.</p>
+          <p>Investors live for the FOMO, why not give it to them?</p>
         </div>
-        <div class="booking" aria-label="A custom meeting booking interface showing a calendar that is almost fully booked">
+        <div class="booking reveal" aria-label="A custom meeting booking interface showing a calendar that is almost fully booked">
           <div class="booking-top">
             <span class="dots"><i></i><i></i><i></i></span>
             <span class="url">book.momentummill.com / your-raise</span>
@@ -265,27 +336,27 @@
   <!-- COMMITMENT -->
   <section style="padding-top:0">
     <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">The deal</span>
+      <div class="head reveal">
+        <span class="kicker">the deal</span>
         <h2>Main Logistics</h2>
         <p>Cohort starts July 2026, on a heavily discounted rate, because you're our design partner.</p>
       </div>
       <div class="commit">
-        <div class="stat"><div class="big">&le;5</div><div class="lbl">founders<br>in the cohort</div></div>
-        <div class="stat"><div class="big">8+2</div><div class="lbl">weeks of brand,<br>then the raise</div></div>
-        <div class="stat"><div class="big">~10h</div><div class="lbl">a week<br>before the raise</div></div>
-        <div class="stat"><div class="big">40h+</div><div class="lbl">during the<br>raise sprint</div></div>
+        <div class="stat reveal"><div class="big">&le;5</div><div class="lbl">founders<br>in the cohort</div></div>
+        <div class="stat reveal"><div class="big">8+2</div><div class="lbl">weeks of brand,<br>then the raise</div></div>
+        <div class="stat reveal"><div class="big">~10h</div><div class="lbl">a week<br>before the raise</div></div>
+        <div class="stat reveal"><div class="big">40h+</div><div class="lbl">during the<br>raise sprint</div></div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta" style="padding-top:0">
-    <div class="wrap">
+  <section class="cta-band">
+    <div class="wrap inner reveal">
       <h2>Wanna be <span class="g">in?</span></h2>
       <p>A quick call to see if you're a fit and take it from there.</p>
       <div class="cta-row">
-        <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call →</a>
+        <a class="btn gold" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
         <a class="btn ghost" href="raise-campaign-offer">Read the full program</a>
       </div>
     </div>
@@ -298,5 +369,22 @@
     </div>
   </footer>
 
+  <script>
+    document.documentElement.classList.add('is-ready');
+    const nav=document.getElementById('nav');
+    const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>8);
+    onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+    const navToggle=document.getElementById('navToggle');
+    const navMenu=document.getElementById('navMenu');
+    const setMenu=(open)=>{nav.classList.toggle('open',open);if(navToggle){navToggle.setAttribute('aria-expanded',open?'true':'false');navToggle.setAttribute('aria-label',open?'Close menu':'Open menu');}};
+    if(navToggle){
+      navToggle.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
+      navMenu.querySelectorAll('a, button').forEach(el=>el.addEventListener('click',()=>setMenu(false)));
+      document.addEventListener('keydown',(e)=>{if(e.key==='Escape')setMenu(false);});
+      window.addEventListener('resize',()=>{if(window.innerWidth>720)setMenu(false);});
+    }
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>
