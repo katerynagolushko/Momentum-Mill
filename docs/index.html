@@ -193,20 +193,19 @@
   .track.flagship{background:var(--cream);border:1px solid var(--line);box-shadow:0 2px 0 0 var(--gold) inset, 0 18px 40px -34px rgba(43,34,29,.5)}
   .track.flagship::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--gold)}
   .track.flagship:hover{transform:translateY(-6px);box-shadow:0 2px 0 0 var(--gold) inset, 0 30px 60px -34px rgba(43,34,29,.55);border-color:var(--gold)}
-  /* upcoming, de-emphasized */
-  .track.upcoming{background:transparent;border:1px dashed var(--line-strong)}
-  .track.upcoming .track-head h3,.track.upcoming .intro,.track.upcoming li{color:var(--espresso-soft)}
+  /* second offer, colored and bookable */
+  .track.gtm{background:var(--bisque);border:1px solid rgba(156,113,40,.4)}
+  .track.gtm::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--gold-deep)}
+  .track.gtm:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(43,34,29,.5);border-color:var(--gold-deep)}
 
   .track-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
   .track .idx{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--gold-deep);letter-spacing:.04em;line-height:1}
   .track h3{font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.02;color:var(--espresso)}
   .track .rule{width:52px;height:3px;background:var(--gold);border-radius:3px;margin:14px 0 18px}
-  .track.upcoming .rule{background:var(--line-strong)}
   .track .intro{font-size:16.5px;color:var(--espresso-soft);font-weight:500;margin-bottom:22px;line-height:1.5}
   .track ul{list-style:none;display:flex;flex-direction:column;gap:13px;flex-grow:1;margin-bottom:26px}
   .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:15.5px;line-height:1.45}
   .track li::before{content:"";flex:0 0 auto;margin-top:.55em;width:6px;height:6px;border-radius:50%;background:var(--gold-deep)}
-  .track.upcoming li::before{background:var(--line-strong)}
   .track .foot{margin-top:auto}
   .pill-disabled{
     display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;
@@ -303,15 +302,14 @@
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="kicker fadeup d1">momentum mill</span>
-      <h1 class="wordmark fadeup d1" aria-label="Momentum Mill" style="margin-top:18px">
+      <h1 class="wordmark fadeup d1" aria-label="Momentum Mill">
         <span class="m1">Momentum</span>
         <span class="m2">Mill</span>
       </h1>
       <p class="lede fadeup d2">
-        We help founders raise, land the right partners, and get known. Each one
-        runs as a focused sprint with a real timeline, so the right people see
-        your traction while it's still hot.
+        We make the right investors <b>want to meet you</b> by running your raise
+        like a campaign. 8 weeks to build your personal brand, and 2 weeks to
+        close the round.
       </p>
       <div class="hero-cta fadeup d3">
         <a href="#sprints" class="btn">See the sprints <span class="arr">&rarr;</span></a>
@@ -321,14 +319,14 @@
 
     <div class="wheel-stage fadeup d2">
       <svg class="mill" viewBox="0 0 300 300" role="img"
-           aria-label="A turning mill wheel ringed by the words Fundraising, Strategic Partnerships, and Brand Recognition">
+           aria-label="A turning mill wheel ringed by the words Fundraising, Strategic Partnerships and Go-to-market">
         <defs>
           <path id="ring" d="M150,150 m-120,0 a120,120 0 1,1 240,0 a120,120 0 1,1 -240,0"/>
         </defs>
         <g class="ring-rotate">
           <text class="ring-text">
             <textPath href="#ring" startOffset="0" textLength="754" lengthAdjust="spacing">
-              PARTNERSHIPS&#160;&#160;&#8226;&#160;&#160;<tspan fill="#2B221D">FUNDRAISING</tspan>&#160;&#160;&#8226;&#160;&#160;RECOGNITION&#160;&#160;&#8226;&#160;&#160;
+              PARTNERSHIPS&#160;&#160;&#8226;&#160;&#160;<tspan fill="#2B221D">FUNDRAISING</tspan>&#160;&#160;&#8226;&#160;&#160;GO-TO-MARKET&#160;&#160;&#8226;&#160;&#160;
             </textPath>
           </text>
         </g>
@@ -380,9 +378,9 @@
 <section id="sprints">
   <div class="wrap">
     <div class="head reveal">
-      <span class="kicker">solutions</span>
-      <h2>Two sprints. Pick the one you need now.</h2>
-      <p>Both run on a real timeline with clear checkpoints, so the work moves on a schedule instead of drifting into a six-month maybe.</p>
+      <span class="kicker">the offer</span>
+      <h2>Two offers. Pick what you need.</h2>
+      <p>One is the program, tailored to your needs. The second is an absolutely custom solution.</p>
     </div>
 
     <div class="tracks">
@@ -397,28 +395,28 @@
           <li>A real timeline where every week has a clear job</li>
           <li>Founder brand built first, so investors arrive already warm</li>
           <li>Deck, one-pager and investor pipeline, ready before you start</li>
-          <li>A focused 2-week raise sprint, not months of cold meetings</li>
+          <li>A 2-week raise sprint with calls booked back to back</li>
         </ul>
         <div class="foot">
           <a href="fundraising-sprint" class="btn gold sm">See the program <span class="arr">&rarr;</span></a>
         </div>
       </article>
 
-      <article class="track upcoming reveal">
+      <article class="track gtm reveal">
         <div class="track-head">
           <span class="idx">02</span>
-          <h3>Partnerships Sprint</h3>
+          <h3>GTM Sprint</h3>
         </div>
         <div class="rule"></div>
-        <p class="intro">The right partner for the stage you're actually in, picked for traction, not logos for the deck.</p>
+        <p class="intro">We analyze your core customer acquisition problem and create theories where your customer could be.</p>
         <ul>
-          <li>Find the partnerships that matter most at your current stage</li>
-          <li>Prioritise the ones that drive real user traction</li>
-          <li>Shape an offer the partner actually wants to say yes to</li>
-          <li>Line both sides up so the deal compounds over time</li>
+          <li>Formulate specific growth hypotheses targeting specific user personas, pain points and digital channels</li>
+          <li>Identify high-leverage ecosystem partners to co-market with and unlock warm distribution channels</li>
+          <li>Design high-value pilots that get target accounts hooked on your product so they never want to give it up</li>
+          <li>Build automated data pipelines using GTM engineering to find the exact people who need those offers</li>
         </ul>
         <div class="foot">
-          <span class="pill-disabled"><span class="dot"></span>Coming soon</span>
+          <a class="btn sm" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
         </div>
       </article>
     </div>
@@ -439,9 +437,9 @@
         </div>
       </div>
       <div class="about-copy reveal">
-        <p>Momentum Mill is led by <strong>Kateryna Golushko</strong>, who comes from venture capital and early-stage GTM.</p>
-        <p>She has worked with over 80 startups on partnerships and fundraising, across Ultra.vc, Amazon, Launch Club Capital, and RBC Group.</p>
-        <p>She started Momentum Mill because fundraising and partnerships get left to luck and charisma far too often. Run as proper sprints with real timelines and founder brand-building, they turn into something you can repeat.</p>
+        <p>Momentum Mill is led by <strong>Kateryna Golushko</strong>, who comes from a venture capital and early-stage GTM execution space.</p>
+        <p>She's worked with over 80 startups on fundraising and partnerships, across Ultra.vc, Amazon, Launch Club Capital and RBC Group.</p>
+        <p>She started Momentum Mill because too many founders leave fundraising and partnerships to luck and charisma.</p>
         <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer" class="link-arrow">More about Kateryna <span class="arr">&rarr;</span></a>
       </div>
     </div>
@@ -453,8 +451,8 @@
   <div class="wrap inner reveal">
     <span class="kicker">let's talk</span>
     <h2>Let's get you moving.</h2>
-    <p>If you're raising, chasing the right partners, or just trying to get noticed, and you'd rather run it as a sprint than wing it, let's talk.</p>
-    <a class="btn gold" href="mailto:kateryna@momentummill.com">Start a conversation <span class="arr">&rarr;</span></a>
+    <p>If you're getting ready to raise, or you want a partnership worth doing, let's talk.</p>
+    <a class="btn gold" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
   </div>
 </section>
 
