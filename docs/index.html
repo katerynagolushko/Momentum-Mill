@@ -144,7 +144,7 @@
   /* ============ HERO ============ */
   .hero{padding:clamp(56px,8vw,104px) 0 clamp(40px,5vw,64px);position:relative}
   .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(32px,5vw,64px);align-items:center}
-  .wordmark{font-family:var(--display);font-weight:700;line-height:.86;font-size:clamp(62px,11vw,132px);letter-spacing:-.025em}
+  .wordmark{font-family:var(--display);font-weight:700;line-height:.86;font-size:clamp(46px,11vw,132px);letter-spacing:-.025em}
   .wordmark .m1{color:var(--espresso);display:block}
   .wordmark .m2{color:var(--gold);display:block;font-style:italic}
   .hero .lede{font-size:clamp(18px,1.7vw,21px);max-width:36ch;margin:clamp(20px,3vw,30px) 0 clamp(26px,3.5vw,36px);color:var(--espresso-soft);font-weight:500;line-height:1.55;text-wrap:pretty}
@@ -237,6 +237,8 @@
     content:"";position:absolute;inset:-30px;border-radius:50%;border:1.5px solid rgba(214,153,70,.2);z-index:1;
   }
   @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:36px}.about-mark{order:-1}}
+  @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:clamp(28px,6vw,44px)}.wheel-stage{max-width:380px;margin:0 auto}}
+  @media(max-width:600px){.wrap{padding:0 22px}}
 
   /* ============ CONTACT (warm closing band) ============ */
   #contact{background:linear-gradient(160deg, var(--bisque-soft), var(--bisque));text-align:center}
