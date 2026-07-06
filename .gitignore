@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Kira personal task board (deployed to Vercel directly, never commit personal tasks)
+kira/
+.vercel
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
