@@ -9,6 +9,25 @@ Results come out as a plain list, a clean web page, and a spreadsheet.
 
 All of this is **keyless and free**. No paid API, no signup.
 
+## Live site (Vercel)
+
+The report is hosted at **https://momentum-events-kateryna-golushkos-projects.vercel.app**.
+
+It's a **snapshot**, not auto-updating (Vercel hosts the page; the scraper is a
+batch job that feeds it). To refresh it, re-run the scraper and redeploy in one
+command:
+
+```bash
+events-agent/deploy.sh                            # default profile
+events-agent/deploy.sh --topic governance-london  # a different profile
+events-agent/deploy.sh --no-x                     # free (skip X)
+```
+
+That re-scrapes, then pushes the fresh report to the same URL (~1 min). It uses
+your Vercel token at `~/.claude/kira/.token` (the one Kira uses). The code lives
+in your `Momentum-Mill` GitHub repo under `events-agent/`; generated data (`out/`)
+and secrets (`.env`) are gitignored and never pushed.
+
 ## Run it
 
 From the project folder, in Terminal:
