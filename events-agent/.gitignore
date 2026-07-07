@@ -1,0 +1,9 @@
+# Generated reports (re-created on every run)
+out/
+
+# Local secrets (API keys) — never commit
+.env
+
+# Python
+__pycache__/
+*.pyc
