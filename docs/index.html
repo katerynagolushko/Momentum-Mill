@@ -4,20 +4,21 @@
   ============================================================
   MOMENTUM MILL : homepage
   ------------------------------------------------------------
-  Rebuilt 2026-07-06 from the founder's approved screenshots.
-  Poster-style condensed display caps (Anton), Hanken Grotesk
-  body, Newsreader for the sprint card titles. Ivory background,
-  dark navy offer card + About band, amber pill CTAs.
-  Copy is the founder's, verbatim. Two spelling fixes only:
-  "monhts" -> "months", "it's own" -> "its own".
-  Previous live version: branch backup/live-site-2026-07-06.
+  Restructured 2026-08-11: GTM-only. Flow: hero -> sprint
+  hypothesis cards (the wow) -> how it works (3-step flow:
+  experimentation, designing the experience, fractional
+  operator) -> about -> contact. Design system unchanged from
+  the 2026-07-06 build: Anton display caps, Inter body, ivory
+  background, navy About band, marigold pill CTAs.
+  Founder's copy preserved wherever it still fits the offer.
+  Previous live version: branch backup/pre-gtm-restructure-2026-08-11.
   ============================================================
 -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Momentum Mill | Where momentum is made</title>
-<meta name="description" content="Momentum Mill helps founders raise money and land partnerships, run as short, focused sprints.">
+<meta name="description" content="Momentum Mill is a GTM service for b2b startups: growth experiments, IRL experiences, and Kateryna executing your sprints as a fractional head of growth.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -148,38 +149,65 @@
 
   /* ============ OFFER ============ */
   section{padding:clamp(64px,9vw,110px) 0}
-  #sprints{background:var(--ivory-2);border-top:1px solid var(--line)}
+  #sprints,#how{border-top:1px solid var(--line)}
   .head{max-width:760px;margin-bottom:clamp(32px,4.5vw,48px)}
   .head h2{font-size:clamp(34px,5.6vw,62px);margin:14px 0 16px}
   .head p{font-size:clamp(16px,1.5vw,18px);color:var(--body-soft);font-weight:500;max-width:72ch}
 
-  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.5vw,30px);align-items:stretch}
-  .track{
-    padding:clamp(30px,3.4vw,46px);position:relative;display:flex;flex-direction:column;
-    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  /* how it works : three-step flow, echoes the hop dots on the sprint cards */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,52px)}
+  .step{position:relative;padding-top:30px}
+  .step::before{content:"";position:absolute;top:0;left:2px;width:13px;height:13px;border-radius:50%;border:2px solid var(--ink);background:var(--ink)}
+  .step.s3::before{background:var(--amber)}
+  .step::after{content:"";position:absolute;top:7px;left:30px;right:calc(-1*clamp(28px,4vw,52px));height:2px;background:var(--ink);opacity:.22}
+  .step.s3::after{display:none}
+  .step .idx{font-family:var(--display);font-size:clamp(38px,3.6vw,50px);line-height:1;color:var(--bronze);margin-bottom:12px}
+  .step h3{font-weight:700;font-size:clamp(21px,2vw,25px);line-height:1.15;margin-bottom:10px}
+  .step p{color:var(--body-soft);font-size:15.5px;font-weight:500;line-height:1.6;max-width:36ch}
+  @media(max-width:820px){.flow{grid-template-columns:1fr;gap:36px}.step::after{display:none}}
+
+  /* ============ SPRINT CARDS ============ */
+  .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
+  .hb-card{
+    position:relative;background:#FFFCF2;border:1px solid rgba(15,27,45,.35);border-radius:14px;
+    padding:clamp(20px,2.4vw,28px) clamp(20px,2.4vw,28px) clamp(16px,2vw,22px);
+    box-shadow:0 24px 50px -38px rgba(15,27,45,.45);
   }
-  .track:hover{transform:translateY(-5px)}
-  .track .idx{font-family:var(--display);font-size:clamp(34px,3.4vw,44px);line-height:1;color:var(--amber);margin-bottom:clamp(20px,2.6vw,34px)}
-  .track h3{font-weight:700;font-size:clamp(23px,2.3vw,28px);line-height:1.1;margin-bottom:18px}
-  .track h3 sup{font-size:.55em;top:-.5em;position:relative}
-  .track .intro{font-size:15.5px;font-weight:500;margin-bottom:24px;line-height:1.6}
-  .track ul{list-style:none;display:flex;flex-direction:column;gap:14px;flex-grow:1;margin-bottom:28px}
-  .track li{display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:15px;line-height:1.5}
-  .track li::before{content:"";flex:0 0 auto;margin-top:.6em;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.75}
-  .track .foot{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
-  /* 01 : dark navy */
-  .track.flagship{background:var(--navy);color:#F6F1E4;box-shadow:0 24px 50px -34px rgba(15,27,45,.5)}
-  .track.flagship h3{color:#F6F1E4}
-  .track.flagship .intro{color:rgba(246,241,228,.72)}
-  .track.flagship .link-arrow{color:var(--gold)}
-  .track.flagship .link-arrow:hover{color:#F6F1E4}
-  /* 02 : outlined on ivory */
-  .track.gtm{background:transparent;border:1px solid rgba(15,27,45,.35);color:var(--ink)}
-  .track.gtm .idx{color:var(--bronze)}
-  .track.gtm .intro{color:var(--body-soft)}
-  .track.gtm:hover{box-shadow:0 24px 50px -38px rgba(15,27,45,.45)}
-  .footnote{margin-top:clamp(24px,3vw,36px);font-size:13.5px;font-style:italic;color:var(--body-soft)}
-  @media(max-width:780px){.tracks{grid-template-columns:1fr}}
+  .hb-card.r1{transform:rotate(-.4deg)}
+  .hb-card.r2{transform:rotate(.35deg)}
+  .hb-card.r3{transform:rotate(-.25deg)}
+  .hb-card.win{border:1.5px solid var(--amber);box-shadow:0 26px 55px -30px rgba(247,191,0,.55);transform:rotate(.3deg)}
+  .hb-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+  .hb-path{font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze)}
+  .hb-num{font-size:12px;color:var(--body-soft);font-weight:500;white-space:nowrap}
+  .hb-hyp{font-size:16px;font-weight:500;line-height:1.55;margin-bottom:14px}
+  .hb-hyp b{font-weight:700;background:linear-gradient(transparent 64%, rgba(247,191,0,.45) 64%)}
+  .hops{display:flex;align-items:center;margin-bottom:5px}
+  .hopdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:transparent;flex:0 0 auto;position:relative}
+  .hopdot.done{background:var(--ink)}
+  .hopdot.goldd{background:var(--amber)}
+  .hopdot.dead{border-color:#B03A2E}
+  .hopdot.dead::after{content:'×';position:absolute;top:-9px;left:1px;color:#B03A2E;font-weight:800;font-size:14px;line-height:1}
+  .hopseg{height:2px;background:var(--ink);flex:1}
+  .hopseg.off{opacity:.15}
+  .hopseg.goldseg{background:var(--amber);height:3px}
+  .hoplabels{display:flex;justify-content:space-between;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--body-soft);margin-top:6px;text-transform:uppercase}
+  .stamp{
+    position:absolute;top:-13px;right:16px;font-family:var(--display);font-weight:400;
+    font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 12px;border:2px solid;border-radius:8px;background:var(--ivory);
+    box-shadow:0 10px 22px -14px rgba(15,27,45,.5);
+  }
+  .stamp.kill{color:#B03A2E;border-color:#B03A2E;transform:rotate(3deg)}
+  .stamp.invalid{color:var(--bronze);border-color:var(--bronze);transform:rotate(-3deg)}
+  .stamp.run2{color:var(--ink);border-color:var(--ink);transform:rotate(2deg)}
+  .stamp.pour{color:var(--ink);border-color:var(--ink);background:var(--amber);transform:rotate(-3deg);font-size:15px}
+  .hb-note{font-size:14.5px;line-height:1.5;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+  .hb-note .red{color:#B03A2E;font-weight:700}
+  .hb-note .goldt{color:var(--bronze);font-weight:800}
+  .hb-foot{display:flex;justify-content:space-between;align-items:center;gap:14px 22px;margin-top:clamp(22px,3vw,32px);flex-wrap:wrap}
+  .hb-count{font-size:13px;color:var(--body-soft);font-weight:500}
+  @media(max-width:820px){.hb-grid{grid-template-columns:1fr}}
 
   /* ============ ABOUT ============ */
   #about{background:var(--navy-deep);color:var(--ivory)}
@@ -245,6 +273,7 @@
     <a href="#top" class="brand">Momentum Mill</a>
     <div class="nav-links">
       <a href="#sprints">Sprints</a>
+      <a href="#how">How it works</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -257,6 +286,7 @@
   </div>
   <div class="nav-menu" id="navMenu">
     <a href="#sprints">Sprints</a>
+    <a href="#how">How it works</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
@@ -270,7 +300,7 @@
     <div class="hero-foot">
       <p class="lede">
         Startup game has its own rules, players and moves.<br>
-        My thesis is become popular in communities that matter to your goal whether it is Fundraising or GTM. Let's cook!
+        My thesis is become popular in communities that matter to your goal. Let's cook!
       </p>
       <div class="hero-cta">
         <a href="#sprints" class="btn ghost">See the sprints <span class="arr">&rarr;</span></a>
@@ -280,49 +310,108 @@
   </div>
 </header>
 
-<!-- ================= THE OFFER ================= -->
+<!-- ================= THE SPRINTS ================= -->
 <section id="sprints">
   <div class="wrap">
     <div class="head">
-      <span class="kicker">The offer</span>
-      <h2 class="poster">There are always two things founders need</h2>
-      <p>I have one developed methodology on the 1 week fundraise through personal branding and a custom gtm strategy building for b2b startups. In both cases the emphasis is on finding the right people and NOT selling to them but getting them to fall in love with you or your product</p>
+      <span class="kicker">The sprints</span>
+      <h2 class="poster">Every sale starts as a hypothesis</h2>
+      <p>Every card is one bet about who buys and through which door, with one number that decides it. Failed cards stay on the wall, they tell us where not to spend. The winner gets everything.</p>
     </div>
 
-    <div class="tracks">
-      <article class="track flagship">
+    <div class="hb-grid">
+      <div class="hb-card r1">
+        <div class="stamp kill">Killed &middot; run 2</div>
+        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">Sprint 01 &middot; 400 sends &middot; ends Mar 12</span></div>
+        <p class="hb-hyp">We believe <b>CFOs at software companies with 500+ engineers ($100M+ ARR)</b> will <b>book a demo from cold email</b>. Right if <b>6+ meetings per 400 sends</b>.</p>
+        <div class="hops">
+          <div class="hopdot done"></div><div class="hopseg"></div>
+          <div class="hopdot dead"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div>
+        </div>
+        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
+        <div class="hb-note"><span class="red">Emails got opened, almost nobody replied, twice.</span> CFOs at this level don't buy from strangers' emails.</div>
+      </div>
+
+      <div class="hb-card r2">
+        <div class="stamp invalid">Invalid</div>
+        <div class="hb-head"><span class="hb-path">Paid search</span><span class="hb-num">Sprint 02 &middot; $1,500 &middot; 3 weeks</span></div>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>request a demo from search ads on cloud-spend terms</b>. Right if <b>cost per demo under $600</b>.</p>
+        <div class="hops">
+          <div class="hopdot done"></div><div class="hopseg"></div>
+          <div class="hopdot done"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div>
+        </div>
+        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
+        <div class="hb-note"><b>Our own landing page leaked, so this run doesn't count.</b> Fixing the page, running again.</div>
+      </div>
+
+      <div class="hb-card r3">
+        <div class="stamp run2">Run 2 &middot; live</div>
+        <div class="hb-head"><span class="hb-path">Warm network</span><span class="hb-num">Sprint 03 &middot; 25 named intro asks</span></div>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>take a meeting from a board-member or investor intro</b>. Right if <b>8+ meetings from 25 asks</b>.</p>
+        <div class="hops">
+          <div class="hopdot done"></div><div class="hopseg"></div>
+          <div class="hopdot done"></div><div class="hopseg"></div>
+          <div class="hopdot dead"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div><div class="hopseg off"></div>
+          <div class="hopdot"></div>
+        </div>
+        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
+        <div class="hb-note">Intros landed, too few turned into meetings. <b>Changed one thing (the pitch line), running again.</b></div>
+      </div>
+
+      <div class="hb-card win">
+        <div class="stamp pour">Pour &uarr;</div>
+        <div class="hb-head"><span class="hb-path">Organizing events</span><span class="hb-num">Sprint 04 &middot; 150 invites &middot; 1 dinner</span></div>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>show up to a peer dinner on taming engineering spend</b>. Right if <b>5+ follow-up meetings</b>.</p>
+        <div class="hops">
+          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
+          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
+          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
+          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
+          <div class="hopdot goldd"></div>
+        </div>
+        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
+        <div class="hb-note"><span class="goldt">19 showed, 9 meetings, 2 pilots.</span> <b>This is the one. Everything pours here now.</b></div>
+      </div>
+    </div>
+
+    <div class="hb-foot">
+      <span class="hb-count">4 hypotheses &middot; 1 invalid &middot; 1 killed &middot; 1 live &middot; 1 pouring &middot; a made up b2b startup, so you can see the mechanics</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">How it works</span>
+      <h2 class="poster">I become your head of growth</h2>
+      <p>Data decided where your sales budget should go. We will analyze every experiment on its success metrics and based off that decide what went wrong or right and whether we will keep pursuing this channel.</p>
+    </div>
+    <div class="flow">
+      <div class="step s1">
         <div class="idx">01</div>
-        <h3>Fundraising Sprint<sup>*</sup></h3>
-        <p class="intro">Me and my partners run your raise like a campaign.<br>8 weeks warming up the right investors, then 1 week to close the round.</p>
-        <ul>
-          <li>There are objectives for every week</li>
-          <li>No mention of the raise for 80% of the raise, just personal branding</li>
-          <li>Combo of investor outreach, pitching, materials, events, social media content and thought leadership</li>
-          <li>Getting at least 40 back to back investor calls</li>
-        </ul>
-        <p class="intro" style="margin-bottom:24px">The full program is built out week by week. Book a call to see the whole thing.</p>
-        <div class="foot">
-          <a class="btn sm" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
-        </div>
-      </article>
-
-      <article class="track gtm">
+        <h3>Experimentation</h3>
+        <p>Every growth idea becomes a card: who buys, through which door, what number makes it true.</p>
+      </div>
+      <div class="step s2">
         <div class="idx">02</div>
-        <h3>GTM Sprint</h3>
-        <p class="intro">You and I will think about who your customer really is and where they are one thing we will not do is sell to them directly</p>
-        <ul>
-          <li>Identify Partners who already have access to your ICP and come up with an offer they will love</li>
-          <li>Organize IRL experiences for your ICP that will give them lasting memories</li>
-          <li>Build communities with your ICP and constantly engaging individual people in them</li>
-          <li>We will automate your outreach activities and A/B test them</li>
-        </ul>
-        <div class="foot">
-          <a class="link-arrow" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
-        </div>
-      </article>
+        <h3>Designing the experience</h3>
+        <p>IRL experiences, partner offers and communities your ICP will remember.</p>
+      </div>
+      <div class="step s3">
+        <div class="idx">03</div>
+        <h3>Fractional operator</h3>
+        <p>I execute the sprints myself, as if I am your head of growth. When a card wins, we pour everything into it.</p>
+      </div>
     </div>
-
-    <p class="footnote">* This will only work if you are in San Francisco or are willing to go live there for 3 months</p>
   </div>
 </section>
 
@@ -374,7 +463,7 @@
   <div class="wrap inner">
     <span class="kicker">Let's talk</span>
     <h2 class="poster">Let's get you moving.</h2>
-    <p>If you're getting ready to raise, or you want a partnership worth doing, let's talk.</p>
+    <p>If growth is nobody's whole job at your startup, let's talk.</p>
     <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
   </div>
 </section>
