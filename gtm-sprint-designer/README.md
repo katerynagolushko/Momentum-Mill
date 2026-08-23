@@ -91,4 +91,11 @@ SQLite doesn't persist on serverless — use Postgres in production:
    `RESEND_API_KEY` so magic links actually send).
 5. Run `npx prisma db push && npx prisma db seed` once against the production `DATABASE_URL`.
 
-The build command is the default `npm run build` (it runs `prisma generate` first).
+The build command is the default `npm run build` (it runs `prisma generate` first). On Vercel,
+the `vercel-build` script also runs `prisma db push` + `prisma db seed` against `DATABASE_URL`
+(both are idempotent), so the schema and corpus follow every deploy.
+
+**Preview mode without a database:** if `DATABASE_URL` is not set in Vercel, the build seeds a
+SQLite file and ships it read-only with the deployment. Public pages render the live corpus,
+but anything that writes (sign-in, designing, verdicts) needs a real Postgres `DATABASE_URL` —
+plus `ANTHROPIC_API_KEY` for the designer and `RESEND_API_KEY` for sign-in emails.

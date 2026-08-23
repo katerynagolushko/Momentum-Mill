@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const { email } = parsed.data;
 
   const token = await createLoginToken(email);
-  const base = process.env.APP_URL || "http://localhost:3000";
+  const base = process.env.APP_URL || new URL(req.url).origin;
   const url = `${base}/auth/verify?token=${token}`;
 
   try {
