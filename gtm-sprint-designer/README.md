@@ -83,13 +83,20 @@ citable).
 
 SQLite doesn't persist on serverless — use Postgres in production:
 
-1. Provision a Postgres DB (Vercel Postgres / Neon / Supabase).
-2. In `prisma/schema.prisma`, change `provider = "sqlite"` to `provider = "postgresql"`.
-   No model changes are needed.
-3. Create the Vercel project with **Root Directory** set to `gtm-sprint-designer/`.
-4. Set the env vars above in Vercel (with the Postgres `DATABASE_URL`, your `APP_URL`, and a
-   `RESEND_API_KEY` so magic links actually send).
-5. Run `npx prisma db push && npx prisma db seed` once against the production `DATABASE_URL`.
+1. In the Vercel project: Storage → Create Database (Neon, free tier works) and connect it —
+   this sets a Postgres `DATABASE_URL` automatically.
+2. Project Settings → Build & Deployment: **Framework = Next.js**, **Root Directory =
+   `gtm-sprint-designer`**, Output Directory left at the framework default.
+3. Add the remaining env vars (`ANTHROPIC_API_KEY`, `RESEND_API_KEY`, `ADMIN_EMAIL`;
+   `APP_URL` optional — magic links fall back to the deployment URL) and redeploy.
+
+The build script detects a Postgres `DATABASE_URL`, switches the Prisma provider for that
+build (the committed schema stays sqlite for local dev), pushes the schema, and seeds the
+corpus — no manual migration step. On other hosts, flip the provider in
+`prisma/schema.prisma` by hand and run `npm run setup` against your database.
+
+Note on Resend's free tier: until you verify a sending domain, Resend only delivers to the
+email address that owns the Resend account — fine for testing and the admin login.
 
 The build command is the default `npm run build` (it runs `prisma generate` first). On Vercel,
 the `vercel-build` script also runs `prisma db push` + `prisma db seed` against `DATABASE_URL`
