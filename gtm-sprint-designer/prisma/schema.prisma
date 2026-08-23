@@ -1,0 +1,111 @@
+// SQLite for local dev. Postgres-ready: change provider to "postgresql"
+// and set DATABASE_URL to a Postgres connection string — no model changes needed.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// One documented GTM experiment. Every CSV field is preserved verbatim as text;
+// an empty string means the source didn't state it — never imputed.
+model Case {
+  id               String   @id // case_id, e.g. PUB-001
+  actor            String
+  person           String
+  stage            String
+  icp              String
+  channel          String
+  approach         String
+  volume           String
+  timeframe        String
+  openRate         String
+  replyRate        String
+  acceptOrPositive String
+  meetings         String
+  outcome          String
+  verdict          String
+  lesson           String
+  url              String
+  conf             String // A | B (citable) | C (quarantine: prompt context only)
+  flag             String // raw value, e.g. "yes - vendor showcase"
+  flagNorm         String // normalized: yes | no | mixed
+  origin           String   @default("seed") // seed | founder
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model User {
+  id        String      @id @default(cuid())
+  email     String      @unique
+  createdAt DateTime    @default(now())
+  sessions  Session[]
+  runs      Run[]
+  drafts    CaseDraft[]
+}
+
+model AuthToken {
+  id        String    @id @default(cuid())
+  email     String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Run {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product      String
+  icp          String
+  stage        String
+  acv          String
+  channel      String
+  hoursPerWeek Int
+  outputJson   String // full validated plan JSON
+  citedCaseIds String // JSON array of cited case ids
+  createdAt    DateTime @default(now())
+
+  // Day-28 verdict, recorded by the founder
+  verdict        String? // scale | iterate | kill
+  verdictAt      DateTime?
+  actualVolume   String?
+  actualReplies  String?
+  actualMeetings String?
+  actualNotes    String?
+
+  draft CaseDraft?
+}
+
+// A founder-submitted verdict becomes a corpus case draft awaiting admin review.
+model CaseDraft {
+  id        String   @id @default(cuid())
+  runId     String   @unique
+  run       Run      @relation(fields: [runId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status    String   @default("unverified") // unverified | approved | rejected
+  stage     String
+  icp       String
+  channel   String
+  approach  String
+  volume    String
+  outcome   String
+  verdict   String
+  lesson    String
+  createdAt DateTime @default(now())
+  reviewedAt DateTime?
+}
