@@ -4,16 +4,18 @@
   ============================================================
   MOMENTUM MILL : homepage
   ------------------------------------------------------------
-  Rebuilt 2026-09-03 around one story: early-stage founders
-  figure out their GTM here through rapid experimentation.
-  Flow: hero -> the sprint (hypothesis cards + 3 steps)
-  -> ecosystem (three events + partners) -> accelerator tease
-  (GTM Sprint cohort one) -> about -> contact -> hangby.me
-  tease -> footer.
-  Design system unchanged: Anton display caps, Inter body,
-  cream background, navy About band, marigold pill CTAs.
+  Rebuilt 2026-09-03. One story: early-stage founders figure
+  out their GTM here through rapid experimentation.
+  Flow: hero -> the sprint (hypothesis cards) -> ecosystem
+  (three events + partners) -> cohort one tease -> about
+  -> contact -> hangby.me -> footer.
+  Design system: Anton display caps, Inter body, cream,
+  navy band, navy pill CTAs. No gold.
 
-  TO EDIT THE EVENTS: search for "EVENT 1", "EVENT 2", "EVENT 3".
+  EVENT PHOTOS: drop files into docs/events/ named
+  encode-hub.jpg, investor-evening.jpg, hackathon.jpg
+  and they show up automatically. Without a photo the tile
+  shows the big number instead.
   ============================================================
 -->
 <head>
@@ -22,23 +24,22 @@
 <title>Momentum Mill | Get your GTM figured out</title>
 <meta name="description" content="Momentum Mill is where early-stage founders figure out their go-to-market through rapid experimentation: 2 to 4 growth experiments in a month, run with Kateryna Golushko. GTM Sprint cohort one, London, autumn 2026.">
 <meta property="og:title" content="Momentum Mill | Get your GTM figured out">
-<meta property="og:description" content="Early-stage founders run 2 to 4 growth experiments in a month, kill what fails and pour into what works. GTM Sprint cohort one in London, autumn 2026.">
+<meta property="og:description" content="2 to 4 growth experiments in a month. Keep the one that works. GTM Sprint cohort one in London, autumn 2026.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://momentummill.com/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ---------- DESIGN TOKENS ---------- */
+  @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-500.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-600.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-700.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/inter-800.woff2) format('woff2')}
   :root{
-    --ivory:#F6F1E4;          /* cream page background */
-    --ink:#0F1B2D;            /* navy: headlines + body on cream */
-    --navy:#0F1B2D;           /* navy band */
-    --amber:#F7BF00;          /* marigold: primary button fill */
-    --amber-bright:#E8B400;   /* marigold: hover */
-    --gold:#F7BF00;           /* marigold: accent on navy */
-    --bronze:#885D1E;         /* bronze: accent on cream */
-    --body-soft:rgba(15,27,45,.68);   /* muted body on cream */
+    --ivory:#F6F1E4;
+    --ink:#0F1B2D;
+    --navy:#0F1B2D;
+    --accent:#0F1B2D;
+    --body-soft:rgba(15,27,45,.62);
     --line:rgba(15,27,45,.16);
     --line-dark:rgba(246,241,228,.16);
     --display:'Anton',impact,sans-serif;
@@ -48,7 +49,6 @@
     --z-nav:100;
   }
 
-  /* ---------- RESET ---------- */
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
@@ -62,54 +62,43 @@
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
   a{color:inherit}
-  ::selection{background:var(--amber);color:var(--ink)}
-  :focus-visible{outline:2.5px solid var(--bronze);outline-offset:3px;border-radius:4px}
+  img{max-width:100%}
+  ::selection{background:var(--ink);color:var(--ivory)}
+  :focus-visible{outline:2.5px solid var(--ink);outline-offset:3px;border-radius:4px}
 
-  /* ---------- KICKER ---------- */
-  .kicker{
-    display:inline-block;font-weight:800;font-size:17px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--bronze);
-  }
-  .kicker::before{content:"/ "}
+  .kicker{display:inline-block;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--body-soft)}
 
-  /* ---------- BUTTONS ---------- */
   .btn{
-    display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--ink);
+    display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--ivory);
     font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;
-    border:1.5px solid var(--amber);white-space:nowrap;
+    border:1.5px solid var(--ink);white-space:nowrap;
     transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
   }
-  .btn:hover{background:var(--amber-bright);border-color:var(--amber-bright);transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(15,27,45,.55)}
+  .btn:hover{background:#1B2B45;border-color:#1B2B45;transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(15,27,45,.55)}
   .btn .arr{transition:transform .3s var(--ease)}
   .btn:hover .arr{transform:translateX(4px)}
   .btn.ghost{background:transparent;border-color:rgba(15,27,45,.5);color:var(--ink)}
   .btn.ghost:hover{background:var(--ivory);border-color:var(--ink);box-shadow:0 14px 30px -18px rgba(15,27,45,.4)}
   .btn.sm{font-size:14px;padding:10px 20px}
-  .link-arrow{
-    display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
-    color:var(--bronze);font-size:16px;transition:color .25s var(--ease)
-  }
+  .btn.light{background:var(--ivory);border-color:var(--ivory);color:var(--ink)}
+  .btn.light:hover{background:#FFFCF2;border-color:#FFFCF2}
+  .link-arrow{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;color:var(--ink);font-size:15px;transition:color .25s var(--ease)}
   .link-arrow .arr{transition:transform .3s var(--ease)}
-  .link-arrow:hover{color:var(--ink)}
+  .link-arrow:hover{color:var(--body-soft)}
   .link-arrow:hover .arr{transform:translateX(4px)}
 
-  /* ---------- NAV ---------- */
-  .nav{
-    position:sticky;top:0;z-index:var(--z-nav);
-    background:rgba(246,241,228,.88);backdrop-filter:saturate(140%) blur(10px);
-    border-bottom:1px solid transparent;
-    transition:background .35s var(--ease),border-color .35s var(--ease)
-  }
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(246,241,228,.88);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
   .nav.scrolled{border-bottom-color:var(--line)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none;line-height:1;color:var(--ink);white-space:nowrap;transition:color .35s var(--ease)}
   .nav-links{display:flex;align-items:center;gap:28px}
   .nav-links a{font-weight:600;font-size:14.5px;text-decoration:none;color:var(--ink);transition:color .25s var(--ease)}
-  .nav-links a:hover{color:var(--bronze)}
+  .nav-links a:hover{color:var(--body-soft)}
   .nav-cta{display:flex;align-items:center;gap:14px}
   .nav.on-dark{background:rgba(15,27,45,.85);border-bottom-color:var(--line-dark)}
   .nav.on-dark .brand,.nav.on-dark .nav-links a{color:var(--ivory)}
-  .nav.on-dark .nav-links a:hover{color:var(--gold)}
+  .nav.on-dark .nav-links a:hover{color:rgba(246,241,228,.7)}
   .nav.on-dark .nav-toggle{color:var(--ivory)}
   .nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:none;background:transparent;color:var(--ink);border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .nav-toggle .bars{position:relative;display:block;width:20px;height:14px}
@@ -123,7 +112,7 @@
   .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 22px 44px -26px rgba(15,27,45,.45);padding:6px 0 12px}
   .nav.open .nav-menu{display:block}
   .nav-menu a{display:block;font-weight:600;font-size:17px;color:var(--ink);text-decoration:none;padding:14px 32px}
-  .nav-menu a:hover{color:var(--bronze);background:rgba(15,27,45,.04)}
+  .nav-menu a:hover{color:var(--body-soft);background:rgba(15,27,45,.04)}
   @media(max-width:860px){
     .nav-links{display:none}
     .nav-toggle{display:inline-flex}
@@ -136,104 +125,91 @@
     .nav .btn.sm{font-size:13px;padding:8px 15px}
   }
 
-  /* ---------- DISPLAY HEADINGS ---------- */
-  .poster{
-    font-family:var(--display);font-weight:400;text-transform:uppercase;
-    letter-spacing:.005em;line-height:.92;color:var(--ink);
-  }
+  .poster{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.005em;line-height:.92;color:var(--ink)}
 
-  /* ============ HERO ============ */
-  .hero{padding:clamp(52px,7vw,96px) 0 clamp(48px,6vw,80px)}
-  .hero .kicker{margin-bottom:clamp(14px,2vw,22px)}
-  .hero h1{font-size:clamp(58px,11.5vw,150px);margin:0 0 clamp(24px,3.5vw,40px)}
+  /* HERO */
+  .hero{padding:clamp(56px,8vw,110px) 0 clamp(40px,5vw,64px)}
+  .hero h1{font-size:clamp(64px,13vw,176px);margin:0 0 clamp(22px,3vw,34px)}
   .hero h1 span{display:block}
-  .hero h1 .hl{color:var(--bronze)}
+  .hero h1 .hl{color:transparent;-webkit-text-stroke:2px var(--ink)}
+  @media(max-width:720px){.hero h1 .hl{-webkit-text-stroke:1.5px var(--ink)}}
   .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,4vw,48px);flex-wrap:wrap}
-  .hero .lede{font-size:clamp(16px,1.5vw,18.5px);max-width:52ch;flex:0 1 auto;min-width:0;color:var(--body-soft);font-weight:500;line-height:1.65}
-  .hero .lede strong{color:var(--ink);font-weight:700}
-  .hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .hero .lede{font-size:clamp(19px,2vw,26px);max-width:30ch;font-weight:600;line-height:1.3;color:var(--ink)}
+  .hero .lede span{color:var(--body-soft);font-weight:500}
+  .hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 
-  /* ============ SECTIONS ============ */
-  section{padding:clamp(64px,9vw,110px) 0}
-  #sprint,#ecosystem,#hangby{border-top:1px solid var(--line)}
-  .head{max-width:780px;margin-bottom:clamp(32px,4.5vw,48px)}
-  .head h2{font-size:clamp(34px,5.6vw,62px);margin:14px 0 16px}
-  .head p{font-size:clamp(16px,1.5vw,18px);color:var(--body-soft);font-weight:500;max-width:70ch}
-  .head p strong{color:var(--ink)}
-
-  /* three-step flow */
-  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,52px);margin-top:clamp(40px,6vw,72px)}
-  .step{position:relative;padding-top:30px}
-  .step::before{content:"";position:absolute;top:0;left:2px;width:13px;height:13px;border-radius:50%;border:2px solid var(--ink);background:var(--ink)}
-  .step.s3::before{background:var(--amber)}
-  .step::after{content:"";position:absolute;top:7px;left:30px;right:calc(-1*clamp(28px,4vw,52px));height:2px;background:var(--ink);opacity:.22}
-  .step.s3::after{display:none}
-  .step .idx{font-family:var(--display);font-size:clamp(38px,3.6vw,50px);line-height:1;color:var(--bronze);margin-bottom:12px}
-  .step h3{font-weight:700;font-size:clamp(21px,2vw,25px);line-height:1.15;margin-bottom:10px}
-  .step p{color:var(--body-soft);font-size:15.5px;font-weight:500;line-height:1.6;max-width:38ch}
-  @media(max-width:820px){.flow{grid-template-columns:1fr;gap:36px}.step::after{display:none}}
-
-  /* ============ HYPOTHESIS CARDS ============ */
-  .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
-  .hb-card{
-    position:relative;background:#FFFCF2;border:1px solid rgba(15,27,45,.35);border-radius:14px;
-    padding:clamp(20px,2.4vw,28px) clamp(20px,2.4vw,28px) clamp(16px,2vw,22px);
-    box-shadow:0 24px 50px -38px rgba(15,27,45,.45);
+  /* STAT STRIP */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .strip .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+  .stat{padding:clamp(22px,3vw,34px) 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .stat + .stat{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}
+  .stat .n{font-family:var(--display);font-size:clamp(40px,4.6vw,64px);line-height:1;color:var(--ink)}
+  .stat .l{font-weight:700;font-size:clamp(14px,1.3vw,17px);color:var(--body-soft);max-width:14ch;line-height:1.25}
+  @media(max-width:720px){
+    .strip .wrap{grid-template-columns:1fr}
+    .stat + .stat{border-left:0;border-top:1px solid var(--line);padding-left:0}
+    .stat{padding:18px 0}
   }
+
+  /* SECTIONS */
+  section{padding:clamp(64px,9vw,110px) 0}
+  #ecosystem,#hangby{border-top:1px solid var(--line)}
+  .head{max-width:780px;margin-bottom:clamp(28px,4vw,44px)}
+  .head h2{font-size:clamp(38px,6vw,68px);margin:12px 0 12px}
+  .head p{font-size:clamp(16px,1.5vw,19px);color:var(--body-soft);font-weight:500;max-width:52ch}
+
+  /* HYPOTHESIS CARDS */
+  .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
+  .hb-card{position:relative;background:#FFFCF2;border:1px solid rgba(15,27,45,.35);border-radius:14px;padding:clamp(20px,2.4vw,28px) clamp(20px,2.4vw,28px) clamp(16px,2vw,22px);box-shadow:0 24px 50px -38px rgba(15,27,45,.45)}
   .hb-card.r1{transform:rotate(-.4deg)}
   .hb-card.r2{transform:rotate(.35deg)}
   .hb-card.r3{transform:rotate(-.25deg)}
-  .hb-card.win{border:1.5px solid var(--amber);box-shadow:0 26px 55px -30px rgba(247,191,0,.55);transform:rotate(.3deg)}
+  .hb-card.win{border:2px solid var(--ink);box-shadow:0 26px 55px -30px rgba(15,27,45,.6);transform:rotate(.3deg)}
   .hb-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
-  .hb-path{font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze)}
+  .hb-path{font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
   .hb-num{font-size:12px;color:var(--body-soft);font-weight:500;white-space:nowrap}
   .hb-hyp{font-size:16px;font-weight:500;line-height:1.55;margin-bottom:14px}
-  .hb-hyp b{font-weight:700;background:linear-gradient(transparent 64%, rgba(247,191,0,.45) 64%)}
+  .hb-hyp b{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .hops{display:flex;align-items:center;margin-bottom:5px}
   .hopdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:transparent;flex:0 0 auto;position:relative}
   .hopdot.done{background:var(--ink)}
-  .hopdot.goldd{background:var(--amber)}
+  .hopdot.goldd{background:var(--ink)}
   .hopdot.dead{border-color:#B03A2E}
   .hopdot.dead::after{content:'×';position:absolute;top:-9px;left:1px;color:#B03A2E;font-weight:800;font-size:14px;line-height:1}
   .hopseg{height:2px;background:var(--ink);flex:1}
   .hopseg.off{opacity:.15}
-  .hopseg.goldseg{background:var(--amber);height:3px}
+  .hopseg.goldseg{background:var(--ink);height:3px}
   .hoplabels{display:flex;justify-content:space-between;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--body-soft);margin-top:6px;text-transform:uppercase}
-  .stamp{
-    position:absolute;top:-13px;right:16px;font-family:var(--display);font-weight:400;
-    font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;
-    padding:5px 12px;border:2px solid;border-radius:8px;background:var(--ivory);
-    box-shadow:0 10px 22px -14px rgba(15,27,45,.5);
-  }
+  .stamp{position:absolute;top:-13px;right:16px;font-family:var(--display);font-weight:400;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border:2px solid;border-radius:8px;background:var(--ivory);box-shadow:0 10px 22px -14px rgba(15,27,45,.5)}
   .stamp.kill{color:#B03A2E;border-color:#B03A2E;transform:rotate(3deg)}
-  .stamp.invalid{color:var(--bronze);border-color:var(--bronze);transform:rotate(-3deg)}
+  .stamp.invalid{color:var(--body-soft);border-color:var(--body-soft);transform:rotate(-3deg)}
   .stamp.run2{color:var(--ink);border-color:var(--ink);transform:rotate(2deg)}
-  .stamp.pour{color:var(--ink);border-color:var(--ink);background:var(--amber);transform:rotate(-3deg);font-size:15px}
+  .stamp.pour{color:var(--ivory);border-color:var(--ink);background:var(--ink);transform:rotate(-3deg);font-size:15px}
   .hb-note{font-size:14.5px;line-height:1.5;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
   .hb-note .red{color:#B03A2E;font-weight:700}
-  .hb-note .goldt{color:var(--bronze);font-weight:800}
+  .hb-note .goldt{color:var(--ink);font-weight:800}
   .hb-foot{display:flex;justify-content:space-between;align-items:center;gap:14px 22px;margin-top:clamp(22px,3vw,32px);flex-wrap:wrap}
   .hb-count{font-size:13px;color:var(--body-soft);font-weight:500}
   @media(max-width:820px){.hb-grid{grid-template-columns:1fr}}
 
-  /* ============ ECOSYSTEM (events) ============ */
-  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.5vw,44px)}
-  .ev{position:relative;padding-top:22px;border-top:2px solid var(--ink)}
-  .ev .ev-big{font-family:var(--display);font-size:clamp(56px,6.5vw,88px);line-height:.95;color:var(--ink);letter-spacing:.005em;text-transform:uppercase}
-  .ev .ev-big.gold{color:var(--bronze)}
-  .ev .ev-lbl{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze);margin:10px 0 16px}
-  .ev h3{font-weight:700;font-size:clamp(19px,1.8vw,22px);line-height:1.2;margin-bottom:10px}
-  .ev p{color:var(--body-soft);font-size:15.5px;font-weight:500;line-height:1.6}
-  .ev .ev-with{margin-top:14px;font-size:13px;font-weight:600;color:var(--ink)}
-  .ev .ev-with span{color:var(--body-soft);font-weight:500}
-  .ev .ev-link{margin-top:14px;font-size:14.5px}
-  .ev-next{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line)}
-  .ev-next-lbl{font-weight:700;font-size:clamp(17px,1.6vw,20px)}
-  @media(max-width:860px){.ev-grid{grid-template-columns:1fr;gap:34px}}
+  /* ECOSYSTEM */
+  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,32px)}
+  .ev{display:block;text-decoration:none;color:inherit}
+  .ev-media{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--navy);display:flex;align-items:flex-end;padding:clamp(18px,2vw,26px)}
+  .ev-media .ev-big{position:relative;z-index:1;font-family:var(--display);font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--ivory);letter-spacing:.005em;text-transform:uppercase}
+  .ev-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block;transition:transform .6s var(--ease)}
+  .ev:hover .ev-media img{transform:scale(1.03)}
+  .ev-cap{padding:16px 4px 0}
+  .ev-cap h3{font-weight:700;font-size:clamp(18px,1.7vw,21px);line-height:1.2;margin-bottom:6px}
+  .ev-cap p{color:var(--body-soft);font-size:15px;font-weight:500;line-height:1.5}
+  .ev-cap .ev-with{margin-top:8px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--body-soft)}
+  @media(max-width:860px){.ev-grid{grid-template-columns:1fr}.ev-media{aspect-ratio:16/10}}
 
-  /* partners row (on cream) */
-  .partners{margin-top:clamp(56px,7vw,80px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--line)}
-  .partners .kicker{display:block;margin-bottom:clamp(20px,3vw,30px)}
+  .ev-next{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line)}
+  .ev-next-lbl{font-family:var(--display);text-transform:uppercase;font-size:clamp(26px,3vw,40px);line-height:1}
+
+  .partners{margin-top:clamp(48px,6vw,72px)}
+  .partners .kicker{display:block;margin-bottom:clamp(18px,2.5vw,26px)}
   .logo-row{display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,4vw,48px);flex-wrap:wrap}
   .logo{color:var(--ink);opacity:.9;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
   .logo.hacker{font-weight:800;font-size:15px;letter-spacing:.04em}
@@ -249,37 +225,36 @@
   .logo.ft{font-weight:600;font-size:16px;letter-spacing:-.01em}
   @media(max-width:720px){.logo-row{justify-content:flex-start;row-gap:24px}}
 
-  /* ============ ACCELERATOR TEASE ============ */
-  #cohort{background:var(--amber);color:var(--ink)}
-  #cohort .kicker{color:var(--ink)}
-  #cohort .head p{color:rgba(15,27,45,.78)}
-  #cohort .head p strong{color:var(--ink)}
-  .cohort-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px) clamp(32px,5vw,72px);margin-top:clamp(28px,4vw,44px)}
-  .fact{padding-top:16px;border-top:1.5px solid rgba(15,27,45,.35)}
-  .fact h3{font-weight:800;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
-  .fact p{font-size:16px;font-weight:500;line-height:1.55;color:rgba(15,27,45,.82);max-width:46ch}
-  .cohort-cta{display:flex;align-items:center;gap:18px 26px;flex-wrap:wrap;margin-top:clamp(36px,5vw,56px)}
-  .cohort-cta .btn{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
-  .cohort-cta .btn:hover{background:#1B2B45;border-color:#1B2B45}
-  .cohort-cta .note{font-size:14.5px;font-weight:600;color:rgba(15,27,45,.8)}
-  @media(max-width:720px){.cohort-grid{grid-template-columns:1fr}}
+  /* COHORT */
+  #cohort{background:var(--navy);color:var(--ivory)}
+  #cohort .kicker{color:rgba(246,241,228,.6)}
+  #cohort .head h2{color:var(--ivory)}
+  #cohort .head{max-width:none;margin-bottom:0}
+  #cohort .head h2{font-size:clamp(48px,9vw,120px)}
+  #cohort .head p{color:rgba(246,241,228,.78);font-size:clamp(18px,1.9vw,24px);font-weight:600;max-width:40ch;line-height:1.3}
+  .cohort-list{display:flex;flex-wrap:wrap;gap:12px 0;margin-top:clamp(32px,4vw,48px);border-top:1px solid var(--line-dark);padding-top:clamp(20px,3vw,32px)}
+  .cohort-list span{font-family:var(--display);text-transform:uppercase;font-size:clamp(22px,2.8vw,38px);line-height:1;padding-right:clamp(18px,2.5vw,36px);margin-right:clamp(18px,2.5vw,36px);border-right:2px solid rgba(246,241,228,.35);white-space:nowrap}
+  .cohort-list span:last-child{border-right:0;margin-right:0;padding-right:0}
+  .cohort-cta{display:flex;align-items:center;gap:18px 26px;flex-wrap:wrap;margin-top:clamp(32px,4vw,48px)}
+  .cohort-cta .note{font-size:15px;font-weight:600;color:rgba(246,241,228,.75)}
+  @media(max-width:720px){
+    .cohort-list{flex-direction:column;gap:14px}
+    .cohort-list span{border-right:0;padding-right:0;margin-right:0;white-space:normal}
+  }
 
-  /* ============ ABOUT ============ */
-  #about{background:var(--navy);color:var(--ivory)}
-  #about .kicker{color:var(--gold)}
-  #about .head h2{color:#F6F1E4}
+  /* ABOUT */
+  #about{background:var(--ivory);color:var(--ink);border-top:1px solid var(--line)}
   .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
-  .about-copy p{color:rgba(246,241,228,.72);font-size:clamp(15.5px,1.45vw,17px);margin-bottom:18px;max-width:56ch;line-height:1.7}
-  .about-copy p strong{color:#F6F1E4}
-  .about-copy .link-arrow{color:var(--gold);margin-top:8px}
-  .about-copy .link-arrow:hover{color:#F6F1E4}
+  .about-copy p{color:var(--body-soft);font-size:clamp(16px,1.5vw,18px);margin-bottom:18px;max-width:50ch;line-height:1.65}
+  .about-copy p strong{color:var(--ink)}
+  .about-copy .link-arrow{margin-top:6px}
   .about-mark{display:flex;justify-content:center;align-items:center}
   .photo-frame{position:relative;width:min(310px,78%);aspect-ratio:1}
-  .photo-clip{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid rgba(247,191,0,.6)}
+  .photo-clip{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid var(--ink)}
   .photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-  .photo-frame::before{content:"";position:absolute;inset:-34px;border-radius:50%;border:1px solid rgba(247,191,0,.5);z-index:1}
-  .photo-frame .orbit-dot{position:absolute;z-index:3;top:-14px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--gold)}
-  .photo-frame .orbit-ring{position:absolute;z-index:1;left:-58px;bottom:-20px;width:56px;height:56px;border-radius:50%;border:1px solid rgba(247,191,0,.5)}
+  .photo-frame::before{content:"";position:absolute;inset:-34px;border-radius:50%;border:1px solid rgba(15,27,45,.35);z-index:1}
+  .photo-frame .orbit-dot{position:absolute;z-index:3;top:-14px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--ink)}
+  .photo-frame .orbit-ring{position:absolute;z-index:1;left:-58px;bottom:-20px;width:56px;height:56px;border-radius:50%;border:1px solid rgba(15,27,45,.35)}
   @media(max-width:820px){
     .about-grid{grid-template-columns:1fr;gap:40px}
     .about-mark{order:-1}
@@ -287,43 +262,41 @@
     .photo-frame::before{inset:-24px}
   }
 
-  /* ============ CONTACT ============ */
+  /* CONTACT */
   #contact{background:var(--ivory);text-align:center}
   #contact .inner{max-width:720px;margin:0 auto}
-  #contact h2{font-size:clamp(40px,6.6vw,72px);margin:16px 0 18px}
-  #contact p{font-size:clamp(16px,1.6vw,19px);color:var(--body-soft);font-weight:500;max-width:48ch;margin:0 auto 30px}
+  #contact h2{font-size:clamp(44px,7vw,84px);margin:14px 0 22px}
 
-  /* ============ HANGBY TEASE ============ */
-  #hangby{padding:clamp(48px,7vw,80px) 0}
+  /* HANGBY */
+  #hangby{padding:clamp(48px,7vw,84px) 0}
   .hb-tease{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,4vw,56px);flex-wrap:wrap}
-  .hb-tease .hb-left{max-width:640px}
-  .hb-tease h2{font-size:clamp(40px,7vw,84px);margin:12px 0 14px}
+  .hb-tease h2{font-size:clamp(48px,9vw,120px);margin:10px 0 8px}
   .hb-tease h2 a{text-decoration:none;color:var(--ink)}
-  .hb-tease h2 a:hover{color:var(--bronze)}
-  .hb-tease p{font-size:clamp(16px,1.5vw,18px);color:var(--body-soft);font-weight:500;max-width:52ch}
-  .hb-tease .hb-right{padding-bottom:6px}
+  .hb-tease h2 a:hover{color:var(--body-soft)}
+  .hb-tease p{font-size:clamp(17px,1.7vw,22px);color:var(--body-soft);font-weight:600;max-width:34ch;line-height:1.3}
+  .hb-tease .hb-right{padding-bottom:10px}
 
-  /* ============ FOOTER ============ */
+  /* FOOTER */
   footer{background:var(--navy);color:var(--ivory);padding:clamp(40px,6vw,56px) 0;text-align:center}
   footer .fm{font-weight:800;font-size:20px}
   footer .tag{color:rgba(246,241,228,.72);font-weight:500;margin:6px 0 18px;font-size:14.5px}
   footer .meta{font-size:13px;color:rgba(246,241,228,.55)}
-  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  footer a{color:var(--ivory);text-decoration:none;font-weight:600}
   footer a:hover{text-decoration:underline}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
-<!-- ================= NAV ================= -->
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="wrap nav-inner">
     <a href="#top" class="brand">Momentum Mill</a>
     <div class="nav-links">
       <a href="#sprint">The sprint</a>
-      <a href="#ecosystem">Ecosystem</a>
+      <a href="#ecosystem">Events</a>
       <a href="#cohort">Cohort one</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
     </div>
     <div class="nav-cta">
       <a class="btn sm" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call</a>
@@ -334,44 +307,48 @@
   </div>
   <div class="nav-menu" id="navMenu">
     <a href="#sprint">The sprint</a>
-    <a href="#ecosystem">Ecosystem</a>
+    <a href="#ecosystem">Events</a>
     <a href="#cohort">Cohort one</a>
     <a href="#about">About</a>
-    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <header class="hero" id="top">
   <div class="wrap">
-    <span class="kicker">GTM for early-stage founders</span>
     <h1 class="poster"><span>Get your</span><span class="hl">GTM</span><span>figured out</span></h1>
     <div class="hero-foot">
-      <p class="lede">
-        With AI anyone can build. Almost nobody has cracked selling. <strong>Momentum Mill is where early-stage founders run 2 to 4 growth experiments in one month</strong>, drop the ones that fail and pour everything into the one that works. I run them with you.
-      </p>
+      <p class="lede">2 to 4 growth experiments in a month. <span>Keep the one that works.</span></p>
       <div class="hero-cta">
-        <a href="#sprint" class="btn ghost">See how a sprint runs <span class="arr">&rarr;</span></a>
+        <a href="#sprint" class="btn ghost">How it runs <span class="arr">&rarr;</span></a>
         <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer" class="btn">Book a call <span class="arr">&rarr;</span></a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ================= THE SPRINT ================= -->
+<div class="strip">
+  <div class="wrap">
+    <div class="stat"><span class="n">1</span><span class="l">month</span></div>
+    <div class="stat"><span class="n">2&#8202;to&#8202;4</span><span class="l">experiments, run for real</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">winner gets the whole budget</span></div>
+  </div>
+</div>
+
+<!-- THE SPRINT -->
 <section id="sprint">
   <div class="wrap">
     <div class="head">
       <span class="kicker">The sprint</span>
       <h2 class="poster">Every sale starts as a hypothesis</h2>
-      <p>Every card is one bet about who buys and through which door, with one number that decides it. Failed cards stay on the wall, they tell us where not to spend. The winner gets everything.</p>
+      <p>One bet per card. One number decides it. Failed cards stay on the wall so you know where not to spend.</p>
     </div>
 
     <div class="hb-grid">
       <div class="hb-card r1">
         <div class="stamp kill">Killed &middot; run 2</div>
-        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">Experiment 01 &middot; 400 sends &middot; ends Mar 12</span></div>
-        <p class="hb-hyp">We believe <b>CFOs at software companies with 500+ engineers ($100M+ ARR)</b> will <b>book a demo from cold email</b>. Right if <b>6+ meetings per 400 sends</b>.</p>
+        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">Experiment 01 &middot; 400 sends</span></div>
+        <p class="hb-hyp">We believe <b>CFOs at software companies with 500+ engineers</b> will <b>book a demo from cold email</b>. Right if <b>6+ meetings per 400 sends</b>.</p>
         <div class="hops">
           <div class="hopdot done"></div><div class="hopseg"></div>
           <div class="hopdot dead"></div><div class="hopseg off"></div>
@@ -380,13 +357,13 @@
           <div class="hopdot"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><span class="red">Emails got opened, almost nobody replied, twice.</span> CFOs at this level don't buy from strangers' emails.</div>
+        <div class="hb-note"><span class="red">Opened, almost nobody replied, twice.</span> CFOs don't buy from strangers' emails.</div>
       </div>
 
       <div class="hb-card r2">
         <div class="stamp invalid">Invalid</div>
         <div class="hb-head"><span class="hb-path">Paid search</span><span class="hb-num">Experiment 02 &middot; $1,500 &middot; 3 weeks</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>request a demo from search ads on cloud-spend terms</b>. Right if <b>cost per demo under $600</b>.</p>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>request a demo from search ads</b>. Right if <b>cost per demo under $600</b>.</p>
         <div class="hops">
           <div class="hopdot done"></div><div class="hopseg"></div>
           <div class="hopdot done"></div><div class="hopseg off"></div>
@@ -395,13 +372,13 @@
           <div class="hopdot"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><b>Our own landing page leaked, so this run doesn't count.</b> Fixing the page, running again.</div>
+        <div class="hb-note"><b>Landing page leaked, this run doesn't count.</b> Fixing it, running again.</div>
       </div>
 
       <div class="hb-card r3">
         <div class="stamp run2">Run 2 &middot; live</div>
-        <div class="hb-head"><span class="hb-path">Warm network</span><span class="hb-num">Experiment 03 &middot; 25 named intro asks</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>take a meeting from a board-member or investor intro</b>. Right if <b>8+ meetings from 25 asks</b>.</p>
+        <div class="hb-head"><span class="hb-path">Warm network</span><span class="hb-num">Experiment 03 &middot; 25 intro asks</span></div>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>take a meeting from an investor intro</b>. Right if <b>8+ meetings from 25 asks</b>.</p>
         <div class="hops">
           <div class="hopdot done"></div><div class="hopseg"></div>
           <div class="hopdot done"></div><div class="hopseg"></div>
@@ -410,13 +387,13 @@
           <div class="hopdot"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note">Intros landed, too few turned into meetings. <b>Changed one thing (the pitch line), running again.</b></div>
+        <div class="hb-note">Intros landed, too few meetings. <b>Changed the pitch line, running again.</b></div>
       </div>
 
       <div class="hb-card win">
         <div class="stamp pour">Pour &uarr;</div>
         <div class="hb-head"><span class="hb-path">Organizing events</span><span class="hb-num">Experiment 04 &middot; 150 invites &middot; 1 dinner</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>show up to a peer dinner on taming engineering spend</b>. Right if <b>5+ follow-up meetings</b>.</p>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>show up to a peer dinner</b>. Right if <b>5+ follow-up meetings</b>.</p>
         <div class="hops">
           <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
           <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
@@ -425,80 +402,69 @@
           <div class="hopdot goldd"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><span class="goldt">19 showed, 9 meetings, 2 pilots.</span> <b>This is the one. Everything pours here now.</b></div>
+        <div class="hb-note"><span class="goldt">19 showed, 9 meetings, 2 pilots.</span> <b>Everything pours here now.</b></div>
       </div>
     </div>
 
     <div class="hb-foot">
-      <span class="hb-count">4 hypotheses &middot; 1 invalid &middot; 1 killed &middot; 1 live &middot; 1 pouring &middot; a made up b2b startup, so you can see the mechanics</span>
-    </div>
-
-    <div class="flow">
-      <div class="step s1">
-        <div class="idx">01</div>
-        <h3>Pick 2 to 4 bets</h3>
-        <p>Who buys, through which door, what number makes it true. One month, run one after another or in parallel.</p>
-      </div>
-      <div class="step s2">
-        <div class="idx">02</div>
-        <h3>Run them for real</h3>
-        <p>Cold email, paid, warm intros, a dinner, a hackathon. I execute with you, weekly check-in on what moved and what didn't.</p>
-      </div>
-      <div class="step s3">
-        <div class="idx">03</div>
-        <h3>Data decides</h3>
-        <p>Each card gets killed, rerun or poured into. Your sales budget goes where the number says, not where the gut says.</p>
-      </div>
+      <span class="hb-count">A made up b2b startup, so you can see the mechanics.</span>
     </div>
   </div>
 </section>
 
-<!-- ================= ECOSYSTEM ================= -->
+<!-- ECOSYSTEM -->
 <section id="ecosystem">
   <div class="wrap">
     <div class="head">
-      <span class="kicker">Ecosystem</span>
+      <span class="kicker">Events</span>
       <h2 class="poster">The rooms I put together</h2>
-      <p>A lot of my experiments end up IRL because that is where early-stage deals happen. <strong>Three rooms I built recently, with the numbers.</strong></p>
     </div>
 
     <div class="ev-grid">
-      <!-- EVENT 1 -->
+      <a class="ev" href="https://luma.com/5gpkjet9?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
+        <div class="ev-media">
+          <span class="ev-big">220+</span>
+          <img src="events/encode-hub.jpg" alt="" onerror="this.remove()">
+        </div>
+        <div class="ev-cap">
+          <h3>Founder night at Encode Hub</h3>
+          <p>Shoreditch. 220+ signed up, room full.</p>
+          <div class="ev-with">With Encode Club</div>
+        </div>
+      </a>
+
       <div class="ev">
-        <div class="ev-big">220+</div>
-        <div class="ev-lbl">Sign-ups, room at capacity</div>
-        <h3>Founder night at Encode Hub, Shoreditch</h3>
-        <p>Co-hosted with Encode Club at their hub on Pitfield Street. Over 220 people registered and the space filled up.</p>
-        <div class="ev-with">With <span>Encode Club &middot; London</span></div>
-        <a href="https://luma.com/5gpkjet9?utm_source=momentummill" target="_blank" rel="noopener noreferrer" class="link-arrow ev-link">See the event on Luma <span class="arr">&rarr;</span></a>
+        <div class="ev-media">
+          <span class="ev-big">20VC</span>
+          <img src="events/investor-evening.jpg" alt="" onerror="this.remove()">
+        </div>
+        <div class="ev-cap">
+          <h3>Investor evening, Harry Stebbings on stage</h3>
+          <p>20 to 30 investors from outside our network. Five went on to invest.</p>
+          <div class="ev-with">With Launch Club Capital</div>
+        </div>
       </div>
 
-      <!-- EVENT 2 -->
       <div class="ev">
-        <div class="ev-big gold">5</div>
-        <div class="ev-lbl">Investors who wrote checks after</div>
-        <h3>Investor evening with 20VC on stage</h3>
-        <p>Run under Launch Club Capital with my partner Julian. Harry Stebbings came to speak, 20 to 30 investors from outside our network showed up, five of them went on to invest.</p>
-        <div class="ev-with">With <span>Launch Club Capital &middot; London</span></div>
-      </div>
-
-      <!-- EVENT 3 -->
-      <div class="ev">
-        <div class="ev-big">Judge</div>
-        <div class="ev-lbl">Hackathon panel, Old Street</div>
-        <h3>HackerSquad hackathon at Civo Navigate</h3>
-        <p>Builders shipped over a weekend and I sat on the judging panel. Projects could also enter Bright Data's global hackathon on top.</p>
-        <div class="ev-with">With <span>HackerSquad &middot; Bright Data &middot; London</span></div>
+        <div class="ev-media">
+          <span class="ev-big">Judge</span>
+          <img src="events/hackathon.jpg" alt="" onerror="this.remove()">
+        </div>
+        <div class="ev-cap">
+          <h3>Hackathon at Civo Navigate</h3>
+          <p>Old Street. A weekend of builders, I sat on the panel.</p>
+          <div class="ev-with">With HackerSquad</div>
+        </div>
       </div>
     </div>
 
     <div class="ev-next">
-      <span class="ev-next-lbl">Next one is on the calendar.</span>
+      <span class="ev-next-lbl">Next one is on the calendar</span>
       <a class="btn" href="https://luma.com/km76s0sj" target="_blank" rel="noopener noreferrer">RSVP on Luma <span class="arr">&rarr;</span></a>
     </div>
 
     <div class="partners">
-      <span class="kicker">People I run these with</span>
+      <span class="kicker">Partners</span>
       <div class="logo-row" aria-label="Partner logos">
         <span class="logo hacker">HACKER//SQUAD</span>
         <span class="logo lcc">
@@ -517,50 +483,30 @@
   </div>
 </section>
 
-<!-- ================= ACCELERATOR TEASE ================= -->
+<!-- COHORT ONE -->
 <section id="cohort">
   <div class="wrap">
     <div class="head">
       <span class="kicker">Coming, autumn 2026</span>
-      <h2 class="poster">GTM Sprint, cohort one</h2>
-      <p>The same sprint, run as a program with <strong>20 to 50 early-stage founders in London at the same time.</strong> You have a product people can start using and you have not figured out which channel sells it. That is the whole entry requirement. Still work in progress, but this is the shape:</p>
+      <h2 class="poster">GTM Sprint. Cohort one.</h2>
+      <p>London. 20 to 50 early-stage founders running their experiments at the same time.</p>
     </div>
-
-    <div class="cohort-grid">
-      <div class="fact">
-        <h3>Program</h3>
-        <p>One month. 2 to 4 experiments per founder, weekly check-in with your GTM operator on what worked and what didn't.</p>
-      </div>
-      <div class="fact">
-        <h3>Tool</h3>
-        <p>Sets the ICP, the channel and the success number for each experiment. Trained on 150+ real early-stage cases, and every cohort feeds it more.</p>
-      </div>
-      <div class="fact">
-        <h3>Community</h3>
-        <p>Same cohort, daily in person or online, plus IRL events in London every week or two. You get a buddy matched on your case and weekly accountability.</p>
-      </div>
-      <div class="fact">
-        <h3>Credits</h3>
-        <p>Credits to run the experiments on the tools you would pay for anyway, Clay and Attio type of thing. List in progress.</p>
-      </div>
-      <div class="fact">
-        <h3>Mentors</h3>
-        <p>10 to 20 slots a week for 1:1s with GTM people who have done it. First booked, first served.</p>
-      </div>
-      <div class="fact">
-        <h3>Selection</h3>
-        <p>Cohort one gets the best conditions I will ever offer. In return you commit to executing, or you are out. Investors get invited in to see the cohort.</p>
-      </div>
+    <div class="cohort-list">
+      <span>1 month</span>
+      <span>2 to 4 experiments</span>
+      <span>Weekly check-in</span>
+      <span>Tool credits</span>
+      <span>1:1 mentors</span>
+      <span>A buddy</span>
     </div>
-
     <div class="cohort-cta">
-      <a class="btn" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint%20cohort%20one">Get on the list <span class="arr">&rarr;</span></a>
-      <span class="note">One email, name and what you are building. I reply to all of them.</span>
+      <a class="btn light" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint%20cohort%20one">Get on the list <span class="arr">&rarr;</span></a>
+      <span class="note">One email. Name and what you are building.</span>
     </div>
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 <section id="about">
   <div class="wrap">
     <div class="head">
@@ -569,10 +515,9 @@
     </div>
     <div class="about-grid">
       <div class="about-copy">
-        <p>Momentum Mill is led by <strong>Kateryna Golushko</strong>, who has both a venture capital and early-stage GTM background.</p>
-        <p>I worked with over 50 startups on fundraising, bd and partnerships, across Ultra.vc, Amazon, Launch Club Capital and a Corporate fund of RBC Group. I started doing this work because I believe startups need a dedicated operator who has seen what clicks with different user groups be it enterprises or investors.</p>
-        <p>I partner up with startup communities, podcast hosts, GTM and Content tooling providers, ecosystem builders to get founders, I work with opportunities they need</p>
-        <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer" class="link-arrow">More about Me <span class="arr">&rarr;</span></a>
+        <p><strong>Kateryna Golushko.</strong> VC and early-stage GTM background. Worked with over 50 startups on fundraising, bd and partnerships, across Ultra.vc, Amazon, Launch Club Capital and a Corporate fund of RBC Group.</p>
+        <p>Startups need a dedicated operator who has seen what clicks with different user groups, be it enterprises or investors. That is me.</p>
+        <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer" class="link-arrow">More about me <span class="arr">&rarr;</span></a>
       </div>
       <div class="about-mark">
         <div class="photo-frame">
@@ -585,31 +530,29 @@
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="wrap inner">
     <span class="kicker">Let's talk</span>
     <h2 class="poster">Let's get you moving.</h2>
-    <p>If growth is nobody's whole job at your startup, let's talk.</p>
     <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
   </div>
 </section>
 
-<!-- ================= HANGBY TEASE ================= -->
+<!-- HANGBY -->
 <section id="hangby">
   <div class="wrap hb-tease">
     <div class="hb-left">
       <span class="kicker">Also building</span>
       <h2 class="poster"><a href="https://hangby.me" target="_blank" rel="noopener noreferrer">hangby.me</a></h2>
-      <p>An IRL social network. My own thing, on the side of Momentum Mill. Not public yet, but the name is taken, so now you know where to look.</p>
+      <p>An IRL social network. Not public yet.</p>
     </div>
     <div class="hb-right">
-      <a href="https://hangby.me" target="_blank" rel="noopener noreferrer" class="link-arrow">hangby.me <span class="arr">&rarr;</span></a>
+      <a href="https://hangby.me" target="_blank" rel="noopener noreferrer" class="btn ghost">hangby.me <span class="arr">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap">
     <div class="fm">Momentum Mill</div>
@@ -620,23 +563,17 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // nav border on scroll
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
-
-  // flip the sticky nav to dark while it floats over the About band
-  const aboutSection = document.getElementById('about');
+  const aboutSection = document.getElementById('cohort');
   const navDark = () => {
     const r = aboutSection.getBoundingClientRect();
     nav.classList.toggle('on-dark', r.top <= 66 && r.bottom >= 0);
   };
   navDark();
   window.addEventListener('scroll', navDark, {passive:true});
-
-  // mobile menu
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   const setMenu = (open) => {
