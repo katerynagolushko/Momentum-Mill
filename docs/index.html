@@ -145,6 +145,13 @@
   .head h2{font-size:clamp(38px,6vw,68px);margin:12px 0 12px}
   .head p{font-size:clamp(16px,1.5vw,19px);color:var(--body-soft);font-weight:500;max-width:52ch}
 
+  /* HOW IT WORKS: loop diagram + 6 steps */
+  .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+  .how-grid .head{margin-bottom:0}
+  .how-fig{display:flex;justify-content:center}
+  .how-fig .loop{width:100%;max-width:520px;height:auto;display:block;overflow:visible}
+  @media(prefers-reduced-motion:reduce){.how-fig .runner{display:none}}
+  @media(max-width:860px){.how-grid{grid-template-columns:1fr}.how-fig .loop{max-width:440px}}
   /* HOW IT WORKS: 6 steps on one line */
   .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,2vw,28px);position:relative;margin-top:clamp(36px,5vw,60px)}
   .steps::before{content:"";position:absolute;top:7px;left:0;right:0;height:2px;background:var(--ink);opacity:.2}
@@ -330,9 +337,46 @@
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="wrap">
-    <div class="head">
-      <span class="kicker">How it works</span>
-      <h2 class="poster">MVP to a working GTM</h2>
+    <div class="how-grid">
+      <div class="head">
+        <span class="kicker">How it works</span>
+        <h2 class="poster">MVP to a working GTM</h2>
+        <p>Six steps, one loop. Every run makes the next one sharper.</p>
+      </div>
+      <div class="how-fig">
+    <svg class="loop" viewBox="-40 -30 600 580" role="img" aria-label="The loop: MVP is ready, design the experiment, set ICP approach and goals, run it, collect the data, learn and iterate">
+      <circle cx="260" cy="260" r="190" fill="none" stroke="#0F1B2D" stroke-opacity=".22" stroke-width="2"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" transform="translate(355.0 95.5) rotate(30)"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" transform="translate(450.0 260.0) rotate(90)"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" transform="translate(355.0 424.5) rotate(150)"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" transform="translate(165.0 424.5) rotate(210)"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" transform="translate(70.0 260.0) rotate(270)"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" transform="translate(165.0 95.5) rotate(330)"/>
+      <path d="M 157.8 201.0 A 118 118 0 1 1 362.2 201.0" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-dasharray="6 7" stroke-opacity=".55"/>
+      <polygon points="-7,-6 7,0 -7,6" fill="#0F1B2D" fill-opacity=".7" transform="translate(362.2 201.0) rotate(60)"/>
+      <circle cx="260.0" cy="70.0" r="24" fill="#0F1B2D"/>
+      <text x="260.0" y="78.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">01</text>
+      <text x="260.0" y="16.0" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F1B2D">MVP is ready</text>
+      <circle cx="424.5" cy="165.0" r="24" fill="#0F1B2D"/>
+      <text x="424.5" y="173.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">02</text>
+      <text x="466.1" y="146.0" text-anchor="start" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F1B2D">Design the experiment</text>
+      <circle cx="424.5" cy="355.0" r="24" fill="#0F1B2D"/>
+      <text x="424.5" y="363.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">03</text>
+      <text x="466.1" y="384.0" text-anchor="start" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F1B2D">ICP, approach, goals</text>
+      <circle cx="260.0" cy="450.0" r="24" fill="#0F1B2D"/>
+      <text x="260.0" y="458.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">04</text>
+      <text x="260.0" y="512.0" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F1B2D">Run it</text>
+      <circle cx="95.5" cy="355.0" r="24" fill="#0F1B2D"/>
+      <text x="95.5" y="363.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">05</text>
+      <text x="53.9" y="384.0" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F1B2D">Collect the data</text>
+      <circle cx="95.5" cy="165.0" r="24" fill="#0F1B2D"/>
+      <text x="95.5" y="173.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">06</text>
+      <text x="53.9" y="146.0" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F1B2D">Learn and iterate</text>
+      <text x="260" y="254" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="34" fill="#0F1B2D">1 TO 4 WEEKS</text>
+      <text x="260" y="282" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="700" fill="#0F1B2D" fill-opacity=".62" letter-spacing="1.5">PER LOOP, THEN AGAIN</text>
+      <circle r="9" fill="#F6F1E4" stroke="#0F1B2D" stroke-width="3" class="runner"><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="M 260.0 70.0 A 190 190 0 1 1 260.0 450.0 A 190 190 0 1 1 260.0 70.0"/></circle>
+    </svg>
+      </div>
     </div>
     <div class="steps">
       <div class="step first">
