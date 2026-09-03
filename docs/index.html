@@ -146,10 +146,10 @@
   .head p{font-size:clamp(16px,1.5vw,19px);color:var(--body-soft);font-weight:500;max-width:52ch}
 
   /* HOW IT WORKS: loop diagram + 6 steps */
-  .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+  .how-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,4vw,56px);align-items:center}
   .how-grid .head{margin-bottom:0}
   .how-fig{display:flex;justify-content:center}
-  .how-fig .loop{width:100%;max-width:600px;height:auto;display:block;overflow:visible}
+  .how-fig .loop{width:100%;max-width:700px;height:auto;display:block;overflow:visible}
   @media(max-width:860px){.how-grid{grid-template-columns:1fr}.how-fig .loop{max-width:440px}}
   /* HOW IT WORKS: 6 steps on one line */
   .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,2vw,28px);position:relative;margin-top:clamp(36px,5vw,60px)}
