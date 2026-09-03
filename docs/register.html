@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Sprint | Register your interest</title>
+<meta name="description" content="Register your interest for the GTM Sprint: up to 50 post-MVP founders in London, IRL.">
+<meta name="robots" content="noindex">
+<style>
+  @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-500.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-600.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-700.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/inter-800.woff2) format('woff2')}
+  :root{--ivory:#F6F1E4;--ink:#0F1B2D;--ease:cubic-bezier(.2,.7,.2,1)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--ivory);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  .top{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-weight:800;font-size:18px;text-decoration:none;color:var(--ivory)}
+  .back{font-weight:600;font-size:14.5px;text-decoration:none;color:rgba(246,241,228,.7)}
+  .back:hover{color:var(--ivory)}
+  main{padding:clamp(40px,7vw,80px) 0 clamp(64px,9vw,110px)}
+  .kicker{display:inline-block;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,228,.6)}
+  h1{font-family:'Anton',impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.92;font-size:clamp(48px,9vw,96px);margin:12px 0 16px}
+  .lede{font-size:clamp(17px,1.8vw,22px);font-weight:600;line-height:1.3;color:rgba(246,241,228,.8);max-width:30ch;margin-bottom:clamp(32px,5vw,48px)}
+  .lede strong{color:var(--ivory)}
+  .form{display:grid;gap:18px}
+  .form label{display:grid;gap:6px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,228,.65)}
+  .form input,.form textarea{font-family:inherit;font-size:17px;font-weight:500;color:var(--ivory);background:transparent;border:0;border-bottom:1.5px solid rgba(246,241,228,.4);padding:10px 0;border-radius:0;width:100%;transition:border-color .25s var(--ease)}
+  .form textarea{resize:vertical;min-height:80px}
+  .form input:focus,.form textarea:focus{outline:none;border-bottom-color:var(--ivory)}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(246,241,228,.35)}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .form .submit{margin-top:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .form .fine{font-size:13px;color:rgba(246,241,228,.55);font-weight:500}
+  .form .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ivory);color:var(--ink);font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ivory);white-space:nowrap;cursor:pointer;font-family:inherit;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(0,0,0,.6)}
+  .thanks{display:none;font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.3;max-width:30ch}
+  body.sent .form,body.sent .lede{display:none}
+  body.sent .thanks{display:block}
+  :focus-visible{outline:2.5px solid var(--ivory);outline-offset:3px;border-radius:4px}
+  @media(max-width:640px){.form .row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap top">
+  <a class="brand" href="./">Momentum Mill</a>
+  <a class="back" href="./#sprint">&larr; Back</a>
+</div>
+<main class="wrap">
+  <span class="kicker">GTM Sprint, in development</span>
+  <h1>Register your interest</h1>
+  <p class="lede">For up to <strong>50 post-MVP founders</strong> in London, IRL. Enough with building. Start finally selling.</p>
+
+  <form class="form" action="https://formsubmit.co/kateryna@momentummill.com" method="POST">
+    <input type="hidden" name="_subject" value="GTM Sprint: register interest">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://momentummill.com/register.html?sent=1">
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+    <div class="row">
+      <label>Name<input type="text" name="name" placeholder="Your name" required></label>
+      <label>Email<input type="email" name="email" placeholder="you@startup.com" required></label>
+    </div>
+    <label>LinkedIn<input type="url" name="linkedin" placeholder="linkedin.com/in/you" required></label>
+    <label>Startup<input type="text" name="startup" placeholder="Name and one line on what it does" required></label>
+    <label>Where are you with GTM<textarea name="gtm" placeholder="What have you tried, what is working, what is not"></textarea></label>
+    <div class="submit">
+      <button class="btn" type="submit">Send <span>&rarr;</span></button>
+      <span class="fine">I reply to every one.</span>
+    </div>
+  </form>
+
+  <p class="thanks">Got it. I will be in touch. <a class="back" href="./">Back to the site &rarr;</a></p>
+</main>
+<script>
+  if (new URLSearchParams(location.search).get('sent') === '1') document.body.classList.add('sent');
+</script>
+</body>
+</html>
