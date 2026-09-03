@@ -4,7 +4,7 @@
   ============================================================
   MOMENTUM MILL : homepage
   ------------------------------------------------------------
-  Flow: hero -> how it works (6 steps) -> what is an experiment
+  Flow: hero -> how it works (loop diagram) -> what is an experiment
   (2 hypothesis cards) -> events (3 tiles + Luma calendar)
   -> GTM Sprint in development (interest form) -> about
   -> contact -> hangby.me -> footer.
@@ -151,22 +151,6 @@
   .how-fig{display:flex;justify-content:center}
   .how-fig .loop{width:100%;max-width:700px;height:auto;display:block;overflow:visible}
   @media(max-width:860px){.how-grid{grid-template-columns:1fr}.how-fig .loop{max-width:440px}}
-  /* HOW IT WORKS: 6 steps on one line */
-  .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,2vw,28px);position:relative;margin-top:clamp(36px,5vw,60px)}
-  .steps::before{content:"";position:absolute;top:7px;left:0;right:0;height:2px;background:var(--ink);opacity:.2}
-  .step{position:relative;padding-top:30px}
-  .step::before{content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--ivory);border:2.5px solid var(--ink)}
-  .step.first::before,.step.last::before{background:var(--ink)}
-  .step .idx{font-family:var(--display);font-size:clamp(34px,3.4vw,48px);line-height:1;margin-bottom:10px}
-  .step h3{font-weight:700;font-size:clamp(16px,1.35vw,18px);line-height:1.2;margin-bottom:6px}
-  .step p{color:var(--body-soft);font-size:14px;font-weight:500;line-height:1.5}
-  @media(max-width:980px){
-    .steps{grid-template-columns:repeat(3,1fr);gap:32px 24px}
-    .steps::before{display:none}
-    .step{padding-top:0;border-top:2px solid var(--ink);padding-top:16px}
-    .step::before{display:none}
-  }
-  @media(max-width:560px){.steps{grid-template-columns:1fr 1fr;gap:28px 20px}}
 
   /* HYPOTHESIS CARDS */
   .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
@@ -359,6 +343,8 @@
       <circle cx="424.5" cy="165.0" r="24" fill="#0F1B2D"/>
       <text x="424.5" y="173.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">02</text>
       <text x="466.1" y="146.0" text-anchor="start" font-family="Inter,system-ui,sans-serif" font-size="20" font-weight="800" fill="#0F1B2D">Design the experiment</text>
+      <text x="466.1" y="170.0" text-anchor="start" font-family="Inter,system-ui,sans-serif" font-size="16" font-weight="700" fill="#8E2A1F">Use our tool trained on</text>
+      <text x="466.1" y="190.0" text-anchor="start" font-family="Inter,system-ui,sans-serif" font-size="16" font-weight="700" fill="#8E2A1F">200+ GTM experiments</text>
       <circle cx="424.5" cy="355.0" r="24" fill="#0F1B2D"/>
       <text x="424.5" y="363.0" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="24" fill="#F6F1E4">03</text>
       <text x="466.1" y="384.0" text-anchor="start" font-family="Inter,system-ui,sans-serif" font-size="20" font-weight="800" fill="#0F1B2D">ICP, approach, goals</text>
@@ -374,38 +360,6 @@
       <text x="260" y="254" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="34" fill="#0F1B2D">1 TO 4 WEEKS</text>
       <text x="260" y="282" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="700" fill="#0F1B2D" fill-opacity=".62" letter-spacing="1.5">PER LOOP, THEN AGAIN</text>
     </svg>
-      </div>
-    </div>
-    <div class="steps">
-      <div class="step first">
-        <div class="idx">01</div>
-        <h3>MVP is ready</h3>
-        <p>People can start using it.</p>
-      </div>
-      <div class="step">
-        <div class="idx">02</div>
-        <h3>Design the experiment</h3>
-        <p>With the tool trained on 200+ GTM experiments.</p>
-      </div>
-      <div class="step">
-        <div class="idx">03</div>
-        <h3>ICP, approach, goals</h3>
-        <p>Who, how, what counts as success, clear timeline.</p>
-      </div>
-      <div class="step">
-        <div class="idx">04</div>
-        <h3>Run it</h3>
-        <p>1 to 4 weeks, for real.</p>
-      </div>
-      <div class="step">
-        <div class="idx">05</div>
-        <h3>Collect the data</h3>
-        <p>Every step of the funnel, no guessing.</p>
-      </div>
-      <div class="step last">
-        <div class="idx">06</div>
-        <h3>Learn and iterate</h3>
-        <p>Kill it, rerun it or pour into it.</p>
       </div>
     </div>
   </div>
