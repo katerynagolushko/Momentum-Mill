@@ -34,6 +34,7 @@
   @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-600.woff2) format('woff2')}
   @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-700.woff2) format('woff2')}
   @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/inter-800.woff2) format('woff2')}
+  @font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/hanken-800.woff2) format('woff2')}
   :root{
     --ivory:#F6F1E4;
     --ink:#0F1B2D;
@@ -268,11 +269,10 @@
   #contact h2{font-size:clamp(44px,7vw,84px);margin:14px 0 22px}
 
   /* HANGBY */
-  #hangby{padding:clamp(48px,7vw,84px) 0}
+  #hangby{padding:clamp(56px,8vw,96px) 0}
   .hb-tease{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,4vw,56px);flex-wrap:wrap}
-  .hb-tease h2{font-size:clamp(48px,9vw,120px);margin:10px 0 8px}
-  .hb-tease h2 a{text-decoration:none;color:var(--ink)}
-  .hb-tease h2 a:hover{color:var(--body-soft)}
+  .hb-tease h2{font-family:'Hanken Grotesk',var(--body);font-weight:800;font-size:clamp(44px,7.4vw,104px);line-height:1;letter-spacing:-.025em;color:var(--ink);margin:14px 0 18px;max-width:11ch}
+  .hb-tease h2 em{font-style:normal;color:#F26A3B}
   .hb-tease p{font-size:clamp(17px,1.7vw,22px);color:var(--body-soft);font-weight:600;max-width:34ch;line-height:1.3}
   .hb-tease .hb-right{padding-bottom:10px}
 
@@ -552,9 +552,9 @@
 <section id="hangby">
   <div class="wrap hb-tease">
     <div class="hb-left">
-      <span class="kicker">Also building</span>
-      <h2 class="poster"><a href="https://hangby.me" target="_blank" rel="noopener noreferrer">hangby.me</a></h2>
-      <p>An IRL social network. Not public yet.</p>
+      <span class="kicker">Also building: hangby.me</span>
+      <h2>The <em>startup</em> social network for <em>IRL</em></h2>
+      <p>Not public yet.</p>
     </div>
     <div class="hb-right">
       <a href="https://hangby.me" target="_blank" rel="noopener noreferrer" class="btn ghost">hangby.me <span class="arr">&rarr;</span></a>
