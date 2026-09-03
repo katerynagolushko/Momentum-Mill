@@ -4,37 +4,36 @@
   ============================================================
   MOMENTUM MILL : homepage
   ------------------------------------------------------------
-  Restructured 2026-08-11: GTM-only. Flow: hero -> sprint
-  hypothesis cards (the wow) -> how it works (3-step flow:
-  experimentation, designing the experience, fractional
-  operator) -> about -> contact. Design system unchanged from
-  the 2026-07-06 build: Anton display caps, Inter body, ivory
-  background, navy About band, marigold pill CTAs.
-  Founder's copy preserved wherever it still fits the offer.
-  Previous live version: branch backup/pre-gtm-restructure-2026-08-11.
+  Flow: hero -> how it works (6 steps) -> what is an experiment
+  (2 hypothesis cards) -> events (3 tiles + Luma calendar)
+  -> GTM Sprint in development (interest form) -> about
+  -> contact -> hangby.me -> footer.
+  Design system: Anton display caps, Inter body, cream, navy.
+  Event photography is sourced from Kateryna's LinkedIn posts
+  and the public Luma event page.
   ============================================================
 -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Momentum Mill | Where momentum is made</title>
-<meta name="description" content="Momentum Mill is a GTM service for b2b startups: growth experiments, IRL experiences, and Kateryna executing your sprints as a fractional head of growth.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Momentum Mill | Get your GTM figured out</title>
+<meta name="description" content="Momentum Mill is where post-MVP founders figure out their go-to-market through rapid experimentation. Design the experiment, run it for 1 to 4 weeks, learn, iterate. GTM Sprint for up to 50 founders in London.">
+<meta property="og:title" content="Momentum Mill | Get your GTM figured out">
+<meta property="og:description" content="Enough with building. Start finally selling. GTM experiments for post-MVP founders, IRL in London.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://momentummill.com/">
 <style>
-  /* ---------- DESIGN TOKENS ---------- */
+  @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/anton-400.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-400.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-500.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-600.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-700.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/inter-800.woff2) format('woff2')}
   :root{
-    --ivory:#F6F1E4;          /* cream page background */
-    --ivory-2:#F6F1E4;        /* flat: same cream */
-    --ink:#0F1B2D;            /* navy: headlines + body on cream */
-    --navy:#0F1B2D;           /* navy card */
-    --navy-deep:#0F1B2D;      /* navy band */
-    --amber:#F7BF00;          /* marigold: primary button fill */
-    --amber-bright:#E8B400;   /* marigold: hover */
-    --gold:#F7BF00;           /* marigold: accent on navy */
-    --bronze:#885D1E;         /* bronze: accent on cream */
-    --body-soft:rgba(15,27,45,.68);   /* muted body on cream */
+    --ivory:#F6F1E4;
+    --ink:#0F1B2D;
+    --navy:#0F1B2D;
+    --body-soft:rgba(15,27,45,.62);
     --line:rgba(15,27,45,.16);
     --line-dark:rgba(246,241,228,.16);
     --display:'Anton',impact,sans-serif;
@@ -44,68 +43,43 @@
     --z-nav:100;
   }
 
-  /* ---------- RESET ---------- */
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    font-family:var(--body);
-    background:var(--ivory);
-    color:var(--ink);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    overflow-x:hidden;
-  }
+  body{font-family:var(--body);background:var(--ivory);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
   a{color:inherit}
-  ::selection{background:var(--amber);color:var(--ink)}
-  :focus-visible{outline:2.5px solid var(--bronze);outline-offset:3px;border-radius:4px}
+  img{max-width:100%}
+  ::selection{background:var(--ink);color:var(--ivory)}
+  :focus-visible{outline:2.5px solid var(--ink);outline-offset:3px;border-radius:4px}
 
-  /* ---------- KICKER ---------- */
-  .kicker{
-    display:inline-block;font-weight:800;font-size:18px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--bronze);
-  }
+  .kicker{display:inline-block;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--body-soft)}
 
-  /* ---------- BUTTONS ---------- */
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--ink);
-    font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;
-    border:1.5px solid var(--amber);white-space:nowrap;
-    transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
-  }
-  .btn:hover{background:var(--amber-bright);border-color:var(--amber-bright);transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(15,27,45,.55)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--ivory);font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ink);white-space:nowrap;cursor:pointer;font-family:var(--body);transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease)}
+  .btn:hover{background:#1B2B45;border-color:#1B2B45;transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(15,27,45,.55)}
   .btn .arr{transition:transform .3s var(--ease)}
   .btn:hover .arr{transform:translateX(4px)}
   .btn.ghost{background:transparent;border-color:rgba(15,27,45,.5);color:var(--ink)}
   .btn.ghost:hover{background:var(--ivory);border-color:var(--ink);box-shadow:0 14px 30px -18px rgba(15,27,45,.4)}
   .btn.sm{font-size:14px;padding:10px 20px}
-  .link-arrow{
-    display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
-    color:var(--bronze);font-size:16px;transition:color .25s var(--ease)
-  }
+  .btn.light{background:var(--ivory);border-color:var(--ivory);color:var(--ink)}
+  .btn.light:hover{background:#FFFCF2;border-color:#FFFCF2}
+  .link-arrow{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;color:var(--ink);font-size:15px;transition:color .25s var(--ease)}
   .link-arrow .arr{transition:transform .3s var(--ease)}
-  .link-arrow:hover{color:var(--ink)}
+  .link-arrow:hover{color:var(--body-soft)}
   .link-arrow:hover .arr{transform:translateX(4px)}
 
-  /* ---------- NAV ---------- */
-  .nav{
-    position:sticky;top:0;z-index:var(--z-nav);
-    background:rgba(246,241,228,.88);backdrop-filter:saturate(140%) blur(10px);
-    border-bottom:1px solid transparent;
-    transition:background .35s var(--ease),border-color .35s var(--ease)
-  }
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(246,241,228,.88);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
   .nav.scrolled{border-bottom-color:var(--line)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none;line-height:1;color:var(--ink);white-space:nowrap;transition:color .35s var(--ease)}
-  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links{display:flex;align-items:center;gap:28px}
   .nav-links a{font-weight:600;font-size:14.5px;text-decoration:none;color:var(--ink);transition:color .25s var(--ease)}
-  .nav-links a:hover{color:var(--bronze)}
+  .nav-links a:hover{color:var(--body-soft)}
   .nav-cta{display:flex;align-items:center;gap:14px}
-  /* nav over the dark About band */
   .nav.on-dark{background:rgba(15,27,45,.85);border-bottom-color:var(--line-dark)}
   .nav.on-dark .brand,.nav.on-dark .nav-links a{color:var(--ivory)}
-  .nav.on-dark .nav-links a:hover{color:var(--gold)}
+  .nav.on-dark .nav-links a:hover{color:rgba(246,241,228,.7)}
   .nav.on-dark .nav-toggle{color:var(--ivory)}
   .nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:none;background:transparent;color:var(--ink);border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .nav-toggle .bars{position:relative;display:block;width:20px;height:14px}
@@ -119,8 +93,8 @@
   .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 22px 44px -26px rgba(15,27,45,.45);padding:6px 0 12px}
   .nav.open .nav-menu{display:block}
   .nav-menu a{display:block;font-weight:600;font-size:17px;color:var(--ink);text-decoration:none;padding:14px 32px}
-  .nav-menu a:hover{color:var(--bronze);background:rgba(15,27,45,.04)}
-  @media(max-width:720px){
+  .nav-menu a:hover{color:var(--body-soft);background:rgba(15,27,45,.04)}
+  @media(max-width:860px){
     .nav-links{display:none}
     .nav-toggle{display:inline-flex}
     .nav .wrap{padding:0 20px}
@@ -132,99 +106,151 @@
     .nav .btn.sm{font-size:13px;padding:8px 15px}
   }
 
-  /* ---------- DISPLAY HEADINGS ---------- */
-  .poster{
-    font-family:var(--display);font-weight:400;text-transform:uppercase;
-    letter-spacing:.005em;line-height:.92;color:var(--ink);
-  }
+  .poster{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.005em;line-height:.92;color:var(--ink)}
 
-  /* ============ HERO ============ */
-  .hero{padding:clamp(52px,7vw,96px) 0 clamp(48px,6vw,80px)}
-  .hero .kicker{margin-bottom:clamp(14px,2vw,22px)}
-  .hero h1{font-size:clamp(64px,13.5vw,170px);margin:0 0 clamp(24px,3.5vw,40px)}
+  /* HERO */
+  .hero{padding:clamp(56px,8vw,110px) 0 clamp(40px,5vw,64px)}
+  .hero h1{font-size:clamp(56px,10vw,96px);margin:0 0 clamp(22px,3vw,34px);max-width:10ch}
   .hero h1 span{display:block}
+  .hero h1 .hl{color:transparent;-webkit-text-stroke:2px var(--ink)}
+  @media(max-width:720px){.hero h1 .hl{-webkit-text-stroke:1.5px var(--ink)}}
   .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,4vw,48px);flex-wrap:wrap}
-  .hero .lede{font-size:clamp(16px,1.5vw,18px);max-width:44ch;flex:0 1 auto;min-width:0;color:var(--body-soft);font-weight:500;line-height:1.65}
-  .hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .hero .lede{font-size:clamp(19px,2vw,26px);max-width:30ch;font-weight:600;line-height:1.3;color:var(--ink)}
+  .hero .lede span{color:var(--body-soft);font-weight:500}
+  .hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 
-  /* ============ OFFER ============ */
-  section{padding:clamp(64px,9vw,110px) 0}
-  #sprints,#how{border-top:1px solid var(--line)}
-  .head{max-width:760px;margin-bottom:clamp(32px,4.5vw,48px)}
-  .head h2{font-size:clamp(34px,5.6vw,62px);margin:14px 0 16px}
-  .head p{font-size:clamp(16px,1.5vw,18px);color:var(--body-soft);font-weight:500;max-width:72ch}
-
-  /* how it works : three-step flow, echoes the hop dots on the sprint cards */
-  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,52px)}
-  .step{position:relative;padding-top:30px}
-  .step::before{content:"";position:absolute;top:0;left:2px;width:13px;height:13px;border-radius:50%;border:2px solid var(--ink);background:var(--ink)}
-  .step.s3::before{background:var(--amber)}
-  .step::after{content:"";position:absolute;top:7px;left:30px;right:calc(-1*clamp(28px,4vw,52px));height:2px;background:var(--ink);opacity:.22}
-  .step.s3::after{display:none}
-  .step .idx{font-family:var(--display);font-size:clamp(38px,3.6vw,50px);line-height:1;color:var(--bronze);margin-bottom:12px}
-  .step h3{font-weight:700;font-size:clamp(21px,2vw,25px);line-height:1.15;margin-bottom:10px}
-  .step p{color:var(--body-soft);font-size:15.5px;font-weight:500;line-height:1.6;max-width:36ch}
-  @media(max-width:820px){.flow{grid-template-columns:1fr;gap:36px}.step::after{display:none}}
-
-  /* ============ SPRINT CARDS ============ */
-  .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
-  .hb-card{
-    position:relative;background:#FFFCF2;border:1px solid rgba(15,27,45,.35);border-radius:14px;
-    padding:clamp(20px,2.4vw,28px) clamp(20px,2.4vw,28px) clamp(16px,2vw,22px);
-    box-shadow:0 24px 50px -38px rgba(15,27,45,.45);
+  /* STAT STRIP */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .strip .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+  .stat{padding:clamp(22px,3vw,34px) 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .stat + .stat{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}
+  .stat .n{font-family:var(--display);font-size:clamp(40px,4.6vw,64px);line-height:1;color:var(--ink);white-space:nowrap}
+  .stat .l{font-weight:700;font-size:clamp(14px,1.3vw,17px);color:var(--body-soft);max-width:16ch;line-height:1.25}
+  @media(max-width:720px){
+    .strip .wrap{grid-template-columns:1fr}
+    .stat + .stat{border-left:0;border-top:1px solid var(--line);padding-left:0}
+    .stat{padding:18px 0}
   }
+
+  /* SECTIONS */
+  section{padding:clamp(64px,9vw,110px) 0}
+  #experiment,#events,#hangby{border-top:1px solid var(--line)}
+  .head{max-width:780px;margin-bottom:clamp(28px,4vw,44px)}
+  .head h2{font-size:clamp(38px,6vw,68px);margin:12px 0 12px}
+  .head p{font-size:clamp(16px,1.5vw,19px);color:var(--body-soft);font-weight:500;max-width:52ch}
+
+  /* HOW IT WORKS: 6 steps on one line */
+  .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,2vw,28px);position:relative;margin-top:clamp(36px,5vw,60px)}
+  .steps::before{content:"";position:absolute;top:7px;left:0;right:0;height:2px;background:var(--ink);opacity:.2}
+  .step{position:relative;padding-top:30px}
+  .step::before{content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--ivory);border:2.5px solid var(--ink)}
+  .step.first::before,.step.last::before{background:var(--ink)}
+  .step .idx{font-family:var(--display);font-size:clamp(34px,3.4vw,48px);line-height:1;margin-bottom:10px}
+  .step h3{font-weight:700;font-size:clamp(16px,1.35vw,18px);line-height:1.2;margin-bottom:6px}
+  .step p{color:var(--body-soft);font-size:14px;font-weight:500;line-height:1.5}
+  @media(max-width:980px){
+    .steps{grid-template-columns:repeat(3,1fr);gap:32px 24px}
+    .steps::before{display:none}
+    .step{padding-top:0;border-top:2px solid var(--ink);padding-top:16px}
+    .step::before{display:none}
+  }
+  @media(max-width:560px){.steps{grid-template-columns:1fr 1fr;gap:28px 20px}}
+
+  /* HYPOTHESIS CARDS */
+  .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
+  .hb-card{position:relative;background:#FFFCF2;border:1px solid rgba(15,27,45,.35);border-radius:14px;padding:clamp(20px,2.4vw,28px) clamp(20px,2.4vw,28px) clamp(16px,2vw,22px);box-shadow:0 24px 50px -38px rgba(15,27,45,.45)}
   .hb-card.r1{transform:rotate(-.4deg)}
-  .hb-card.r2{transform:rotate(.35deg)}
-  .hb-card.r3{transform:rotate(-.25deg)}
-  .hb-card.win{border:1.5px solid var(--amber);box-shadow:0 26px 55px -30px rgba(247,191,0,.55);transform:rotate(.3deg)}
+  .hb-card.win{border:2px solid var(--ink);box-shadow:0 26px 55px -30px rgba(15,27,45,.6);transform:rotate(.3deg)}
   .hb-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
-  .hb-path{font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze)}
+  .hb-path{font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
   .hb-num{font-size:12px;color:var(--body-soft);font-weight:500;white-space:nowrap}
-  .hb-hyp{font-size:16px;font-weight:500;line-height:1.55;margin-bottom:14px}
-  .hb-hyp b{font-weight:700;background:linear-gradient(transparent 64%, rgba(247,191,0,.45) 64%)}
+  .hb-hyp{font-size:clamp(16px,1.4vw,18px);font-weight:500;line-height:1.55;margin-bottom:14px}
+  .hb-hyp b{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .hops{display:flex;align-items:center;margin-bottom:5px}
   .hopdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:transparent;flex:0 0 auto;position:relative}
   .hopdot.done{background:var(--ink)}
-  .hopdot.goldd{background:var(--amber)}
-  .hopdot.dead{border-color:#B03A2E}
-  .hopdot.dead::after{content:'×';position:absolute;top:-9px;left:1px;color:#B03A2E;font-weight:800;font-size:14px;line-height:1}
+  .hopdot.dead{border-color:var(--ink)}
+  .hopdot.dead::after{content:'×';position:absolute;top:-9px;left:1px;color:var(--ink);font-weight:800;font-size:14px;line-height:1}
   .hopseg{height:2px;background:var(--ink);flex:1}
   .hopseg.off{opacity:.15}
-  .hopseg.goldseg{background:var(--amber);height:3px}
+  .hopseg.on{height:3px}
   .hoplabels{display:flex;justify-content:space-between;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--body-soft);margin-top:6px;text-transform:uppercase}
-  .stamp{
-    position:absolute;top:-13px;right:16px;font-family:var(--display);font-weight:400;
-    font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;
-    padding:5px 12px;border:2px solid;border-radius:8px;background:var(--ivory);
-    box-shadow:0 10px 22px -14px rgba(15,27,45,.5);
-  }
-  .stamp.kill{color:#B03A2E;border-color:#B03A2E;transform:rotate(3deg)}
-  .stamp.invalid{color:var(--bronze);border-color:var(--bronze);transform:rotate(-3deg)}
-  .stamp.run2{color:var(--ink);border-color:var(--ink);transform:rotate(2deg)}
-  .stamp.pour{color:var(--ink);border-color:var(--ink);background:var(--amber);transform:rotate(-3deg);font-size:15px}
+  .stamp{position:absolute;top:-13px;right:16px;font-family:var(--display);font-weight:400;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border:2px solid;border-radius:8px;background:var(--ivory);box-shadow:0 10px 22px -14px rgba(15,27,45,.5)}
+  .stamp.kill{color:var(--ink);border-color:var(--ink);transform:rotate(3deg)}
+  .stamp.pour{color:var(--ivory);border-color:var(--ink);background:var(--ink);transform:rotate(-3deg);font-size:15px}
   .hb-note{font-size:14.5px;line-height:1.5;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
-  .hb-note .red{color:#B03A2E;font-weight:700}
-  .hb-note .goldt{color:var(--bronze);font-weight:800}
-  .hb-foot{display:flex;justify-content:space-between;align-items:center;gap:14px 22px;margin-top:clamp(22px,3vw,32px);flex-wrap:wrap}
+  .hb-note .result{color:var(--ink);font-weight:800}
+  .hb-foot{margin-top:clamp(18px,2.5vw,28px)}
   .hb-count{font-size:13px;color:var(--body-soft);font-weight:500}
   @media(max-width:820px){.hb-grid{grid-template-columns:1fr}}
 
-  /* ============ ABOUT ============ */
-  #about{background:var(--navy-deep);color:var(--ivory)}
-  #about .kicker{color:var(--gold)}
-  #about .head h2{color:#F6F1E4}
+  /* EVENTS */
+  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,32px)}
+  .ev{display:block;text-decoration:none;color:inherit}
+  .ev-media{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--navy);display:flex;align-items:flex-end;padding:clamp(18px,2vw,26px)}
+  .ev-media .ev-big{position:relative;z-index:1;font-family:var(--display);font-size:clamp(40px,4.2vw,60px);line-height:.95;color:var(--ivory);letter-spacing:.005em;text-transform:uppercase}
+  .ev-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block;transition:transform .6s var(--ease)}
+  .ev:hover .ev-media img{transform:scale(1.03)}
+  .ev-cap{padding:16px 4px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .ev-cap h3{font-weight:700;font-size:clamp(17px,1.6vw,20px);line-height:1.2}
+  .ev-cap p{font-size:14px;color:var(--body-soft);font-weight:500;line-height:1.45;margin-top:7px;max-width:28ch}
+  .ev-cap .ev-tag{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--body-soft);white-space:nowrap}
+  @media(max-width:860px){.ev-grid{grid-template-columns:1fr}.ev-media{aspect-ratio:16/10}}
+  .ev-next{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line)}
+  .ev-next-lbl{font-family:var(--display);text-transform:uppercase;font-size:clamp(26px,3vw,40px);line-height:1}
+
+  .partners{margin-top:clamp(48px,6vw,72px)}
+  .partners .kicker{display:block;margin-bottom:clamp(18px,2.5vw,26px)}
+  .logo-row{display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,4vw,48px);flex-wrap:wrap}
+  .logo{color:var(--ink);opacity:.9;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+  .logo.hacker{font-weight:800;font-size:15px;letter-spacing:.04em}
+  .logo.lcc{font-weight:700;font-size:14.5px}
+  .logo.lcc svg{display:block}
+  .logo.press{font-weight:600;font-size:15px}
+  .logo.press .pbadge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1.5px solid var(--ink);font-weight:700;font-size:14px;line-height:1}
+  .logo.encode{flex-direction:column;gap:3px;line-height:1}
+  .logo.encode .enc{font-weight:800;font-size:16px;letter-spacing:.02em;text-transform:lowercase}
+  .logo.encode .dots{display:flex;gap:4px;align-items:center;justify-content:center}
+  .logo.encode .dots i{width:3px;height:3px;border-radius:50%;background:var(--ink);display:block}
+  .logo.encode .club{font-weight:600;font-size:8.5px;letter-spacing:.42em;text-transform:uppercase}
+  .logo.ft{font-weight:600;font-size:16px;letter-spacing:-.01em}
+  @media(max-width:720px){.logo-row{justify-content:flex-start;row-gap:24px}}
+
+  /* GTM SPRINT: navy band with form */
+  #sprint{background:var(--navy);color:var(--ivory)}
+  #sprint .kicker{color:rgba(246,241,228,.6)}
+  .sprint-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,80px);align-items:start}
+  .sprint-copy h2{font-size:clamp(48px,8vw,108px);color:var(--ivory);margin:12px 0 18px}
+  .sprint-copy p{font-size:clamp(18px,1.9vw,24px);font-weight:600;line-height:1.3;color:rgba(246,241,228,.8);max-width:26ch}
+  .sprint-copy p strong{color:var(--ivory)}
+  .form{display:grid;gap:14px}
+  .form label{display:grid;gap:6px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,228,.75)}
+  .form input,.form textarea{font-family:var(--body);font-size:16px;font-weight:500;color:var(--ivory);background:transparent;border:0;border-bottom:1.5px solid rgba(246,241,228,.4);padding:10px 0;border-radius:0;width:100%;transition:border-color .25s var(--ease)}
+  .form textarea{resize:vertical;min-height:70px}
+  .form input:focus,.form textarea:focus{outline:none;border-bottom-color:var(--ivory)}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(246,241,228,.72)}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .form .submit{margin-top:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .form .fine{font-size:13px;color:rgba(246,241,228,.72);font-weight:500}
+  .form .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+  .thanks{display:none;font-size:clamp(18px,1.9vw,24px);font-weight:600;color:var(--ivory)}
+  #sprint.sent .form{display:none}
+  #sprint.sent .thanks{display:block}
+  @media(max-width:820px){.sprint-grid{grid-template-columns:1fr}.form .row{grid-template-columns:1fr}}
+
+  /* ABOUT */
+  #about{background:var(--ivory);color:var(--ink)}
   .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
-  .about-copy p{color:rgba(246,241,228,.72);font-size:clamp(15.5px,1.45vw,17px);margin-bottom:18px;max-width:56ch;line-height:1.7}
-  .about-copy p strong{color:#F6F1E4}
-  .about-copy .link-arrow{color:var(--gold);margin-top:8px}
-  .about-copy .link-arrow:hover{color:#F6F1E4}
+  .about-copy p{color:var(--body-soft);font-size:clamp(16px,1.5vw,18px);margin-bottom:18px;max-width:50ch;line-height:1.65}
+  .about-copy p strong{color:var(--ink)}
+  .about-copy .link-arrow{margin-top:6px}
   .about-mark{display:flex;justify-content:center;align-items:center}
   .photo-frame{position:relative;width:min(310px,78%);aspect-ratio:1}
-  .photo-clip{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid rgba(247,191,0,.6)}
+  .photo-clip{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid var(--ink)}
   .photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-  .photo-frame::before{content:"";position:absolute;inset:-34px;border-radius:50%;border:1px solid rgba(247,191,0,.5);z-index:1}
-  .photo-frame .orbit-dot{position:absolute;z-index:3;top:-14px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--gold)}
-  .photo-frame .orbit-ring{position:absolute;z-index:1;left:-58px;bottom:-20px;width:56px;height:56px;border-radius:50%;border:1px solid rgba(247,191,0,.5)}
+  .photo-frame::before{content:"";position:absolute;inset:-34px;border-radius:50%;border:1px solid rgba(15,27,45,.35);z-index:1}
+  .photo-frame .orbit-dot{position:absolute;z-index:3;top:-14px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--ink)}
+  .photo-frame .orbit-ring{position:absolute;z-index:1;left:-58px;bottom:-20px;width:56px;height:56px;border-radius:50%;border:1px solid rgba(15,27,45,.35)}
   @media(max-width:820px){
     .about-grid{grid-template-columns:1fr;gap:40px}
     .about-mark{order:-1}
@@ -232,50 +258,42 @@
     .photo-frame::before{inset:-24px}
   }
 
-  /* partners row */
-  .partners{margin-top:clamp(56px,8vw,88px);padding-top:clamp(32px,4vw,44px);border-top:1px solid var(--line-dark)}
-  .partners .kicker{display:block;margin-bottom:clamp(24px,3vw,36px)}
-  .logo-row{display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,4vw,48px);flex-wrap:wrap}
-  .logo{color:#F6F1E4;opacity:.92;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
-  .logo.hacker{font-weight:800;font-size:15px;letter-spacing:.04em}
-  .logo.lcc{font-weight:700;font-size:14.5px}
-  .logo.lcc svg{display:block}
-  .logo.press{font-weight:600;font-size:15px}
-  .logo.press .pbadge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1.5px solid #F6F1E4;font-weight:700;font-size:14px;line-height:1}
-  .logo.encode{flex-direction:column;gap:3px;line-height:1}
-  .logo.encode .enc{font-weight:800;font-size:16px;letter-spacing:.02em;text-transform:lowercase}
-  .logo.encode .dots{display:flex;gap:4px;align-items:center;justify-content:center}
-  .logo.encode .dots i{width:3px;height:3px;border-radius:50%;background:#F6F1E4;display:block}
-  .logo.encode .club{font-weight:600;font-size:8.5px;letter-spacing:.42em;text-transform:uppercase}
-  .logo.ft{font-weight:600;font-size:16px;letter-spacing:-.01em}
-  @media(max-width:720px){.logo-row{justify-content:flex-start;row-gap:28px}}
-
-  /* ============ CONTACT ============ */
-  #contact{background:var(--ivory);text-align:center}
+  /* CONTACT */
+  #contact{background:var(--ivory);text-align:center;border-top:1px solid var(--line)}
   #contact .inner{max-width:720px;margin:0 auto}
-  #contact h2{font-size:clamp(40px,6.6vw,72px);margin:16px 0 18px}
-  #contact p{font-size:clamp(16px,1.6vw,19px);color:var(--body-soft);font-weight:500;max-width:48ch;margin:0 auto 30px}
+  #contact h2{font-size:clamp(44px,7vw,84px);margin:14px 0 22px}
 
-  /* ============ FOOTER ============ */
-  footer{background:var(--navy-deep);color:var(--ivory);padding:clamp(40px,6vw,56px) 0;text-align:center}
+  /* HANGBY */
+  #hangby{padding:clamp(48px,7vw,84px) 0}
+  .hb-tease{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,4vw,56px);flex-wrap:wrap}
+  .hb-tease h2{font-size:clamp(48px,9vw,120px);margin:10px 0 8px}
+  .hb-tease h2 a{text-decoration:none;color:var(--ink)}
+  .hb-tease h2 a:hover{color:var(--body-soft)}
+  .hb-tease p{font-size:clamp(17px,1.7vw,22px);color:var(--body-soft);font-weight:600;max-width:34ch;line-height:1.3}
+  .hb-tease .hb-right{padding-bottom:10px}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:var(--ivory);padding:clamp(40px,6vw,56px) 0;text-align:center}
   footer .fm{font-weight:800;font-size:20px}
   footer .tag{color:rgba(246,241,228,.72);font-weight:500;margin:6px 0 18px;font-size:14.5px}
   footer .meta{font-size:13px;color:rgba(246,241,228,.55)}
-  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  footer a{color:var(--ivory);text-decoration:none;font-weight:600}
   footer a:hover{text-decoration:underline}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
-<!-- ================= NAV ================= -->
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="wrap nav-inner">
     <a href="#top" class="brand">Momentum Mill</a>
     <div class="nav-links">
-      <a href="#sprints">Sprints</a>
       <a href="#how">How it works</a>
+      <a href="#experiment">Experiments</a>
+      <a href="#events">Events</a>
+      <a href="#sprint">GTM Sprint</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
     </div>
     <div class="nav-cta">
       <a class="btn sm" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call</a>
@@ -285,45 +303,91 @@
     </div>
   </div>
   <div class="nav-menu" id="navMenu">
-    <a href="#sprints">Sprints</a>
     <a href="#how">How it works</a>
+    <a href="#experiment">Experiments</a>
+    <a href="#events">Events</a>
+    <a href="#sprint">GTM Sprint</a>
     <a href="#about">About</a>
-    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <header class="hero" id="top">
   <div class="wrap">
-    <span class="kicker">Where momentum is made</span>
-    <h1 class="poster"><span>Momentum</span><span>Mill</span></h1>
+    <h1 class="poster"><span>Get your</span><span class="hl">GTM</span><span>figured out</span></h1>
     <div class="hero-foot">
-      <p class="lede">
-        Startup game has its own rules, players and moves.<br>
-        My thesis is become popular in communities that matter to your goal. Let's cook!
-      </p>
+      <p class="lede">2 to 4 growth experiments in a month. <span>Keep the one that works.</span></p>
       <div class="hero-cta">
-        <a href="#sprints" class="btn ghost">See the sprints <span class="arr">&rarr;</span></a>
+        <a href="#how" class="btn ghost">How it works <span class="arr">&rarr;</span></a>
         <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer" class="btn">Book a call <span class="arr">&rarr;</span></a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ================= THE SPRINTS ================= -->
-<section id="sprints">
+<div class="strip">
+  <div class="wrap">
+    <div class="stat"><span class="n">2 to 4</span><span class="l">experiments in one month</span></div>
+    <div class="stat"><span class="n">200+</span><span class="l">GTM experiments train the tool</span></div>
+    <div class="stat"><span class="n">1 to 4</span><span class="l">weeks per experiment</span></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
   <div class="wrap">
     <div class="head">
-      <span class="kicker">The sprints</span>
-      <h2 class="poster">Every sale starts as a hypothesis</h2>
-      <p>Every card is one bet about who buys and through which door, with one number that decides it. Failed cards stay on the wall, they tell us where not to spend. The winner gets everything.</p>
+      <h2 class="poster">How it works</h2>
+      <p>Your MVP is ready. Now find the route to market.</p>
+    </div>
+    <div class="steps">
+      <div class="step first">
+        <div class="idx">01</div>
+        <h3>Start with the MVP</h3>
+        <p>A working product and enough customer access to test a real sales path.</p>
+      </div>
+      <div class="step">
+        <div class="idx">02</div>
+        <h3>Design the experiment</h3>
+        <p>Use the tool trained on more than 200 GTM experiments.</p>
+      </div>
+      <div class="step">
+        <div class="idx">03</div>
+        <h3>Set the terms</h3>
+        <p>Choose the ICP, approach, success metric and deadline.</p>
+      </div>
+      <div class="step">
+        <div class="idx">04</div>
+        <h3>Run it</h3>
+        <p>Work the channel for 1 to 4 weeks.</p>
+      </div>
+      <div class="step">
+        <div class="idx">05</div>
+        <h3>Read the data</h3>
+        <p>Track the funnel from first touch to commitment.</p>
+      </div>
+      <div class="step last">
+        <div class="idx">06</div>
+        <h3>Make the call</h3>
+        <p>Kill it, rerun it or put more behind it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE EXPERIMENT -->
+<section id="experiment">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="poster">Make a clear hypothesis</h2>
+      <p>An experiment names who buys, how you reach them and the number that decides whether to continue.</p>
     </div>
 
     <div class="hb-grid">
       <div class="hb-card r1">
-        <div class="stamp kill">Killed &middot; run 2</div>
-        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">Sprint 01 &middot; 400 sends &middot; ends Mar 12</span></div>
-        <p class="hb-hyp">We believe <b>CFOs at software companies with 500+ engineers ($100M+ ARR)</b> will <b>book a demo from cold email</b>. Right if <b>6+ meetings per 400 sends</b>.</p>
+        <div class="stamp kill">Killed</div>
+        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">400 sends &middot; 2 weeks</span></div>
+        <p class="hb-hyp">We believe <b>CFOs at software companies with 500+ engineers</b> will <b>book a demo from cold email</b>. Right if <b>6+ meetings per 400 sends</b>.</p>
         <div class="hops">
           <div class="hopdot done"></div><div class="hopseg"></div>
           <div class="hopdot dead"></div><div class="hopseg off"></div>
@@ -332,110 +396,74 @@
           <div class="hopdot"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><span class="red">Emails got opened, almost nobody replied, twice.</span> CFOs at this level don't buy from strangers' emails.</div>
-      </div>
-
-      <div class="hb-card r2">
-        <div class="stamp invalid">Invalid</div>
-        <div class="hb-head"><span class="hb-path">Paid search</span><span class="hb-num">Sprint 02 &middot; $1,500 &middot; 3 weeks</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>request a demo from search ads on cloud-spend terms</b>. Right if <b>cost per demo under $600</b>.</p>
-        <div class="hops">
-          <div class="hopdot done"></div><div class="hopseg"></div>
-          <div class="hopdot done"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div>
-        </div>
-        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><b>Our own landing page leaked, so this run doesn't count.</b> Fixing the page, running again.</div>
-      </div>
-
-      <div class="hb-card r3">
-        <div class="stamp run2">Run 2 &middot; live</div>
-        <div class="hb-head"><span class="hb-path">Warm network</span><span class="hb-num">Sprint 03 &middot; 25 named intro asks</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>take a meeting from a board-member or investor intro</b>. Right if <b>8+ meetings from 25 asks</b>.</p>
-        <div class="hops">
-          <div class="hopdot done"></div><div class="hopseg"></div>
-          <div class="hopdot done"></div><div class="hopseg"></div>
-          <div class="hopdot dead"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div>
-        </div>
-        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note">Intros landed, too few turned into meetings. <b>Changed one thing (the pitch line), running again.</b></div>
+        <div class="hb-note"><span class="result">Opened, almost nobody replied.</span> The second run confirmed it. Kill the channel and save the budget.</div>
       </div>
 
       <div class="hb-card win">
         <div class="stamp pour">Pour &uarr;</div>
-        <div class="hb-head"><span class="hb-path">Organizing events</span><span class="hb-num">Sprint 04 &middot; 150 invites &middot; 1 dinner</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>show up to a peer dinner on taming engineering spend</b>. Right if <b>5+ follow-up meetings</b>.</p>
+        <div class="hb-head"><span class="hb-path">Organizing events</span><span class="hb-num">150 invites &middot; 1 dinner &middot; 3 weeks</span></div>
+        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>show up to a peer dinner</b>. Right if <b>5+ follow-up meetings</b>.</p>
         <div class="hops">
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><span class="goldt">19 showed, 9 meetings, 2 pilots.</span> <b>This is the one. Everything pours here now.</b></div>
+        <div class="hb-note"><b>19 showed, 9 meetings, 2 pilots.</b> Everything pours here now.</div>
       </div>
     </div>
-
-    <div class="hb-foot">
-      <span class="hb-count">4 hypotheses &middot; 1 invalid &middot; 1 killed &middot; 1 live &middot; 1 pouring &middot; a made up b2b startup, so you can see the mechanics</span>
-    </div>
+    <div class="hb-foot"><span class="hb-count">A made up b2b startup, so you can see the mechanics.</span></div>
   </div>
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
-<section id="how">
+<!-- EVENTS -->
+<section id="events">
   <div class="wrap">
     <div class="head">
-      <span class="kicker">How it works</span>
-      <h2 class="poster">I become your head of growth</h2>
-      <p>Data decided where your sales budget should go. We will analyze every experiment on its success metrics and based off that decide what went wrong or right and whether we will keep pursuing this channel.</p>
+      <h2 class="poster">Founder events I put together</h2>
+      <p>Founder coworking, live pitches and direct conversations with operators and investors.</p>
     </div>
-    <div class="flow">
-      <div class="step s1">
-        <div class="idx">01</div>
-        <h3>Experimentation</h3>
-        <p>Every growth idea becomes a card: who buys, through which door, what number makes it true.</p>
-      </div>
-      <div class="step s2">
-        <div class="idx">02</div>
-        <h3>Designing the experience</h3>
-        <p>IRL experiences, partner offers and communities your ICP will remember.</p>
-      </div>
-      <div class="step s3">
-        <div class="idx">03</div>
-        <h3>Fractional operator</h3>
-        <p>I execute the sprints myself, as if I am your head of growth. When a card wins, we pour everything into it.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ================= ABOUT ================= -->
-<section id="about">
-  <div class="wrap">
-    <div class="head">
-      <span class="kicker">Who's behind it</span>
-      <h2 class="poster">About Kateryna</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-copy">
-        <p>Momentum Mill is led by <strong>Kateryna Golushko</strong>, who has both a venture capital and early-stage GTM background.</p>
-        <p>I worked with over 50 startups on fundraising, bd and partnerships, across Ultra.vc, Amazon, Launch Club Capital and a Corporate fund of RBC Group. I started doing this work because I believe startups need a dedicated operator who has seen what clicks with different user groups be it enterprises or investors.</p>
-        <p>I partner up with startup communities, podcast hosts, GTM and Content tooling providers, ecosystem builders to get founders, I work with opportunities they need</p>
-        <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer" class="link-arrow">More about Me <span class="arr">&rarr;</span></a>
-      </div>
-      <div class="about-mark">
-        <div class="photo-frame">
-          <span class="orbit-dot" aria-hidden="true"></span>
-          <span class="orbit-ring" aria-hidden="true"></span>
-          <div class="photo-clip"><img src="kateryna.jpg" alt="Kateryna Golushko"></div>
+    <div class="ev-grid">
+      <a class="ev" href="https://luma.com/5gpkjet9?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
+        <div class="ev-media">
+          <span class="ev-big">Build.<br>Pitch.<br>Fund.</span>
+          <img src="events/bpf-1.jpg" alt="Fundraising panel at the first Build. Pitch. Fund. event" width="800" height="600">
         </div>
-      </div>
+        <div class="ev-cap">
+          <div><h3>Build. Pitch. Fund. 1</h3><p>All-day coworking, founder pitches and a fundraising panel.</p></div>
+          <span class="ev-tag">6 Jul</span>
+        </div>
+      </a>
+
+      <a class="ev" href="https://luma.com/d428asdq?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
+        <div class="ev-media">
+          <span class="ev-big">Build.<br>Pitch.<br>Fund. 2</span>
+          <img src="events/bpf-2.jpg" alt="GTM panel at the second Build. Pitch. Fund. event" width="800" height="600">
+        </div>
+        <div class="ev-cap">
+          <div><h3>Build. Pitch. Fund. 2</h3><p>A pitch competition and a zero-to-one GTM panel for 100+ founders.</p></div>
+          <span class="ev-tag">17 Aug</span>
+        </div>
+      </a>
+
+      <a class="ev" href="https://luma.com/km76s0sj?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
+        <div class="ev-media">
+          <span class="ev-big">Battle of<br>Accelerators</span>
+          <img src="events/battle.jpg" alt="Battle of the Accelerators event with YC, Speedrun, Entrepreneurs First and Techstars" width="1200" height="630">
+        </div>
+        <div class="ev-cap">
+          <div><h3>Battle of the Accelerators</h3><p>YC, a16z Speedrun, Entrepreneurs First and Techstars in one room.</p></div>
+          <span class="ev-tag">Today</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="ev-next">
+      <span class="ev-next-lbl">Don't miss the next one</span>
+      <a class="btn" href="https://luma.com/user/usr-B4kksNRWGtSL4Fv?utm_source=momentummill" target="_blank" rel="noopener noreferrer">RSVP on our Luma calendar <span class="arr">&rarr;</span></a>
     </div>
 
     <div class="partners">
@@ -443,7 +471,7 @@
       <div class="logo-row" aria-label="Partner logos">
         <span class="logo hacker">HACKER//SQUAD</span>
         <span class="logo lcc">
-          <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0L12.5 14H10L8 8L6 14H3.5L8 0Z" fill="#F6F1E4"/></svg>
+          <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0L12.5 14H10L8 8L6 14H3.5L8 0Z" fill="#0F1B2D"/></svg>
           Launch Club Capital
         </span>
         <span class="logo press"><span class="pbadge">P</span> Pressmaster</span>
@@ -458,44 +486,104 @@
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- GTM SPRINT -->
+<section id="sprint">
+  <div class="wrap sprint-grid">
+    <div class="sprint-copy">
+      <span class="kicker">In development</span>
+      <h2 class="poster">GTM Sprint</h2>
+      <p>For up to <strong>50 post-MVP founders</strong> in London, IRL. Enough with building. Start finally selling.</p>
+    </div>
+    <div>
+      <form class="form" id="interest" action="https://formsubmit.co/kateryna@momentummill.com" method="POST">
+        <input type="hidden" name="_subject" value="GTM Sprint: register interest">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://momentummill.com/?sent=1#sprint">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+        <div class="row">
+          <label>Name<input type="text" name="name" placeholder="Your name" required></label>
+          <label>Email<input type="email" name="email" placeholder="you@startup.com" required></label>
+        </div>
+        <label>Startup<input type="text" name="startup" placeholder="Name and one line on what it does" required></label>
+        <label>Where are you with GTM<textarea name="gtm" placeholder="What have you tried, what is working, what is not"></textarea></label>
+        <div class="submit">
+          <button class="btn light" type="submit">Register your interest <span class="arr">&rarr;</span></button>
+          <span class="fine">London, IRL. I read every submission.</span>
+        </div>
+      </form>
+      <p class="thanks">Got it. I will be in touch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="poster">About Kateryna</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p><strong>I am Kateryna Golushko, an ex-VC turned early-stage GTM operator.</strong> I have worked with more than 50 startups on fundraising, business development and partnerships at Ultra.vc, Amazon, Launch Club Capital and RBC Group's corporate fund.</p>
+        <p>I built Momentum Mill for the point after MVP, when the product works and the route to repeatable sales is still unclear. I design and run the experiments with founders, then follow the data.</p>
+        <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer" class="link-arrow">More about me <span class="arr">&rarr;</span></a>
+      </div>
+      <div class="about-mark">
+        <div class="photo-frame">
+          <span class="orbit-dot" aria-hidden="true"></span>
+          <span class="orbit-ring" aria-hidden="true"></span>
+          <div class="photo-clip"><img src="kateryna.jpg" alt="Kateryna Golushko"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
   <div class="wrap inner">
-    <span class="kicker">Let's talk</span>
     <h2 class="poster">Let's get you moving.</h2>
-    <p>If growth is nobody's whole job at your startup, let's talk.</p>
     <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer">Book a call <span class="arr">&rarr;</span></a>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- HANGBY -->
+<section id="hangby">
+  <div class="wrap hb-tease">
+    <div class="hb-left">
+      <span class="kicker">Also in progress</span>
+      <h2 class="poster"><a href="https://hangby.me" target="_blank" rel="noopener noreferrer">hangby.me</a></h2>
+      <p>A social network for spontaneous hangs in London's startup world.</p>
+    </div>
+    <div class="hb-right">
+      <a href="https://hangby.me" target="_blank" rel="noopener noreferrer" class="btn ghost">hangby.me <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="fm">Momentum Mill</div>
-    <p class="tag">Where momentum is made.</p>
-    <p class="meta">&copy; <span id="year"></span> Momentum Mill &middot; <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer">katerynagolushko.com</a></p>
+    <p class="tag">Get your GTM figured out.</p>
+    <p class="meta">&copy; <span id="year"></span> Momentum Mill &middot; <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a> &middot; <a href="https://katerynagolushko.com" target="_blank" rel="noopener noreferrer">katerynagolushko.com</a> &middot; <a href="https://hangby.me" target="_blank" rel="noopener noreferrer">hangby.me</a></p>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // nav border on scroll
+  if (new URLSearchParams(location.search).get('sent') === '1') document.getElementById('sprint').classList.add('sent');
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
-
-  // flip the sticky nav to dark while it floats over the About band
-  const aboutSection = document.getElementById('about');
+  const darkBand = document.getElementById('sprint');
   const navDark = () => {
-    const r = aboutSection.getBoundingClientRect();
+    const r = darkBand.getBoundingClientRect();
     nav.classList.toggle('on-dark', r.top <= 66 && r.bottom >= 0);
   };
   navDark();
   window.addEventListener('scroll', navDark, {passive:true});
-
-  // mobile menu
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   const setMenu = (open) => {
@@ -506,7 +594,7 @@
   navToggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
   navMenu.querySelectorAll('a').forEach(el => el.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-  window.addEventListener('resize', () => { if (window.innerWidth > 720) setMenu(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 860) setMenu(false); });
 </script>
 </body>
 </html>
