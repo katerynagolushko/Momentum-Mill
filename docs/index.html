@@ -4,27 +4,27 @@
   ============================================================
   MOMENTUM MILL : homepage
   ------------------------------------------------------------
-  Rebuilt 2026-09-03. One story: early-stage founders figure
-  out their GTM here through rapid experimentation.
-  Flow: hero -> the sprint (hypothesis cards) -> ecosystem
-  (three events + partners) -> cohort one tease -> about
+  Flow: hero -> how it works (6 steps) -> what is an experiment
+  (2 hypothesis cards) -> events (3 tiles + Luma calendar)
+  -> GTM Sprint in development (interest form) -> about
   -> contact -> hangby.me -> footer.
-  Design system: Anton display caps, Inter body, cream,
-  navy band, navy pill CTAs. No gold.
+  Design system: Anton display caps, Inter body, cream, navy.
+  No gold, no gradients.
 
   EVENT PHOTOS: drop files into docs/events/ named
-  encode-hub.jpg, investor-evening.jpg, hackathon.jpg
-  and they show up automatically. Without a photo the tile
-  shows the big number instead.
+  bpf-1.jpg, bpf-2.jpg, battle.jpg. They show automatically.
+  Without a photo the tile shows the event name in big type.
+
+  LINKS TO SET: search for "LUMA_CALENDAR" and "BPF_2".
   ============================================================
 -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Momentum Mill | Get your GTM figured out</title>
-<meta name="description" content="Momentum Mill is where early-stage founders figure out their go-to-market through rapid experimentation: 2 to 4 growth experiments in a month, run with Kateryna Golushko. GTM Sprint cohort one, London, autumn 2026.">
+<meta name="description" content="Momentum Mill is where post-MVP founders figure out their go-to-market through rapid experimentation. Design the experiment, run it for 1 to 4 weeks, learn, iterate. GTM Sprint for up to 50 founders in London.">
 <meta property="og:title" content="Momentum Mill | Get your GTM figured out">
-<meta property="og:description" content="2 to 4 growth experiments in a month. Keep the one that works. GTM Sprint cohort one in London, autumn 2026.">
+<meta property="og:description" content="Enough with building. Start finally selling. GTM experiments for post-MVP founders, IRL in London.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://momentummill.com/">
 <style>
@@ -38,7 +38,6 @@
     --ivory:#F6F1E4;
     --ink:#0F1B2D;
     --navy:#0F1B2D;
-    --accent:#0F1B2D;
     --body-soft:rgba(15,27,45,.62);
     --line:rgba(15,27,45,.16);
     --line-dark:rgba(246,241,228,.16);
@@ -51,15 +50,7 @@
 
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    font-family:var(--body);
-    background:var(--ivory);
-    color:var(--ink);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    overflow-x:hidden;
-  }
+  body{font-family:var(--body);background:var(--ivory);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
   a{color:inherit}
   img{max-width:100%}
@@ -68,12 +59,7 @@
 
   .kicker{display:inline-block;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--body-soft)}
 
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--ivory);
-    font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;
-    border:1.5px solid var(--ink);white-space:nowrap;
-    transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
-  }
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--ivory);font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ink);white-space:nowrap;cursor:pointer;font-family:var(--body);transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease)}
   .btn:hover{background:#1B2B45;border-color:#1B2B45;transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(15,27,45,.55)}
   .btn .arr{transition:transform .3s var(--ease)}
   .btn:hover .arr{transform:translateX(4px)}
@@ -143,8 +129,8 @@
   .strip .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
   .stat{padding:clamp(22px,3vw,34px) 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
   .stat + .stat{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,40px)}
-  .stat .n{font-family:var(--display);font-size:clamp(40px,4.6vw,64px);line-height:1;color:var(--ink)}
-  .stat .l{font-weight:700;font-size:clamp(14px,1.3vw,17px);color:var(--body-soft);max-width:14ch;line-height:1.25}
+  .stat .n{font-family:var(--display);font-size:clamp(40px,4.6vw,64px);line-height:1;color:var(--ink);white-space:nowrap}
+  .stat .l{font-weight:700;font-size:clamp(14px,1.3vw,17px);color:var(--body-soft);max-width:16ch;line-height:1.25}
   @media(max-width:720px){
     .strip .wrap{grid-template-columns:1fr}
     .stat + .stat{border-left:0;border-top:1px solid var(--line);padding-left:0}
@@ -153,58 +139,67 @@
 
   /* SECTIONS */
   section{padding:clamp(64px,9vw,110px) 0}
-  #ecosystem,#hangby{border-top:1px solid var(--line)}
+  #experiment,#events,#hangby{border-top:1px solid var(--line)}
   .head{max-width:780px;margin-bottom:clamp(28px,4vw,44px)}
   .head h2{font-size:clamp(38px,6vw,68px);margin:12px 0 12px}
   .head p{font-size:clamp(16px,1.5vw,19px);color:var(--body-soft);font-weight:500;max-width:52ch}
+
+  /* HOW IT WORKS: 6 steps on one line */
+  .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,2vw,28px);position:relative;margin-top:clamp(36px,5vw,60px)}
+  .steps::before{content:"";position:absolute;top:7px;left:0;right:0;height:2px;background:var(--ink);opacity:.2}
+  .step{position:relative;padding-top:30px}
+  .step::before{content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--ivory);border:2.5px solid var(--ink)}
+  .step.first::before,.step.last::before{background:var(--ink)}
+  .step .idx{font-family:var(--display);font-size:clamp(34px,3.4vw,48px);line-height:1;margin-bottom:10px}
+  .step h3{font-weight:700;font-size:clamp(16px,1.35vw,18px);line-height:1.2;margin-bottom:6px}
+  .step p{color:var(--body-soft);font-size:14px;font-weight:500;line-height:1.5}
+  @media(max-width:980px){
+    .steps{grid-template-columns:repeat(3,1fr);gap:32px 24px}
+    .steps::before{display:none}
+    .step{padding-top:0;border-top:2px solid var(--ink);padding-top:16px}
+    .step::before{display:none}
+  }
+  @media(max-width:560px){.steps{grid-template-columns:1fr 1fr;gap:28px 20px}}
 
   /* HYPOTHESIS CARDS */
   .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.8vw,32px);align-items:start}
   .hb-card{position:relative;background:#FFFCF2;border:1px solid rgba(15,27,45,.35);border-radius:14px;padding:clamp(20px,2.4vw,28px) clamp(20px,2.4vw,28px) clamp(16px,2vw,22px);box-shadow:0 24px 50px -38px rgba(15,27,45,.45)}
   .hb-card.r1{transform:rotate(-.4deg)}
-  .hb-card.r2{transform:rotate(.35deg)}
-  .hb-card.r3{transform:rotate(-.25deg)}
   .hb-card.win{border:2px solid var(--ink);box-shadow:0 26px 55px -30px rgba(15,27,45,.6);transform:rotate(.3deg)}
   .hb-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
   .hb-path{font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
   .hb-num{font-size:12px;color:var(--body-soft);font-weight:500;white-space:nowrap}
-  .hb-hyp{font-size:16px;font-weight:500;line-height:1.55;margin-bottom:14px}
+  .hb-hyp{font-size:clamp(16px,1.4vw,18px);font-weight:500;line-height:1.55;margin-bottom:14px}
   .hb-hyp b{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .hops{display:flex;align-items:center;margin-bottom:5px}
   .hopdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:transparent;flex:0 0 auto;position:relative}
   .hopdot.done{background:var(--ink)}
-  .hopdot.goldd{background:var(--ink)}
   .hopdot.dead{border-color:#B03A2E}
   .hopdot.dead::after{content:'×';position:absolute;top:-9px;left:1px;color:#B03A2E;font-weight:800;font-size:14px;line-height:1}
   .hopseg{height:2px;background:var(--ink);flex:1}
   .hopseg.off{opacity:.15}
-  .hopseg.goldseg{background:var(--ink);height:3px}
+  .hopseg.on{height:3px}
   .hoplabels{display:flex;justify-content:space-between;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--body-soft);margin-top:6px;text-transform:uppercase}
   .stamp{position:absolute;top:-13px;right:16px;font-family:var(--display);font-weight:400;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border:2px solid;border-radius:8px;background:var(--ivory);box-shadow:0 10px 22px -14px rgba(15,27,45,.5)}
   .stamp.kill{color:#B03A2E;border-color:#B03A2E;transform:rotate(3deg)}
-  .stamp.invalid{color:var(--body-soft);border-color:var(--body-soft);transform:rotate(-3deg)}
-  .stamp.run2{color:var(--ink);border-color:var(--ink);transform:rotate(2deg)}
   .stamp.pour{color:var(--ivory);border-color:var(--ink);background:var(--ink);transform:rotate(-3deg);font-size:15px}
   .hb-note{font-size:14.5px;line-height:1.5;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
   .hb-note .red{color:#B03A2E;font-weight:700}
-  .hb-note .goldt{color:var(--ink);font-weight:800}
-  .hb-foot{display:flex;justify-content:space-between;align-items:center;gap:14px 22px;margin-top:clamp(22px,3vw,32px);flex-wrap:wrap}
+  .hb-foot{margin-top:clamp(18px,2.5vw,28px)}
   .hb-count{font-size:13px;color:var(--body-soft);font-weight:500}
   @media(max-width:820px){.hb-grid{grid-template-columns:1fr}}
 
-  /* ECOSYSTEM */
+  /* EVENTS */
   .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,32px)}
   .ev{display:block;text-decoration:none;color:inherit}
   .ev-media{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--navy);display:flex;align-items:flex-end;padding:clamp(18px,2vw,26px)}
-  .ev-media .ev-big{position:relative;z-index:1;font-family:var(--display);font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--ivory);letter-spacing:.005em;text-transform:uppercase}
+  .ev-media .ev-big{position:relative;z-index:1;font-family:var(--display);font-size:clamp(40px,4.2vw,60px);line-height:.95;color:var(--ivory);letter-spacing:.005em;text-transform:uppercase}
   .ev-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;display:block;transition:transform .6s var(--ease)}
   .ev:hover .ev-media img{transform:scale(1.03)}
-  .ev-cap{padding:16px 4px 0}
-  .ev-cap h3{font-weight:700;font-size:clamp(18px,1.7vw,21px);line-height:1.2;margin-bottom:6px}
-  .ev-cap p{color:var(--body-soft);font-size:15px;font-weight:500;line-height:1.5}
-  .ev-cap .ev-with{margin-top:8px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--body-soft)}
+  .ev-cap{padding:16px 4px 0;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .ev-cap h3{font-weight:700;font-size:clamp(17px,1.6vw,20px);line-height:1.2}
+  .ev-cap .ev-tag{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--body-soft);white-space:nowrap}
   @media(max-width:860px){.ev-grid{grid-template-columns:1fr}.ev-media{aspect-ratio:16/10}}
-
   .ev-next{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line)}
   .ev-next-lbl{font-family:var(--display);text-transform:uppercase;font-size:clamp(26px,3vw,40px);line-height:1}
 
@@ -225,25 +220,30 @@
   .logo.ft{font-weight:600;font-size:16px;letter-spacing:-.01em}
   @media(max-width:720px){.logo-row{justify-content:flex-start;row-gap:24px}}
 
-  /* COHORT */
-  #cohort{background:var(--navy);color:var(--ivory)}
-  #cohort .kicker{color:rgba(246,241,228,.6)}
-  #cohort .head h2{color:var(--ivory)}
-  #cohort .head{max-width:none;margin-bottom:0}
-  #cohort .head h2{font-size:clamp(48px,9vw,120px)}
-  #cohort .head p{color:rgba(246,241,228,.78);font-size:clamp(18px,1.9vw,24px);font-weight:600;max-width:40ch;line-height:1.3}
-  .cohort-list{display:flex;flex-wrap:wrap;gap:12px 0;margin-top:clamp(32px,4vw,48px);border-top:1px solid var(--line-dark);padding-top:clamp(20px,3vw,32px)}
-  .cohort-list span{font-family:var(--display);text-transform:uppercase;font-size:clamp(22px,2.8vw,38px);line-height:1;padding-right:clamp(18px,2.5vw,36px);margin-right:clamp(18px,2.5vw,36px);border-right:2px solid rgba(246,241,228,.35);white-space:nowrap}
-  .cohort-list span:last-child{border-right:0;margin-right:0;padding-right:0}
-  .cohort-cta{display:flex;align-items:center;gap:18px 26px;flex-wrap:wrap;margin-top:clamp(32px,4vw,48px)}
-  .cohort-cta .note{font-size:15px;font-weight:600;color:rgba(246,241,228,.75)}
-  @media(max-width:720px){
-    .cohort-list{flex-direction:column;gap:14px}
-    .cohort-list span{border-right:0;padding-right:0;margin-right:0;white-space:normal}
-  }
+  /* GTM SPRINT: navy band with form */
+  #sprint{background:var(--navy);color:var(--ivory)}
+  #sprint .kicker{color:rgba(246,241,228,.6)}
+  .sprint-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,80px);align-items:start}
+  .sprint-copy h2{font-size:clamp(48px,8vw,108px);color:var(--ivory);margin:12px 0 18px}
+  .sprint-copy p{font-size:clamp(18px,1.9vw,24px);font-weight:600;line-height:1.3;color:rgba(246,241,228,.8);max-width:26ch}
+  .sprint-copy p strong{color:var(--ivory)}
+  .form{display:grid;gap:14px}
+  .form label{display:grid;gap:6px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,241,228,.65)}
+  .form input,.form textarea{font-family:var(--body);font-size:16px;font-weight:500;color:var(--ivory);background:transparent;border:0;border-bottom:1.5px solid rgba(246,241,228,.4);padding:10px 0;border-radius:0;width:100%;transition:border-color .25s var(--ease)}
+  .form textarea{resize:vertical;min-height:70px}
+  .form input:focus,.form textarea:focus{outline:none;border-bottom-color:var(--ivory)}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(246,241,228,.35)}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .form .submit{margin-top:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .form .fine{font-size:13px;color:rgba(246,241,228,.55);font-weight:500}
+  .form .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+  .thanks{display:none;font-size:clamp(18px,1.9vw,24px);font-weight:600;color:var(--ivory)}
+  #sprint.sent .form{display:none}
+  #sprint.sent .thanks{display:block}
+  @media(max-width:820px){.sprint-grid{grid-template-columns:1fr}.form .row{grid-template-columns:1fr}}
 
   /* ABOUT */
-  #about{background:var(--ivory);color:var(--ink);border-top:1px solid var(--line)}
+  #about{background:var(--ivory);color:var(--ink)}
   .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
   .about-copy p{color:var(--body-soft);font-size:clamp(16px,1.5vw,18px);margin-bottom:18px;max-width:50ch;line-height:1.65}
   .about-copy p strong{color:var(--ink)}
@@ -263,7 +263,7 @@
   }
 
   /* CONTACT */
-  #contact{background:var(--ivory);text-align:center}
+  #contact{background:var(--ivory);text-align:center;border-top:1px solid var(--line)}
   #contact .inner{max-width:720px;margin:0 auto}
   #contact h2{font-size:clamp(44px,7vw,84px);margin:14px 0 22px}
 
@@ -293,9 +293,10 @@
   <div class="wrap nav-inner">
     <a href="#top" class="brand">Momentum Mill</a>
     <div class="nav-links">
-      <a href="#sprint">The sprint</a>
-      <a href="#ecosystem">Events</a>
-      <a href="#cohort">Cohort one</a>
+      <a href="#how">How it works</a>
+      <a href="#experiment">The experiment</a>
+      <a href="#events">Events</a>
+      <a href="#sprint">GTM Sprint</a>
       <a href="#about">About</a>
     </div>
     <div class="nav-cta">
@@ -306,9 +307,10 @@
     </div>
   </div>
   <div class="nav-menu" id="navMenu">
-    <a href="#sprint">The sprint</a>
-    <a href="#ecosystem">Events</a>
-    <a href="#cohort">Cohort one</a>
+    <a href="#how">How it works</a>
+    <a href="#experiment">The experiment</a>
+    <a href="#events">Events</a>
+    <a href="#sprint">GTM Sprint</a>
     <a href="#about">About</a>
   </div>
 </nav>
@@ -318,9 +320,9 @@
   <div class="wrap">
     <h1 class="poster"><span>Get your</span><span class="hl">GTM</span><span>figured out</span></h1>
     <div class="hero-foot">
-      <p class="lede">2 to 4 growth experiments in a month. <span>Keep the one that works.</span></p>
+      <p class="lede">Growth experiments for post-MVP founders. <span>Enough with building. Start finally selling.</span></p>
       <div class="hero-cta">
-        <a href="#sprint" class="btn ghost">How it runs <span class="arr">&rarr;</span></a>
+        <a href="#how" class="btn ghost">How it works <span class="arr">&rarr;</span></a>
         <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0a6Vjh3h2CJIhrpi1s6qVCCzSIaTgQA3lZuu_OhwYsP-VyivrVzoLmOvxxVpErXM3D3mwIiYsA" target="_blank" rel="noopener noreferrer" class="btn">Book a call <span class="arr">&rarr;</span></a>
       </div>
     </div>
@@ -329,25 +331,67 @@
 
 <div class="strip">
   <div class="wrap">
-    <div class="stat"><span class="n">1</span><span class="l">month</span></div>
-    <div class="stat"><span class="n">2 to 4</span><span class="l">experiments, run for real</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">winner gets the whole budget</span></div>
+    <div class="stat"><span class="n">200+</span><span class="l">GTM experiments the tool is trained on</span></div>
+    <div class="stat"><span class="n">1 to 4</span><span class="l">weeks per experiment</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">winning channel gets the budget</span></div>
   </div>
 </div>
 
-<!-- THE SPRINT -->
-<section id="sprint">
+<!-- HOW IT WORKS -->
+<section id="how">
   <div class="wrap">
     <div class="head">
-      <span class="kicker">The sprint</span>
-      <h2 class="poster">Every sale starts as a hypothesis</h2>
-      <p>One bet per card. One number decides it. Failed cards stay on the wall so you know where not to spend.</p>
+      <span class="kicker">How it works</span>
+      <h2 class="poster">From MVP to a channel that sells</h2>
+    </div>
+    <div class="steps">
+      <div class="step first">
+        <div class="idx">01</div>
+        <h3>MVP is ready</h3>
+        <p>People can start using it.</p>
+      </div>
+      <div class="step">
+        <div class="idx">02</div>
+        <h3>Design the experiment</h3>
+        <p>With the tool trained on 200+ GTM experiments.</p>
+      </div>
+      <div class="step">
+        <div class="idx">03</div>
+        <h3>ICP, approach, goals</h3>
+        <p>Who, how, what counts as success, clear timeline.</p>
+      </div>
+      <div class="step">
+        <div class="idx">04</div>
+        <h3>Run it</h3>
+        <p>1 to 4 weeks, for real.</p>
+      </div>
+      <div class="step">
+        <div class="idx">05</div>
+        <h3>Collect the data</h3>
+        <p>Every step of the funnel, no guessing.</p>
+      </div>
+      <div class="step last">
+        <div class="idx">06</div>
+        <h3>Learn and iterate</h3>
+        <p>Kill it, rerun it or pour into it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE EXPERIMENT -->
+<section id="experiment">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">What is an experiment</span>
+      <h2 class="poster">Make a clear hypothesis</h2>
+      <p>Who buys, through which door, and one number that decides it.</p>
     </div>
 
     <div class="hb-grid">
       <div class="hb-card r1">
-        <div class="stamp kill">Killed &middot; run 2</div>
-        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">Experiment 01 &middot; 400 sends</span></div>
+        <div class="stamp kill">Killed</div>
+        <div class="hb-head"><span class="hb-path">Cold email</span><span class="hb-num">400 sends &middot; 2 weeks</span></div>
         <p class="hb-hyp">We believe <b>CFOs at software companies with 500+ engineers</b> will <b>book a demo from cold email</b>. Right if <b>6+ meetings per 400 sends</b>.</p>
         <div class="hops">
           <div class="hopdot done"></div><div class="hopseg"></div>
@@ -357,63 +401,30 @@
           <div class="hopdot"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><span class="red">Opened, almost nobody replied, twice.</span> CFOs don't buy from strangers' emails.</div>
-      </div>
-
-      <div class="hb-card r2">
-        <div class="stamp invalid">Invalid</div>
-        <div class="hb-head"><span class="hb-path">Paid search</span><span class="hb-num">Experiment 02 &middot; $1,500 &middot; 3 weeks</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>request a demo from search ads</b>. Right if <b>cost per demo under $600</b>.</p>
-        <div class="hops">
-          <div class="hopdot done"></div><div class="hopseg"></div>
-          <div class="hopdot done"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div>
-        </div>
-        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><b>Landing page leaked, this run doesn't count.</b> Fixing it, running again.</div>
-      </div>
-
-      <div class="hb-card r3">
-        <div class="stamp run2">Run 2 &middot; live</div>
-        <div class="hb-head"><span class="hb-path">Warm network</span><span class="hb-num">Experiment 03 &middot; 25 intro asks</span></div>
-        <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>take a meeting from an investor intro</b>. Right if <b>8+ meetings from 25 asks</b>.</p>
-        <div class="hops">
-          <div class="hopdot done"></div><div class="hopseg"></div>
-          <div class="hopdot done"></div><div class="hopseg"></div>
-          <div class="hopdot dead"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div><div class="hopseg off"></div>
-          <div class="hopdot"></div>
-        </div>
-        <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note">Intros landed, too few meetings. <b>Changed the pitch line, running again.</b></div>
+        <div class="hb-note"><span class="red">Opened, almost nobody replied.</span> CFOs don't buy from strangers' emails. Killed, budget saved.</div>
       </div>
 
       <div class="hb-card win">
         <div class="stamp pour">Pour &uarr;</div>
-        <div class="hb-head"><span class="hb-path">Organizing events</span><span class="hb-num">Experiment 04 &middot; 150 invites &middot; 1 dinner</span></div>
+        <div class="hb-head"><span class="hb-path">Organizing events</span><span class="hb-num">150 invites &middot; 1 dinner &middot; 3 weeks</span></div>
         <p class="hb-hyp">We believe <b>the same CFOs</b> will <b>show up to a peer dinner</b>. Right if <b>5+ follow-up meetings</b>.</p>
         <div class="hops">
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div><div class="hopseg goldseg"></div>
-          <div class="hopdot goldd"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div><div class="hopseg on"></div>
+          <div class="hopdot done"></div>
         </div>
         <div class="hoplabels"><span>Reach</span><span>Engage</span><span>Meet</span><span>Advance</span><span>Commit</span></div>
-        <div class="hb-note"><span class="goldt">19 showed, 9 meetings, 2 pilots.</span> <b>Everything pours here now.</b></div>
+        <div class="hb-note"><b>19 showed, 9 meetings, 2 pilots.</b> Everything pours here now.</div>
       </div>
     </div>
-
-    <div class="hb-foot">
-      <span class="hb-count">A made up b2b startup, so you can see the mechanics.</span>
-    </div>
+    <div class="hb-foot"><span class="hb-count">A made up b2b startup, so you can see the mechanics.</span></div>
   </div>
 </section>
 
-<!-- ECOSYSTEM -->
-<section id="ecosystem">
+<!-- EVENTS -->
+<section id="events">
   <div class="wrap">
     <div class="head">
       <span class="kicker">Events</span>
@@ -423,44 +434,34 @@
     <div class="ev-grid">
       <a class="ev" href="https://luma.com/5gpkjet9?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
         <div class="ev-media">
-          <span class="ev-big">220+</span>
-          <img src="events/encode-hub.jpg" alt="" onerror="this.remove()">
+          <span class="ev-big">Build.<br>Pitch.<br>Fund.</span>
+          <img src="events/bpf-1.jpg" alt="Build. Pitch. Fund. 1" onerror="this.remove()">
         </div>
-        <div class="ev-cap">
-          <h3>Founder night at Encode Hub</h3>
-          <p>Shoreditch. 220+ signed up, room full.</p>
-          <div class="ev-with">With Encode Club</div>
-        </div>
+        <div class="ev-cap"><h3>Build. Pitch. Fund. 1</h3><span class="ev-tag">London</span></div>
       </a>
 
-      <div class="ev">
+      <!-- BPF_2: same Luma link as 1 until the second one is set -->
+      <a class="ev" href="https://luma.com/5gpkjet9?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
         <div class="ev-media">
-          <span class="ev-big">20VC</span>
-          <img src="events/investor-evening.jpg" alt="" onerror="this.remove()">
+          <span class="ev-big">Build.<br>Pitch.<br>Fund. 2</span>
+          <img src="events/bpf-2.jpg" alt="Build. Pitch. Fund. 2" onerror="this.remove()">
         </div>
-        <div class="ev-cap">
-          <h3>Investor evening, Harry Stebbings on stage</h3>
-          <p>20 to 30 investors from outside our network. Five went on to invest.</p>
-          <div class="ev-with">With Launch Club Capital</div>
-        </div>
-      </div>
+        <div class="ev-cap"><h3>Build. Pitch. Fund. 2</h3><span class="ev-tag">London</span></div>
+      </a>
 
-      <div class="ev">
+      <a class="ev" href="https://luma.com/km76s0sj?utm_source=momentummill" target="_blank" rel="noopener noreferrer">
         <div class="ev-media">
-          <span class="ev-big">Judge</span>
-          <img src="events/hackathon.jpg" alt="" onerror="this.remove()">
+          <span class="ev-big">Battle of<br>Accelerators</span>
+          <img src="events/battle.jpg" alt="Battle of Accelerators" onerror="this.remove()">
         </div>
-        <div class="ev-cap">
-          <h3>Hackathon at Civo Navigate</h3>
-          <p>Old Street. A weekend of builders, I sat on the panel.</p>
-          <div class="ev-with">With HackerSquad</div>
-        </div>
-      </div>
+        <div class="ev-cap"><h3>Battle of Accelerators</h3><span class="ev-tag">Upcoming</span></div>
+      </a>
     </div>
 
     <div class="ev-next">
-      <span class="ev-next-lbl">Next one is on the calendar</span>
-      <a class="btn" href="https://luma.com/km76s0sj" target="_blank" rel="noopener noreferrer">RSVP on Luma <span class="arr">&rarr;</span></a>
+      <span class="ev-next-lbl">Don't miss the next one</span>
+      <!-- LUMA_CALENDAR: swap for the calendar URL -->
+      <a class="btn" href="https://luma.com/km76s0sj?utm_source=momentummill" target="_blank" rel="noopener noreferrer">RSVP to our Luma calendar <span class="arr">&rarr;</span></a>
     </div>
 
     <div class="partners">
@@ -483,25 +484,33 @@
   </div>
 </section>
 
-<!-- COHORT ONE -->
-<section id="cohort">
-  <div class="wrap">
-    <div class="head">
-      <span class="kicker">Coming, autumn 2026</span>
-      <h2 class="poster">GTM Sprint. Cohort one.</h2>
-      <p>London. 20 to 50 early-stage founders running their experiments at the same time.</p>
+<!-- GTM SPRINT -->
+<section id="sprint">
+  <div class="wrap sprint-grid">
+    <div class="sprint-copy">
+      <span class="kicker">In development</span>
+      <h2 class="poster">GTM Sprint</h2>
+      <p>For up to <strong>50 post-MVP founders</strong> in London, IRL. Enough with building. Start finally selling.</p>
     </div>
-    <div class="cohort-list">
-      <span>1 month</span>
-      <span>2 to 4 experiments</span>
-      <span>Weekly check-in</span>
-      <span>Tool credits</span>
-      <span>1:1 mentors</span>
-      <span>A buddy</span>
-    </div>
-    <div class="cohort-cta">
-      <a class="btn light" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint%20cohort%20one">Get on the list <span class="arr">&rarr;</span></a>
-      <span class="note">One email. Name and what you are building.</span>
+    <div>
+      <form class="form" id="interest" action="https://formsubmit.co/kateryna@momentummill.com" method="POST">
+        <input type="hidden" name="_subject" value="GTM Sprint: register interest">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://momentummill.com/?sent=1#sprint">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+        <div class="row">
+          <label>Name<input type="text" name="name" placeholder="Your name" required></label>
+          <label>Email<input type="email" name="email" placeholder="you@startup.com" required></label>
+        </div>
+        <label>Startup<input type="text" name="startup" placeholder="Name and one line on what it does" required></label>
+        <label>Where are you with GTM<textarea name="gtm" placeholder="What have you tried, what is working, what is not"></textarea></label>
+        <div class="submit">
+          <button class="btn light" type="submit">Register your interest <span class="arr">&rarr;</span></button>
+          <span class="fine">London, IRL. I reply to every one.</span>
+        </div>
+      </form>
+      <p class="thanks">Got it. I will be in touch.</p>
     </div>
   </div>
 </section>
@@ -563,13 +572,14 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  if (new URLSearchParams(location.search).get('sent') === '1') document.getElementById('sprint').classList.add('sent');
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
-  const aboutSection = document.getElementById('cohort');
+  const darkBand = document.getElementById('sprint');
   const navDark = () => {
-    const r = aboutSection.getBoundingClientRect();
+    const r = darkBand.getBoundingClientRect();
     nav.classList.toggle('on-dark', r.top <= 66 && r.bottom >= 0);
   };
   navDark();
