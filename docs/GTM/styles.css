@@ -205,15 +205,16 @@ h3 {
   list-style: none;
   margin: 0;
   padding: 0.75rem 0 1rem;
-  display: grid;
-  /* Run column ~half of Set/Decide so Run→Decide is tighter; joins stay auto for the arrow. */
-  grid-template-columns: 1fr auto minmax(7.5rem, 0.4fr) auto 1fr;
-  gap: 0.75rem 1rem;
-  align-items: start;
+  /* Content-sized flex row: steps take their natural width, arrows sit in the gaps.
+     No fr-unit stretching — the row hugs its content instead of the container. */
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 3rem;
 }
 
 .loop > li:not(.loop__join) {
-  min-width: 0;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -239,6 +240,7 @@ h3 {
 }
 
 .loop__join {
+  flex: 0 0 auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -482,23 +484,25 @@ body.lightbox-open {
   }
 
   .loop {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.85rem;
   }
 
   .loop__join {
     padding-top: 0;
     justify-content: flex-start;
-    transform: rotate(90deg);
-    transform-origin: left center;
-    width: 5rem;
-    height: 3.3rem;
+    margin-left: 0.5rem;
   }
 
   .loop__arrow {
-    width: 4.5rem;
+    width: 3.5rem;
     height: auto;
-    max-height: 3rem;
+    max-height: none;
+    /* Rotate around the image centre so it stays inside its own row;
+       vertical margins absorb the taller rotated bounding box. */
+    transform: rotate(90deg);
+    margin: 0.7rem 0;
   }
 
   .ex {
