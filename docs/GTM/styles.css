@@ -241,16 +241,15 @@ h3 {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 1.35rem;
-  color: #e85d2a;
+  padding-top: 0.85rem;
   user-select: none;
   pointer-events: none;
 }
 
-.loop__arrow svg {
-  width: clamp(4.5rem, 9vw, 6.5rem);
+.loop__arrow img {
+  width: clamp(4.75rem, 10vw, 7rem);
   height: auto;
-  overflow: visible;
+  display: block;
 }
 
 .examples {
@@ -487,12 +486,12 @@ body.lightbox-open {
     justify-content: flex-start;
     transform: rotate(90deg);
     transform-origin: left center;
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
-  .loop__arrow svg {
-    width: 3.25rem;
+  .loop__arrow img {
+    width: 3.5rem;
   }
 
   .ex {
