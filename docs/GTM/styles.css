@@ -247,6 +247,15 @@ h3 {
   pointer-events: none;
 }
 
+/* Halve Run→Decide only (2nd join + Decide); leave Set→Run alone. */
+.loop > .loop__join:nth-child(4) {
+  margin-inline: -0.25rem;
+}
+
+.loop > li:nth-child(5) {
+  margin-left: -2.5rem;
+}
+
 /* Hand-drawn connector — sized to the close-up arrow asset (~276×182), readable next to Set/Run/Decide. */
 .loop__arrow {
   width: 5rem;
@@ -483,6 +492,11 @@ body.lightbox-open {
   .loop {
     grid-template-columns: 1fr;
     gap: 0.85rem;
+  }
+
+  .loop > .loop__join:nth-child(4),
+  .loop > li:nth-child(5) {
+    margin: 0;
   }
 
   .loop__join {
