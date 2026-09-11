@@ -206,12 +206,12 @@ h3 {
   margin: 0;
   padding: 0.75rem 0 1rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: 0.75rem 1.5rem;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0.75rem 1.25rem;
   align-items: start;
 }
 
-.loop > li:not(.loop__arrow) {
+.loop > li:not(.loop__join) {
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -229,7 +229,7 @@ h3 {
   font-weight: 700;
 }
 
-.loop > li:not(.loop__arrow) > span {
+.loop > li:not(.loop__join) > span {
   color: #555;
   font-size: 1.12rem;
   line-height: 1.35;
@@ -237,17 +237,18 @@ h3 {
   font-weight: 400;
 }
 
-.loop__arrow {
+.loop__join {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 0.85rem;
+  padding-top: 0.6rem;
   user-select: none;
   pointer-events: none;
 }
 
-.loop__arrow img {
-  width: 3.5rem;
+.loop__arrow {
+  width: 2.75rem;
+  max-width: 48px;
   height: auto;
   display: block;
 }
@@ -481,17 +482,18 @@ body.lightbox-open {
     gap: 0.85rem;
   }
 
-  .loop__arrow {
+  .loop__join {
     padding-top: 0;
     justify-content: flex-start;
     transform: rotate(90deg);
     transform-origin: left center;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
-  .loop__arrow img {
-    width: 3.5rem;
+  .loop__arrow {
+    width: 2.75rem;
+    max-width: 48px;
   }
 
   .ex {
