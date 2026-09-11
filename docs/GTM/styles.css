@@ -247,11 +247,11 @@ h3 {
   pointer-events: none;
 }
 
-/* ~x-height of .loop strong (~0.37 of heading). Ref: 13px arrow vs 35px Set. */
+/* Hand-drawn connector — sized to the close-up arrow asset (~276×182), readable next to Set/Run/Decide. */
 .loop__arrow {
-  height: 0.8rem;
-  width: auto;
-  max-width: 2rem;
+  width: 5rem;
+  height: auto;
+  max-height: 3.3rem;
   object-fit: contain;
   display: block;
 }
@@ -490,14 +490,14 @@ body.lightbox-open {
     justify-content: flex-start;
     transform: rotate(90deg);
     transform-origin: left center;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 5rem;
+    height: 3.3rem;
   }
 
   .loop__arrow {
-    height: 0.8rem;
-    width: auto;
-    max-width: 2rem;
+    width: 4.5rem;
+    height: auto;
+    max-height: 3rem;
   }
 
   .ex {
