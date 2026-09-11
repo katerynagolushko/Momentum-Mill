@@ -247,9 +247,9 @@ h3 {
 }
 
 .loop__arrow {
-  width: 2.75rem;
-  max-width: 48px;
-  height: auto;
+  width: 2.5rem;
+  max-height: 2.2rem;
+  object-fit: contain;
   display: block;
 }
 
@@ -487,13 +487,13 @@ body.lightbox-open {
     justify-content: flex-start;
     transform: rotate(90deg);
     transform-origin: left center;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .loop__arrow {
-    width: 2.75rem;
-    max-width: 48px;
+    width: 2.5rem;
+    max-height: 2.2rem;
   }
 
   .ex {
