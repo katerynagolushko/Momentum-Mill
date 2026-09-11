@@ -241,15 +241,17 @@ h3 {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 0.55rem;
+  /* Nudge into the strong line so the arrow sits mid-glyph, not mid-column */
+  padding-top: 0.4rem;
   user-select: none;
   pointer-events: none;
 }
 
+/* ~x-height of .loop strong (~0.37 of heading). Ref: 13px arrow vs 35px Set. */
 .loop__arrow {
-  width: 2.75rem;
-  max-height: 2.4rem;
-  height: auto;
+  height: 0.8rem;
+  width: auto;
+  max-width: 2rem;
   object-fit: contain;
   display: block;
 }
@@ -488,13 +490,14 @@ body.lightbox-open {
     justify-content: flex-start;
     transform: rotate(90deg);
     transform-origin: left center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .loop__arrow {
-    width: 2.75rem;
-    max-height: 2.4rem;
+    height: 0.8rem;
+    width: auto;
+    max-width: 2rem;
   }
 
   .ex {
