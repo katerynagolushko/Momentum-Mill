@@ -199,8 +199,9 @@ a:focus-visible,
 }
 
 .why__inner {
-  /* Hard limit: do not extend past the hero word "Products" */
-  width: min(100%, 48rem);
+  /* Wide enough for the body to sit as two desktop lines */
+  width: 100%;
+  max-width: 86rem;
   margin: 0;
 }
 
@@ -219,7 +220,7 @@ a:focus-visible,
   font-weight: 400;
   line-height: 1.65;
   color: var(--dim);
-  max-width: 48rem;
+  max-width: 86rem;
 }
 
 /* -- Part A / Part B: text + one rounded photo, vertical bar -- */
