@@ -192,22 +192,50 @@ a:focus-visible,
   white-space: nowrap;
 }
 
+/* -- Why are we doing this -- */
+.why {
+  padding: 3.75rem var(--space) 1.5rem;
+  margin: 0;
+}
+
+.why__inner {
+  width: min(100%, 40rem);
+  margin: 0;
+}
+
+.why__title {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.35rem, 2.1vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--fg);
+}
+
+.why__body {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--dim);
+  max-width: 38rem;
+}
+
 /* -- Part A / Part B: text + one rounded photo, vertical bar -- */
 .split {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
   align-items: center;
-  padding: 4rem var(--space);
+  padding: 3.5rem var(--space);
   margin: 0;
-  width: min(100%, var(--wide));
-  margin-inline: auto;
+  width: 100%;
 }
 
 .split__copy {
   position: relative;
-  max-width: 28rem;
-  padding-left: 1.1rem;
+  max-width: 32rem;
+  padding-left: 1.15rem;
 }
 
 .split__copy::before {
@@ -216,13 +244,13 @@ a:focus-visible,
   left: 0;
   top: 0.15rem;
   bottom: 0.15rem;
-  width: 1.5px;
+  width: 2px;
   background: #ffffff;
 }
 
 .split__title {
-  margin: 0 0 0.7rem;
-  font-size: clamp(1.85rem, 2.6vw, 2.25rem);
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 2.8vw, 2.5rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -231,14 +259,14 @@ a:focus-visible,
 
 .split__line {
   margin: 0.45rem 0 0;
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
   font-weight: 400;
   line-height: 1.45;
   color: var(--dim);
 }
 
 .split__list-label {
-  margin: 1.1rem 0 0.4rem;
+  margin: 1.15rem 0 0.4rem;
   font-size: clamp(1.05rem, 1.25vw, 1.15rem);
   font-weight: 500;
   line-height: 1.35;
@@ -256,7 +284,7 @@ a:focus-visible,
 .split__list li {
   position: relative;
   padding-left: 1rem;
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
   line-height: 1.45;
   color: var(--dim);
 }
@@ -280,10 +308,10 @@ a:focus-visible,
 .split__photo img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center 40%;
-  border-radius: 0.55rem;
+  border-radius: 0.75rem;
 }
 
 /* -- partners -- */
@@ -412,18 +440,25 @@ a:focus-visible,
 }
 
 @media (min-width: 900px) {
+  .why {
+    padding: 4.5rem clamp(2rem, 5vw, 4.5rem) 1.75rem;
+  }
+
   .split {
-    grid-template-columns: minmax(16rem, 0.92fr) minmax(20rem, 1.08fr);
-    column-gap: clamp(2rem, 4.5vw, 3.75rem);
-    padding: 4.5rem clamp(2rem, 5vw, 4rem);
+    grid-template-columns: minmax(17rem, 0.9fr) minmax(26rem, 1.2fr);
+    column-gap: clamp(2.25rem, 5vw, 4rem);
+    padding: 3.25rem clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
   }
 
   .split--flip {
-    grid-template-columns: minmax(20rem, 1.08fr) minmax(16rem, 0.92fr);
+    grid-template-columns: minmax(26rem, 1.2fr) minmax(17rem, 0.9fr);
   }
 
   .split__photo img {
-    max-height: 22rem;
+    /* Keep photo large and side-by-side; do not crush or stack on desktop */
+    max-height: none;
+    height: auto;
   }
 
   .logos {
@@ -438,8 +473,13 @@ a:focus-visible,
     font-size: 0.72rem;
   }
 
-  .split {
+  .why {
     padding-top: 3rem;
+    padding-bottom: 1rem;
+  }
+
+  .split {
+    padding-top: 2.75rem;
   }
 }
 

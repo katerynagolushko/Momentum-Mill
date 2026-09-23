@@ -43,6 +43,10 @@
         video: {
           src: "./public/video/founder-sales-reel.mp4",
         },
+        why: {
+          title: "Why are we doing this:",
+          body: "In the world that is all about building there is not enough talk about what's next. Being able to sell your vision is gonna be the new moat. Come if you want to lock in all the way on sales and get all the support possible.",
+        },
         partA: {
           title: "Part A - 8 hours",
           intro:
@@ -113,6 +117,10 @@
           <h1 class="hero__hook" data-copy="hook"></h1>
           <div class="hero__who" data-copy="who"></div>
         </div>
+      </section>
+
+      <section class="why" id="why" aria-label="Why are we doing this">
+        <div class="why__inner" data-copy="why"></div>
       </section>
 
       <section class="split" id="parta">
@@ -297,6 +305,17 @@
             img.src = data.photo.src;
             img.alt = data.photo.alt || "";
           }
+        }
+
+        var why = document.querySelector('[data-copy="why"]');
+        if (why && C.why) {
+          why.innerHTML =
+            '<h2 class="why__title">' +
+            C.why.title +
+            "</h2>" +
+            '<p class="why__body">' +
+            C.why.body +
+            "</p>";
         }
 
         fillPart("partA");
