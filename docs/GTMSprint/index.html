@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GTM Sprint</title>
+    <meta
+      name="description"
+      content="Day 1 strategy and pitch. Then a week of selling. For technical founders with a real product."
+    />
+    <link rel="icon" href="./public/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!--
+      ============================================================
+      EDITABLE COPY - change the strings below, then refresh.
+      ============================================================
+    -->
+    <script id="page-copy">
+      window.PAGE_COPY = {
+        nav: [
+          { id: "top", label: "the sprint", href: "#top", active: true },
+          { id: "parta", label: "part 1", href: "#parta" },
+          { id: "partb", label: "part 2", href: "#partb" },
+          { id: "partners", label: "partners", href: "#partners" },
+        ],
+        hook: ["Ship is not enough", "Sell or die"],
+        who: {
+          lead: "For",
+          lines: [
+            "Technical Founders with real Products",
+            "who want to lock in and sell",
+          ],
+        },
+        video: {
+          src: "./public/video/founder-sales-reel.mp4",
+        },
+        partA: {
+          title: "Part A - 8 hours",
+          intro:
+            "This is your chance to test strategy and get feedback on your pitch from ppl who listen to it everyday",
+          listLabel: "What you will do in the day:",
+          bullets: [
+            "Work with a GTM leader",
+            "Create a GTM Experiment",
+            "Scrape Qualified Lead List",
+            "Pitch TWICE",
+          ],
+          closing:
+            "This is what you will be judged on the day and get prizes but the real deal is the execution.",
+          photo: {
+            src: "./public/candidates/startup-shell-selfhack-huddle.jpg",
+            alt: "Founders huddled around laptops at a long work table",
+          },
+        },
+        partB: {
+          title: "Part B - 1 week",
+          intro:
+            "The whole point is to actually test if your gtm strategy works.",
+          listLabel: "What will you do:",
+          bullets: [
+            "Outreach/ Partnerships/ Posting - whatever you chose",
+            "Talk to your mentor",
+            "Work from our coworking space in London",
+            "Book and conduct meetings",
+          ],
+          closing: [
+            "You will be judged on results on Day 7, irl in the office.",
+            "Conversion rate, how far your pipeline moves",
+          ],
+          photo: {
+            src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
+            alt: "Mentors and founders working at a whiteboard wall",
+          },
+        },
+        partnersLabel: "Community partners",
+        cta: {
+          line: "Wanna be in?",
+          mail: "kateryna@momentummill.com",
+          founderSubject: "GTM Sprint",
+          partnerSubject: "community partner",
+        },
+      };
+    </script>
+
+    <nav class="nav" aria-label="Primary">
+      <!-- filled by PAGE_COPY.nav -->
+    </nav>
+
+    <main id="main">
+      <section class="hero" id="top" aria-label="GTM Sprint">
+        <video
+          class="hero__bg"
+          data-copy="video"
+          src="./public/video/founder-sales-reel.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__copy">
+          <h1 class="hero__hook" data-copy="hook"></h1>
+          <div class="hero__who" data-copy="who"></div>
+        </div>
+      </section>
+
+      <section class="split" id="parta">
+        <div class="split__copy" data-copy="partA"></div>
+        <figure class="split__photo">
+          <img
+            data-copy="partA.photo"
+            src="./public/candidates/startup-shell-selfhack-huddle.jpg"
+            alt="Founders huddled around laptops at a long work table"
+            width="1600"
+            height="1067"
+          />
+        </figure>
+      </section>
+
+      <section class="split split--flip" id="partb">
+        <figure class="split__photo">
+          <img
+            data-copy="partB.photo"
+            src="./public/candidates/sw-phoenix-mentor-reair.jpg"
+            alt="Mentors and founders working at a whiteboard wall"
+            width="1600"
+            height="1067"
+          />
+        </figure>
+        <div class="split__copy" data-copy="partB"></div>
+      </section>
+
+      <section class="partners" id="partners">
+        <div class="wrap">
+          <p class="partners__label" data-copy="partnersLabel"></p>
+          <ul class="logos">
+            <li>
+              <img src="./public/partners/tower.png" alt="Tower" width="74" height="77" />
+            </li>
+            <li>
+              <img
+                src="./public/partners/encode.png"
+                alt="Encode Club"
+                width="994"
+                height="994"
+              />
+            </li>
+            <li>
+              <img
+                src="./public/partners/hurdle.png"
+                alt="Hurdle"
+                width="800"
+                height="320"
+              />
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="close" id="close">
+        <div class="wrap close__inner">
+          <p class="close__line" data-copy="cta.line"></p>
+          <div class="close__actions">
+            <a class="btn" data-copy="cta.founder" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint"
+              >Founder interested</a
+            >
+            <a
+              class="btn btn--ghost"
+              data-copy="cta.partner"
+              href="mailto:kateryna@momentummill.com?subject=community%20partner"
+              >Community partners</a
+            >
+          </div>
+          <p class="close__mail">
+            Kateryna Golushko ·
+            <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var C = window.PAGE_COPY;
+        if (!C) return;
+
+        var nav = document.querySelector(".nav");
+        if (nav && C.nav) {
+          nav.innerHTML = C.nav
+            .map(function (item) {
+              var cls = item.active ? "nav__link is-active" : "nav__link";
+              return (
+                '<a class="' +
+                cls +
+                '" href="' +
+                item.href +
+                '">' +
+                item.label +
+                "</a>"
+              );
+            })
+            .join("");
+        }
+
+        var video = document.querySelector('[data-copy="video"]');
+        if (video && C.video && C.video.src) {
+          video.src = C.video.src;
+        }
+
+        var hook = document.querySelector('[data-copy="hook"]');
+        if (hook && C.hook) {
+          if (Array.isArray(C.hook)) {
+            hook.innerHTML = C.hook
+              .map(function (line) {
+                return '<span class="hero__hook-line">' + line + "</span>";
+              })
+              .join("");
+          } else {
+            hook.textContent = C.hook;
+          }
+        }
+
+        var who = document.querySelector('[data-copy="who"]');
+        if (who && C.who) {
+          if (typeof C.who === "object" && C.who.lines) {
+            who.innerHTML =
+              '<span class="hero__for">' +
+              C.who.lead +
+              "</span>" +
+              '<span class="hero__who-body">' +
+              C.who.lines
+                .map(function (line) {
+                  return '<span class="hero__who-line">' + line + "</span>";
+                })
+                .join("") +
+              "</span>";
+          } else {
+            who.textContent = C.who;
+          }
+        }
+
+        function fillPart(key) {
+          var data = C[key];
+          if (!data) return;
+          var copy = document.querySelector('[data-copy="' + key + '"]');
+          if (copy) {
+            var html =
+              '<h2 class="split__title">' + data.title + "</h2>";
+            if (data.intro) {
+              html += '<p class="split__line">' + data.intro + "</p>";
+            }
+            if (data.listLabel) {
+              html +=
+                '<p class="split__list-label">' + data.listLabel + "</p>";
+            }
+            if (data.bullets && data.bullets.length) {
+              html +=
+                '<ul class="split__list">' +
+                data.bullets
+                  .map(function (item) {
+                    return "<li>" + item + "</li>";
+                  })
+                  .join("") +
+                "</ul>";
+            }
+            if (data.closing) {
+              var closings = Array.isArray(data.closing)
+                ? data.closing
+                : [data.closing];
+              html += closings
+                .map(function (line) {
+                  return '<p class="split__line split__closing">' + line + "</p>";
+                })
+                .join("");
+            } else if (data.lines) {
+              html += data.lines
+                .map(function (line) {
+                  return '<p class="split__line">' + line + "</p>";
+                })
+                .join("");
+            }
+            copy.innerHTML = html;
+          }
+          var img = document.querySelector('[data-copy="' + key + '.photo"]');
+          if (img && data.photo) {
+            img.src = data.photo.src;
+            img.alt = data.photo.alt || "";
+          }
+        }
+
+        fillPart("partA");
+        fillPart("partB");
+
+        var partnersLabel = document.querySelector('[data-copy="partnersLabel"]');
+        if (partnersLabel) partnersLabel.textContent = C.partnersLabel;
+
+        var ctaLine = document.querySelector('[data-copy="cta.line"]');
+        if (ctaLine && C.cta) ctaLine.textContent = C.cta.line;
+
+        var founder = document.querySelector('[data-copy="cta.founder"]');
+        if (founder && C.cta) {
+          founder.href =
+            "mailto:" +
+            C.cta.mail +
+            "?subject=" +
+            encodeURIComponent(C.cta.founderSubject);
+        }
+
+        var partner = document.querySelector('[data-copy="cta.partner"]');
+        if (partner && C.cta) {
+          partner.href =
+            "mailto:" +
+            C.cta.mail +
+            "?subject=" +
+            encodeURIComponent(C.cta.partnerSubject);
+        }
+      })();
+    </script>
+  </body>
+</html>
