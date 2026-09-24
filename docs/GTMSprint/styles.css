@@ -495,6 +495,11 @@ a:focus-visible,
   .split {
     padding-top: 2.75rem;
   }
+
+  /* Phone only: Why → Part A photo → Part A text. Desktop stays text | photo. */
+  #parta .split__photo {
+    order: -1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
