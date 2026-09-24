@@ -76,18 +76,17 @@ a:focus-visible,
   margin: 0 auto;
 }
 
-/* -- scroll rail (top / mid right) -- */
+/* -- scroll rail (top right) -- */
 .nav {
   position: fixed;
-  top: 50%;
+  top: 1.35rem;
   right: clamp(1rem, 2.8vw, 2.25rem);
   z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0;
-  padding-right: 1.15rem;
-  transform: translateY(-50%);
+  padding-right: 1.35rem;
   font-size: var(--type-b);
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -98,11 +97,11 @@ a:focus-visible,
 .nav::before {
   content: "";
   position: absolute;
-  top: 0.85rem;
-  bottom: 0.85rem;
-  right: 0.28rem;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.28);
+  top: 0.95rem;
+  bottom: 0.95rem;
+  right: calc(0.5rem - 1.5px);
+  width: 3px;
+  background: rgba(255, 255, 255, 0.45);
   pointer-events: none;
 }
 
@@ -111,29 +110,33 @@ a:focus-visible,
   display: block;
   padding: 0.55rem 0;
   color: var(--rail);
-  transition: color 0.22s ease;
+  transition: color 0.22s ease, opacity 0.28s ease;
 }
 
 .nav__label {
   display: block;
   transform-origin: right center;
-  transition: color 0.22s ease, transform 0.22s ease, font-weight 0.22s ease;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.55),
+    0 0 2px rgba(0, 0, 0, 0.8);
+  transition: color 0.22s ease, transform 0.22s ease, font-weight 0.22s ease,
+    opacity 0.28s ease;
 }
 
 .nav__dot {
   position: absolute;
   top: 50%;
-  right: -1.15rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-top: -0.25rem;
-  margin-right: -0.25rem;
+  right: 0.5rem;
+  width: 0.55rem;
+  height: 0.55rem;
   border-radius: 50%;
   background: var(--rail);
-  box-shadow: 0 0 0 3px var(--bg);
-  transform: scale(1);
+  border: 2px solid #000;
+  box-sizing: border-box;
+  transform: translate(50%, -50%) scale(1);
   transform-origin: center;
-  transition: background 0.22s ease, transform 0.22s ease;
+  transition: background 0.22s ease, transform 0.22s ease, opacity 0.28s ease;
   pointer-events: none;
 }
 
@@ -156,21 +159,24 @@ a:focus-visible,
 
 .nav__item.is-active .nav__dot {
   background: var(--fg);
-  transform: scale(1.55);
+  transform: translate(50%, -50%) scale(1.55);
 }
 
 /* -- brand mark (top left) -- */
 .brand {
   position: absolute;
-  top: 1.35rem;
+  top: 1.2rem;
   left: clamp(1.25rem, 3vw, 2.5rem);
   z-index: 2;
-  font-size: var(--type-s);
+  font-size: clamp(1.85rem, 3.6vw, 2.55rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1;
   text-transform: lowercase;
   color: var(--fg);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* -- hero: full-bleed muted looping video + overlay copy -- */
@@ -639,12 +645,21 @@ a:focus-visible,
   .nav {
     top: 1rem;
     right: 1rem;
-    transform: none;
+  }
+
+  /* Phone: only the active stage stays strong; others fade */
+  .nav__item {
+    opacity: 0.2;
+  }
+
+  .nav__item.is-active {
+    opacity: 1;
   }
 
   .brand {
     top: 1rem;
     left: 1rem;
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
   }
 
   .hero {
