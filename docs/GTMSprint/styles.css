@@ -487,6 +487,52 @@ a:focus-visible,
     font-size: 0.72rem;
   }
 
+  /*
+    Phone hero: full-viewport cover of a 16:9 reel zooms into hair/half-face.
+    Use a landscape-leaning frame (3:2) so cover keeps face + shoulders.
+    Desktop (min-height 100vh) stays unchanged above 899px.
+  */
+  .hero {
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+    max-height: 62svh;
+  }
+
+  .hero__bg {
+    /* Subject sits slightly left-of-center in the Blakely MCU */
+    object-position: 40% center;
+  }
+
+  .hero__veil {
+    /* Bottom-weighted so the hook reads on shoulders, not eyes */
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.28) 48%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+  }
+
+  .hero__copy {
+    padding-top: 2.25rem;
+    padding-bottom: 1.1rem;
+  }
+
+  .hero__hook {
+    font-size: clamp(1.45rem, 6vw, 1.95rem);
+    margin-bottom: 0;
+  }
+
+  .hero__who {
+    /* Off-screen indent on phone; hide so the hook stays on the lower band */
+    display: none;
+  }
+
+  .hero__mark {
+    top: 0.85rem;
+    width: clamp(2.6rem, 10vw, 3.25rem);
+  }
+
   .why {
     padding-top: 3rem;
     padding-bottom: 1rem;
