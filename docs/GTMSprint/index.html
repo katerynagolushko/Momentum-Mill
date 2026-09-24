@@ -142,15 +142,7 @@
           aria-hidden="true"
         ></video>
         <div class="hero__veil" aria-hidden="true"></div>
-        <img
-          class="hero__mark"
-          src="./public/brand/gs-mark.png"
-          alt=""
-          width="72"
-          height="44"
-          decoding="async"
-          aria-hidden="true"
-        />
+        <a class="brand" href="#top">gs</a>
         <div class="hero__copy">
           <h1 class="hero__hook" data-copy="hook"></h1>
           <div class="hero__who" data-copy="who"></div>
@@ -248,19 +240,90 @@
         var nav = document.querySelector(".nav");
         if (nav && C.nav) {
           nav.innerHTML = C.nav
-            .map(function (item) {
-              var cls = item.active ? "nav__link is-active" : "nav__link";
+            .map(function (item, index) {
+              var cls =
+                "nav__item" + (index === 0 ? " is-active" : "");
               return (
                 '<a class="' +
                 cls +
                 '" href="' +
                 item.href +
+                '" data-section="' +
+                item.id +
                 '">' +
+                '<span class="nav__label">' +
                 item.label +
+                "</span>" +
+                '<span class="nav__dot" aria-hidden="true"></span>' +
                 "</a>"
               );
             })
             .join("");
+
+          var sectionIds = C.nav.map(function (item) {
+            return item.id;
+          });
+          var sections = sectionIds
+            .map(function (id) {
+              return document.getElementById(id);
+            })
+            .filter(Boolean);
+
+          function setActiveRail(id) {
+            var links = nav.querySelectorAll(".nav__item");
+            for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.getAttribute("data-section") === id) {
+                link.classList.add("is-active");
+              } else {
+                link.classList.remove("is-active");
+              }
+            }
+          }
+
+          if ("IntersectionObserver" in window && sections.length) {
+            var ratios = {};
+            var observer = new IntersectionObserver(
+              function (entries) {
+                entries.forEach(function (entry) {
+                  ratios[entry.target.id] = entry.isIntersecting
+                    ? entry.intersectionRatio
+                    : 0;
+                });
+                var bestId = sectionIds[0];
+                var bestRatio = -1;
+                sectionIds.forEach(function (id) {
+                  var r = ratios[id] || 0;
+                  if (r > bestRatio) {
+                    bestRatio = r;
+                    bestId = id;
+                  }
+                });
+                if (bestRatio > 0) setActiveRail(bestId);
+              },
+              {
+                root: null,
+                rootMargin: "-20% 0px -45% 0px",
+                threshold: [0, 0.15, 0.35, 0.55, 0.75, 1],
+              }
+            );
+            sections.forEach(function (section) {
+              observer.observe(section);
+            });
+          } else {
+            window.addEventListener(
+              "scroll",
+              function () {
+                var mid = window.scrollY + window.innerHeight * 0.35;
+                var current = sectionIds[0];
+                sections.forEach(function (section) {
+                  if (section.offsetTop <= mid) current = section.id;
+                });
+                setActiveRail(current);
+              },
+              { passive: true }
+            );
+          }
         }
 
         var video = document.querySelector('[data-copy="video"]');
