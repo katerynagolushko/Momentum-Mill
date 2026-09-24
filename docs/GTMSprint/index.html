@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=split-copy-white" />
+    <link rel="stylesheet" href="./styles.css?v=faq" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -30,6 +30,7 @@
           { id: "top", label: "the sprint", href: "#top", active: true },
           { id: "parta", label: "part 1", href: "#parta" },
           { id: "partb", label: "part 2", href: "#partb" },
+          { id: "faq", label: "faq", href: "#faq" },
           { id: "partners", label: "partners", href: "#partners" },
         ],
         hook: ["Ship is not enough", "Sell or die"],
@@ -85,6 +86,31 @@
             src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
             alt: "Mentors and founders working at a whiteboard wall",
           },
+        },
+        faq: {
+          title: "FAQ",
+          items: [
+            {
+              q: "Who is this for?",
+              a: "Technical founders who already have a product and need to sell it.",
+            },
+            {
+              q: "Do I have to pay?",
+              a: "It's free for the participants (no equity either) BUT you have to commit to the mission for the week. This can only sustain itself if we make it big.",
+            },
+            {
+              q: "How will I be judged?",
+              a: "On the day: quality of the strategy, your list/plan, your pitch and whether you've improved it. A week after you will be judged on results. How many meetings you booked, what are your conversions, have you had any meetings and how they went.",
+            },
+            {
+              q: "When is it gonna be and where?",
+              a: "Early November in London. You have to be there IRL on the Day 1 and Day 7.",
+            },
+            {
+              q: "How do I get in?",
+              a: 'We will kick off applications early October, if you want to express early interest send me an email at <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a>.',
+            },
+          ],
         },
         partnersLabel: "Community partners",
         cta: {
@@ -159,6 +185,10 @@
           />
         </figure>
         <div class="split__copy" data-copy="partB"></div>
+      </section>
+
+      <section class="faq" id="faq" aria-label="FAQ">
+        <div class="faq__inner" data-copy="faq"></div>
       </section>
 
       <section class="partners" id="partners">
@@ -353,6 +383,27 @@
 
         fillPart("partA");
         fillPart("partB");
+
+        var faq = document.querySelector('[data-copy="faq"]');
+        if (faq && C.faq && C.faq.items) {
+          faq.innerHTML =
+            '<h2 class="faq__title">' +
+            C.faq.title +
+            "</h2>" +
+            '<dl class="faq__list">' +
+            C.faq.items
+              .map(function (item) {
+                return (
+                  "<div><dt>" +
+                  item.q +
+                  "</dt><dd>" +
+                  item.a +
+                  "</dd></div>"
+                );
+              })
+              .join("") +
+            "</dl>";
+        }
 
         var partnersLabel = document.querySelector('[data-copy="partnersLabel"]');
         if (partnersLabel) partnersLabel.textContent = C.partnersLabel;

@@ -327,6 +327,61 @@ a:focus-visible,
   border-radius: 0.75rem;
 }
 
+/* -- FAQ -- */
+.faq {
+  padding: 1.5rem var(--space) 3.5rem;
+}
+
+.faq__inner {
+  width: 100%;
+  max-width: 44rem;
+  margin: 0;
+}
+
+.faq__title {
+  margin: 0 0 1.6rem;
+  font-size: clamp(1.45rem, 2.25vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--fg);
+}
+
+.faq__list {
+  margin: 0;
+  display: grid;
+  gap: 1.65rem;
+}
+
+.faq__list div {
+  margin: 0;
+}
+
+.faq__list dt {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--fg);
+}
+
+.faq__list dd {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--fg);
+}
+
+.faq__list dd a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.faq__list dd a:hover {
+  color: var(--dim);
+}
+
 /* -- partners -- */
 .partners {
   padding: 4rem 0 3rem;
