@@ -327,7 +327,7 @@ a:focus-visible,
   border-radius: 0.75rem;
 }
 
-/* -- FAQ -- */
+/* -- FAQ accordion -- */
 .faq {
   padding: 1.5rem var(--space) 3.5rem;
 }
@@ -349,36 +349,84 @@ a:focus-visible,
 
 .faq__list {
   margin: 0;
-  display: grid;
-  gap: 1.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.faq__list div {
+.faq__item {
   margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.faq__list dt {
-  margin: 0 0 0.4rem;
+.faq__item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__item summary:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.faq__q {
   font-size: clamp(1.05rem, 1.3vw, 1.2rem);
   font-weight: 500;
   line-height: 1.35;
   color: var(--fg);
 }
 
-.faq__list dd {
-  margin: 0;
+.faq__icon {
+  position: relative;
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.85rem;
+  height: 1.5px;
+  background: var(--fg);
+  transform: translate(-50%, -50%);
+}
+
+.faq__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.faq__item[open] .faq__icon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(0);
+}
+
+.faq__a {
+  padding: 0 1.75rem 1.25rem 0;
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   font-weight: 400;
   line-height: 1.5;
   color: var(--fg);
 }
 
-.faq__list dd a {
+.faq__a a {
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
 
-.faq__list dd a:hover {
+.faq__a a:hover {
   color: var(--dim);
 }
 

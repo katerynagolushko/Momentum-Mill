@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=faq" />
+    <link rel="stylesheet" href="./styles.css?v=faq-accordion" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -390,19 +390,25 @@
             '<h2 class="faq__title">' +
             C.faq.title +
             "</h2>" +
-            '<dl class="faq__list">' +
+            '<div class="faq__list">' +
             C.faq.items
               .map(function (item) {
                 return (
-                  "<div><dt>" +
+                  "<details class=\"faq__item\">" +
+                  "<summary>" +
+                  "<span class=\"faq__q\">" +
                   item.q +
-                  "</dt><dd>" +
+                  "</span>" +
+                  "<span class=\"faq__icon\" aria-hidden=\"true\"></span>" +
+                  "</summary>" +
+                  "<div class=\"faq__a\">" +
                   item.a +
-                  "</dd></div>"
+                  "</div>" +
+                  "</details>"
                 );
               })
               .join("") +
-            "</dl>";
+            "</div>";
         }
 
         var partnersLabel = document.querySelector('[data-copy="partnersLabel"]');
