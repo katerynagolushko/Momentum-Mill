@@ -134,6 +134,17 @@ a:focus-visible,
   pointer-events: none;
 }
 
+.hero__mark {
+  position: absolute;
+  top: 1.35rem;
+  left: clamp(1.25rem, 3vw, 2.5rem);
+  z-index: 2;
+  width: clamp(3.5rem, 5vw, 4.5rem); /* ~56–72px */
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
 .hero__copy {
   position: relative;
   z-index: 1;
