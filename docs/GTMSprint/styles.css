@@ -449,6 +449,11 @@ a:focus-visible,
   max-width: 3.75rem;
 }
 
+.logos img[alt="Launch London"] {
+  max-height: 2.35rem;
+  max-width: 12rem;
+}
+
 .logos img[alt="Builders Brew"] {
   max-height: 2.5rem;
   max-width: 14rem;
@@ -549,7 +554,7 @@ a:focus-visible,
   }
 
   .logos {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem;
   }
 }
