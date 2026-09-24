@@ -3,9 +3,14 @@
   --fg: #ffffff;
   --muted: #6b6b6b;
   --dim: #9a9a9a;
+  --rail: rgba(255, 255, 255, 0.9);
   --font: "Satoshi", "Helvetica Neue", Helvetica, sans-serif;
   --space: clamp(1.25rem, 3vw, 2.5rem);
   --wide: 72rem;
+  /* Three type sizes for the whole page */
+  --type-h: clamp(1.85rem, 4vw, 2.85rem);
+  --type-s: clamp(1.15rem, 1.85vw, 1.35rem);
+  --type-b: clamp(1rem, 1.15vw, 1.1rem);
 }
 
 *,
@@ -25,7 +30,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font);
-  font-size: 1rem;
+  font-size: var(--type-b);
   font-weight: 400;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
@@ -44,7 +49,8 @@ a {
 }
 
 a:focus-visible,
-.btn:focus-visible {
+.btn:focus-visible,
+.nav__item:focus-visible {
   outline: 2px solid var(--fg);
   outline-offset: 3px;
 }
@@ -70,35 +76,101 @@ a:focus-visible,
   margin: 0 auto;
 }
 
-/* -- top-right nav -- */
+/* -- scroll rail (top / mid right) -- */
 .nav {
   position: fixed;
-  top: 1.35rem;
-  right: clamp(1.25rem, 3vw, 2.5rem);
+  top: 50%;
+  right: clamp(1rem, 2.8vw, 2.25rem);
   z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.2rem;
-  font-size: 0.78rem;
+  gap: 0;
+  padding-right: 1.15rem;
+  transform: translateY(-50%);
+  font-size: var(--type-b);
   font-weight: 400;
   letter-spacing: 0.01em;
-  line-height: 1.35;
+  line-height: 1.3;
   text-transform: lowercase;
 }
 
-.nav__link {
-  color: var(--muted);
-  transition: color 0.15s ease;
+.nav::before {
+  content: "";
+  position: absolute;
+  top: 0.85rem;
+  bottom: 0.85rem;
+  right: 0.28rem;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
 }
 
-.nav__link:hover {
+.nav__item {
+  position: relative;
+  display: block;
+  padding: 0.55rem 0;
+  color: var(--rail);
+  transition: color 0.22s ease;
+}
+
+.nav__label {
+  display: block;
+  transform-origin: right center;
+  transition: color 0.22s ease, transform 0.22s ease, font-weight 0.22s ease;
+}
+
+.nav__dot {
+  position: absolute;
+  top: 50%;
+  right: -1.15rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  margin-right: -0.25rem;
+  border-radius: 50%;
+  background: var(--rail);
+  box-shadow: 0 0 0 3px var(--bg);
+  transform: scale(1);
+  transform-origin: center;
+  transition: background 0.22s ease, transform 0.22s ease;
+  pointer-events: none;
+}
+
+.nav__item:hover {
   color: var(--fg);
 }
 
-.nav__link.is-active {
+.nav__item:hover .nav__dot {
+  background: var(--fg);
+}
+
+.nav__item.is-active {
   color: var(--fg);
+}
+
+.nav__item.is-active .nav__label {
   font-weight: 500;
+  transform: scale(1.08);
+}
+
+.nav__item.is-active .nav__dot {
+  background: var(--fg);
+  transform: scale(1.55);
+}
+
+/* -- brand mark (top left) -- */
+.brand {
+  position: absolute;
+  top: 1.35rem;
+  left: clamp(1.25rem, 3vw, 2.5rem);
+  z-index: 2;
+  font-size: var(--type-s);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: lowercase;
+  color: var(--fg);
 }
 
 /* -- hero: full-bleed muted looping video + overlay copy -- */
@@ -134,24 +206,11 @@ a:focus-visible,
   pointer-events: none;
 }
 
-.hero__mark {
-  position: absolute;
-  top: 1.35rem;
-  left: clamp(1.25rem, 3vw, 2.5rem);
-  z-index: 2;
-  width: clamp(3.5rem, 5vw, 4.5rem); /* ~56–72px */
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-}
-
 .hero__copy {
   position: relative;
   z-index: 1;
-  /* Wide enough for indented For-line + "Technical Founders with real Products" */
   width: min(100% - 2.5rem, 58rem);
   margin: 0;
-  /* +22px bottom padding lifts text a tiny bit from the bottom edge */
   padding: 5.5rem var(--space) 4.6rem;
 }
 
@@ -159,7 +218,7 @@ a:focus-visible,
   display: flex;
   flex-direction: column;
   margin: 0 0 1.1rem;
-  font-size: clamp(2.15rem, 5.4vw, 3.55rem);
+  font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -176,26 +235,23 @@ a:focus-visible,
   column-gap: 0.55rem;
   align-items: start;
   max-width: none;
-  /* Match approximate width of "Sell or die" at the headline size */
-  margin-left: calc(9.9 * clamp(2.15rem, 5.4vw, 3.55rem));
+  margin-left: calc(9.9 * var(--type-h));
   color: var(--fg);
+  font-size: var(--type-s);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
 }
 
 .hero__for {
-  font-size: clamp(1.12rem, 1.9vw, 1.35rem);
   font-weight: 400;
-  font-style: italic;
   line-height: 1.35;
-  padding-top: 0.08em;
+  padding-top: 0.05em;
 }
 
 .hero__who-body {
   display: flex;
   flex-direction: column;
-  font-size: clamp(1.2rem, 2.3vw, 1.45rem);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
 }
 
 .hero__who-line {
@@ -210,7 +266,6 @@ a:focus-visible,
 }
 
 .why__inner {
-  /* Wide enough for the body to sit as two desktop lines */
   width: 100%;
   max-width: 86rem;
   margin: 0;
@@ -218,19 +273,19 @@ a:focus-visible,
 
 .why__title {
   margin: 0 0 1.2rem;
-  font-size: clamp(1.45rem, 2.25vw, 1.8rem);
+  font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.3;
+  line-height: 1.2;
   color: var(--fg);
 }
 
 .why__body {
   margin: 0;
-  font-size: clamp(1.0625rem, 1.35vw, 1.2rem);
+  font-size: var(--type-b);
   font-weight: 400;
-  line-height: 1.65;
-  color: var(--dim);
+  line-height: 1.55;
+  color: var(--fg);
   max-width: 86rem;
 }
 
@@ -263,16 +318,16 @@ a:focus-visible,
 
 .split__title {
   margin: 0 0 0.75rem;
-  font-size: clamp(2rem, 2.8vw, 2.5rem);
+  font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--fg);
 }
 
 .split__line {
   margin: 0.45rem 0 0;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: var(--type-b);
   font-weight: 400;
   line-height: 1.45;
   color: var(--fg);
@@ -280,7 +335,7 @@ a:focus-visible,
 
 .split__list-label {
   margin: 1.15rem 0 0.4rem;
-  font-size: clamp(1.05rem, 1.25vw, 1.15rem);
+  font-size: var(--type-s);
   font-weight: 500;
   line-height: 1.35;
   color: var(--fg);
@@ -297,7 +352,7 @@ a:focus-visible,
 .split__list li {
   position: relative;
   padding-left: 1rem;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: var(--type-b);
   line-height: 1.45;
   color: var(--fg);
 }
@@ -334,16 +389,16 @@ a:focus-visible,
 
 .faq__inner {
   width: 100%;
-  max-width: 44rem;
+  max-width: min(100%, 72rem);
   margin: 0;
 }
 
 .faq__title {
   margin: 0 0 1.6rem;
-  font-size: clamp(1.45rem, 2.25vw, 1.8rem);
+  font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.3;
+  line-height: 1.2;
   color: var(--fg);
 }
 
@@ -378,7 +433,7 @@ a:focus-visible,
 }
 
 .faq__q {
-  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  font-size: var(--type-s);
   font-weight: 500;
   line-height: 1.35;
   color: var(--fg);
@@ -415,7 +470,7 @@ a:focus-visible,
 
 .faq__a {
   padding: 0 1.75rem 1.25rem 0;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: var(--type-b);
   font-weight: 400;
   line-height: 1.5;
   color: var(--fg);
@@ -438,8 +493,7 @@ a:focus-visible,
 
 .partners__label {
   margin: 0;
-  /* Match .why__title size + color */
-  font-size: clamp(1.45rem, 2.25vw, 1.8rem);
+  font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.02em;
   text-transform: lowercase;
@@ -461,16 +515,14 @@ a:focus-visible,
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 3.5rem;
 }
 
 .logos img {
-  max-height: 3.25rem;
   width: auto;
+  height: auto;
+  max-height: 3.25rem;
   max-width: 11rem;
   object-fit: contain;
-  opacity: 1;
-  filter: none;
 }
 
 .logos img[alt="Tower"] {
@@ -496,7 +548,7 @@ a:focus-visible,
 
 .close__line {
   margin: 0 0 1.35rem;
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.02em;
 }
@@ -517,7 +569,7 @@ a:focus-visible,
   color: var(--bg);
   font-family: var(--font);
   font-weight: 500;
-  font-size: 0.92rem;
+  font-size: var(--type-b);
   border: 1px solid var(--fg);
   border-radius: 0;
   cursor: pointer;
@@ -531,8 +583,8 @@ a:focus-visible,
 
 .btn--ghost {
   background: transparent;
-  color: var(--dim);
-  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--fg);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .btn--ghost:hover {
@@ -542,12 +594,12 @@ a:focus-visible,
 
 .close__mail {
   margin: 1.75rem 0 0;
-  font-size: 0.85rem;
-  color: var(--muted);
+  font-size: var(--type-b);
+  color: var(--rail);
 }
 
 .close__mail a {
-  color: var(--dim);
+  color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
@@ -573,7 +625,6 @@ a:focus-visible,
   }
 
   .split__photo img {
-    /* Keep photo large and side-by-side; do not crush or stack on desktop */
     max-height: none;
     height: auto;
   }
@@ -587,10 +638,15 @@ a:focus-visible,
 @media (max-width: 899px) {
   .nav {
     top: 1rem;
-    font-size: 0.72rem;
+    right: 1rem;
+    transform: none;
   }
 
-  /* Phone only: full-viewport video stays. Lift title + fit For-block inside hero. */
+  .brand {
+    top: 1rem;
+    left: 1rem;
+  }
+
   .hero {
     min-height: 100vh;
     min-height: 100svh;
@@ -599,30 +655,17 @@ a:focus-visible,
 
   .hero__copy {
     width: min(100% - 2rem, 58rem);
-    /* Extra bottom padding lifts the block up from the video edge */
     padding: 5.5rem var(--space) 7.25rem;
   }
 
   .hero__hook {
-    /* Clear gap before the For-block */
     margin: 0 0 1.7rem;
-    font-size: clamp(1.9rem, 8.2vw, 2.45rem);
   }
 
   .hero__who {
-    /* Drop the desktop “Sell or die” indent — it pushes For off-screen on phone */
     margin-left: 0;
     max-width: 100%;
     column-gap: 0.45rem;
-  }
-
-  .hero__for {
-    font-size: clamp(0.98rem, 3.6vw, 1.15rem);
-  }
-
-  .hero__who-body {
-    font-size: clamp(1.05rem, 3.9vw, 1.22rem);
-    min-width: 0;
   }
 
   .hero__who-line {
@@ -647,5 +690,11 @@ a:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .nav__label,
+  .nav__dot,
+  .nav__item {
+    transition: none;
   }
 }
