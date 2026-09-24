@@ -487,6 +487,45 @@ a:focus-visible,
     font-size: 0.72rem;
   }
 
+  /* Phone only: full-viewport video stays. Lift title + fit For-block inside hero. */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    align-items: end;
+  }
+
+  .hero__copy {
+    width: min(100% - 2rem, 58rem);
+    /* Extra bottom padding lifts the block up from the video edge */
+    padding: 5.5rem var(--space) 7.25rem;
+  }
+
+  .hero__hook {
+    /* Clear gap before the For-block */
+    margin: 0 0 1.7rem;
+    font-size: clamp(1.9rem, 8.2vw, 2.45rem);
+  }
+
+  .hero__who {
+    /* Drop the desktop “Sell or die” indent — it pushes For off-screen on phone */
+    margin-left: 0;
+    max-width: 100%;
+    column-gap: 0.45rem;
+  }
+
+  .hero__for {
+    font-size: clamp(0.98rem, 3.6vw, 1.15rem);
+  }
+
+  .hero__who-body {
+    font-size: clamp(1.05rem, 3.9vw, 1.22rem);
+    min-width: 0;
+  }
+
+  .hero__who-line {
+    white-space: normal;
+  }
+
   .why {
     padding-top: 3rem;
     padding-bottom: 1rem;
