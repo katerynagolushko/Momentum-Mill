@@ -6,7 +6,7 @@
     <title>GTM Sprint</title>
     <meta
       name="description"
-      content="A 1-week sprint to get your first customers. 1 day in the room, 1 week selling. London, early November. Free, no equity."
+      content="A 1-week sprint to get customers. 1 day in the room, 1 week selling. London, early November. Free, no equity."
     />
     <link rel="icon" href="./public/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=202609291651" />
+    <link rel="stylesheet" href="./styles.css?v=202609291810" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -42,6 +42,7 @@
         how: {
           title: "How it works",
           lede: "You will learn everything you need about selling and get the plan on day 1. Then you will lock in for a week to actually sell",
+          ledePhone: "You'll learn everything you need about selling and then lock in for a week to actually sell",
           steps: [
             {
               when: "Day 1",
@@ -335,7 +336,10 @@
         if (how && C.how) {
           how.innerHTML =
             '<h2 class="sec__title">' + C.how.title + "</h2>" +
-            '<p class="sec__lede">' + C.how.lede + "</p>" +
+            '<p class="sec__lede">' +
+            '<span class="sec__lede-full">' + C.how.lede + "</span>" +
+            (C.how.ledePhone ? '<span class="sec__lede-phone">' + C.how.ledePhone + "</span>" : "") +
+            "</p>" +
             '<ol class="steps">' +
             C.how.steps
               .map(function (s) {

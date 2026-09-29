@@ -563,6 +563,10 @@ a:focus-visible,
   color: var(--fg);
 }
 
+.sec__lede-phone {
+  display: none;
+}
+
 /* -- How it works: 3-step timeline -- */
 .how {
   padding: 4.5rem var(--space) 2rem;
@@ -909,6 +913,18 @@ a:focus-visible,
   #agenda .split__photo {
     order: -1;
   }
+  .sec__lede:has(.sec__lede-phone) .sec__lede-full {
+    display: none;
+  }
+
+  .sec__lede .sec__lede-phone {
+    display: inline;
+  }
+
+  .sec__lede:has(.sec__lede-phone) {
+    font-size: clamp(16px, 4.35vw, 1.15rem);
+  }
+
   .how {
     padding-top: 3rem;
   }
