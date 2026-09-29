@@ -6,7 +6,7 @@
     <title>GTM Sprint</title>
     <meta
       name="description"
-      content="Day 1 strategy and pitch. Then a week of selling. For technical founders with a real product."
+      content="A 1-week sprint to get customers. 1 day in the room, 1 week selling. London, early November. Free, no equity."
     />
     <link rel="icon" href="./public/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=partners-caps-0925" />
+    <link rel="stylesheet" href="./styles.css?v=202609292357" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -26,7 +26,8 @@
     -->
     <script id="page-copy">
       window.PAGE_COPY = {
-        hook: ["Ship is not enough", "Sell or die"],
+        promise: "A 1-week sprint to get customers",
+        hook: "Ship is not enough. Sell or die.",
         who: {
           lead: "For",
           lines: [
@@ -38,47 +39,69 @@
           src: "./public/video/founder-sales-reel.mp4?v=bezoszuck1",
           srcPhone: "./public/video/founder-sales-reel-phone.mp4?v=cut-blakely03",
         },
+        how: {
+          title: "How it works",
+          lede: "You will learn everything you need about selling and get the plan on day 1. Then you will lock in for a week to actually sell",
+          ledePhone: "You'll learn everything you need about selling and then lock in for a week to actually sell",
+          steps: [
+            {
+              when: "Day 1",
+              lead: "This is a sprint prep day, you will do:",
+              bullets: [
+                "Work with a GTM Leader",
+                "Figure out your ICP and USP",
+                "Create a GTM experiment",
+                "Get a qualified lead list",
+                "Pitch to your mentor TWICE",
+              ],
+              photo: {
+                src: "./public/candidates/startup-shell-selfhack-huddle.jpg",
+                alt: "Founders huddled around laptops at a long work table",
+              },
+            },
+            {
+              when: "Days 2 to 6",
+              lead: "Main Challenge, here is what you will do:",
+              bullets: [
+                "Execute your sales strategy",
+                "Check in with mentor",
+                "Book and Conduct meetings",
+                "Work from our co-working space",
+                "Record your progress with our help",
+              ],
+              photo: {
+                src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
+                alt: "Mentors and founders working at a whiteboard wall",
+              },
+            },
+            {
+              when: "Day 7",
+              lead: "Judging begins, here is what you should submit:",
+              bullets: [
+                "Outreach Volume",
+                "Meetings Booked",
+                "Next touchpoints/ Follow-ups",
+                "If so revenue ON NEW CUSTOMERS",
+              ],
+              photo: {
+                src: "./public/candidates/stage-pitch.jpg",
+                alt: "A founder pitching on stage",
+              },
+            },
+          ],
+        },
+        gets: {
+          title: "What you walk away with",
+          items: [
+            { what: "A sales plan" },
+            { what: "A qualified lead list" },
+            { what: "Tested pitch" },
+            { what: "Meetings booked and conducted" },
+          ],
+        },
         why: {
           title: "Why are we doing this:",
           body: "In the world that is all about building there is not enough talk about what's next. Being able to sell your vision is gonna be the new moat.<br>Come if you want to lock in all the way on sales and get all the support possible.",
-        },
-        partA: {
-          title: "Part A - 8 hours",
-          intro:
-            "This is your chance to test strategy and get feedback on your pitch from ppl who listen to it everyday",
-          listLabel: "What you will do in the day:",
-          bullets: [
-            "Work with a GTM leader",
-            "Create a GTM Experiment",
-            "Scrape Qualified Lead List",
-            "Pitch TWICE",
-          ],
-          closing:
-            "This is what you will be judged on the day and get prizes but the real deal is the execution.",
-          photo: {
-            src: "./public/candidates/startup-shell-selfhack-huddle.jpg",
-            alt: "Founders huddled around laptops at a long work table",
-          },
-        },
-        partB: {
-          title: "Part B - 1 week",
-          intro:
-            "The whole point is to actually test if your gtm strategy works.",
-          listLabel: "What will you do:",
-          bullets: [
-            "Outreach/ Partnerships/ Posting - whatever you chose",
-            "Talk to your mentor",
-            "Work from our coworking space in London",
-            "Book and conduct meetings",
-          ],
-          closing: [
-            "You will be judged on results on Day 7, irl in the office.",
-            "Conversion rate, how far your pipeline moves",
-          ],
-          photo: {
-            src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
-            alt: "Mentors and founders working at a whiteboard wall",
-          },
         },
         faq: {
           title: "FAQ",
@@ -107,10 +130,15 @@
         },
         partnersLabel: "Community Partners",
         cta: {
-          line: "Wanna be in?",
+          line: "Wanna get involved?",
           mail: "kateryna@momentummill.com",
-          founderSubject: "GTM Sprint",
-          partnerSubject: "community partner",
+          // First button is the filled one; subjects are URL-encoded automatically.
+          buttons: [
+            { label: "Founder interested", subject: "GTM Sprint Founder" },
+            { label: "Community partner", subject: "GTM Sprint Community Partner" },
+            { label: "Sponsor", subject: "GTM Sprint Sponsor" },
+            { label: "Mentor", subject: "GTM Sprint Mentor" },
+          ],
         },
       };
     </script>
@@ -133,39 +161,22 @@
         <div class="hero__veil" aria-hidden="true"></div>
         <a class="brand" href="#top">gs</a>
         <div class="hero__copy">
-          <h1 class="hero__hook" data-copy="hook"></h1>
+          <p class="hero__sub" data-copy="hook"></p>
+          <h1 class="hero__hook" data-copy="promise"></h1>
           <div class="hero__who" data-copy="who"></div>
         </div>
       </section>
 
+      <section class="how" id="how" aria-label="How it works">
+        <div data-copy="how"></div>
+      </section>
+
+      <section class="walk" id="gets" aria-label="What you walk away with">
+        <div class="split__copy walk__inner" data-copy="gets"></div>
+      </section>
+
       <section class="why" id="why" aria-label="Why are we doing this">
         <div class="why__inner" data-copy="why"></div>
-      </section>
-
-      <section class="split" id="parta">
-        <div class="split__copy" data-copy="partA"></div>
-        <figure class="split__photo">
-          <img
-            data-copy="partA.photo"
-            src="./public/candidates/startup-shell-selfhack-huddle.jpg"
-            alt="Founders huddled around laptops at a long work table"
-            width="1600"
-            height="1067"
-          />
-        </figure>
-      </section>
-
-      <section class="split split--flip" id="partb">
-        <figure class="split__photo">
-          <img
-            data-copy="partB.photo"
-            src="./public/candidates/sw-phoenix-mentor-reair.jpg"
-            alt="Mentors and founders working at a whiteboard wall"
-            width="1600"
-            height="1067"
-          />
-        </figure>
-        <div class="split__copy" data-copy="partB"></div>
       </section>
 
       <section class="faq" id="faq" aria-label="FAQ">
@@ -212,19 +223,11 @@
         </div>
       </section>
 
-      <section class="close" id="close">
+      <section class="close" id="apply">
         <div class="wrap close__inner">
           <p class="close__line" data-copy="cta.line"></p>
-          <div class="close__actions">
-            <a class="btn" data-copy="cta.founder" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint"
-              >Founder interested</a
-            >
-            <a
-              class="btn btn--ghost"
-              data-copy="cta.partner"
-              href="mailto:kateryna@momentummill.com?subject=community%20partner"
-              >Community partners</a
-            >
+          <div class="close__actions" data-copy="cta.buttons">
+            <a class="btn" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint%20Founder">Founder interested</a>
           </div>
           <p class="close__mail">
             Kateryna Golushko ·
@@ -239,7 +242,19 @@
         var C = window.PAGE_COPY;
         if (!C) return;
 
-        var video = document.querySelector('[data-copy="video"]');
+        function $(sel) {
+          return document.querySelector('[data-copy="' + sel + '"]');
+        }
+
+        function list(items, cls) {
+          return (
+            '<ul class="' + cls + '">' +
+            items.map(function (item) { return "<li>" + item + "</li>"; }).join("") +
+            "</ul>"
+          );
+        }
+
+        var video = $("video");
         if (video && C.video) {
           var desktopSrc =
             C.video.src ||
@@ -265,121 +280,94 @@
           }
         }
 
-        var hook = document.querySelector('[data-copy="hook"]');
-        if (hook && C.hook) {
-          if (Array.isArray(C.hook)) {
-            hook.innerHTML = C.hook
-              .map(function (line) {
-                return '<span class="hero__hook-line">' + line + "</span>";
-              })
-              .join("");
-          } else {
-            hook.textContent = C.hook;
-          }
-        }
+        var promise = $("promise");
+        if (promise && C.promise) promise.textContent = C.promise;
 
-        var who = document.querySelector('[data-copy="who"]');
+        var hook = $("hook");
+        if (hook && C.hook) hook.textContent = C.hook;
+
+        var who = $("who");
         if (who && C.who) {
-          if (typeof C.who === "object" && C.who.lines) {
-            who.innerHTML =
-              '<span class="hero__for">' +
-              C.who.lead +
-              "</span>" +
-              '<span class="hero__who-body">' +
-              C.who.lines
-                .map(function (line) {
-                  return '<span class="hero__who-line">' + line + "</span>";
-                })
-                .join("") +
-              "</span>";
-          } else {
-            who.textContent = C.who;
-          }
+          who.innerHTML =
+            '<span class="hero__for">' + C.who.lead + "</span>" +
+            '<span class="hero__who-body">' +
+            C.who.lines
+              .map(function (line) {
+                return '<span class="hero__who-line">' + line + "</span>";
+              })
+              .join("") +
+            "</span>";
         }
 
-        function fillPart(key) {
-          var data = C[key];
-          if (!data) return;
-          var copy = document.querySelector('[data-copy="' + key + '"]');
-          if (copy) {
-            var html =
-              '<h2 class="split__title">' + data.title + "</h2>";
-            if (data.intro) {
-              html += '<p class="split__line">' + data.intro + "</p>";
-            }
-            if (data.listLabel) {
-              html +=
-                '<p class="split__list-label">' + data.listLabel + "</p>";
-            }
-            if (data.bullets && data.bullets.length) {
-              html +=
-                '<ul class="split__list">' +
-                data.bullets
-                  .map(function (item) {
-                    return "<li>" + item + "</li>";
-                  })
-                  .join("") +
-                "</ul>";
-            }
-            if (data.closing) {
-              var closings = Array.isArray(data.closing)
-                ? data.closing
-                : [data.closing];
-              html += closings
-                .map(function (line) {
-                  return '<p class="split__line split__closing">' + line + "</p>";
-                })
-                .join("");
-            } else if (data.lines) {
-              html += data.lines
-                .map(function (line) {
-                  return '<p class="split__line">' + line + "</p>";
-                })
-                .join("");
-            }
-            copy.innerHTML = html;
-          }
-          var img = document.querySelector('[data-copy="' + key + '.photo"]');
-          if (img && data.photo) {
-            img.src = data.photo.src;
-            img.alt = data.photo.alt || "";
-          }
+        var how = $("how");
+        if (how && C.how) {
+          how.innerHTML =
+            '<h2 class="sec__title">' + C.how.title + "</h2>" +
+            '<p class="sec__lede">' +
+            '<span class="sec__lede-full">' + C.how.lede + "</span>" +
+            (C.how.ledePhone ? '<span class="sec__lede-phone">' + C.how.ledePhone + "</span>" : "") +
+            "</p>" +
+            '<ol class="steps">' +
+            C.how.steps
+              .map(function (s) {
+                return (
+                  '<li class="step">' +
+                  '<h3 class="step__title">' + s.when + "</h3>" +
+                  (s.lead ? '<p class="step__body">' + s.lead + "</p>" : "") +
+                  (s.bullets && s.bullets.length ? list(s.bullets, "step__list") : "") +
+                  (s.photo
+                    ? '<figure class="step__photo"><img src="' + s.photo.src + '" alt="' + s.photo.alt +
+                      '" loading="lazy" onerror="this.style.visibility=\'hidden\'" /></figure>'
+                    : "") +
+                  "</li>"
+                );
+              })
+              .join("") +
+            "</ol>";
         }
 
-        var why = document.querySelector('[data-copy="why"]');
+        var gets = $("gets");
+        if (gets && C.gets) {
+          gets.innerHTML =
+            '<h2 class="split__title">' + C.gets.title + "</h2>" +
+            '<ol class="gets">' +
+            C.gets.items
+              .map(function (it, i) {
+                return (
+                  "<li>" +
+                  '<span class="gets__num">0' + (i + 1) + "</span>" +
+                  "<span>" +
+                  '<span class="gets__what">' + it.what + "</span>" +
+                  (it.note ? '<span class="gets__note">' + it.note + "</span>" : "") +
+                  "</span>" +
+                  "</li>"
+                );
+              })
+              .join("") +
+            "</ol>";
+        }
+
+        var why = $("why");
         if (why && C.why) {
           why.innerHTML =
-            '<h2 class="why__title">' +
-            C.why.title +
-            "</h2>" +
-            '<p class="why__body">' +
-            C.why.body +
-            "</p>";
+            '<h2 class="why__title">' + C.why.title + "</h2>" +
+            '<p class="why__body">' + C.why.body + "</p>";
         }
 
-        fillPart("partA");
-        fillPart("partB");
-
-        var faq = document.querySelector('[data-copy="faq"]');
+        var faq = $("faq");
         if (faq && C.faq && C.faq.items) {
           faq.innerHTML =
-            '<h2 class="faq__title">' +
-            C.faq.title +
-            "</h2>" +
+            '<h2 class="faq__title">' + C.faq.title + "</h2>" +
             '<div class="faq__list">' +
             C.faq.items
               .map(function (item) {
                 return (
-                  "<details class=\"faq__item\">" +
+                  '<details class="faq__item">' +
                   "<summary>" +
-                  "<span class=\"faq__q\">" +
-                  item.q +
-                  "</span>" +
-                  "<span class=\"faq__icon\" aria-hidden=\"true\"></span>" +
+                  '<span class="faq__q">' + item.q + "</span>" +
+                  '<span class="faq__icon" aria-hidden="true"></span>' +
                   "</summary>" +
-                  "<div class=\"faq__a\">" +
-                  item.a +
-                  "</div>" +
+                  '<div class="faq__a">' + item.a + "</div>" +
                   "</details>"
                 );
               })
@@ -387,28 +375,22 @@
             "</div>";
         }
 
-        var partnersLabel = document.querySelector('[data-copy="partnersLabel"]');
+        var partnersLabel = $("partnersLabel");
         if (partnersLabel) partnersLabel.textContent = C.partnersLabel;
 
-        var ctaLine = document.querySelector('[data-copy="cta.line"]');
+        var ctaLine = $("cta.line");
         if (ctaLine && C.cta) ctaLine.textContent = C.cta.line;
 
-        var founder = document.querySelector('[data-copy="cta.founder"]');
-        if (founder && C.cta) {
-          founder.href =
-            "mailto:" +
-            C.cta.mail +
-            "?subject=" +
-            encodeURIComponent(C.cta.founderSubject);
-        }
-
-        var partner = document.querySelector('[data-copy="cta.partner"]');
-        if (partner && C.cta) {
-          partner.href =
-            "mailto:" +
-            C.cta.mail +
-            "?subject=" +
-            encodeURIComponent(C.cta.partnerSubject);
+        var ctaButtons = $("cta.buttons");
+        if (ctaButtons && C.cta && C.cta.buttons) {
+          ctaButtons.innerHTML = C.cta.buttons
+            .map(function (b, i) {
+              return (
+                '<a class="btn' + (i ? " btn--ghost" : "") + '" href="mailto:' + C.cta.mail +
+                "?subject=" + encodeURIComponent(b.subject) + '">' + b.label + "</a>"
+              );
+            })
+            .join("");
         }
       })();
     </script>

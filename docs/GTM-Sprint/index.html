@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=202609291810" />
+    <link rel="stylesheet" href="./styles.css?v=202609292357" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -46,13 +46,18 @@
           steps: [
             {
               when: "Day 1",
-              lead: "In the prep day you will:",
+              lead: "This is a sprint prep day, you will do:",
               bullets: [
-                "Work with a GTM leader",
+                "Work with a GTM Leader",
+                "Figure out your ICP and USP",
                 "Create a GTM experiment",
-                "Get a Lead List",
+                "Get a qualified lead list",
                 "Pitch to your mentor TWICE",
               ],
+              photo: {
+                src: "./public/candidates/startup-shell-selfhack-huddle.jpg",
+                alt: "Founders huddled around laptops at a long work table",
+              },
             },
             {
               when: "Days 2 to 6",
@@ -62,7 +67,12 @@
                 "Check in with mentor",
                 "Book and Conduct meetings",
                 "Work from our co-working space",
+                "Record your progress with our help",
               ],
+              photo: {
+                src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
+                alt: "Mentors and founders working at a whiteboard wall",
+              },
             },
             {
               when: "Day 7",
@@ -73,26 +83,12 @@
                 "Next touchpoints/ Follow-ups",
                 "If so revenue ON NEW CUSTOMERS",
               ],
+              photo: {
+                src: "./public/candidates/stage-pitch.jpg",
+                alt: "A founder pitching on stage",
+              },
             },
           ],
-        },
-        // DRAFT AGENDA: timings and sessions are placeholders, edit freely.
-        agenda: {
-          draft: true,
-          title: "Day 1 agenda",
-          items: [
-            { time: "09:30", what: "Coffee and Matching with GTM folks" },
-            { time: "10:00", what: "Figure out ICP and positioning" },
-            { time: "11:30", what: "Build your first target list" },
-            { time: "13:00", what: "Lunch" },
-            { time: "14:00", what: "Write outreach and set everything up" },
-            { time: "16:00", what: "Practice your sales pitch and get feedback then pitch again" },
-            { time: "17:30", what: "Intermediate results and commits locked in" },
-          ],
-          photo: {
-            src: "./public/candidates/startup-shell-selfhack-huddle.jpg",
-            alt: "Founders huddled around laptops at a long work table",
-          },
         },
         gets: {
           title: "What you walk away with",
@@ -102,10 +98,6 @@
             { what: "Tested pitch" },
             { what: "Meetings booked and conducted" },
           ],
-          photo: {
-            src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
-            alt: "Mentors and founders working at a whiteboard wall",
-          },
         },
         why: {
           title: "Why are we doing this:",
@@ -138,10 +130,15 @@
         },
         partnersLabel: "Community Partners",
         cta: {
-          line: "Wanna be in?",
+          line: "Wanna get involved?",
           mail: "kateryna@momentummill.com",
-          founderSubject: "GTM Sprint",
-          partnerSubject: "community partner",
+          // First button is the filled one; subjects are URL-encoded automatically.
+          buttons: [
+            { label: "Founder interested", subject: "GTM Sprint Founder" },
+            { label: "Community partner", subject: "GTM Sprint Community Partner" },
+            { label: "Sponsor", subject: "GTM Sprint Sponsor" },
+            { label: "Mentor", subject: "GTM Sprint Mentor" },
+          ],
         },
       };
     </script>
@@ -174,30 +171,8 @@
         <div data-copy="how"></div>
       </section>
 
-      <section class="split agenda-wrap" id="agenda" aria-label="Day 1 agenda">
-        <div class="split__copy" data-copy="agenda"></div>
-        <figure class="split__photo">
-          <img
-            data-copy="agenda.photo"
-            src="./public/candidates/startup-shell-selfhack-huddle.jpg"
-            alt="Founders huddled around laptops at a long work table"
-            width="1600"
-            height="1067"
-          />
-        </figure>
-      </section>
-
-      <section class="split split--flip" id="gets" aria-label="What you walk away with">
-        <figure class="split__photo">
-          <img
-            data-copy="gets.photo"
-            src="./public/candidates/sw-phoenix-mentor-reair.jpg"
-            alt="Mentors and founders working at a whiteboard wall"
-            width="1600"
-            height="1067"
-          />
-        </figure>
-        <div class="split__copy" data-copy="gets"></div>
+      <section class="walk" id="gets" aria-label="What you walk away with">
+        <div class="split__copy walk__inner" data-copy="gets"></div>
       </section>
 
       <section class="why" id="why" aria-label="Why are we doing this">
@@ -251,16 +226,8 @@
       <section class="close" id="apply">
         <div class="wrap close__inner">
           <p class="close__line" data-copy="cta.line"></p>
-          <div class="close__actions">
-            <a class="btn" data-copy="cta.founder" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint"
-              >Founder interested</a
-            >
-            <a
-              class="btn btn--ghost"
-              data-copy="cta.partner"
-              href="mailto:kateryna@momentummill.com?subject=community%20partner"
-              >Community partners</a
-            >
+          <div class="close__actions" data-copy="cta.buttons">
+            <a class="btn" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint%20Founder">Founder interested</a>
           </div>
           <p class="close__mail">
             Kateryna Golushko ·
@@ -348,28 +315,10 @@
                   '<h3 class="step__title">' + s.when + "</h3>" +
                   (s.lead ? '<p class="step__body">' + s.lead + "</p>" : "") +
                   (s.bullets && s.bullets.length ? list(s.bullets, "step__list") : "") +
-                  "</li>"
-                );
-              })
-              .join("") +
-            "</ol>";
-        }
-
-        var agenda = $("agenda");
-        if (agenda && C.agenda) {
-          agenda.innerHTML =
-            '<h2 class="split__title">' + C.agenda.title + "</h2>" +
-            (C.agenda.lede ? '<p class="split__line">' + C.agenda.lede + "</p>" : "") +
-            '<ol class="agenda">' +
-            C.agenda.items
-              .map(function (it) {
-                return (
-                  "<li>" +
-                  '<span class="agenda__time">' + it.time + "</span>" +
-                  "<span>" +
-                  '<span class="agenda__what">' + it.what + "</span>" +
-                  (it.note ? '<span class="agenda__note">' + it.note + "</span>" : "") +
-                  "</span>" +
+                  (s.photo
+                    ? '<figure class="step__photo"><img src="' + s.photo.src + '" alt="' + s.photo.alt +
+                      '" loading="lazy" onerror="this.style.visibility=\'hidden\'" /></figure>'
+                    : "") +
                   "</li>"
                 );
               })
@@ -397,14 +346,6 @@
               .join("") +
             "</ol>";
         }
-
-        ["agenda", "gets"].forEach(function (key) {
-          var img = $(key + ".photo");
-          if (img && C[key] && C[key].photo) {
-            img.src = C[key].photo.src;
-            img.alt = C[key].photo.alt || "";
-          }
-        });
 
         var why = $("why");
         if (why && C.why) {
@@ -440,16 +381,16 @@
         var ctaLine = $("cta.line");
         if (ctaLine && C.cta) ctaLine.textContent = C.cta.line;
 
-        var founder = $("cta.founder");
-        if (founder && C.cta) {
-          founder.href =
-            "mailto:" + C.cta.mail + "?subject=" + encodeURIComponent(C.cta.founderSubject);
-        }
-
-        var partner = $("cta.partner");
-        if (partner && C.cta) {
-          partner.href =
-            "mailto:" + C.cta.mail + "?subject=" + encodeURIComponent(C.cta.partnerSubject);
+        var ctaButtons = $("cta.buttons");
+        if (ctaButtons && C.cta && C.cta.buttons) {
+          ctaButtons.innerHTML = C.cta.buttons
+            .map(function (b, i) {
+              return (
+                '<a class="btn' + (i ? " btn--ghost" : "") + '" href="mailto:' + C.cta.mail +
+                "?subject=" + encodeURIComponent(b.subject) + '">' + b.label + "</a>"
+              );
+            })
+            .join("");
         }
       })();
     </script>
