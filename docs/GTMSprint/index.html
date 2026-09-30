@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=202609301930" />
+    <link rel="stylesheet" href="./styles.css?v=202609301941" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -317,10 +317,13 @@
         if (how && C.how) {
           how.innerHTML =
             '<h2 class="sec__title">' + C.how.title + "</h2>" +
+            '<div class="how__intro">' +
             '<p class="sec__lede">' +
             '<span class="sec__lede-full">' + C.how.lede + "</span>" +
             (C.how.ledePhone ? '<span class="sec__lede-phone">' + C.how.ledePhone + "</span>" : "") +
             "</p>" +
+            '<a class="how__agenda" href="./agenda/">View full agenda</a>' +
+            "</div>" +
             '<ol class="steps">' +
             C.how.steps
               .map(function (s) {

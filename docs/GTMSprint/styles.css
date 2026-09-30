@@ -565,7 +565,6 @@ a:focus-visible,
   color: var(--fg);
 }
 
-
 .close__more {
   margin: 0.85rem 0 0;
   font-size: var(--type-b);
@@ -609,6 +608,35 @@ a:focus-visible,
 .how {
   padding: 4.5rem var(--space) 2rem;
   scroll-margin-top: 1rem;
+}
+
+.how__intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.55rem 1.5rem;
+}
+
+.how__intro .sec__lede {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.how__agenda {
+  flex: 0 0 auto;
+  color: var(--dim);
+  font-size: var(--type-b);
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  white-space: nowrap;
+}
+
+.how__agenda:hover {
+  color: var(--fg);
 }
 
 .steps {
