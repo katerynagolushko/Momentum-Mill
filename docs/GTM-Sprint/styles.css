@@ -565,6 +565,22 @@ a:focus-visible,
   color: var(--fg);
 }
 
+
+.close__more {
+  margin: 0.85rem 0 0;
+  font-size: var(--type-b);
+}
+
+.close__more a {
+  color: var(--dim);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.close__more a:hover {
+  color: var(--fg);
+}
+
 /* -- shared section heading for v2 blocks -- */
 .sec__title {
   margin: 0 0 0.9rem;
