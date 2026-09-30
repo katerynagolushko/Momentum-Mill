@@ -445,8 +445,9 @@ a:focus-visible,
   margin: 1.75rem 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.75rem 2.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2.25rem;
+  row-gap: 2.35rem;
   align-items: center;
 }
 
@@ -455,34 +456,45 @@ a:focus-visible,
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  min-width: 0;
+}
+
+.logos li:last-child {
+  grid-column: 1 / -1;
+  justify-content: center;
 }
 
 .logos img {
   width: auto;
   height: auto;
   max-height: 3.25rem;
-  max-width: 11rem;
+  max-width: 100%;
   object-fit: contain;
 }
 
 .logos img[alt="Tower"] {
-  max-height: 3.75rem;
-  max-width: 3.75rem;
+  max-height: 2.55rem;
+  max-width: min(9.5rem, 100%);
 }
 
 .logos img[alt="Launch London"] {
-  max-height: 3.25rem;
-  max-width: 7.5rem;
+  max-height: 2.85rem;
+  max-width: min(7rem, 100%);
 }
 
 .logos img[alt="Builders Brew"] {
-  max-height: 2.5rem;
-  max-width: 14rem;
+  max-height: 2.2rem;
+  max-width: min(12rem, 100%);
 }
 
 .logos img[alt="Hurdle"] {
-  max-height: 2.85rem;
-  max-width: 12rem;
+  max-height: 2.45rem;
+  max-width: min(9.5rem, 100%);
+}
+
+.logos img[alt="Founder Matcha"] {
+  max-height: 2.15rem;
+  max-width: min(12.5rem, 100%);
 }
 
 /* -- close / CTA -- */
@@ -856,8 +868,9 @@ a:focus-visible,
   }
 
   .logos {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 1.75rem;
+    row-gap: 2rem;
   }
 }
 
@@ -960,9 +973,32 @@ a:focus-visible,
 
 @media (min-width: 900px) {
   .logos {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    justify-content: stretch;
     align-items: center;
+    column-gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    row-gap: 0;
+  }
+
+  .logos li {
+    justify-content: center;
+    flex: unset;
+  }
+
+  .logos li:last-child {
+    grid-column: auto;
+    justify-content: center;
+  }
+
+  .logos img[alt="Founder Matcha"] {
+    max-height: 2.85rem;
+    max-width: min(14rem, 100%);
+  }
+
+  .logos img[alt="Builders Brew"] {
+    max-height: 2.05rem;
+    max-width: min(11rem, 100%);
   }
 }
 
