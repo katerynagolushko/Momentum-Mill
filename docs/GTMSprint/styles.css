@@ -614,8 +614,8 @@ a:focus-visible,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.25rem;
+  justify-content: flex-start;
+  gap: 0.75rem 1rem;
   margin: 0 0 0.9rem;
 }
 
@@ -627,8 +627,18 @@ a:focus-visible,
   flex: 0 0 auto;
   min-height: 2.35rem;
   padding: 0.45rem 0.95rem;
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.how__agenda:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  opacity: 0.92;
 }
 
 .steps {
