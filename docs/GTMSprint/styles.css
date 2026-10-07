@@ -200,6 +200,22 @@ a:focus-visible,
   white-space: nowrap;
 }
 
+.hero__fact {
+  margin: 0.9rem 0 0;
+  font-size: var(--type-b);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--fg);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+}
+
+.hero__apply {
+  margin-top: 1.15rem;
+  justify-self: start;
+  text-shadow: none;
+}
+
 /* -- Why are we doing this -- */
 .why {
   padding: 3.75rem var(--space) 1.5rem;
@@ -883,6 +899,17 @@ a:focus-visible,
     padding-bottom: 0.2em;
   }
 
+  .hero__fact {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 1rem;
+  }
+
+  .hero__apply {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
   .sec__lede {
     max-width: none;
   }
@@ -943,7 +970,15 @@ a:focus-visible,
   }
 
   .hero__hook {
-    margin: 0 0 1.7rem;
+    margin: 0 0 0.85rem;
+  }
+
+  .hero__fact {
+    margin-top: 0.15rem;
+  }
+
+  .hero__apply {
+    margin-top: 0.95rem;
   }
 
   .hero__who {
