@@ -973,12 +973,9 @@ a:focus-visible,
     margin: 0 0 0.85rem;
   }
 
-  .hero__fact {
-    margin-top: 0.15rem;
-  }
-
+  .hero__fact,
   .hero__apply {
-    margin-top: 0.95rem;
+    display: none;
   }
 
   .hero__who {
