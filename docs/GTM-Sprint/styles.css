@@ -459,9 +459,9 @@ a:focus-visible,
   min-width: 0;
 }
 
-.logos li:last-child {
-  grid-column: 1 / -1;
-  justify-content: center;
+.logos img[alt="LDN Calling"] {
+  max-height: 4.5rem;
+  max-width: min(5.25rem, 100%);
 }
 
 .logos img {
@@ -918,7 +918,7 @@ a:focus-visible,
   }
 
   .logos {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     column-gap: 1.75rem;
     row-gap: 2rem;
   }
@@ -1024,7 +1024,7 @@ a:focus-visible,
 @media (min-width: 900px) {
   .logos {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     justify-content: stretch;
     align-items: center;
     column-gap: clamp(1.25rem, 2.5vw, 2.5rem);
@@ -1036,9 +1036,9 @@ a:focus-visible,
     flex: unset;
   }
 
-  .logos li:last-child {
-    grid-column: auto;
-    justify-content: center;
+  .logos img[alt="LDN Calling"] {
+    max-height: 4.5rem;
+    max-width: min(5.25rem, 100%);
   }
 
   .logos img[alt="Founder Matcha"] {
