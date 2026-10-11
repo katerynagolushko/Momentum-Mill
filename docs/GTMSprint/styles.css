@@ -975,20 +975,37 @@ a:focus-visible,
   }
 
   .hero__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
     width: 100%;
-    padding: 5.5rem var(--space) 4.5rem;
+    padding: 5.5rem var(--space) 1.65rem;
   }
 
-  .hero__hook {
-    margin: 0 0 0.85rem;
-  }
-
+  .hero__sub,
+  .hero__hook,
   .hero__fact,
+  .hero__apply,
+  .hero__who,
+  .hero__mentors {
+    margin: 0;
+  }
+
+  .hero__sub { order: 1; }
+  .hero__hook { order: 2; }
+  .hero__who { order: 3; }
+  .hero__fact { order: 4; }
+  .hero__apply { order: 5; }
+  .hero__mentors { order: 6; }
+
   .hero__apply {
-    display: none;
+    display: inline-flex;
   }
 
   .hero__who {
+    align-self: stretch;
+    width: 100%;
     margin-left: 0;
     max-width: 100%;
     column-gap: 0.45rem;
@@ -1031,8 +1048,21 @@ a:focus-visible,
     font-size: clamp(16px, 4.35vw, 1.15rem);
   }
 
-  .how {
-    padding-top: 3rem;
+  .how__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.45rem;
+    margin: 0 0 1.85rem;
+  }
+
+  .how__agenda {
+    min-height: 1.9rem;
+    padding: 0.22rem 0.68rem;
+    font-size: 0.86rem;
+  }
+
+  .steps {
+    margin-top: 4.25rem;
   }
 }
 
@@ -1432,7 +1462,7 @@ a:focus-visible,
 
 @media (max-width: 899px) {
   .hero__mentors {
-    margin-top: 1.15rem;
+    margin-top: 0;
   }
 
   .hero__mentors-faces {
@@ -1474,7 +1504,7 @@ a:focus-visible,
   }
 
   .partners + .how {
-    padding-top: 2rem;
+    padding-top: 4.75rem;
   }
 
   .section-nav {

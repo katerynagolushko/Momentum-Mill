@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261011header2" />
+    <link rel="stylesheet" href="./styles.css?v=20261011mobile" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -457,9 +457,8 @@
         function syncChrome() {
           ticking = false;
           if (sticky && heroApply) {
-            var cs = window.getComputedStyle(heroApply);
-            var mobileApplyHidden = cs.display === "none" || cs.visibility === "hidden";
-            var show = mobileApplyHidden
+            var phone = window.matchMedia("(max-width: 899px)").matches;
+            var show = phone
               ? !!(heroEl && heroEl.getBoundingClientRect().bottom <= 0)
               : heroApplyHalfGone();
             sticky.classList.toggle("is-on", show);
