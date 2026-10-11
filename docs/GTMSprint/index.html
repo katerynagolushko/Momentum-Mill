@@ -127,7 +127,7 @@
             },
             {
               q: "How do I get in?",
-              a: 'We will kick off applications early October, if you want to express early interest send me an email at <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a>.',
+              a: 'Fill in the <a href="./application/">application</a>, then register on Luma. We review every application and confirm places by email.',
             },
           ],
         },
@@ -135,12 +135,12 @@
         cta: {
           line: "Wanna get involved?",
           mail: "kateryna@momentummill.com",
-          // First button is the filled one; subjects are URL-encoded automatically.
+          // First button is the filled one. Use href for a link, or subject for an email.
           buttons: [
-            { label: "Founder interested", subject: "GTM Sprint Founder" },
+            { label: "Apply as a founder", href: "./application/?as=founder" },
+            { label: "Join as a GTM person", href: "./application/?as=gtm" },
             { label: "Community partner", subject: "GTM Sprint Community Partner" },
             { label: "Sponsor", subject: "GTM Sprint Sponsor" },
-            { label: "Mentor", subject: "GTM Sprint Mentor" },
           ],
         },
       };
@@ -169,7 +169,7 @@
           <p class="hero__fact">8–15 Nov 2026 · London · Free, no equity</p>
           <a
             class="btn hero__apply"
-            href="mailto:kateryna@momentummill.com?subject=Founder%20Early%20Application"
+            href="./application/"
             >Apply</a
           >
           <div class="hero__who" data-copy="who"></div>
@@ -252,7 +252,7 @@
         <div class="wrap close__inner">
           <p class="close__line" data-copy="cta.line"></p>
           <div class="close__actions" data-copy="cta.buttons">
-            <a class="btn" href="mailto:kateryna@momentummill.com?subject=GTM%20Sprint%20Founder">Founder interested</a>
+            <a class="btn" href="./application/?as=founder">Apply as a founder</a>
           </div>
           <p class="close__mail">Run by Kateryna Golushko, ex-VC · Momentum Mill</p>
           <p class="close__more">
@@ -414,8 +414,9 @@
           ctaButtons.innerHTML = C.cta.buttons
             .map(function (b, i) {
               return (
-                '<a class="btn' + (i ? " btn--ghost" : "") + '" href="mailto:' + C.cta.mail +
-                "?subject=" + encodeURIComponent(b.subject) + '">' + b.label + "</a>"
+                '<a class="btn' + (i ? " btn--ghost" : "") + '" href="' +
+                (b.href || "mailto:" + C.cta.mail + "?subject=" + encodeURIComponent(b.subject)) +
+                '">' + b.label + "</a>"
               );
             })
             .join("");
