@@ -969,7 +969,7 @@ a:focus-visible,
   }
 
   .hero__hook {
-    font-size: var(--type-h);
+    font-size: clamp(1.5rem, 7.5vw, 2.05rem);
     letter-spacing: -0.03em;
     line-height: 1.12;
     white-space: normal;
