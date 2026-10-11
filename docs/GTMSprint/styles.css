@@ -964,7 +964,21 @@ a:focus-visible,
   }
 
   .sitenav {
-    top: 1.15rem;
+    top: 0.75rem;
+    right: 1rem;
+    text-shadow: none;
+  }
+
+  .sitenav__mentors {
+    display: none;
+  }
+
+  .sitenav a.sitenav__apply {
+    display: inline-flex;
+    min-height: 2.5rem;
+    padding: 0.45rem 1rem;
+    text-decoration: none;
+    text-shadow: none;
   }
 
   .hero {
@@ -1068,6 +1082,12 @@ a:focus-visible,
 .sitenav a {
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+@media (min-width: 900px) {
+  .sitenav__apply {
+    display: none;
+  }
 }
 
 .sitenav a:hover {
