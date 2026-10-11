@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261011noheroapply" />
+    <link rel="stylesheet" href="./styles.css?v=20261011herowrap" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -26,15 +26,8 @@
     -->
     <script id="page-copy">
       window.PAGE_COPY = {
-        promise: "A 1-week sprint to get customers",
+        promise: "A 1-week sprint for technical founders to get customers",
         hook: "Ship is not enough. Sell or die.",
-        who: {
-          lead: "For",
-          lines: [
-            "Technical Founders with real products",
-            "who want to lock in and sell",
-          ],
-        },
         video: {
           src: "./public/video/founder-sales-reel.mp4?v=bezoszuck1",
           srcPhone: "./public/video/founder-sales-reel-phone.mp4?v=cut-blakely03",
@@ -170,7 +163,6 @@
           <p class="hero__sub" data-copy="hook"></p>
           <h1 class="hero__hook" data-copy="promise"></h1>
           <p class="hero__fact">8–15 Nov 2026 · London · Free, no equity</p>
-          <div class="hero__who" data-copy="who"></div>
           <a class="hero__mentors" href="./mentors/">
             <span class="hero__mentors-faces">
               <img src="./public/mentors/elias-nuevo.jpg" alt="" width="400" height="400" />
@@ -317,19 +309,6 @@
 
         var hook = $("hook");
         if (hook && C.hook) hook.textContent = C.hook;
-
-        var who = $("who");
-        if (who && C.who) {
-          who.innerHTML =
-            '<span class="hero__for">' + C.who.lead + "</span>" +
-            '<span class="hero__who-body">' +
-            C.who.lines
-              .map(function (line) {
-                return '<span class="hero__who-line">' + line + "</span>";
-              })
-              .join("") +
-            "</span>";
-        }
 
         var how = $("how");
         if (how && C.how) {
