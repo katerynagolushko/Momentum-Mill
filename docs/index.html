@@ -264,7 +264,11 @@
   .hb-tease h2{font-family:'Hanken Grotesk',var(--body);font-weight:800;font-size:clamp(44px,6.4vw,88px);line-height:1;letter-spacing:-.025em;color:var(--ink);margin:0 0 18px;max-width:11ch}
   .hb-tease h2 em{font-style:normal;color:#F26A3B}
   .hb-tease p{font-size:clamp(17px,1.7vw,22px);color:var(--body-soft);font-weight:600;line-height:1.3}
-  .hb-right{flex:0 0 auto;align-self:flex-end;padding-bottom:6px}
+  .hb-right{flex:0 1 340px;width:min(340px,100%);display:flex;flex-direction:column;align-items:flex-end;gap:16px;align-self:flex-end;padding-bottom:6px}
+  .hb-map{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 24px 50px -38px rgba(15,27,45,.45);display:block}
+  @media(max-width:760px){
+    .hb-right{flex-basis:100%;width:100%;max-width:440px;align-self:stretch}
+  }
   .btn.hb-btn{background:#F26A3B;border-color:#F26A3B;color:#fff;font-family:'Hanken Grotesk',var(--body);font-weight:800;font-size:clamp(20px,1.8vw,26px);padding:22px 44px;gap:14px}
   .btn.hb-btn:hover{background:#E05A2C;border-color:#E05A2C}
 
@@ -538,6 +542,7 @@
       <p>Not public yet.</p>
     </div>
     <div class="hb-right">
+      <img class="hb-map" src="assets/hangby-map.webp" width="1000" height="927" alt="hangby.me map of people nearby in London" loading="lazy">
       <a href="https://hangby.me" target="_blank" rel="noopener noreferrer" class="btn hb-btn">hangby.me <span class="arr">&rarr;</span></a>
     </div>
   </div>
