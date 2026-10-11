@@ -112,7 +112,7 @@ a:focus-visible {
 }
 
 .mentors__title {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.45rem;
   font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -120,17 +120,8 @@ a:focus-visible {
   text-wrap: balance;
 }
 
-.mentors__lede {
-  margin: 0;
-  font-size: var(--type-s);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.35;
-  text-wrap: pretty;
-}
-
 .mentors__when {
-  margin: 0.55rem 0 0;
+  margin: 0;
   color: var(--dim);
 }
 
@@ -161,29 +152,27 @@ a:focus-visible {
   height: 100%;
   object-fit: cover;
   object-position: center 18%;
-  filter: grayscale(1) contrast(1.05);
 }
 
 @media (hover: hover) {
   .card__photo img {
-    transition: filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .card:hover .card__photo img,
   .card:focus-within .card__photo img {
-    filter: none;
-  }
-}
-
-@media (hover: none) {
-  .card__photo img {
-    filter: none;
+    transform: scale(1.04);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .card__photo img {
     transition: none;
+  }
+
+  .card:hover .card__photo img,
+  .card:focus-within .card__photo img {
+    transform: none;
   }
 }
 
