@@ -1169,6 +1169,7 @@ a:focus-visible,
   }
 }
 
+
 /* -- mentor faces under the hero apply button -- */
 .hero__mentors {
   display: flex;
@@ -1247,6 +1248,10 @@ a:focus-visible,
   padding: 0;
 }
 
+.logo-track > .logos + .logos {
+  display: none;
+}
+
 .logos li {
   flex: 1 1 0;
   min-width: 0;
@@ -1254,7 +1259,8 @@ a:focus-visible,
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 1.9rem;
+  height: auto;
+  min-height: 1.9rem;
 }
 
 .logos img,
@@ -1270,6 +1276,14 @@ a:focus-visible,
   max-height: 1.9rem;
   object-fit: contain;
   filter: none;
+}
+
+.logos img[alt="Hurdle"] {
+  max-height: 1.28rem;
+}
+
+.logos img[alt="LDN Calling"] {
+  max-height: 5.6rem;
 }
 
 .partners + .how {
@@ -1383,35 +1397,57 @@ a:focus-visible,
     margin-left: -0.6rem;
   }
 
-  .logos {
-    justify-content: flex-start;
-    gap: 1.35rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
+  .partners {
+    overflow: hidden;
   }
 
-  .logos::-webkit-scrollbar {
-    display: none;
+  .logo-track {
+    display: flex;
+    width: max-content;
+    animation: logo-marquee 46s linear infinite;
+  }
+
+  .logo-track > .logos,
+  .logo-track > .logos + .logos {
+    display: flex;
+    flex: none;
+    width: max-content;
+    justify-content: flex-start;
+    gap: 2.1rem;
+    padding-right: 2.1rem;
+    overflow: visible;
   }
 
   .logos li {
     flex: 0 0 auto;
     width: auto;
-    height: auto;
+    min-height: 0;
   }
 
   .logos img,
-  .logos img[alt="LDN Calling"],
   .logos img[alt="Tower"],
   .logos img[alt="Launch London"],
   .logos img[alt="Builders Brew"],
-  .logos img[alt="Hurdle"],
   .logos img[alt="Founder Matcha"] {
     width: auto;
-    height: 1.7rem;
+    height: 1.65rem;
     max-width: none;
-    max-height: 1.7rem;
+    max-height: 1.65rem;
+  }
+
+  .logos img[alt="Hurdle"] {
+    height: 1.12rem;
+    max-height: 1.12rem;
+  }
+
+  .logos img[alt="LDN Calling"] {
+    height: 4.4rem;
+    max-height: 4.4rem;
+  }
+
+  @keyframes logo-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   .partners + .how {
@@ -1440,5 +1476,28 @@ a:focus-visible,
 
   body.has-sticky-apply {
     padding-bottom: calc(2.85rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  .logo-track {
+    display: block;
+    width: auto;
+    animation: none;
+    transform: none;
+  }
+
+  .logo-track > .logos + .logos {
+    display: none;
+  }
+
+  .logo-track > .logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
+    gap: 1rem 1.35rem;
+    padding-right: 0;
   }
 }

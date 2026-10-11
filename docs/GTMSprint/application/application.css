@@ -134,6 +134,13 @@ a:focus-visible {
   gap: 1.6rem;
 }
 
+.form__offer {
+  margin: 0;
+  font-size: var(--type-b);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
 .block {
   display: grid;
   gap: 1.35rem;
@@ -299,6 +306,17 @@ select.input option {
   height: 1.15rem;
   margin: 0.15rem 0 0;
   accent-color: #fff;
+}
+
+.yesno {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.5rem;
+}
+
+.done__title a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .btn {

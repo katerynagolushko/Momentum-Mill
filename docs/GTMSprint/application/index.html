@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./application.css?v=20261011form" />
+    <link rel="stylesheet" href="./application.css?v=20261011form2" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -51,6 +51,9 @@
       </header>
 
       <form class="form" id="apply-form" novalidate>
+        <p class="form__offer block" data-for="founder" hidden>
+          Free. You get GTM mentors, feedback on your sales calls, and publicity. 30 spots. Takes 2 minutes.
+        </p>
         <fieldset class="field field--role">
           <legend class="field__label">I am a</legend>
           <div class="role">
@@ -100,11 +103,11 @@
           </div>
           <div class="field">
             <label class="field__label" for="f-what">What does it do? One or two lines.</label>
-            <textarea class="input" id="f-what" name="product" rows="2" required></textarea>
+            <textarea class="input" id="f-what" name="product" rows="2"></textarea>
           </div>
           <div class="field">
             <label class="field__label" for="f-stage">Where is the product today?</label>
-            <select class="input" id="f-stage" name="stage" required>
+            <select class="input" id="f-stage" name="stage">
               <option value="">Choose one</option>
               <option>MVP live, no users yet</option>
               <option>Live with free or pilot users</option>
@@ -114,11 +117,11 @@
           </div>
           <div class="field">
             <label class="field__label" for="f-buyer">Who do you sell to?</label>
-            <input class="input" id="f-buyer" name="icp" type="text" placeholder="e.g. Heads of Ops at 50–200 person logistics companies" required />
+            <input class="input" id="f-buyer" name="icp" type="text" placeholder="e.g. Heads of Ops at 50–200 person logistics companies" />
           </div>
           <div class="field">
             <label class="field__label" for="f-tried">What have you tried to sell so far, and what happened?</label>
-            <textarea class="input" id="f-tried" name="tried_so_far" rows="3" required></textarea>
+            <textarea class="input" id="f-tried" name="tried_so_far" rows="3"></textarea>
           </div>
           <div class="field">
             <label class="field__label" for="f-traction">What traction do you have so far? (Leads, LOIs, Contract Value, ARR, Users, Social Media Followers)</label>
@@ -126,31 +129,45 @@
           </div>
           <div class="field">
             <label class="field__label" for="f-team">Who from your team would join?</label>
-            <select class="input" id="f-team" name="team" required>
+            <select class="input" id="f-team" name="team">
               <option value="">Choose one</option>
               <option>Just me</option>
               <option>Me and a co-founder</option>
             </select>
           </div>
           <div class="field">
-            <label class="field__label" for="f-funding">Funding so far</label>
-            <input class="input" id="f-funding" name="funding" type="text" placeholder="e.g. Bootstrapped, or $500k pre-seed from angels" required />
+            <label class="field__label" for="f-funding">Funding so far <span class="field__opt">(optional)</span></label>
+            <input class="input" id="f-funding" name="funding" type="text" placeholder="e.g. Bootstrapped, or $500k pre-seed from angels" />
           </div>
           <div class="field">
-            <label class="field__label" for="f-deck">Deck link (if you have one)</label>
+            <label class="field__label" for="f-deck">Deck link <span class="field__opt">(optional)</span></label>
             <input class="input" id="f-deck" name="deck" type="url" placeholder="https://" />
           </div>
-          <div class="field">
-            <label class="field__label" for="f-call">I have a sales call recorded or agree to provide one to get feedback by 05.11.2026</label>
-            <input class="input" id="f-call" name="sales_call" type="text" placeholder="Yes / Here's the link:" required />
-          </div>
           <fieldset class="field">
-            <legend class="field__label">Can you commit for the whole week and are you comfortable on camera?</legend>
-            <p class="field__hint">We want to make it go viral and need your support. This is the only way to make it free and so valuable.</p>
-            <label class="check">
-              <input type="checkbox" name="commit_and_camera" value="Yes, full week and comfortable on camera" required />
-              <span>Yes, I can commit for the whole week and I'm comfortable on camera</span>
-            </label>
+            <legend class="field__label">If accepted, we'll ask for one recorded sales call by 5 Nov 2026 for feedback. OK with that?</legend>
+            <div class="yesno">
+              <label class="check">
+                <input type="radio" name="sales_call_ok" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="sales_call_ok" value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="field__label">The week will be filmed (we'll have a videographer). You need to be in London on the first and last day (8 and 15 Nov), be comfortable on camera, and make at least one post about the Sprint on your socials. That's all we ask in return for a free week. Are you in?</legend>
+            <div class="yesno">
+              <label class="check">
+                <input type="radio" name="commit_and_camera" value="Yes" required />
+                <span>Yes</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="commit_and_camera" value="No" />
+                <span>No</span>
+              </label>
+            </div>
           </fieldset>
         </div>
 
@@ -217,25 +234,29 @@
       </form>
 
       <section class="done" id="done" hidden tabindex="-1" aria-live="polite">
-        <h2 class="done__title">Got it. One more step.</h2>
-        <p class="done__body" data-done="founder">
-          Register on Luma with the same email. When Luma asks about the questionnaire, pick “Done”.
-          We review every application and confirm places by email.
-        </p>
-        <p class="done__body" data-done="gtm">
-          Register on Luma with the same email and pick “GTM-person” there.
-          I'll be in touch to match you with a team.
-        </p>
-        <a
-          class="btn done__luma"
-          id="luma-btn"
-          href="https://luma.com/awx6b0je"
-          data-luma-action="checkout"
-          data-luma-event-id="evt-4rMHBSQrSGDWaAI"
-          target="_blank"
-          rel="noopener"
-          >Register on Luma</a
-        >
+        <div data-done="founder">
+          <p class="done__title">
+            Application received. We'll let you know by 1 Nov 2026. Questions? Email
+            <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a>
+          </p>
+        </div>
+        <div data-done="gtm">
+          <h2 class="done__title">Got it. One more step.</h2>
+          <p class="done__body">
+            Register on Luma with the same email and pick “GTM-person” there.
+            I'll be in touch to match you with a team.
+          </p>
+          <a
+            class="btn done__luma"
+            id="luma-btn"
+            href="https://luma.com/awx6b0je"
+            data-luma-action="checkout"
+            data-luma-event-id="evt-4rMHBSQrSGDWaAI"
+            target="_blank"
+            rel="noopener"
+            >Register on Luma</a
+          >
+        </div>
         <p class="done__note" id="done-note" hidden></p>
       </section>
 
@@ -269,6 +290,12 @@
               el.disabled = !on;
             });
           });
+          var linkedin = document.getElementById("f-linkedin");
+          if (linkedin) linkedin.required = role !== "founder";
+          var submitBtn = form.querySelector(".form__submit");
+          if (submitBtn && !submitBtn.disabled) {
+            submitBtn.textContent = role === "founder" ? "Submit application" : "Next: register on Luma";
+          }
         }
 
         form.addEventListener("change", function (e) {
@@ -346,7 +373,9 @@
             .catch(function () {
               showDone(
                 role,
-                "Your answers didn't send. Register on Luma anyway and email them to kateryna@momentummill.com."
+                role === "founder"
+                  ? "Your answers didn't send. Email them to kateryna@momentummill.com."
+                  : "Your answers didn't send. Register on Luma anyway and email them to kateryna@momentummill.com."
               );
             });
         });
