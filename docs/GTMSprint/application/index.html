@@ -121,6 +121,10 @@
             <textarea class="input" id="f-tried" name="tried_so_far" rows="3" required></textarea>
           </div>
           <div class="field">
+            <label class="field__label" for="f-traction">What traction do you have so far? (Leads, LOIs, Contract Value, ARR, Users, Social Media Followers)</label>
+            <textarea class="input" id="f-traction" name="traction" rows="3" required></textarea>
+          </div>
+          <div class="field">
             <label class="field__label" for="f-team">Who from your team would join?</label>
             <select class="input" id="f-team" name="team" required>
               <option value="">Choose one</option>
@@ -147,16 +151,20 @@
               <option>Series A or later</option>
             </select>
           </div>
+          <div class="field">
+            <label class="field__label" for="f-deck">Deck link (if you have one) <span class="field__opt">(optional)</span></label>
+            <input class="input" id="f-deck" name="deck" type="url" placeholder="https://" />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-call">I have a sales call recorded or agree to provide one to get feedback by 05.11.2026</label>
+            <input class="input" id="f-call" name="sales_call" type="text" placeholder="Yes / Here's the link:" required />
+          </div>
           <fieldset class="field">
-            <legend class="field__label">Can you commit to the week?</legend>
-            <p class="field__hint">In person in London on 8 and 15 Nov, and selling every day in between.</p>
+            <legend class="field__label">Can you commit for the whole week and are you comfortable on camera?</legend>
+            <p class="field__hint">We want to make it go viral and need your support. This is the only way to make it free and so valuable.</p>
             <label class="check">
-              <input type="checkbox" name="commit" value="Yes, I can commit" required />
-              <span>Yes, I'm in for the full week</span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="filming" value="OK with filming" required />
-              <span>I'm fine being filmed and posting about my progress</span>
+              <input type="checkbox" name="commit_and_camera" value="Yes, full week and comfortable on camera" required />
+              <span>Yes, I can commit for the whole week and I'm comfortable on camera</span>
             </label>
           </fieldset>
         </div>
@@ -167,6 +175,10 @@
           <div class="field">
             <label class="field__label" for="g-role">Current role and company</label>
             <input class="input" id="g-role" name="current_role" type="text" placeholder="e.g. Head of Sales at Acme" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="g-exp">What GTM experience do you have?</label>
+            <textarea class="input" id="g-exp" name="gtm_experience" rows="3" required></textarea>
           </div>
           <div class="field">
             <label class="field__label" for="g-area">What are you best at?</label>
