@@ -210,12 +210,6 @@ a:focus-visible,
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
 
-.hero__apply {
-  margin-top: 1.15rem;
-  justify-self: start;
-  text-shadow: none;
-}
-
 /* -- Why are we doing this -- */
 .why {
   padding: 3.75rem var(--space) 1.5rem;
@@ -910,7 +904,7 @@ a:focus-visible,
     margin-top: 1rem;
   }
 
-  .hero__apply {
+  .hero__mentors {
     grid-column: 1;
     grid-row: 4;
   }
@@ -986,7 +980,6 @@ a:focus-visible,
   .hero__sub,
   .hero__hook,
   .hero__fact,
-  .hero__apply,
   .hero__who,
   .hero__mentors {
     margin: 0;
@@ -996,12 +989,7 @@ a:focus-visible,
   .hero__hook { order: 2; }
   .hero__who { order: 3; }
   .hero__fact { order: 4; }
-  .hero__apply { order: 5; }
-  .hero__mentors { order: 6; }
-
-  .hero__apply {
-    display: inline-flex;
-  }
+  .hero__mentors { order: 5; }
 
   .hero__who {
     align-self: stretch;
@@ -1353,7 +1341,7 @@ a:focus-visible,
   padding-top: 2.65rem;
 }
 
-/* -- sticky apply, once the hero button is about halfway off screen -- */
+/* -- sticky apply, once the header Apply is leaving the screen -- */
 .sticky-apply {
   position: fixed;
   z-index: 40;

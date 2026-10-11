@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261011mobile" />
+    <link rel="stylesheet" href="./styles.css?v=20261011noheroapply" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -31,7 +31,7 @@
         who: {
           lead: "For",
           lines: [
-            "Technical Founders with real Products",
+            "Technical Founders with real products",
             "who want to lock in and sell",
           ],
         },
@@ -170,11 +170,6 @@
           <p class="hero__sub" data-copy="hook"></p>
           <h1 class="hero__hook" data-copy="promise"></h1>
           <p class="hero__fact">8–15 Nov 2026 · London · Free, no equity</p>
-          <a
-            class="btn hero__apply"
-            href="./application/"
-            >Apply</a
-          >
           <div class="hero__who" data-copy="who"></div>
           <a class="hero__mentors" href="./mentors/">
             <span class="hero__mentors-faces">
@@ -437,8 +432,7 @@
         }
 
         var sticky = document.querySelector(".sticky-apply");
-        var heroEl = document.querySelector(".hero");
-        var heroApply = document.querySelector(".hero__apply");
+        var headerApply = document.querySelector(".sitenav__apply");
         var sectionNav = document.querySelector(".section-nav");
         var sectionLinks = sectionNav ? [].slice.call(sectionNav.querySelectorAll("a")) : [];
         var sectionEls = sectionLinks
@@ -447,20 +441,18 @@
         var awakeTimer = 0;
         var ticking = false;
 
-        function heroApplyHalfGone() {
-          if (!heroApply) return false;
-          var r = heroApply.getBoundingClientRect();
+        function headerApplyScrolled(fraction) {
+          if (!headerApply) return false;
+          var r = headerApply.getBoundingClientRect();
           if (r.height <= 0) return false;
-          return -r.top >= r.height * 0.5;
+          return -r.top >= r.height * fraction;
         }
 
         function syncChrome() {
           ticking = false;
-          if (sticky && heroApply) {
+          if (sticky && headerApply) {
             var phone = window.matchMedia("(max-width: 899px)").matches;
-            var show = phone
-              ? !!(heroEl && heroEl.getBoundingClientRect().bottom <= 0)
-              : heroApplyHalfGone();
+            var show = headerApplyScrolled(phone ? 1 : 0.5);
             sticky.classList.toggle("is-on", show);
             if (show) {
               sticky.removeAttribute("aria-hidden");
