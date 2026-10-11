@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261011weight" />
+    <link rel="stylesheet" href="./styles.css?v=20261011apply" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -183,7 +183,7 @@
               <img src="./public/mentors/emanuel-morhard.jpg" alt="" width="400" height="400" />
               <img src="./public/mentors/james-sandoval.jpg" alt="" width="400" height="400" />
             </span>
-            <span class="hero__mentors-label">Meet the mentors</span>
+            <span class="hero__mentors-label">Meet the mentors →</span>
           </a>
         </div>
       </section>
@@ -266,12 +266,12 @@
 
     <a class="sticky-apply btn" href="./application/" aria-hidden="true" tabindex="-1">Apply</a>
     <nav class="section-nav" aria-label="On this page">
-      <a href="#top"><span class="section-nav__tip">GTM Sprint</span></a>
+      <a href="#top"><span class="section-nav__tip">Sprint</span></a>
       <a href="#how"><span class="section-nav__tip">How it works</span></a>
-      <a href="#gets"><span class="section-nav__tip">What you walk away with</span></a>
-      <a href="#why"><span class="section-nav__tip">Why are we doing this</span></a>
+      <a href="#gets"><span class="section-nav__tip">Walk away</span></a>
+      <a href="#why"><span class="section-nav__tip">Why</span></a>
       <a href="#faq"><span class="section-nav__tip">FAQ</span></a>
-      <a href="#apply"><span class="section-nav__tip">Wanna get involved?</span></a>
+      <a href="#apply"><span class="section-nav__tip">Apply</span></a>
     </nav>
 
     <script>
@@ -447,21 +447,21 @@
         var awakeTimer = 0;
         var ticking = false;
 
-        function heroApplyVisible() {
+        function heroApplyHalfGone() {
           if (!heroApply) return false;
-          var cs = window.getComputedStyle(heroApply);
-          if (cs.display === "none" || cs.visibility === "hidden") return false;
           var r = heroApply.getBoundingClientRect();
-          return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < window.innerHeight;
+          if (r.height <= 0) return false;
+          return -r.top >= r.height * 0.5;
         }
 
         function syncChrome() {
           ticking = false;
           if (sticky && heroApply) {
             var cs = window.getComputedStyle(heroApply);
-            var show = cs.display === "none"
+            var mobileApplyHidden = cs.display === "none" || cs.visibility === "hidden";
+            var show = mobileApplyHidden
               ? !!(heroEl && heroEl.getBoundingClientRect().bottom <= 0)
-              : !heroApplyVisible();
+              : heroApplyHalfGone();
             sticky.classList.toggle("is-on", show);
             if (show) {
               sticky.removeAttribute("aria-hidden");
