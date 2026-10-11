@@ -74,6 +74,16 @@
   .link-arrow:hover{color:var(--body-soft)}
   .link-arrow:hover .arr{transform:translateX(4px)}
 
+  /* ANNOUNCE */
+  .announce{display:flex;align-items:center;justify-content:center;min-height:34px;padding:7px 16px;background:var(--ink);color:var(--ivory);font-weight:600;font-size:13.5px;line-height:1.2;letter-spacing:-.01em;text-decoration:none;text-align:center;white-space:nowrap}
+  .announce:hover{text-decoration:underline;text-underline-offset:3px}
+  .announce:focus-visible{outline-color:var(--ivory)}
+  .announce__short{display:none}
+  @media(max-width:459px){
+    .announce__long{display:none}
+    .announce__short{display:inline}
+  }
+
   /* NAV */
   .nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(246,241,228,.88);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
   .nav.scrolled{border-bottom-color:var(--line)}
@@ -270,6 +280,8 @@
 </style>
 </head>
 <body>
+
+<a class="announce" href="https://gtmsprint.uk"><span class="announce__long">GTM Sprint · 8–15 Nov · London. Applications open →</span><span class="announce__short">GTM Sprint · Applications open →</span></a>
 
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="wrap nav-inner">
