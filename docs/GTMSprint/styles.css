@@ -1161,4 +1161,284 @@ a:focus-visible,
   html {
     scroll-behavior: auto;
   }
+
+  .section-nav,
+  .sticky-apply,
+  .section-nav a::before {
+    transition: none;
+  }
+}
+
+/* -- mentor faces under the hero apply button -- */
+.hero__mentors {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+  width: max-content;
+  max-width: 100%;
+  color: var(--fg);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
+
+.hero__mentors-faces {
+  display: flex;
+  align-items: center;
+}
+
+.hero__mentors-faces img {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 2px solid #000;
+  margin-left: -0.7rem;
+  background: #141414;
+}
+
+.hero__mentors-faces img:first-child {
+  margin-left: 0;
+}
+
+.hero__mentors-label {
+  font-size: var(--type-b);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.hero__mentors:hover .hero__mentors-label {
+  color: var(--fg);
+}
+
+@media (min-width: 900px) {
+  .hero__mentors {
+    grid-column: 1;
+    grid-row: 5;
+    margin-top: 0.85rem;
+  }
+}
+
+/* -- community partners: one compact row under the hero -- */
+.partners {
+  padding: 1.2rem var(--pad-x) 0.15rem;
+  border-top: 0;
+}
+
+.partners__label {
+  margin: 0 0 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: var(--dim);
+}
+
+.logos {
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.65rem, 1.8vw, 1.75rem);
+  margin: 0;
+  padding: 0;
+}
+
+.logos li {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.9rem;
+}
+
+.logos img,
+.logos img[alt="LDN Calling"],
+.logos img[alt="Tower"],
+.logos img[alt="Launch London"],
+.logos img[alt="Builders Brew"],
+.logos img[alt="Hurdle"],
+.logos img[alt="Founder Matcha"] {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 1.9rem;
+  object-fit: contain;
+  filter: none;
+}
+
+.partners + .how {
+  padding-top: 2.65rem;
+}
+
+/* -- sticky apply, after the hero button has left the screen -- */
+.sticky-apply {
+  position: fixed;
+  z-index: 40;
+  right: 1.35rem;
+  bottom: 1.35rem;
+  min-height: 2.35rem;
+  padding: 0.4rem 0.95rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.35rem);
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+
+.sticky-apply.is-on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.sticky-apply:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  opacity: 0.92;
+}
+
+/* -- section dots: faint until hover or a moment after scroll -- */
+.section-nav {
+  position: fixed;
+  z-index: 30;
+  top: 50%;
+  right: 0.45rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  opacity: 0.28;
+  transition: opacity 0.45s ease;
+}
+
+.section-nav.is-awake,
+.section-nav:hover,
+.section-nav:focus-within {
+  opacity: 1;
+}
+
+.section-nav a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  text-decoration: none;
+}
+
+.section-nav a::before {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  background: transparent;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.section-nav a[aria-current="true"]::before {
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: scale(1.28);
+}
+
+.section-nav__tip {
+  position: absolute;
+  right: calc(100% + 0.2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.2rem 0.45rem;
+  background: rgba(0, 0, 0, 0.82);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section-nav a:hover .section-nav__tip,
+.section-nav a:focus-visible .section-nav__tip {
+  opacity: 1;
+}
+
+@media (max-width: 899px) {
+  .hero__mentors {
+    margin-top: 1.15rem;
+  }
+
+  .hero__mentors-faces img {
+    width: 2.15rem;
+    height: 2.15rem;
+    margin-left: -0.6rem;
+  }
+
+  .logos {
+    justify-content: flex-start;
+    gap: 1.35rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .logos::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logos li {
+    flex: 0 0 auto;
+    width: auto;
+    height: auto;
+  }
+
+  .logos img,
+  .logos img[alt="LDN Calling"],
+  .logos img[alt="Tower"],
+  .logos img[alt="Launch London"],
+  .logos img[alt="Builders Brew"],
+  .logos img[alt="Hurdle"],
+  .logos img[alt="Founder Matcha"] {
+    width: auto;
+    height: 1.7rem;
+    max-width: none;
+    max-height: 1.7rem;
+  }
+
+  .partners + .how {
+    padding-top: 2rem;
+  }
+
+  .section-nav {
+    display: none;
+  }
+
+  .sticky-apply {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 2.85rem;
+    padding: 0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom));
+    border: 0;
+    border-top: 1px solid #ffffff;
+    transform: translateY(100%);
+  }
+
+  .sticky-apply.is-on {
+    transform: none;
+  }
+
+  body.has-sticky-apply {
+    padding-bottom: calc(2.85rem + env(safe-area-inset-bottom));
+  }
 }
