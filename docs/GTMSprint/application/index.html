@@ -64,7 +64,7 @@
             <label class="role__opt">
               <input type="radio" name="role" value="gtm" />
               <span class="role__box">
-                <span class="role__name">GTM person</span>
+                <span class="role__name">Mentor</span>
                 <span class="role__note">You sell, market or grow for a living and want to help</span>
               </span>
             </label>
@@ -308,7 +308,7 @@
           errorEl.hidden = true;
           var role = currentRole();
           if (!role) {
-            errorEl.textContent = "Pick Founder or GTM person first.";
+            errorEl.textContent = "Pick Founder or Mentor first.";
             errorEl.hidden = false;
             return;
           }
@@ -321,7 +321,7 @@
             return;
           }
 
-          var data = { role: role === "gtm" ? "GTM person" : "Founder" };
+          var data = { role: role === "gtm" ? "Mentor" : "Founder" };
           new FormData(form).forEach(function (v, k) {
             if (k === "role") return;
             data[k] = data[k] ? data[k] + "; " + v : v;
