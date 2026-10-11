@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261011mobile" />
+    <link rel="stylesheet" href="./styles.css?v=20261011story" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -235,7 +235,7 @@
       </section>
 
       <section class="how" id="how" aria-label="How it works">
-        <div data-copy="how"></div>
+        <div class="how__story" data-copy="how"></div>
       </section>
 
       <section class="walk" id="gets" aria-label="What you walk away with">
@@ -339,31 +339,40 @@
         var how = $("how");
         if (how && C.how) {
           how.innerHTML =
-            '<div class="how__head">' +
-            '<h2 class="sec__title">' + C.how.title + "</h2>" +
-            '<a class="btn how__agenda" href="./agenda/">View Full Agenda</a>' +
-            "</div>" +
-            '<p class="sec__lede">' +
-            '<span class="sec__lede-full">' + C.how.lede + "</span>" +
-            (C.how.ledePhone ? '<span class="sec__lede-phone">' + C.how.ledePhone + "</span>" : "") +
-            "</p>" +
-            '<ol class="steps">' +
+            '<div class="how__sticky">' +
             C.how.steps
-              .map(function (s) {
+              .map(function (s, i) {
                 return (
-                  '<li class="step">' +
+                  '<article class="how__panel">' +
+                  '<figure class="how__media">' +
+                  (s.photo
+                    ? '<img src="' + s.photo.src + '" alt="' + s.photo.alt + '"' +
+                      (i ? ' loading="lazy"' : "") +
+                      ' onerror="this.style.visibility=\'hidden\'" />'
+                    : "") +
+                  "</figure>" +
+                  '<div class="how__veil" aria-hidden="true"></div>' +
+                  '<div class="how__copy">' +
+                  (i
+                    ? ""
+                    : '<div class="how__head">' +
+                      '<h2 class="sec__title">' + C.how.title + "</h2>" +
+                      '<a class="btn how__agenda" href="./agenda/">View Full Agenda</a>' +
+                      "</div>" +
+                      '<p class="sec__lede">' +
+                      '<span class="sec__lede-full">' + C.how.lede + "</span>" +
+                      (C.how.ledePhone
+                        ? '<span class="sec__lede-phone">' + C.how.ledePhone + "</span>"
+                        : "") +
+                      "</p>") +
                   '<h3 class="step__title">' + s.when + "</h3>" +
                   (s.lead ? '<p class="step__body">' + s.lead + "</p>" : "") +
                   (s.bullets && s.bullets.length ? list(s.bullets, "step__list") : "") +
-                  (s.photo
-                    ? '<figure class="step__photo"><img src="' + s.photo.src + '" alt="' + s.photo.alt +
-                      '" loading="lazy" onerror="this.style.visibility=\'hidden\'" /></figure>'
-                    : "") +
-                  "</li>"
+                  "</div></article>"
                 );
               })
               .join("") +
-            "</ol>";
+            "</div>";
         }
 
         var gets = $("gets");
@@ -505,6 +514,78 @@
         }, { passive: true });
         window.addEventListener("resize", requestSync);
         requestSync();
+
+        (function paintHowStory() {
+          var section = document.querySelector(".how");
+          var story = document.querySelector(".how__story");
+          var panels = story ? [].slice.call(story.querySelectorAll(".how__panel")) : [];
+          if (!section || !story || !panels.length) return;
+          var desktopMq = window.matchMedia("(min-width: 900px)");
+          var reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+          var frame = 0;
+
+          function storyOn() {
+            return desktopMq.matches && !reduceMq.matches;
+          }
+
+          function resetPanels() {
+            panels.forEach(function (panel) {
+              panel.style.opacity = "";
+              panel.style.zIndex = "";
+              panel.style.pointerEvents = "";
+              var img = panel.querySelector(".how__media img");
+              if (img) img.style.transform = "";
+            });
+          }
+
+          function paint() {
+            frame = 0;
+            if (!storyOn()) {
+              section.classList.remove("is-story");
+              resetPanels();
+              return;
+            }
+            section.classList.add("is-story");
+            var rect = story.getBoundingClientRect();
+            var travel = Math.max(story.offsetHeight - window.innerHeight, 1);
+            var scrolled = Math.min(Math.max(-rect.top, 0), travel);
+            var progress = scrolled / travel;
+            var count = panels.length;
+            var pos = progress * count;
+            var index = Math.min(count - 1, Math.floor(pos));
+            var local = pos - index;
+            var fade = 0.3;
+            panels.forEach(function (panel, idx) {
+              var opacity = 0;
+              if (idx === index) {
+                opacity = idx < count - 1 && local > 1 - fade ? (1 - local) / fade : 1;
+              } else if (idx === index + 1 && local > 1 - fade) {
+                opacity = (local - (1 - fade)) / fade;
+              }
+              panel.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+              panel.style.zIndex = opacity > 0.02 ? String(idx + 2) : "0";
+              panel.style.pointerEvents = opacity > 0.45 ? "auto" : "none";
+              var img = panel.querySelector(".how__media img");
+              if (img) {
+                var shift = (0.5 - local) * 6;
+                img.style.transform = "scale(1.1) translate3d(0, " + shift.toFixed(2) + "%, 0)";
+              }
+            });
+          }
+
+          function requestPaint() {
+            if (frame) return;
+            frame = window.requestAnimationFrame(paint);
+          }
+
+          window.addEventListener("scroll", requestPaint, { passive: true });
+          window.addEventListener("resize", requestPaint);
+          if (typeof desktopMq.addEventListener === "function") {
+            desktopMq.addEventListener("change", requestPaint);
+            reduceMq.addEventListener("change", requestPaint);
+          }
+          requestPaint();
+        })();
       })();
     </script>
   </body>
