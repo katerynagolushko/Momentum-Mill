@@ -378,10 +378,6 @@ select.input option {
   color: var(--dim);
 }
 
-.done__luma {
-  justify-self: start;
-}
-
 .apply__foot {
   margin-top: 3.25rem;
   padding-top: 1.75rem;

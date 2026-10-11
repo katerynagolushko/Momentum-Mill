@@ -14,24 +14,13 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./application.css?v=20261011form2" />
+    <link rel="stylesheet" href="./application.css?v=20261011form3" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
-    <!--
-      ============================================================
-      SETTINGS - change these if the Luma event or inbox changes.
-      ============================================================
-    -->
     <script id="form-config">
       window.FORM_CONFIG = {
-        // Luma event (registration happens here after the form).
-        lumaEventId: "evt-4rMHBSQrSGDWaAI",
-        lumaUrl: "https://luma.com/awx6b0je",
-        // Where answers are sent. FormSubmit emails each application to this
-        // address. The first real submission sends a one-time activation
-        // email that has to be confirmed before answers arrive.
         endpoint: "https://formsubmit.co/ajax/kateryna@momentummill.com",
       };
     </script>
@@ -45,9 +34,6 @@
       <header class="apply__head">
         <h1 class="apply__title">Apply</h1>
         <p class="apply__lede">8–15 Nov 2026 · London · Free, no equity</p>
-        <p class="apply__steps">
-          Two steps: answer a few questions here, then register on Luma.
-        </p>
       </header>
 
       <form class="form" id="apply-form" novalidate>
@@ -82,7 +68,6 @@
           <div class="field">
             <label class="field__label" for="f-email">Email</label>
             <input class="input" id="f-email" name="email" type="email" autocomplete="email" required />
-            <p class="field__hint">Use the same email you register with on Luma.</p>
           </div>
           <div class="field">
             <label class="field__label" for="f-linkedin">LinkedIn</label>
@@ -229,7 +214,7 @@
             <textarea class="input" id="f-else" name="anything_else" rows="2"></textarea>
           </div>
           <p class="form__error" id="form-error" role="alert" hidden></p>
-          <button class="btn form__submit" type="submit">Next: register on Luma</button>
+          <button class="btn form__submit" type="submit">Submit application</button>
         </div>
       </form>
 
@@ -241,21 +226,10 @@
           </p>
         </div>
         <div data-done="gtm">
-          <h2 class="done__title">Got it. One more step.</h2>
-          <p class="done__body">
-            Register on Luma with the same email and pick “GTM-person” there.
-            I'll be in touch to match you with a team.
+          <p class="done__title">
+            Application received. We'll be in touch. Questions? Email
+            <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a>
           </p>
-          <a
-            class="btn done__luma"
-            id="luma-btn"
-            href="https://luma.com/awx6b0je"
-            data-luma-action="checkout"
-            data-luma-event-id="evt-4rMHBSQrSGDWaAI"
-            target="_blank"
-            rel="noopener"
-            >Register on Luma</a
-          >
         </div>
         <p class="done__note" id="done-note" hidden></p>
       </section>
@@ -292,10 +266,6 @@
           });
           var linkedin = document.getElementById("f-linkedin");
           if (linkedin) linkedin.required = role !== "founder";
-          var submitBtn = form.querySelector(".form__submit");
-          if (submitBtn && !submitBtn.disabled) {
-            submitBtn.textContent = role === "founder" ? "Submit application" : "Next: register on Luma";
-          }
         }
 
         form.addEventListener("change", function (e) {
@@ -371,16 +341,10 @@
               showDone(role);
             })
             .catch(function () {
-              showDone(
-                role,
-                role === "founder"
-                  ? "Your answers didn't send. Email them to kateryna@momentummill.com."
-                  : "Your answers didn't send. Register on Luma anyway and email them to kateryna@momentummill.com."
-              );
+              showDone(role, "Your answers didn't send. Email them to kateryna@momentummill.com.");
             });
         });
       })();
     </script>
-    <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" async></script>
   </body>
 </html>

@@ -1253,14 +1253,13 @@ a:focus-visible,
 }
 
 .logos li {
-  flex: 1 1 0;
+  flex: 0 1 auto;
   min-width: 0;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: auto;
-  min-height: 1.9rem;
+  height: 1.7rem;
 }
 
 .logos img,
@@ -1271,19 +1270,11 @@ a:focus-visible,
 .logos img[alt="Hurdle"],
 .logos img[alt="Founder Matcha"] {
   width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 1.9rem;
+  height: 1.7rem;
+  max-width: none;
+  max-height: 1.7rem;
   object-fit: contain;
   filter: none;
-}
-
-.logos img[alt="Hurdle"] {
-  max-height: 1.28rem;
-}
-
-.logos img[alt="LDN Calling"] {
-  max-height: 5.6rem;
 }
 
 .partners + .how {
@@ -1425,24 +1416,16 @@ a:focus-visible,
   }
 
   .logos img,
+  .logos img[alt="LDN Calling"],
   .logos img[alt="Tower"],
   .logos img[alt="Launch London"],
   .logos img[alt="Builders Brew"],
+  .logos img[alt="Hurdle"],
   .logos img[alt="Founder Matcha"] {
     width: auto;
-    height: 1.65rem;
+    height: 1.7rem;
     max-width: none;
-    max-height: 1.65rem;
-  }
-
-  .logos img[alt="Hurdle"] {
-    height: 1.12rem;
-    max-height: 1.12rem;
-  }
-
-  .logos img[alt="LDN Calling"] {
-    height: 4.4rem;
-    max-height: 4.4rem;
+    max-height: 1.7rem;
   }
 
   @keyframes logo-marquee {
