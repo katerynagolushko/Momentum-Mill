@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261008phone" />
+    <link rel="stylesheet" href="./styles.css?v=20261011mentors" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -99,7 +99,7 @@
             { what: "Credits for tools you need" },
             { what: "Meetings booked and conducted" },
             { what: "Tested pitch" },
-            { what: "GTM mentors" },
+            { what: "GTM mentors", href: "./mentors/" },
           ],
         },
         why: {
@@ -163,6 +163,9 @@
         ></video>
         <div class="hero__veil" aria-hidden="true"></div>
         <a class="brand" href="#top">gs</a>
+        <nav class="sitenav" aria-label="Site">
+          <a href="./mentors/">Mentors</a>
+        </nav>
         <div class="hero__copy">
           <p class="hero__sub" data-copy="hook"></p>
           <h1 class="hero__hook" data-copy="promise"></h1>
@@ -365,7 +368,9 @@
                   "<li>" +
                   '<span class="gets__num">0' + (i + 1) + "</span>" +
                   "<span>" +
-                  '<span class="gets__what">' + it.what + "</span>" +
+                  '<span class="gets__what">' +
+                  (it.href ? '<a href="' + it.href + '">' + it.what + "</a>" : it.what) +
+                  "</span>" +
                   (it.note ? '<span class="gets__note">' + it.note + "</span>" : "") +
                   "</span>" +
                   "</li>"
