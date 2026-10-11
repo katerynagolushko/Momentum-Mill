@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apply · GTM Sprint</title>
+    <meta
+      name="description"
+      content="Apply to GTM Sprint. 8–15 Nov 2026, London. Free, no equity. For technical founders with a live product, and GTM people who want to help them sell."
+    />
+    <link rel="icon" href="../public/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./application.css?v=20261011form" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!--
+      ============================================================
+      SETTINGS - change these if the Luma event or inbox changes.
+      ============================================================
+    -->
+    <script id="form-config">
+      window.FORM_CONFIG = {
+        // Luma event (registration happens here after the form).
+        lumaEventId: "evt-4rMHBSQrSGDWaAI",
+        lumaUrl: "https://luma.com/awx6b0je",
+        // Where answers are sent. FormSubmit emails each application to this
+        // address. The first real submission sends a one-time activation
+        // email that has to be confirmed before answers arrive.
+        endpoint: "https://formsubmit.co/ajax/kateryna@momentummill.com",
+      };
+    </script>
+
+    <header class="top">
+      <a class="brand" href="../">gs</a>
+      <a class="top__back" href="../">GTM Sprint</a>
+    </header>
+
+    <main id="main" class="apply">
+      <header class="apply__head">
+        <h1 class="apply__title">Apply</h1>
+        <p class="apply__lede">8–15 Nov 2026 · London · Free, no equity</p>
+        <p class="apply__steps">
+          Two steps: answer a few questions here, then register on Luma.
+        </p>
+      </header>
+
+      <form class="form" id="apply-form" novalidate>
+        <fieldset class="field field--role">
+          <legend class="field__label">I am a</legend>
+          <div class="role">
+            <label class="role__opt">
+              <input type="radio" name="role" value="founder" required />
+              <span class="role__box">
+                <span class="role__name">Founder</span>
+                <span class="role__note">You built a product and need to sell it</span>
+              </span>
+            </label>
+            <label class="role__opt">
+              <input type="radio" name="role" value="gtm" />
+              <span class="role__box">
+                <span class="role__name">Mentor</span>
+                <span class="role__note">You sell, market or grow for a living and want to help</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="block" data-for="founder gtm" hidden>
+          <div class="field">
+            <label class="field__label" for="f-name">Full name</label>
+            <input class="input" id="f-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-email">Email</label>
+            <input class="input" id="f-email" name="email" type="email" autocomplete="email" required />
+            <p class="field__hint">Use the same email you register with on Luma.</p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-linkedin">LinkedIn</label>
+            <input class="input" id="f-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/..." required />
+          </div>
+        </div>
+
+        <!-- Founder questions -->
+        <div class="block" data-for="founder" hidden>
+          <h2 class="block__title">Your company</h2>
+          <div class="field">
+            <label class="field__label" for="f-company">Company name</label>
+            <input class="input" id="f-company" name="company" type="text" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-site">Website or product link</label>
+            <input class="input" id="f-site" name="website" type="url" placeholder="https://" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-what">What does it do? One or two lines.</label>
+            <textarea class="input" id="f-what" name="product" rows="2" required></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-stage">Where is the product today?</label>
+            <select class="input" id="f-stage" name="stage" required>
+              <option value="">Choose one</option>
+              <option>MVP live, no users yet</option>
+              <option>Live with free or pilot users</option>
+              <option>Some paying customers</option>
+              <option>Steady revenue, want to grow it</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-buyer">Who do you sell to?</label>
+            <input class="input" id="f-buyer" name="icp" type="text" placeholder="e.g. Heads of Ops at 50–200 person logistics companies" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-tried">What have you tried to sell so far, and what happened?</label>
+            <textarea class="input" id="f-tried" name="tried_so_far" rows="3" required></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-traction">What traction do you have so far? (Leads, LOIs, Contract Value, ARR, Users, Social Media Followers)</label>
+            <textarea class="input" id="f-traction" name="traction" rows="3" required></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-team">Who from your team would join?</label>
+            <select class="input" id="f-team" name="team" required>
+              <option value="">Choose one</option>
+              <option>Just me</option>
+              <option>Me and a co-founder</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-funding">Funding so far</label>
+            <input class="input" id="f-funding" name="funding" type="text" placeholder="e.g. Bootstrapped, or $500k pre-seed from angels" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-deck">Deck link (if you have one)</label>
+            <input class="input" id="f-deck" name="deck" type="url" placeholder="https://" />
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-call">I have a sales call recorded or agree to provide one to get feedback by 05.11.2026</label>
+            <input class="input" id="f-call" name="sales_call" type="text" placeholder="Yes / Here's the link:" required />
+          </div>
+          <fieldset class="field">
+            <legend class="field__label">Can you commit for the whole week and are you comfortable on camera?</legend>
+            <p class="field__hint">We want to make it go viral and need your support. This is the only way to make it free and so valuable.</p>
+            <label class="check">
+              <input type="checkbox" name="commit_and_camera" value="Yes, full week and comfortable on camera" required />
+              <span>Yes, I can commit for the whole week and I'm comfortable on camera</span>
+            </label>
+          </fieldset>
+        </div>
+
+        <!-- GTM questions -->
+        <div class="block" data-for="gtm" hidden>
+          <h2 class="block__title">Your GTM experience</h2>
+          <div class="field">
+            <label class="field__label" for="g-role">Current role and company</label>
+            <input class="input" id="g-role" name="current_role" type="text" placeholder="e.g. Head of Sales at Acme" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="g-exp">What GTM experience do you have?</label>
+            <textarea class="input" id="g-exp" name="gtm_experience" rows="3" required></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label" for="g-area">What are you best at?</label>
+            <select class="input" id="g-area" name="expertise" required>
+              <option value="">Choose one</option>
+              <option>Outbound and SDR</option>
+              <option>Founder-led sales and closing</option>
+              <option>Positioning and messaging</option>
+              <option>Content and LinkedIn</option>
+              <option>Community and events</option>
+              <option>Paid and growth</option>
+              <option>Partnerships</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="g-how">How would you like to take part?</label>
+            <select class="input" id="g-how" name="how_to_help" required>
+              <option value="">Choose one</option>
+              <option>Mentor a team on Day 1 (8 Nov)</option>
+              <option>Mentor a team for the whole week</option>
+              <option>Judge on Day 7 (15 Nov)</option>
+              <option>Give a talk or workshop</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="g-time">How much time can you give between 8 and 15 Nov?</label>
+            <select class="input" id="g-time" name="time" required>
+              <option value="">Choose one</option>
+              <option>Day 1 only</option>
+              <option>A few hours across the week</option>
+              <option>A few hours a day</option>
+              <option>Day 7 only</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="g-why">Why do you want to do this?</label>
+            <textarea class="input" id="g-why" name="why" rows="3" required></textarea>
+          </div>
+        </div>
+
+        <div class="block" data-for="founder gtm" hidden>
+          <div class="field">
+            <label class="field__label" for="f-else">Anything else? <span class="field__opt">(optional)</span></label>
+            <textarea class="input" id="f-else" name="anything_else" rows="2"></textarea>
+          </div>
+          <p class="form__error" id="form-error" role="alert" hidden></p>
+          <button class="btn form__submit" type="submit">Next: register on Luma</button>
+        </div>
+      </form>
+
+      <section class="done" id="done" hidden tabindex="-1" aria-live="polite">
+        <h2 class="done__title">Got it. One more step.</h2>
+        <p class="done__body" data-done="founder">
+          Register on Luma with the same email. When Luma asks about the questionnaire, pick “Done”.
+          We review every application and confirm places by email.
+        </p>
+        <p class="done__body" data-done="gtm">
+          Register on Luma with the same email and pick “GTM-person” there.
+          I'll be in touch to match you with a team.
+        </p>
+        <a
+          class="btn done__luma"
+          id="luma-btn"
+          href="https://luma.com/awx6b0je"
+          data-luma-action="checkout"
+          data-luma-event-id="evt-4rMHBSQrSGDWaAI"
+          target="_blank"
+          rel="noopener"
+          >Register on Luma</a
+        >
+        <p class="done__note" id="done-note" hidden></p>
+      </section>
+
+      <footer class="apply__foot">
+        <a class="apply__link" href="../">Back to GTM Sprint</a>
+        <p class="apply__mail">
+          Questions? <a href="mailto:kateryna@momentummill.com">kateryna@momentummill.com</a>
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        var cfg = window.FORM_CONFIG || {};
+        var form = document.getElementById("apply-form");
+        var blocks = form.querySelectorAll(".block");
+        var errorEl = document.getElementById("form-error");
+        var done = document.getElementById("done");
+
+        function currentRole() {
+          var r = form.querySelector('input[name="role"]:checked');
+          return r ? r.value : "";
+        }
+
+        function showRole(role) {
+          blocks.forEach(function (b) {
+            var on = (b.getAttribute("data-for") || "").split(" ").indexOf(role) !== -1;
+            b.hidden = !on;
+            // Only fields that are visible are required and sent.
+            b.querySelectorAll("input, select, textarea").forEach(function (el) {
+              el.disabled = !on;
+            });
+          });
+        }
+
+        form.addEventListener("change", function (e) {
+          if (e.target.name === "role") {
+            showRole(e.target.value);
+            if (history.replaceState) {
+              history.replaceState(null, "", "?as=" + e.target.value);
+            }
+          }
+        });
+
+        // Preselect from ?as=founder or ?as=gtm (used by buttons on the main page).
+        var as = new URLSearchParams(location.search).get("as");
+        if (as === "founder" || as === "gtm") {
+          var radio = form.querySelector('input[name="role"][value="' + as + '"]');
+          if (radio) radio.checked = true;
+        }
+        showRole(currentRole());
+
+        function showDone(role, note) {
+          form.hidden = true;
+          done.hidden = false;
+          done.querySelectorAll("[data-done]").forEach(function (p) {
+            p.hidden = p.getAttribute("data-done") !== role;
+          });
+          var noteEl = document.getElementById("done-note");
+          if (note) {
+            noteEl.textContent = note;
+            noteEl.hidden = false;
+          }
+          done.focus();
+          window.scrollTo({ top: 0 });
+        }
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          errorEl.hidden = true;
+          var role = currentRole();
+          if (!role) {
+            errorEl.textContent = "Pick Founder or Mentor first.";
+            errorEl.hidden = false;
+            return;
+          }
+          if (!form.checkValidity()) {
+            var bad = form.querySelector(":invalid");
+            errorEl.textContent = "Please fill in the highlighted fields.";
+            errorEl.hidden = false;
+            form.classList.add("form--checked");
+            if (bad) bad.focus();
+            return;
+          }
+
+          var data = { role: role === "gtm" ? "Mentor" : "Founder" };
+          new FormData(form).forEach(function (v, k) {
+            if (k === "role") return;
+            data[k] = data[k] ? data[k] + "; " + v : v;
+          });
+          data._subject = "GTM Sprint application: " + data.role + " - " + (data.name || "");
+          data._template = "table";
+          data._captcha = "false";
+
+          var btn = form.querySelector(".form__submit");
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+
+          fetch(cfg.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(data),
+          })
+            .then(function (r) {
+              if (!r.ok) throw new Error("bad status");
+              showDone(role);
+            })
+            .catch(function () {
+              showDone(
+                role,
+                "Your answers didn't send. Register on Luma anyway and email them to kateryna@momentummill.com."
+              );
+            });
+        });
+      })();
+    </script>
+    <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" async></script>
+  </body>
+</html>
