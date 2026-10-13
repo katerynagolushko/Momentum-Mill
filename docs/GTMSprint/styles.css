@@ -135,6 +135,23 @@ a:focus-visible,
   pointer-events: none;
 }
 
+/* Partner mark, centered on the first screen, clear of the headline. */
+.hero__mark {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 44%;
+  width: auto;
+  height: auto;
+  max-width: min(54vw, 26rem);
+  max-height: 42svh;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+}
+
 .hero__copy {
   position: relative;
   z-index: 1;
@@ -910,6 +927,14 @@ a:focus-visible,
 
 }
 
+@media (max-height: 760px) {
+  .hero__mark {
+    top: 44%;
+    max-width: min(46vw, 20rem);
+    max-height: 34svh;
+  }
+}
+
 @media (min-width: 900px) {
   .why {
     padding: 4.5rem clamp(2rem, 5vw, 4.5rem) 1.75rem;
@@ -954,6 +979,12 @@ a:focus-visible,
     min-height: 100vh;
     min-height: 100svh;
     align-items: end;
+  }
+
+  .hero__mark {
+    top: 46%;
+    max-width: min(72vw, 17.5rem);
+    max-height: 36svh;
   }
 
   .hero__copy {
@@ -1032,6 +1063,14 @@ a:focus-visible,
 
   .steps {
     margin-top: 4.25rem;
+  }
+}
+
+@media (max-width: 899px) and (max-height: 760px) {
+  .hero__mark {
+    top: 40%;
+    max-width: min(62vw, 14.5rem);
+    max-height: 28svh;
   }
 }
 
