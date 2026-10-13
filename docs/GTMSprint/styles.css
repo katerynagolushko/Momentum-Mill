@@ -1318,6 +1318,13 @@ a:focus-visible,
   max-width: none;
 }
 
+.logos img[alt="Unicorn Mafia"] {
+  height: 6.25rem;
+  max-height: 6.25rem;
+  max-width: none;
+  image-rendering: pixelated;
+}
+
 .partners + .how {
   padding-top: 2.65rem;
 }
