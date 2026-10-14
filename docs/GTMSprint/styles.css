@@ -1319,13 +1319,11 @@ a:focus-visible,
 }
 
 .logos img[alt="Unicorn Mafia"] {
-  /* Same row height as the other marks. The file's wordmark sits below the unicorn; crop to the mark. */
-  height: 2.5rem;
-  width: calc(2.5rem * 733 / 535);
-  max-height: 2.5rem;
+  height: 8.25rem;
+  width: auto;
+  max-height: none;
   max-width: none;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
   image-rendering: pixelated;
 }
 
