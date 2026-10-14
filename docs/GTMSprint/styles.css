@@ -1319,9 +1319,11 @@ a:focus-visible,
 }
 
 .logos img[alt="Unicorn Mafia"] {
-  height: 6.25rem;
-  max-height: 6.25rem;
+  height: 8.25rem;
+  width: auto;
+  max-height: none;
   max-width: none;
+  object-fit: contain;
   image-rendering: pixelated;
 }
 
