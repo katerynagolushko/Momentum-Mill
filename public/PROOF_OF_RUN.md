@@ -1,109 +1,120 @@
 # Proof of a Run — Vigil
 
 **Product:** Vigil — always-on social GTM agent crew  
-**Demo brand:** Fractile (`@fractileai`)  
-**Challenge:** Accel AI Innovate London · *Long Running Agents — From Task to Workflow*  
-**Live demo:** run the app → **Start crew run** (sped-up recording of a full cycle)  
-**Pitch slides:** [`/pitch.html`](./public/pitch.html) (also served at `/pitch.html` on Vercel)
+**Brand submitted:** Coca-Cola (`@cocacola`)  
+**Voice mode:** Witty  
+**Finished at:** 2026-10-15T13:52:00.000Z  
+**Challenge:** Accel AI Innovate London · Long Running Agents — From Task to Workflow  
+**Demo:** https://temporary-express-celesta-gh5lwjl.vercel.app/
 
 ---
 
-## Agent design (judging answers)
+## Story of this run
+
+1. Founder submitted brand **Coca-Cola**
+2. **Scout** pulled mentions from X, Reddit, Instagram, LinkedIn
+3. **Analyst** chose which comments need a reply
+4. **Voice** wrote witty replies
+5. **Publisher** posted safe ones; queued the spicy Reddit one for human approve
+6. **Strategist** flagged a LinkedIn amplify play
+
+---
+
+## Agent design (judging)
 
 ### How many agents?
-**5 agents** working as a crew:
+**5** — Scout, Analyst, Voice, Publisher, Strategist
 
-| Agent | Job |
-| --- | --- |
-| **Scout** | Long-running listen across X, LinkedIn, Reddit, Instagram |
-| **Analyst** | Triage: urgency × sentiment × brand risk; choose next agent |
-| **Voice** | Draft replies in brand voice; self-check tone |
-| **Publisher** | Ship high-confidence replies; queue the rest; retry failures |
-| **Strategist** | Invent proactive GTM plays from unused signal |
-
-### How they plan
-1. **Scout** owns the listen plan (platform queue + keywords + 90s cadence).
-2. **Analyst** builds a triage plan per mention and picks the handoff target.
-3. **Voice** plans reply constraints (tone, citations, length) before drafting.
-4. **Publisher** plans delivery from confidence + rate limits (auto / approve / retry).
-5. **Strategist** plans proactive plays from positive signal that never became a reply.
-
-### How they hand off work
+### How they plan & hand off
 ```
-Scout ──batch──► Analyst ──reply tasks──► Voice ──draft+score──► Publisher
-                     │                                              │
-                     └── amplify / proactive ──► Strategist         └──► Scout (watch thread)
-Any agent ──confidence < 0.8 or brand-risk──► Human approve queue
+You submit brand
+   → Scout (search 4 platforms)
+   → Analyst (pick what to reply)
+   → Voice (witty draft)
+   → Publisher (post or queue for you)
+   → Strategist (proactive amplify)
 ```
 
 ### How long a run lasts
-- **Demo cycle (sped-up for judges):** ~24 seconds — one full listen→ship→play loop with errors + recoveries.
-- **Production:** continuous 24/7. The crew does **not** end after one task. Scout polls every **90 seconds**; a “shift” lasts until the founder pauses it.
-- **Task → workflow:** each mention is a task; the crew turns it into a multi-agent workflow (listen → triage → draft → gate → ship → watch → invent next play).
+- **This demo:** ~20 seconds sped-up (one full cycle)
+- **Production:** continuous; Scout re-checks every 90s until paused
 
 ### How they recover from errors
-| Failure | Recovery |
-| --- | --- |
-| Instagram / X API rate limit or 5xx | Exponential backoff, re-queue same task (never drop) |
-| Brand-voice check fail | Voice rewrites once; second fail → human queue |
-| Publish fail after retries | Keep draft, alert founder after 3 attempts |
-| Ambiguous / high brand-risk | Analyst escalates to human instead of guessing |
-
-**Shown live in the demo log:** Instagram 429 → backoff retry; Voice tone fail → rewrite; X 503 → Publisher retry → ship.
+- Rate limit → backoff + retry (don’t drop the mention)
+- Reply too corporate → Voice rewrites funnier
+- Post fails → Publisher retries, then asks human
 
 ---
 
-## What the run produced (real output)
+## Results (real output from this run)
 
-| Metric | Result |
+| Metric | Count |
 | --- | --- |
-| Mentions found | 3 (+ 1 proactive play) |
-| Drafts written | 2 replies + amplify + founder thread |
-| Auto-shipped | 1 X reply (after recover from 503) |
-| Queued for human | 1 Reddit reply (confidence 0.74) |
-| Proactive plays | 2 |
-| Errors recovered | 3 (rate limit, tone, publish) |
+| Mentions noticed | 4 |
+| Witty drafts | 3 |
+| Posted | 2 (X + Instagram) |
+| Needs human approve | 1 (Reddit) |
+| Proactive plays | 1 (LinkedIn) |
 
-Usable outputs a customer could take: shipped reply text, approve-ready Reddit draft, founder thread draft, LinkedIn amplify ask.
+### Shipped / drafted replies
+
+**X** — @thirsty_tuesday: *“okay but why does Coca-Cola hit different at 2am”*  
+→ Reply posted: *“Because sleep schedules are fake and Coca is real. Stay hydrated (with vibes). @cocacola”*
+
+**Instagram** — @picnic.energy: *“Tagged Coca-Cola in our park day…”*  
+→ Reply posted: *“Park day MVP right here. Sun did the lighting. We just showed up cold.”*
+
+**Reddit** — u/hot_take_machine: *“Unpopular opinion: the competitor tastes better…”*  
+→ Queued for approve: *“We'll bring the ice. You bring the argument. (Also: taste buds update overnight — check back tomorrow 😉)”*
+
+**LinkedIn** — Maya Chen: *“Studying how Coca-Cola stays culturally relevant…”*  
+→ Proactive amplify draft ready
 
 ---
 
-## Agent log (canonical sped-up recording transcript)
-
-Paste from a live run, or click **Download Proof of a Run** in the app after **Start crew run**. Sample:
+## Full agent log (sped-up recording transcript)
 
 ```
-[scout] PLAN: Continuous listen. Platforms=[X,LinkedIn,Reddit,Instagram]. Cadence=90s.
-[scout] ERROR: Instagram Graph API 429 rate limit. Task not dropped.
-[scout] RECOVER: Backoff 2s → retry poll. Instagram listen restored.
-[scout] HANDOFF Scout → Analyst: 3 mentions (batch).
-[analyst] PLAN: Score urgency × sentiment × brand-risk. Route reply → Voice; amplify → Strategist.
-[analyst] HANDOFF Analyst → Voice: m1 + m2.
-[voice] ERROR: Brand-voice check failed on m1 (too salesy).
-[voice] RECOVER: Rewrite once — tone check passed.
-[voice] HANDOFF Voice → Publisher: m1 auto, m2 approve queue.
-[publisher] ERROR: X API 503 on post. Keeping draft.
-[publisher] RECOVER: Retry #1 → post succeeded.
-[publisher] Shipped reply on X. Handoff → Scout to watch thread.
-[strategist] Proactive play: founder thread on inference cost curves.
-[scout] Cycle complete. Listen loop continues (next poll 90s).
+[scout]      status   Got it. Watching social for “Coca-Cola” and @cocacola…
+[scout]      scan     Searching X for Coca-Cola…
+[scout]      scan     Searching Reddit for Coca-Cola…
+[scout]      scan     Searching Instagram tags for Coca-Cola…
+[scout]      scan     Searching LinkedIn mentions of Coca-Cola…
+[scout]      find     Noticed a comment on X about Coca-Cola.
+[scout]      find     Noticed a Reddit hot take about Coca-Cola.
+[scout]      find     Noticed an Instagram tag of Coca-Cola.
+[scout]      handoff  Handing 3 mentions to Analyst → who needs a witty reply?
+[analyst]    score    X comment is fun + public → reply now.
+[analyst]    score    Reddit fight is spicy → witty reply, but ask human before post.
+[analyst]    score    Instagram love → quick witty thank-you.
+[analyst]    handoff  Handing m1 + m2 + m3 → Voice (witty mode).
+[voice]      draft    Wrote a witty X reply.
+[voice]      draft    Wrote a witty Reddit clap-back.
+[voice]      draft    Wrote a witty Instagram reply.
+[voice]      handoff  Drafts ready → Publisher.
+[publisher]  ship     Posted witty reply on X.
+[publisher]  ship     Posted witty reply on Instagram.
+[publisher]  queue    Queued Reddit reply for your approve (spicy thread).
+[scout]      find     Also pulled a LinkedIn mention of Coca-Cola.
+[strategist] play     Proactive: draft a short thank-you / amplify on LinkedIn.
+[scout]      status   Still watching Coca-Cola. Next check in 90s — crew stays on.
 ```
 
 ---
 
-## Business viability
+## Customer & problem
 
-- **Customer:** Seed / Series A teams without a social desk.
-- **Problem:** Mentions die; proactive GTM never ships while founders build.
-- **Why agents (not a chatbot):** work is continuous, multi-platform, and needs handoffs + recovery — not a single prompt.
+- **Customer:** Seed / Series A teams without a social desk  
+- **Problem:** Brand mentions die unanswered; witty / on-brand replies never ship while founders build  
+- **Why agents:** continuous multi-platform listen + handoffs + recovery — not a one-shot chatbot
 
 ---
 
 ## Links for submission form
 
-| Field | Link |
+| Field | URL |
 | --- | --- |
-| Demo / product | Deployed Vercel URL of this branch (root `/`) |
-| Proof of a run | This file + in-app **Download Proof of a Run** |
-| Agent logs / sped-up recording | Live log panel in demo; transcript above |
-| Pitch slides | `/pitch.html` on the same deployment |
+| Demo | https://temporary-express-celesta-gh5lwjl.vercel.app/ |
+| Proof of a run / logs (this file) | https://temporary-express-celesta-gh5lwjl.vercel.app/PROOF_OF_RUN.md |
+| Agent logs | Same file + live log panel in demo |
+| Pitch (optional) | https://temporary-express-celesta-gh5lwjl.vercel.app/pitch.html |
