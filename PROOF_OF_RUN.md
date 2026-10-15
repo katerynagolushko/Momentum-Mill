@@ -1,120 +1,88 @@
 # Proof of a Run — Vigil
 
 **Product:** Vigil — always-on social GTM agent crew  
-**Brand submitted:** Coca-Cola (`@cocacola`)  
-**Voice mode:** Witty  
-**Finished at:** 2026-10-15T13:52:00.000Z  
-**Challenge:** Accel AI Innovate London · Long Running Agents — From Task to Workflow  
-**Demo:** https://temporary-express-celesta-gh5lwjl.vercel.app/
+**Demo brand flow:** submit any brand (e.g. Coca-Cola) → agents notice mentions → witty replies  
+**Challenge:** Accel AI Innovate London · *Long Running Agents — From Task to Workflow*  
+**Live demo:** open the app → submit a brand → watch the ~24s crew cycle  
+**Pitch slides:** [`/pitch.html`](./public/pitch.html) (served at `/pitch.html` on deploy)
 
 ---
 
-## Story of this run
-
-1. Founder submitted brand **Coca-Cola**
-2. **Scout** pulled mentions from X, Reddit, Instagram, LinkedIn
-3. **Analyst** chose which comments need a reply
-4. **Voice** wrote witty replies
-5. **Publisher** posted safe ones; queued the spicy Reddit one for human approve
-6. **Strategist** flagged a LinkedIn amplify play
-
----
-
-## Agent design (judging)
+## Agent design (judging answers)
 
 ### How many agents?
-**5** — Scout, Analyst, Voice, Publisher, Strategist
+**5 agents** working as a crew:
 
-### How they plan & hand off
+| Agent | Job |
+| --- | --- |
+| **Scout** | Long-running listen across X, LinkedIn, Reddit, Instagram |
+| **Analyst** | Triage: urgency × sentiment × brand risk; choose next agent |
+| **Voice** | Draft witty replies in brand voice; self-check tone |
+| **Publisher** | Ship high-confidence replies; queue the rest; retry failures |
+| **Strategist** | Invent proactive GTM plays from unused signal |
+
+### How they plan
+1. **Scout** owns the listen plan (platform queue + keywords + 90s cadence).
+2. **Analyst** builds a triage plan per mention and picks the handoff target.
+3. **Voice** plans reply constraints (tone, length) before drafting.
+4. **Publisher** plans delivery from confidence + rate limits (auto / approve / retry).
+5. **Strategist** plans proactive plays from positive signal that never became a reply.
+
+### How they hand off work
 ```
-You submit brand
-   → Scout (search 4 platforms)
-   → Analyst (pick what to reply)
-   → Voice (witty draft)
-   → Publisher (post or queue for you)
-   → Strategist (proactive amplify)
+You ──brand──► Scout ──batch──► Analyst ──reply──► Voice ──draft──► Publisher
+                                  │                                    │
+                                  └── amplify ──► Strategist           └──► You (approve) or Scout (watch)
 ```
 
 ### How long a run lasts
-- **This demo:** ~20 seconds sped-up (one full cycle)
-- **Production:** continuous; Scout re-checks every 90s until paused
+- **Demo cycle (sped-up for judges):** ~24 seconds — one full listen→ship→play loop with errors + recoveries.
+- **Production:** continuous 24/7. Scout polls every **90 seconds**; a shift lasts until the founder pauses it.
+- **Task → workflow:** each mention is a task; the crew turns it into a multi-agent workflow.
 
 ### How they recover from errors
-- Rate limit → backoff + retry (don’t drop the mention)
-- Reply too corporate → Voice rewrites funnier
-- Post fails → Publisher retries, then asks human
-
----
-
-## Results (real output from this run)
-
-| Metric | Count |
+| Failure | Recovery |
 | --- | --- |
-| Mentions noticed | 4 |
-| Witty drafts | 3 |
-| Posted | 2 (X + Instagram) |
-| Needs human approve | 1 (Reddit) |
-| Proactive plays | 1 (LinkedIn) |
+| Instagram / X API rate limit or 5xx | Exponential backoff, re-queue same task (never drop) |
+| Brand-voice check fail | Voice rewrites once; second fail → human queue |
+| Publish fail after retries | Keep draft, alert founder after 3 attempts |
+| Spicy / high brand-risk | Analyst escalates to human instead of guessing |
 
-### Shipped / drafted replies
-
-**X** — @thirsty_tuesday: *“okay but why does Coca-Cola hit different at 2am”*  
-→ Reply posted: *“Because sleep schedules are fake and Coca is real. Stay hydrated (with vibes). @cocacola”*
-
-**Instagram** — @picnic.energy: *“Tagged Coca-Cola in our park day…”*  
-→ Reply posted: *“Park day MVP right here. Sun did the lighting. We just showed up cold.”*
-
-**Reddit** — u/hot_take_machine: *“Unpopular opinion: the competitor tastes better…”*  
-→ Queued for approve: *“We'll bring the ice. You bring the argument. (Also: taste buds update overnight — check back tomorrow 😉)”*
-
-**LinkedIn** — Maya Chen: *“Studying how Coca-Cola stays culturally relevant…”*  
-→ Proactive amplify draft ready
+**Shown live in the demo log:** Instagram 429 → backoff retry; Voice tone fail → rewrite; X 503 → Publisher retry → ship.
 
 ---
 
-## Full agent log (sped-up recording transcript)
+## What the run produced
+
+| Metric | Result |
+| --- | --- |
+| Mentions found | 3 (+ 1 LinkedIn amplify) |
+| Witty drafts | 3 replies + amplify play |
+| Auto-shipped | X + Instagram (after recover from 503) |
+| Queued for human | 1 Reddit reply (spicy / lower confidence) |
+| Errors recovered | 3 (rate limit, tone, publish) |
+
+---
+
+## Agent log (sample — full log via in-app download)
 
 ```
-[scout]      status   Got it. Watching social for “Coca-Cola” and @cocacola…
-[scout]      scan     Searching X for Coca-Cola…
-[scout]      scan     Searching Reddit for Coca-Cola…
-[scout]      scan     Searching Instagram tags for Coca-Cola…
-[scout]      scan     Searching LinkedIn mentions of Coca-Cola…
-[scout]      find     Noticed a comment on X about Coca-Cola.
-[scout]      find     Noticed a Reddit hot take about Coca-Cola.
-[scout]      find     Noticed an Instagram tag of Coca-Cola.
-[scout]      handoff  Handing 3 mentions to Analyst → who needs a witty reply?
-[analyst]    score    X comment is fun + public → reply now.
-[analyst]    score    Reddit fight is spicy → witty reply, but ask human before post.
-[analyst]    score    Instagram love → quick witty thank-you.
-[analyst]    handoff  Handing m1 + m2 + m3 → Voice (witty mode).
-[voice]      draft    Wrote a witty X reply.
-[voice]      draft    Wrote a witty Reddit clap-back.
-[voice]      draft    Wrote a witty Instagram reply.
-[voice]      handoff  Drafts ready → Publisher.
-[publisher]  ship     Posted witty reply on X.
-[publisher]  ship     Posted witty reply on Instagram.
-[publisher]  queue    Queued Reddit reply for your approve (spicy thread).
-[scout]      find     Also pulled a LinkedIn mention of Coca-Cola.
-[strategist] play     Proactive: draft a short thank-you / amplify on LinkedIn.
-[scout]      status   Still watching Coca-Cola. Next check in 90s — crew stays on.
+[scout] PLAN: Continuous listen…
+[scout] ERROR: Instagram Graph API 429 rate limit. Task not dropped.
+[scout] RECOVER: Backoff 2s → retry poll. Instagram listen restored.
+[scout] HANDOFF Scout → Analyst: 3 mentions (batch).
+[analyst] PLAN: Score urgency × sentiment × brand-risk…
+[voice] ERROR: Brand-voice check failed (too corporate).
+[voice] RECOVER: Rewrite once — sharper one-liner. Tone check passed.
+[publisher] ERROR: X API 503 on post.
+[publisher] RECOVER: Retry #1 → post succeeded.
+[strategist] Proactive amplify play ready.
 ```
 
----
-
-## Customer & problem
-
-- **Customer:** Seed / Series A teams without a social desk  
-- **Problem:** Brand mentions die unanswered; witty / on-brand replies never ship while founders build  
-- **Why agents:** continuous multi-platform listen + handoffs + recovery — not a one-shot chatbot
+After a finished run, click **Download Proof of a Run** for the full personalized transcript.
 
 ---
 
-## Links for submission form
+## Pitch slides
 
-| Field | URL |
-| --- | --- |
-| Demo | https://temporary-express-celesta-gh5lwjl.vercel.app/ |
-| Proof of a run / logs (this file) | https://temporary-express-celesta-gh5lwjl.vercel.app/PROOF_OF_RUN.md |
-| Agent logs | Same file + live log panel in demo |
-| Pitch (optional) | https://temporary-express-celesta-gh5lwjl.vercel.app/pitch.html |
+Open **`/pitch.html`** on the same deployment (or `public/pitch.html` in the repo).

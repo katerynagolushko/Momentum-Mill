@@ -1,39 +1,43 @@
-/** Vigil — brand-in, mentions-out demo data. */
+/** Vigil — brand-in, mentions-out demo data (judging-ready). */
 
 export const AGENT_DESIGN = {
   count: 5,
   runDuration: {
-    demoCycle: '~20 seconds (sped-up)',
-    production: 'Continuous 24/7 listen; poll every 90s until you pause',
-    taskToWorkflow: 'Brand → listen → notice mention → witty reply → ship or approve',
+    demoCycle: '~24 seconds (sped-up)',
+    production: 'Continuous 24/7 listen loop; poll every 90s; a shift never ends until the founder pauses the crew',
+    taskToWorkflow:
+      'Brand submitted → listen → notice mention → triage → witty draft → gate → ship → invent next play. Each mention is a task; the crew turns it into a workflow.',
   },
   plan: [
-    'You submit a brand.',
-    'Scout searches X, LinkedIn, Reddit, Instagram for that brand.',
-    'Analyst picks which comments need a reply.',
-    'Voice writes a witty reply in brand voice.',
-    'Publisher posts high-confidence ones; queues the rest for you.',
+    'Founder submits a brand (keywords + handle).',
+    'Scout owns the long-running listen plan across X, LinkedIn, Reddit, Instagram.',
+    'Analyst builds a triage plan per mention (urgency × risk) and chooses the next agent.',
+    'Voice plans a witty reply (tone check, length cap) before drafting.',
+    'Publisher plans delivery (auto vs approve vs retry) from confidence + rate limits.',
+    'Strategist plans proactive GTM plays from unused positive signal.',
   ],
   handoffs: [
     'You → Scout (brand keywords)',
-    'Scout → Analyst (mentions found)',
-    'Analyst → Voice (reply this one)',
-    'Voice → Publisher (draft ready)',
-    'Publisher → you (if unsure)',
+    'Scout → Analyst (batch of mentions)',
+    'Analyst → Voice (reply tasks) or Strategist (amplify / proactive)',
+    'Voice → Publisher (draft + confidence)',
+    'Publisher → Scout (watch thread for follow-ups)',
+    'Any agent → human (confidence < 0.8 or brand-risk flag)',
   ],
   recovery: [
-    'Rate limit → wait and retry (don’t drop the mention)',
-    'Reply too corporate → rewrite funnier',
-    'Post fails → retry, then ask you',
+    'API / rate-limit errors: exponential backoff, then re-queue the same task (no drop).',
+    'Brand-voice fail: Voice rewrites once; second fail → human queue.',
+    'Publish fail: Publisher keeps draft, marks retry, alerts founder after 3 attempts.',
+    'Ambiguous / spicy sentiment: Analyst escalates to human instead of guessing.',
   ],
 };
 
 export const AGENTS = [
-  { id: 'scout', name: 'Scout', role: 'Finds mentions', brief: 'Pulls brand mentions across social' },
-  { id: 'analyst', name: 'Analyst', role: 'Picks priorities', brief: 'Decides what needs a reply' },
-  { id: 'voice', name: 'Voice', role: 'Writes witty', brief: 'Drafts replies in brand voice' },
-  { id: 'publisher', name: 'Publisher', role: 'Posts', brief: 'Ships or queues for approve' },
-  { id: 'strategist', name: 'Strategist', role: 'Goes proactive', brief: 'Suggests the next post' },
+  { id: 'scout', name: 'Scout', role: 'Listen', brief: 'Long-running poll for brand mentions' },
+  { id: 'analyst', name: 'Analyst', role: 'Triage', brief: 'Scores urgency + risk; picks handoff' },
+  { id: 'voice', name: 'Voice', role: 'Write', brief: 'Drafts witty replies in brand voice' },
+  { id: 'publisher', name: 'Publisher', role: 'Ship', brief: 'Posts high-confidence; queues the rest' },
+  { id: 'strategist', name: 'Strategist', role: 'Lead', brief: 'Invent proactive plays from signal' },
 ];
 
 export const PLATFORMS = [
@@ -103,199 +107,312 @@ export function buildBrandPack(brandName) {
   };
 }
 
-/** Timeline personalized to the submitted brand. */
+/**
+ * Timeline personalized to the submitted brand.
+ * Includes plan / handoff / error / recover for judges (~24s).
+ */
 export function buildRunEvents(brand) {
   const { name, handle } = brand;
   return [
     {
       t: 0,
       agent: 'scout',
-      type: 'status',
-      text: `Got it. Watching social for “${name}” and ${handle}…`,
+      type: 'plan',
+      text: `PLAN: Continuous listen for “${name}” / ${handle}. Platforms=[X,LinkedIn,Reddit,Instagram]. Cadence=90s.`,
     },
     {
-      t: 800,
+      t: 600,
+      agent: 'scout',
+      type: 'status',
+      text: `Crew online. Watching social for “${name}” — run does not end; this demo shows one cycle sped-up.`,
+    },
+    {
+      t: 1200,
       agent: 'scout',
       type: 'scan',
       platform: 'x',
-      text: `Searching X for ${name}…`,
+      text: `Scanning X for ${name}…`,
     },
     {
-      t: 1600,
-      agent: 'scout',
-      type: 'scan',
-      platform: 'reddit',
-      text: `Searching Reddit for ${name}…`,
-    },
-    {
-      t: 2200,
-      agent: 'scout',
-      type: 'scan',
-      platform: 'instagram',
-      text: `Searching Instagram tags for ${name}…`,
-    },
-    {
-      t: 2800,
+      t: 2000,
       agent: 'scout',
       type: 'scan',
       platform: 'linkedin',
-      text: `Searching LinkedIn mentions of ${name}…`,
+      text: `Scanning LinkedIn for ${name}…`,
     },
     {
-      t: 3600,
+      t: 2600,
+      agent: 'scout',
+      type: 'scan',
+      platform: 'reddit',
+      text: `Scanning Reddit for ${name}…`,
+    },
+    {
+      t: 3200,
+      agent: 'scout',
+      type: 'scan',
+      platform: 'instagram',
+      text: `Scanning Instagram tags for ${name}…`,
+    },
+    {
+      t: 3800,
+      agent: 'scout',
+      type: 'error',
+      platform: 'instagram',
+      text: 'ERROR: Instagram Graph API 429 rate limit. Task not dropped.',
+    },
+    {
+      t: 4600,
+      agent: 'scout',
+      type: 'recover',
+      platform: 'instagram',
+      text: 'RECOVER: Backoff 2s → retry poll. Instagram listen restored.',
+    },
+    {
+      t: 5400,
       agent: 'scout',
       type: 'find',
       mentionId: 'm1',
       text: `Noticed a comment on X about ${name}.`,
     },
     {
-      t: 4400,
+      t: 6200,
       agent: 'scout',
       type: 'find',
       mentionId: 'm2',
       text: `Noticed a Reddit hot take about ${name}.`,
     },
     {
-      t: 5200,
+      t: 7000,
       agent: 'scout',
       type: 'find',
       mentionId: 'm3',
       text: `Noticed an Instagram tag of ${name}.`,
     },
     {
-      t: 5800,
+      t: 7600,
       agent: 'scout',
       type: 'handoff',
       to: 'analyst',
-      text: 'Handing 3 mentions to Analyst → who needs a witty reply?',
+      text: 'HANDOFF Scout → Analyst: 3 mentions (batch).',
     },
     {
-      t: 6600,
+      t: 8400,
+      agent: 'analyst',
+      type: 'plan',
+      text: 'PLAN: Score urgency × risk. Route reply work → Voice; amplify → Strategist.',
+    },
+    {
+      t: 9200,
       agent: 'analyst',
       type: 'score',
       mentionId: 'm1',
       text: 'X comment is fun + public → reply now.',
     },
     {
-      t: 7400,
+      t: 10000,
       agent: 'analyst',
       type: 'score',
       mentionId: 'm2',
-      text: 'Reddit fight is spicy → witty reply, but ask human before post.',
+      text: 'Reddit fight is spicy → witty reply + human gate.',
     },
     {
-      t: 8200,
+      t: 10800,
       agent: 'analyst',
       type: 'score',
       mentionId: 'm3',
       text: 'Instagram love → quick witty thank-you.',
     },
     {
-      t: 8800,
+      t: 11400,
       agent: 'analyst',
       type: 'handoff',
       to: 'voice',
-      text: 'Handing m1 + m2 + m3 → Voice (witty mode).',
+      text: 'HANDOFF Analyst → Voice: m1 + m2 + m3.',
     },
     {
-      t: 9600,
+      t: 12200,
+      agent: 'voice',
+      type: 'plan',
+      text: 'PLAN: Draft witty, short, on-brand. Self-check tone before handoff.',
+    },
+    {
+      t: 13000,
+      agent: 'voice',
+      type: 'error',
+      mentionId: 'm1',
+      text: 'ERROR: Brand-voice check failed on m1 (too corporate).',
+    },
+    {
+      t: 13800,
+      agent: 'voice',
+      type: 'recover',
+      mentionId: 'm1',
+      text: 'RECOVER: Rewrite once — sharper, funnier. Tone check passed.',
+    },
+    {
+      t: 14600,
       agent: 'voice',
       type: 'draft',
       mentionId: 'm1',
-      text: 'Wrote a witty X reply.',
+      text: 'Wrote a witty X reply (confidence 0.91).',
     },
     {
-      t: 10800,
+      t: 15600,
       agent: 'voice',
       type: 'draft',
       mentionId: 'm2',
-      text: 'Wrote a witty Reddit clap-back.',
+      text: 'Wrote a witty Reddit clap-back (confidence 0.74 — below auto-ship).',
     },
     {
-      t: 11800,
+      t: 16400,
       agent: 'voice',
       type: 'draft',
       mentionId: 'm3',
       text: 'Wrote a witty Instagram reply.',
     },
     {
-      t: 12600,
+      t: 17200,
       agent: 'voice',
       type: 'handoff',
       to: 'publisher',
-      text: 'Drafts ready → Publisher.',
+      text: 'HANDOFF Voice → Publisher: m1/m3 auto, m2 approve queue.',
     },
     {
-      t: 13400,
+      t: 18000,
+      agent: 'publisher',
+      type: 'plan',
+      text: 'PLAN: confidence≥0.8 → auto-ship; else queue. On 5xx/429 → retry with backoff.',
+    },
+    {
+      t: 18800,
+      agent: 'publisher',
+      type: 'error',
+      mentionId: 'm1',
+      text: 'ERROR: X API 503 on post. Keeping draft; not marking shipped.',
+    },
+    {
+      t: 19800,
+      agent: 'publisher',
+      type: 'recover',
+      mentionId: 'm1',
+      text: 'RECOVER: Retry #1 after 1s backoff → post succeeded.',
+    },
+    {
+      t: 20400,
       agent: 'publisher',
       type: 'ship',
       mentionId: 'm1',
       text: 'Posted witty reply on X.',
     },
     {
-      t: 14200,
+      t: 21200,
       agent: 'publisher',
       type: 'ship',
       mentionId: 'm3',
       text: 'Posted witty reply on Instagram.',
     },
     {
-      t: 15000,
+      t: 22000,
       agent: 'publisher',
       type: 'queue',
       mentionId: 'm2',
       text: 'Queued Reddit reply for your approve (spicy thread).',
     },
     {
-      t: 16000,
+      t: 22800,
+      agent: 'analyst',
+      type: 'handoff',
+      to: 'strategist',
+      text: 'HANDOFF Analyst → Strategist: LinkedIn signal.',
+    },
+    {
+      t: 23400,
+      agent: 'strategist',
+      type: 'plan',
+      text: 'PLAN: Convert unused positive signal into a proactive amplify play.',
+    },
+    {
+      t: 24000,
       agent: 'scout',
       type: 'find',
       mentionId: 'm4',
       text: `Also pulled a LinkedIn mention of ${name}.`,
     },
     {
-      t: 17000,
+      t: 24600,
       agent: 'strategist',
       type: 'play',
       mentionId: 'm4',
-      text: 'Proactive: draft a short thank-you / amplify on LinkedIn.',
+      text: 'Proactive play: draft a short thank-you / amplify on LinkedIn.',
     },
     {
-      t: 18000,
+      t: 25200,
       agent: 'scout',
       type: 'status',
-      text: `Still watching ${name}. Next check in 90s — crew stays on.`,
+      text: `Cycle complete. Still watching ${name} — next poll 90s. Long-running crew stays warm.`,
     },
   ];
 }
 
+/** Build a markdown Proof of a Run from live logs (for download + judges). */
 export function buildProofOfRun({ logs, stats, brand, finishedAt }) {
   const name = brand?.name ?? 'Brand';
   const lines = [
     '# Proof of a Run — Vigil',
     '',
+    `**Product:** Vigil — always-on social GTM agent crew`,
     `**Brand submitted:** ${name} (${brand?.handle ?? ''})`,
     `**Finished at:** ${finishedAt ?? new Date().toISOString()}`,
+    `**Challenge:** Accel AI Innovate · Long Running Agents — From Task to Workflow`,
     '',
-    '## What happened',
-    `1. Founder submitted brand **${name}**`,
-    '2. Scout pulled mentions from X, Reddit, Instagram, LinkedIn',
-    '3. Voice wrote witty replies',
-    '4. Publisher shipped safe ones; queued spicy ones for approve',
+    '## Agent design (judging)',
     '',
-    '## Results',
+    '### How many agents',
+    `${AGENT_DESIGN.count} agents: Scout, Analyst, Voice, Publisher, Strategist.`,
+    '',
+    '### How they plan',
+    ...AGENT_DESIGN.plan.map((p) => `- ${p}`),
+    '',
+    '### How they hand off work',
+    ...AGENT_DESIGN.handoffs.map((p) => `- ${p}`),
+    '',
+    '### How long a run lasts',
+    `- Demo cycle (sped-up): ${AGENT_DESIGN.runDuration.demoCycle}`,
+    `- Production: ${AGENT_DESIGN.runDuration.production}`,
+    `- Task → workflow: ${AGENT_DESIGN.runDuration.taskToWorkflow}`,
+    '',
+    '### How they recover from errors',
+    ...AGENT_DESIGN.recovery.map((p) => `- ${p}`),
+    '',
+    '## Run results',
+    '',
     `| Metric | Count |`,
     `| --- | --- |`,
     `| Mentions noticed | ${stats.found} |`,
     `| Witty drafts | ${stats.drafted} |`,
     `| Posted | ${stats.shipped} |`,
     `| Needs your approve | ${stats.queued} |`,
+    `| Proactive plays | ${stats.plays} |`,
+    `| Errors recovered | ${logs.filter((l) => l.type === 'recover').length} |`,
     '',
-    '## Agent log',
+    '## Agent log (full)',
     '',
   ];
+
   for (const l of logs) {
-    lines.push(`- \`${l.at}\` **[${l.agent}]** ${l.type}: ${l.text}`);
+    const tag = l.to ? ` → ${l.to}` : '';
+    const plat = l.platform ? ` (${l.platform})` : '';
+    lines.push(`- \`${l.at}\` **[${l.agent}]** ${l.type}${tag}${plat}: ${l.text}`);
   }
+
+  lines.push('', '## Customer & problem', '');
+  lines.push(
+    '**Customer:** Seed / Series A teams without a full-time social hire.',
+    '**Problem:** Mentions die unanswered; witty GTM never ships while founders build.',
+    `**Output of this run:** witty replies for **${name}** — some shipped, spicy ones queued for approve, plus a proactive play.`,
+    '',
+  );
+
   return lines.join('\n');
 }
