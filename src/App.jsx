@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  AGENT_DESIGN,
   AGENTS,
-  BRAND,
-  MENTIONS,
   PLATFORMS,
-  RUN_EVENTS,
+  buildBrandPack,
   buildProofOfRun,
+  buildRunEvents,
 } from './data/demoRun';
 
 function PlatformBadge({ id }) {
@@ -20,269 +18,127 @@ function PlatformBadge({ id }) {
         color: p?.color ?? 'var(--ink)',
       }}
     >
-      <span
-        className="inline-block h-1.5 w-1.5 rounded-full"
-        style={{ background: p?.color }}
-        aria-hidden
-      />
+      <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: p?.color }} />
       {p?.label ?? id}
     </span>
   );
 }
 
-function AgentChip({ agent, active, done }) {
-  return (
-    <div
-      className="flex min-w-0 flex-1 flex-col gap-1 rounded-lg px-3 py-2.5"
-      style={{
-        background: active ? 'oklch(0.20 0.04 160)' : 'var(--surface)',
-        border: `1px solid ${active ? 'var(--primary)' : 'var(--line)'}`,
-        boxShadow: active ? 'inset 0 0 0 1px oklch(0.62 0.12 160 / 0.25)' : 'none',
-      }}
-    >
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-sm font-semibold">{agent.name}</span>
-        <span
-          className="mono text-[10px] uppercase tracking-wider"
-          style={{ color: done ? 'var(--ok)' : active ? 'var(--primary)' : 'var(--muted)' }}
-        >
-          {done ? 'idle' : active ? 'live' : 'ready'}
-        </span>
-      </div>
-      <span className="text-xs" style={{ color: 'var(--muted)' }}>
-        {agent.role} · {agent.brief}
-      </span>
-    </div>
-  );
-}
-
-function Urgency({ level }) {
-  const map = {
-    high: { label: 'High', color: 'var(--danger)' },
-    medium: { label: 'Med', color: 'var(--accent)' },
-    low: { label: 'Low', color: 'var(--primary)' },
-  };
-  const u = map[level] ?? map.medium;
-  return (
-    <span className="mono text-[10px] font-semibold uppercase" style={{ color: u.color }}>
-      {u.label}
-    </span>
-  );
-}
-
-function logStyles(type) {
-  if (type === 'error') {
-    return {
-      background: 'oklch(0.16 0.05 25)',
-      border: '1px solid oklch(0.45 0.14 25)',
-      typeColor: 'var(--danger)',
-    };
-  }
-  if (type === 'recover') {
-    return {
-      background: 'oklch(0.16 0.04 155)',
-      border: '1px solid oklch(0.42 0.1 155)',
-      typeColor: 'var(--ok)',
-    };
-  }
-  if (type === 'plan') {
-    return {
-      background: 'oklch(0.16 0.04 250)',
-      border: '1px solid oklch(0.40 0.08 250)',
-      typeColor: 'oklch(0.72 0.12 250)',
-    };
-  }
-  if (type === 'handoff') {
-    return {
-      background: 'oklch(0.16 0.04 75)',
-      border: '1px solid oklch(0.42 0.1 75)',
-      typeColor: 'var(--accent)',
-    };
-  }
-  return {
-    background: 'var(--bg)',
-    border: '1px solid var(--line)',
-    typeColor: 'var(--muted)',
-  };
-}
+const EXAMPLES = ['Coca-Cola', 'Nike', 'Spotify', 'Notion'];
 
 export default function App() {
+  const [step, setStep] = useState('setup'); // setup | desk
+  const [brandInput, setBrandInput] = useState('Coca-Cola');
+  const [brand, setBrand] = useState(null);
+
   const [running, setRunning] = useState(false);
   const [finished, setFinished] = useState(false);
   const [logs, setLogs] = useState([]);
   const [activeAgent, setActiveAgent] = useState(null);
-  const [seenAgents, setSeenAgents] = useState(new Set());
   const [mentions, setMentions] = useState({});
   const [scanning, setScanning] = useState([]);
   const [stats, setStats] = useState({ found: 0, drafted: 0, shipped: 0, queued: 0, plays: 0 });
   const logEndRef = useRef(null);
   const timersRef = useRef([]);
-  const logsRef = useRef([]);
-  const statsRef = useRef(stats);
 
   useEffect(() => {
     logEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [logs]);
 
-  useEffect(() => {
-    logsRef.current = logs;
-  }, [logs]);
+  useEffect(() => () => timersRef.current.forEach(clearTimeout), []);
 
-  useEffect(() => {
-    statsRef.current = stats;
-  }, [stats]);
-
-  useEffect(() => {
-    return () => timersRef.current.forEach(clearTimeout);
-  }, []);
-
-  function reset() {
+  function clearTimers() {
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
-    setRunning(false);
+  }
+
+  function startListening(pack) {
+    clearTimers();
+    setBrand(pack);
+    setStep('desk');
+    setRunning(true);
     setFinished(false);
     setLogs([]);
     setActiveAgent(null);
-    setSeenAgents(new Set());
     setMentions({});
     setScanning([]);
     setStats({ found: 0, drafted: 0, shipped: 0, queued: 0, plays: 0 });
-  }
 
-  function downloadProof(currentLogs = logsRef.current, currentStats = statsRef.current) {
-    const md = buildProofOfRun({
-      logs: currentLogs,
-      stats: currentStats,
-      finishedAt: new Date().toISOString(),
-    });
-    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `vigil-proof-of-run-${Date.now()}.md`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }
-
-  function startRun() {
-    reset();
-    setRunning(true);
+    const events = buildRunEvents(pack);
+    const catalog = pack.mentions;
     const start = performance.now();
 
-    RUN_EVENTS.forEach((ev) => {
+    events.forEach((ev) => {
       const id = setTimeout(() => {
         setActiveAgent(ev.agent);
-        setSeenAgents((prev) => new Set(prev).add(ev.agent));
-        setLogs((prev) => {
-          const next = [
-            ...prev,
-            {
-              id: `${ev.t}-${ev.agent}-${prev.length}`,
-              agent: ev.agent,
-              type: ev.type,
-              text: ev.text,
-              platform: ev.platform,
-              to: ev.to,
-              at: new Date(start + ev.t).toLocaleTimeString(),
-            },
-          ];
-          logsRef.current = next;
-          return next;
-        });
+        setLogs((prev) => [
+          ...prev,
+          {
+            id: `${ev.t}-${ev.agent}-${prev.length}`,
+            agent: ev.agent,
+            type: ev.type,
+            text: ev.text,
+            platform: ev.platform,
+            to: ev.to,
+            at: new Date(start + ev.t).toLocaleTimeString(),
+          },
+        ]);
 
         if (ev.type === 'scan' && ev.platform) {
           setScanning((s) => (s.includes(ev.platform) ? s : [...s, ev.platform]));
         }
-
-        if (ev.type === 'find' && ev.mentionId) {
+        if (ev.type === 'find' && ev.mentionId && catalog[ev.mentionId]) {
           setMentions((m) => ({
             ...m,
-            [ev.mentionId]: { ...MENTIONS[ev.mentionId], status: 'found' },
+            [ev.mentionId]: { ...catalog[ev.mentionId], status: 'noticed', showDraft: false },
           }));
-          setStats((s) => {
-            const next = { ...s, found: s.found + 1 };
-            statsRef.current = next;
-            return next;
-          });
+          setStats((s) => ({ ...s, found: s.found + 1 }));
         }
-
-        if (ev.type === 'score' && ev.mentionId) {
-          setMentions((m) => ({
-            ...m,
-            [ev.mentionId]: {
-              ...(m[ev.mentionId] ?? MENTIONS[ev.mentionId]),
-              status: 'triaged',
-            },
-          }));
-        }
-
         if (ev.type === 'draft' && ev.mentionId) {
           setMentions((m) => ({
             ...m,
             [ev.mentionId]: {
-              ...(m[ev.mentionId] ?? MENTIONS[ev.mentionId]),
+              ...(m[ev.mentionId] ?? catalog[ev.mentionId]),
               status: 'drafted',
               showDraft: true,
             },
           }));
-          setStats((s) => {
-            const next = { ...s, drafted: s.drafted + 1 };
-            statsRef.current = next;
-            return next;
-          });
+          setStats((s) => ({ ...s, drafted: s.drafted + 1 }));
         }
-
         if (ev.type === 'ship' && ev.mentionId) {
           setMentions((m) => ({
             ...m,
             [ev.mentionId]: {
-              ...(m[ev.mentionId] ?? MENTIONS[ev.mentionId]),
-              status: 'shipped',
+              ...(m[ev.mentionId] ?? catalog[ev.mentionId]),
+              status: 'replied',
               showDraft: true,
             },
           }));
-          setStats((s) => {
-            const next = { ...s, shipped: s.shipped + 1 };
-            statsRef.current = next;
-            return next;
-          });
+          setStats((s) => ({ ...s, shipped: s.shipped + 1 }));
         }
-
         if (ev.type === 'queue' && ev.mentionId) {
           setMentions((m) => ({
             ...m,
             [ev.mentionId]: {
-              ...(m[ev.mentionId] ?? MENTIONS[ev.mentionId]),
-              status: 'queued',
+              ...(m[ev.mentionId] ?? catalog[ev.mentionId]),
+              status: 'needs you',
               showDraft: true,
             },
           }));
-          setStats((s) => {
-            const next = { ...s, queued: s.queued + 1 };
-            statsRef.current = next;
-            return next;
-          });
+          setStats((s) => ({ ...s, queued: s.queued + 1 }));
         }
-
         if (ev.type === 'play' && ev.mentionId) {
           setMentions((m) => ({
             ...m,
             [ev.mentionId]: {
-              ...(m[ev.mentionId] ?? MENTIONS[ev.mentionId]),
+              ...(m[ev.mentionId] ?? catalog[ev.mentionId]),
               status: 'play',
               showDraft: true,
             },
           }));
-          setStats((s) => {
-            const next = { ...s, plays: s.plays + 1 };
-            statsRef.current = next;
-            return next;
-          });
+          setStats((s) => ({ ...s, plays: s.plays + 1 }));
         }
-
-        if (ev === RUN_EVENTS[RUN_EVENTS.length - 1]) {
+        if (ev === events[events.length - 1]) {
           setRunning(false);
           setFinished(true);
           setActiveAgent(null);
@@ -292,49 +148,147 @@ export default function App() {
     });
   }
 
+  function onSubmitBrand(e) {
+    e?.preventDefault?.();
+    const pack = buildBrandPack(brandInput);
+    startListening(pack);
+  }
+
   function approve(id) {
-    setMentions((m) => ({
-      ...m,
-      [id]: { ...m[id], status: 'shipped' },
+    setMentions((m) => ({ ...m, [id]: { ...m[id], status: 'replied' } }));
+    setStats((s) => ({
+      ...s,
+      shipped: s.shipped + 1,
+      queued: Math.max(0, s.queued - 1),
     }));
-    setStats((s) => {
-      const next = {
-        ...s,
-        shipped: s.shipped + 1,
-        queued: Math.max(0, s.queued - 1),
-      };
-      statsRef.current = next;
-      return next;
+    setLogs((prev) => [
+      ...prev,
+      {
+        id: `approve-${id}-${prev.length}`,
+        agent: 'publisher',
+        type: 'ship',
+        text: 'You approved — witty reply posted.',
+        at: new Date().toLocaleTimeString(),
+      },
+    ]);
+  }
+
+  function downloadProof() {
+    const md = buildProofOfRun({
+      logs,
+      stats,
+      brand,
+      finishedAt: new Date().toISOString(),
     });
-    setLogs((prev) => {
-      const next = [
-        ...prev,
-        {
-          id: `approve-${id}-${prev.length}`,
-          agent: 'publisher',
-          type: 'ship',
-          text: `Human approved. Posted ${id} reply.`,
-          at: new Date().toLocaleTimeString(),
-        },
-      ];
-      logsRef.current = next;
-      return next;
-    });
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'PROOF_OF_RUN.md';
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   const mentionList = Object.values(mentions);
-  const queued = mentionList.filter((m) => m.status === 'queued');
-  const canDownloadProof = logs.length > 0;
-  const recoveries = logs.filter((l) => l.type === 'recover').length;
-  const errors = logs.filter((l) => l.type === 'error').length;
+
+  if (step === 'setup') {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <header className="flex items-center gap-3 px-5 py-4" style={{ borderBottom: '1px solid var(--line)' }}>
+          <div
+            className="flex h-8 w-8 items-center justify-center rounded-md font-bold"
+            style={{ background: 'var(--primary)', color: 'var(--bg)' }}
+          >
+            V
+          </div>
+          <div>
+            <div className="text-sm font-semibold">Vigil</div>
+            <div className="mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
+              Social GTM agents
+            </div>
+          </div>
+        </header>
+
+        <main className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center px-5 py-12">
+          <p className="mono mb-3 text-[11px] uppercase tracking-[0.16em]" style={{ color: 'var(--primary)' }}>
+            Step 1 · Submit your brand
+          </p>
+          <h1
+            className="text-3xl font-semibold tracking-tight md:text-4xl"
+            style={{ letterSpacing: '-0.03em', textWrap: 'balance' }}
+          >
+            Type a brand. Agents notice the comments. Reply witty.
+          </h1>
+          <p className="mt-4 text-base" style={{ color: 'var(--muted)', textWrap: 'pretty' }}>
+            Try <strong style={{ color: 'var(--ink)' }}>Coca-Cola</strong>. Vigil pulls mentions from X, Reddit,
+            Instagram & LinkedIn, then drafts witty replies as a team of agents.
+          </p>
+
+          <form onSubmit={onSubmitBrand} className="mt-8 flex flex-col gap-3">
+            <label className="text-sm font-medium" htmlFor="brand">
+              Brand name
+            </label>
+            <input
+              id="brand"
+              value={brandInput}
+              onChange={(e) => setBrandInput(e.target.value)}
+              placeholder="e.g. Coca-Cola"
+              className="rounded-lg px-4 py-3 text-lg outline-none"
+              style={{
+                background: 'var(--surface)',
+                border: '1px solid var(--line)',
+                color: 'var(--ink)',
+              }}
+              autoFocus
+            />
+            <div className="flex flex-wrap gap-2">
+              {EXAMPLES.map((ex) => (
+                <button
+                  key={ex}
+                  type="button"
+                  onClick={() => setBrandInput(ex)}
+                  className="rounded-md px-3 py-1.5 text-xs font-medium"
+                  style={{
+                    background: brandInput === ex ? 'oklch(0.22 0.05 160)' : 'var(--surface-2)',
+                    border: `1px solid ${brandInput === ex ? 'var(--primary)' : 'var(--line)'}`,
+                    color: 'var(--ink)',
+                  }}
+                >
+                  {ex}
+                </button>
+              ))}
+            </div>
+            <button
+              type="submit"
+              className="mt-2 rounded-lg px-4 py-3 text-base font-semibold"
+              style={{ background: 'var(--accent)', color: 'oklch(0.15 0 0)' }}
+            >
+              Watch agents listen →
+            </button>
+          </form>
+
+          <ol className="mt-10 space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
+            <li>
+              <strong style={{ color: 'var(--ink)' }}>1.</strong> You submit the brand
+            </li>
+            <li>
+              <strong style={{ color: 'var(--ink)' }}>2.</strong> Scout pulls real-looking mentions
+            </li>
+            <li>
+              <strong style={{ color: 'var(--ink)' }}>3.</strong> Voice writes witty replies · Publisher posts
+            </li>
+          </ol>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
-      {/* Top bar */}
       <header
-        className="sticky top-0 z-20 flex items-center justify-between gap-4 px-4 py-3 md:px-6"
+        className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6"
         style={{
-          background: 'oklch(0.10 0 0 / 0.85)',
+          background: 'oklch(0.10 0 0 / 0.9)',
           borderBottom: '1px solid var(--line)',
           backdropFilter: 'blur(12px)',
         }}
@@ -347,512 +301,259 @@ export default function App() {
             V
           </div>
           <div>
-            <div className="text-sm font-semibold tracking-tight">Vigil</div>
+            <div className="text-sm font-semibold">Watching {brand?.name}</div>
             <div className="mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-              Social GTM crew · Accel AI Innovate
+              {brand?.handle} · witty replies on
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-2">
-          {(running || finished) && (
-            <span
-              className="mono hidden items-center gap-2 rounded-full px-3 py-1 text-[11px] sm:inline-flex"
-              style={{
-                background: 'var(--surface)',
-                border: '1px solid var(--line)',
-                color: running ? 'var(--primary)' : 'var(--ok)',
-              }}
-            >
-              <span className="relative flex h-2 w-2">
-                <span
-                  className={`absolute inset-0 rounded-full ${running ? 'pulse-dot' : ''}`}
-                  style={{ background: running ? 'var(--primary)' : 'var(--ok)' }}
-                />
-                <span
-                  className="relative h-2 w-2 rounded-full"
-                  style={{ background: running ? 'var(--primary)' : 'var(--ok)' }}
-                />
-              </span>
-              {running ? 'Crew running (~24s)' : 'Run complete'}
-            </span>
-          )}
-          <a
-            href="/pitch.html"
-            className="rounded-md px-3 py-2 text-xs font-medium transition"
-            style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--line)',
-              color: 'var(--ink)',
-            }}
-          >
-            Pitch slides
-          </a>
-          <a
-            href="/PROOF_OF_RUN.md"
-            className="rounded-md px-3 py-2 text-xs font-medium transition"
-            style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--line)',
-              color: 'var(--ink)',
-            }}
-          >
-            Proof of a Run
-          </a>
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
-            onClick={() => downloadProof()}
-            disabled={!canDownloadProof}
-            className="rounded-md px-3 py-2 text-xs font-medium transition disabled:opacity-40"
-            style={{
-              background: canDownloadProof ? 'oklch(0.18 0.04 160)' : 'var(--surface)',
-              border: `1px solid ${canDownloadProof ? 'var(--primary)' : 'var(--line)'}`,
-              color: canDownloadProof ? 'var(--primary)' : 'var(--muted)',
+            onClick={() => {
+              clearTimers();
+              setStep('setup');
+              setRunning(false);
             }}
-            title={canDownloadProof ? 'Download markdown Proof of a Run' : 'Finish a crew run first'}
+            className="rounded-md px-3 py-2 text-xs font-semibold"
+            style={{ border: '1px solid var(--line)', background: 'var(--surface)', color: 'var(--ink)' }}
           >
-            Download Proof of a Run
+            Change brand
           </button>
+          {finished && (
+            <button
+              type="button"
+              onClick={downloadProof}
+              className="rounded-md px-3 py-2 text-xs font-semibold"
+              style={{ border: '1px solid var(--primary)', background: 'var(--surface)', color: 'var(--primary)' }}
+            >
+              Proof of a run*
+            </button>
+          )}
           <button
             type="button"
-            onClick={running ? undefined : startRun}
             disabled={running}
-            className="rounded-md px-4 py-2 text-sm font-semibold transition disabled:opacity-50"
+            onClick={() => brand && startListening(brand)}
+            className="rounded-md px-4 py-2 text-sm font-semibold disabled:opacity-50"
             style={{
               background: running ? 'var(--surface-2)' : 'var(--accent)',
               color: running ? 'var(--muted)' : 'oklch(0.15 0 0)',
             }}
           >
-            {finished ? 'Replay demo' : running ? 'Running…' : 'Start crew run'}
+            {running ? 'Pulling mentions…' : finished ? 'Run again' : 'Start'}
           </button>
         </div>
       </header>
 
-      {/* Hero pitch — compact for demo */}
-      <section className="px-4 pb-6 pt-8 md:px-6 md:pt-10">
-        <div className="mx-auto max-w-6xl">
-          <p
-            className="mono mb-3 text-[11px] font-medium uppercase tracking-[0.18em]"
-            style={{ color: 'var(--primary)' }}
-          >
-            Long-running agents · Task → workflow
-          </p>
-          <h1
-            className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl"
-            style={{ textWrap: 'balance', letterSpacing: '-0.03em' }}
-          >
-            Vigil keeps your brand desk awake on X, LinkedIn, Reddit & Instagram.
-          </h1>
-          <p className="mt-4 max-w-2xl text-base md:text-lg" style={{ color: 'var(--muted)', textWrap: 'pretty' }}>
-            Five Claude agents listen, triage, draft, ship, and invent the next post — a GTM crew that runs while
-            founders build. Demo brand: <span style={{ color: 'var(--ink)' }}>{BRAND.name}</span>.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm" style={{ color: 'var(--muted)' }}>
-            <span style={{ color: 'var(--ink)' }}>Customer:</span> seed / Series A teams without a social team
-            <span aria-hidden>·</span>
-            <span style={{ color: 'var(--ink)' }}>Problem:</span> mentions die unanswered; proactive GTM never ships
-          </div>
-          <p className="mt-4 text-xs" style={{ color: 'var(--muted)' }}>
-            Submission artifacts:{' '}
-            <a href="/pitch.html" style={{ color: 'var(--primary)' }}>
-              /pitch.html
-            </a>
-            {' · '}
-            <span style={{ color: 'var(--ink)' }}>PROOF_OF_RUN.md</span> in repo · download live proof after a run
-          </p>
+      <section className="mx-auto max-w-6xl px-4 py-5 md:px-6">
+        <p className="mono text-[11px] uppercase tracking-[0.14em]" style={{ color: 'var(--primary)' }}>
+          Step 2 · Agents notice comments about {brand?.name}
+        </p>
+        <h1 className="mt-1 text-2xl font-semibold tracking-tight md:text-3xl" style={{ letterSpacing: '-0.02em' }}>
+          {running
+            ? `Scanning social for “${brand?.name}”…`
+            : finished
+              ? `Done — witty replies ready for ${brand?.name}`
+              : `Ready to listen for ${brand?.name}`}
+        </h1>
+      </section>
+
+      {/* Agent strip */}
+      <section className="mx-auto max-w-6xl px-4 pb-4 md:px-6">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
+          {AGENTS.map((a) => {
+            const live = activeAgent === a.id;
+            return (
+              <div
+                key={a.id}
+                className="rounded-lg px-3 py-2.5"
+                style={{
+                  background: live ? 'oklch(0.20 0.04 160)' : 'var(--surface)',
+                  border: `1px solid ${live ? 'var(--primary)' : 'var(--line)'}`,
+                }}
+              >
+                <div className="flex items-center justify-between gap-1">
+                  <span className="text-sm font-semibold">{a.name}</span>
+                  <span className="mono text-[10px] uppercase" style={{ color: live ? 'var(--primary)' : 'var(--muted)' }}>
+                    {live ? 'live' : '—'}
+                  </span>
+                </div>
+                <p className="mt-0.5 text-xs" style={{ color: 'var(--muted)' }}>
+                  {a.brief}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      <main className="mx-auto grid max-w-6xl gap-4 px-4 pb-16 md:px-6 lg:grid-cols-[1.1fr_0.9fr]">
-        {/* Left column */}
-        <div className="flex flex-col gap-4">
-          {/* Agent design — judging answers */}
-          <section
-            className="rounded-xl p-4"
-            style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
-            aria-label="Agent design"
-          >
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-              <h2 className="text-sm font-semibold">Agent design</h2>
-              <span className="mono text-[10px] uppercase" style={{ color: 'var(--primary)' }}>
-                {AGENT_DESIGN.count} agents · for judges
-              </span>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div>
-                <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  How many
-                </h3>
-                <p className="text-sm">
-                  <strong style={{ color: 'var(--ink)' }}>{AGENT_DESIGN.count}</strong> — Scout, Analyst, Voice,
-                  Publisher, Strategist
-                </p>
-              </div>
-              <div>
-                <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  Run duration
-                </h3>
-                <p className="text-sm" style={{ color: 'var(--muted)' }}>
-                  Demo cycle: <span style={{ color: 'var(--ink)' }}>{AGENT_DESIGN.runDuration.demoCycle}</span>.
-                  Production: continuous 24/7 listen (90s poll) — a shift never ends until paused.
-                </p>
-              </div>
-              <div className="sm:col-span-2">
-                <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  Plan
-                </h3>
-                <ul className="list-disc space-y-1 pl-4 text-sm" style={{ color: 'var(--muted)' }}>
-                  {AGENT_DESIGN.plan.map((p) => (
-                    <li key={p}>
-                      <span style={{ color: 'var(--ink)' }}>{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  Handoffs
-                </h3>
-                <ul className="list-disc space-y-1 pl-4 text-sm" style={{ color: 'var(--muted)' }}>
-                  {AGENT_DESIGN.handoffs.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  Error recovery
-                </h3>
-                <ul className="list-disc space-y-1 pl-4 text-sm" style={{ color: 'var(--muted)' }}>
-                  {AGENT_DESIGN.recovery.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
-              Task → workflow: {AGENT_DESIGN.runDuration.taskToWorkflow}
-            </p>
-            {(errors > 0 || recoveries > 0) && (
-              <p className="mono mt-2 text-[11px]" style={{ color: 'var(--ok)' }}>
-                This run: {errors} errors → {recoveries} recoveries (live in the log)
-              </p>
-            )}
-          </section>
-
-          {/* Agents */}
-          <section
-            className="rounded-xl p-4"
-            style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-sm font-semibold">Agent crew</h2>
-              <span className="mono text-[10px] uppercase" style={{ color: 'var(--muted)' }}>
-                handoffs live
-              </span>
-            </div>
-            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-              {AGENTS.map((a) => (
-                <AgentChip
-                  key={a.id}
-                  agent={a}
-                  active={activeAgent === a.id}
-                  done={seenAgents.has(a.id) && activeAgent !== a.id}
-                />
-              ))}
-            </div>
-          </section>
-
-          {/* Platforms */}
-          <section
-            className="rounded-xl p-4"
-            style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-sm font-semibold">Always listening</h2>
-              {running && (
-                <div className="relative h-1 w-24 overflow-hidden rounded-full" style={{ background: 'var(--line)' }}>
-                  <div className="scan-bar absolute inset-y-0 w-1/2" />
+      {/* Platforms */}
+      <section className="mx-auto max-w-6xl px-4 pb-4 md:px-6">
+        <div className="grid grid-cols-4 gap-2">
+          {PLATFORMS.map((p) => {
+            const on = scanning.includes(p.id);
+            return (
+              <div
+                key={p.id}
+                className="rounded-lg px-3 py-2 text-center"
+                style={{
+                  background: 'var(--surface)',
+                  border: `1px solid ${on ? 'var(--primary)' : 'var(--line)'}`,
+                }}
+              >
+                <div className="text-sm font-medium">{p.label}</div>
+                <div className="mono text-[10px]" style={{ color: on ? 'var(--primary)' : 'var(--muted)' }}>
+                  {on ? 'found signal' : 'waiting'}
                 </div>
-              )}
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-              {PLATFORMS.map((p) => {
-                const on = scanning.includes(p.id);
-                return (
-                  <div
-                    key={p.id}
-                    className="rounded-lg px-3 py-3"
-                    style={{
-                      background: 'var(--surface-2)',
-                      border: `1px solid ${on ? 'var(--primary)' : 'var(--line)'}`,
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">{p.label}</span>
-                      <span
-                        className="h-2 w-2 rounded-full"
-                        style={{ background: on ? 'var(--primary)' : 'var(--line)' }}
-                        aria-label={on ? 'scanning' : 'idle'}
-                      />
-                    </div>
-                    <p className="mono mt-1 text-[10px]" style={{ color: 'var(--muted)' }}>
-                      {on ? 'polling' : 'armed'}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* Mentions */}
-          <section
-            className="rounded-xl p-4"
-            style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-sm font-semibold">Inbox & plays</h2>
-              <span className="mono text-[10px]" style={{ color: 'var(--muted)' }}>
-                {mentionList.length} items
-              </span>
-            </div>
-
-            {mentionList.length === 0 ? (
-              <p className="py-8 text-center text-sm" style={{ color: 'var(--muted)' }}>
-                Hit <strong style={{ color: 'var(--ink)' }}>Start crew run</strong> to watch Scout pull mentions
-                and hand them across the desk.
-              </p>
-            ) : (
-              <ul className="flex flex-col gap-3">
-                {mentionList.map((m) => (
-                  <li
-                    key={m.id}
-                    className="mention-enter rounded-lg p-3"
-                    style={{
-                      background: 'var(--surface-2)',
-                      border: '1px solid var(--line)',
-                    }}
-                  >
-                    <div className="mb-2 flex flex-wrap items-center gap-2">
-                      <PlatformBadge id={m.platform} />
-                      <Urgency level={m.urgency} />
-                      <span className="mono text-[10px] uppercase" style={{ color: 'var(--muted)' }}>
-                        {m.status}
-                      </span>
-                      <span className="ml-auto text-xs" style={{ color: 'var(--muted)' }}>
-                        {m.when}
-                      </span>
-                    </div>
-                    <p className="text-xs font-medium" style={{ color: 'var(--muted)' }}>
-                      {m.author}
-                    </p>
-                    <p className="mt-1 text-sm" style={{ textWrap: 'pretty' }}>
-                      {m.text}
-                    </p>
-                    {m.showDraft && (
-                      <div
-                        className="mt-3 rounded-md p-3"
-                        style={{
-                          background: 'var(--bg)',
-                          borderLeft: '3px solid var(--primary)',
-                        }}
-                      >
-                        <p className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
-                          Voice draft
-                        </p>
-                        <p className="whitespace-pre-wrap text-sm">{m.draft}</p>
-                        {m.status === 'queued' && (
-                          <button
-                            type="button"
-                            onClick={() => approve(m.id)}
-                            className="mt-3 rounded-md px-3 py-1.5 text-xs font-semibold"
-                            style={{ background: 'var(--primary)', color: 'var(--bg)' }}
-                          >
-                            Approve & post
-                          </button>
-                        )}
-                        {m.status === 'shipped' && (
-                          <p className="mono mt-2 text-[11px]" style={{ color: 'var(--ok)' }}>
-                            ✓ Shipped
-                          </p>
-                        )}
-                        {m.status === 'play' && (
-                          <p className="mono mt-2 text-[11px]" style={{ color: 'var(--accent)' }}>
-                            ★ Proactive play ready
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
+              </div>
+            );
+          })}
         </div>
+      </section>
 
-        {/* Right: live log + stats */}
+      <main className="mx-auto grid max-w-6xl gap-4 px-4 pb-16 md:px-6 lg:grid-cols-[1.15fr_0.85fr]">
+        {/* Mentions */}
+        <section
+          className="rounded-xl p-4"
+          style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
+        >
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-sm font-semibold">Comments noticed about {brand?.name}</h2>
+            <span className="mono text-[10px]" style={{ color: 'var(--muted)' }}>
+              {stats.found} pulled
+            </span>
+          </div>
+
+          {mentionList.length === 0 ? (
+            <p className="py-12 text-center text-sm" style={{ color: 'var(--muted)' }}>
+              {running ? 'Scout is searching… mentions will pop in here.' : 'Submit a brand to start.'}
+            </p>
+          ) : (
+            <ul className="flex flex-col gap-3">
+              {mentionList.map((m) => (
+                <li
+                  key={m.id}
+                  className="mention-enter rounded-lg p-3"
+                  style={{ background: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                >
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <PlatformBadge id={m.platform} />
+                    <span className="mono text-[10px] uppercase" style={{ color: 'var(--accent)' }}>
+                      {m.status}
+                    </span>
+                    <span className="ml-auto text-xs" style={{ color: 'var(--muted)' }}>
+                      {m.when}
+                    </span>
+                  </div>
+                  <p className="text-xs font-medium" style={{ color: 'var(--muted)' }}>
+                    {m.author}
+                  </p>
+                  <p className="mt-1 text-sm">{m.text}</p>
+
+                  {m.showDraft && (
+                    <div
+                      className="mt-3 rounded-md p-3"
+                      style={{ background: 'var(--bg)', borderLeft: '3px solid var(--primary)' }}
+                    >
+                      <p className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
+                        Witty reply from Voice
+                      </p>
+                      <p className="text-sm">{m.draft}</p>
+                      {m.status === 'needs you' && (
+                        <button
+                          type="button"
+                          onClick={() => approve(m.id)}
+                          className="mt-3 rounded-md px-3 py-1.5 text-xs font-semibold"
+                          style={{ background: 'var(--primary)', color: 'var(--bg)' }}
+                        >
+                          Approve & post
+                        </button>
+                      )}
+                      {m.status === 'replied' && (
+                        <p className="mono mt-2 text-[11px]" style={{ color: 'var(--ok)' }}>
+                          ✓ Posted
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        {/* Log + stats */}
         <div className="flex flex-col gap-4">
-          <section
-            className="grid grid-cols-2 gap-2 sm:grid-cols-5 lg:grid-cols-2 xl:grid-cols-5"
-            aria-label="Run stats"
-          >
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {[
-              ['Found', stats.found],
+              ['Noticed', stats.found],
               ['Drafted', stats.drafted],
-              ['Shipped', stats.shipped],
-              ['Queued', stats.queued],
-              ['Plays', stats.plays],
+              ['Posted', stats.shipped],
+              ['Needs you', stats.queued],
             ].map(([label, n]) => (
               <div
                 key={label}
                 className="rounded-xl px-3 py-3"
                 style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
               >
-                <div className="mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
+                <div className="mono text-[10px] uppercase" style={{ color: 'var(--muted)' }}>
                   {label}
                 </div>
-                <div className="mt-1 text-2xl font-semibold tabular-nums">{n}</div>
+                <div className="text-2xl font-semibold tabular-nums">{n}</div>
               </div>
             ))}
-          </section>
+          </div>
 
           <section
-            className="flex min-h-[420px] flex-1 flex-col rounded-xl"
+            className="flex min-h-[380px] flex-1 flex-col rounded-xl"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
           >
-            <div
-              className="flex items-center justify-between px-4 py-3"
-              style={{ borderBottom: '1px solid var(--line)' }}
-            >
-              <h2 className="text-sm font-semibold">Live agent log</h2>
-              <span className="mono text-[10px]" style={{ color: 'var(--muted)' }}>
-                plan · handoff · error · recover
-              </span>
+            <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--line)' }}>
+              <h2 className="text-sm font-semibold">What the agents are doing</h2>
             </div>
-            <div className="flex-1 space-y-2 overflow-y-auto p-3" style={{ maxHeight: 520 }}>
+            <div className="flex-1 space-y-2 overflow-y-auto p-3" style={{ maxHeight: 480 }}>
               {logs.length === 0 && (
-                <p className="py-10 text-center text-sm" style={{ color: 'var(--muted)' }}>
-                  Agent handoffs and decisions will stream here.
+                <p className="py-8 text-center text-sm" style={{ color: 'var(--muted)' }}>
+                  Live agent log…
                 </p>
               )}
-              {logs.map((l) => {
-                const style = logStyles(l.type);
-                return (
-                  <div
-                    key={l.id}
-                    className="log-enter mono rounded-md px-3 py-2 text-[11px] leading-relaxed"
-                    style={{
-                      background: style.background,
-                      border: style.border,
-                    }}
-                  >
-                    <div className="mb-1 flex flex-wrap items-center gap-2">
-                      <span style={{ color: 'var(--primary)' }}>[{l.agent}]</span>
-                      <span
-                        className="uppercase tracking-wider"
-                        style={{ color: style.typeColor }}
-                      >
-                        {l.type}
-                      </span>
-                      <span style={{ color: 'var(--muted)' }}>{l.at}</span>
-                      {l.to && (
-                        <span style={{ color: 'var(--accent)' }}>→ {l.to}</span>
-                      )}
-                      {l.platform && <PlatformBadge id={l.platform} />}
-                    </div>
-                    <div style={{ color: 'var(--ink)' }}>{l.text}</div>
+              {logs.map((l) => (
+                <div
+                  key={l.id}
+                  className="log-enter mono rounded-md px-3 py-2 text-[11px] leading-relaxed"
+                  style={{ background: 'var(--bg)', border: '1px solid var(--line)' }}
+                >
+                  <div className="mb-1 flex flex-wrap gap-2">
+                    <span style={{ color: 'var(--primary)' }}>[{l.agent}]</span>
+                    <span style={{ color: 'var(--muted)' }}>{l.at}</span>
+                    {l.to && <span style={{ color: 'var(--accent)' }}>→ {l.to}</span>}
                   </div>
-                );
-              })}
+                  <div>{l.text}</div>
+                </div>
+              ))}
               <div ref={logEndRef} />
             </div>
           </section>
 
-          {queued.length > 0 && (
-            <section
-              className="rounded-xl p-4"
-              style={{
-                background: 'oklch(0.18 0.04 75)',
-                border: '1px solid oklch(0.45 0.1 75)',
-              }}
-            >
-              <h2 className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>
-                Needs you
-              </h2>
-              <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>
-                {queued.length} medium-confidence {queued.length === 1 ? 'reply' : 'replies'} waiting for approve —
-                high-confidence ones already shipped.
-              </p>
-            </section>
-          )}
-
           {finished && (
-            <section
-              className="rounded-xl p-4"
-              style={{
-                background: 'oklch(0.16 0.04 160)',
-                border: '1px solid var(--primary)',
-              }}
+            <div
+              className="rounded-xl p-4 text-sm"
+              style={{ background: 'oklch(0.18 0.04 160)', border: '1px solid var(--primary)' }}
             >
-              <h2 className="text-sm font-semibold">Proof of a Run ready</h2>
-              <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>
-                Download the markdown transcript (agent design answers + full log) for the Accel submission form.
-              </p>
+              <strong>Story for judges:</strong> you submitted <em>{brand?.name}</em> → agents noticed comments →
+              witty replies drafted → some posted, one waiting for your approve.
               <button
                 type="button"
-                onClick={() => downloadProof()}
-                className="mt-3 rounded-md px-4 py-2 text-sm font-semibold"
+                onClick={downloadProof}
+                className="mt-3 block rounded-md px-3 py-2 text-xs font-semibold"
                 style={{ background: 'var(--primary)', color: 'var(--bg)' }}
               >
-                Download Proof of a Run
+                Download Proof of a run*
               </button>
-            </section>
+            </div>
           )}
-
-          <section
-            className="rounded-xl p-4 text-sm"
-            style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
-          >
-            <h2 className="mb-2 text-sm font-semibold">Submission links</h2>
-            <ul className="space-y-1.5" style={{ color: 'var(--muted)' }}>
-              <li>
-                <a href="/pitch.html" style={{ color: 'var(--primary)' }}>
-                  Pitch slides → /pitch.html
-                </a>
-              </li>
-              <li>
-                Static proof:{' '}
-                <a href="/PROOF_OF_RUN.md" style={{ color: 'var(--primary)' }}>
-                  /PROOF_OF_RUN.md
-                </a>
-              </li>
-              <li>
-                Live proof:{' '}
-                <button
-                  type="button"
-                  onClick={() => downloadProof()}
-                  disabled={!canDownloadProof}
-                  className="underline disabled:no-underline disabled:opacity-40"
-                  style={{ color: canDownloadProof ? 'var(--primary)' : 'var(--muted)' }}
-                >
-                  Download Proof of a Run
-                </button>{' '}
-                (after a finished run)
-              </li>
-            </ul>
-            <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
-              This demo is a scripted live run (no API keys). Production wires Claude + platform APIs; same handoff
-              graph.
-            </p>
-          </section>
         </div>
       </main>
-
-      <footer
-        className="px-4 py-6 text-center text-xs md:px-6"
-        style={{ color: 'var(--muted)', borderTop: '1px solid var(--line)' }}
-      >
-        Vigil · Accel AI Innovate London · Built for the Long Running Agents challenge
-      </footer>
     </div>
   );
 }
