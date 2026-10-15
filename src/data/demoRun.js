@@ -10,7 +10,7 @@ export const BRAND = {
 export const AGENT_DESIGN = {
   count: 5,
   runDuration: {
-    demoCycle: '~22 seconds (sped-up)',
+    demoCycle: '~24 seconds (sped-up)',
     production: 'Continuous 24/7 listen loop; poll every 90s; a "shift" never ends until the founder pauses the crew',
     taskToWorkflow:
       'Each mention is a task. The crew turns it into a workflow: listen → triage → draft → gate → ship → watch replies → invent next play.',

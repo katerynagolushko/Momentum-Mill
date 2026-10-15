@@ -70,39 +70,40 @@ function Urgency({ level }) {
   );
 }
 
-function logStyle(type) {
-  switch (type) {
-    case 'error':
-      return {
-        background: 'oklch(0.18 0.05 25)',
-        border: '1px solid oklch(0.45 0.14 25)',
-        typeColor: 'var(--danger)',
-      };
-    case 'recover':
-      return {
-        background: 'oklch(0.18 0.04 155)',
-        border: '1px solid oklch(0.42 0.12 155)',
-        typeColor: 'var(--ok)',
-      };
-    case 'plan':
-      return {
-        background: 'oklch(0.16 0.03 250)',
-        border: '1px solid oklch(0.38 0.08 250)',
-        typeColor: 'oklch(0.72 0.12 250)',
-      };
-    case 'handoff':
-      return {
-        background: 'oklch(0.18 0.04 75)',
-        border: '1px solid oklch(0.42 0.1 75)',
-        typeColor: 'var(--accent)',
-      };
-    default:
-      return {
-        background: 'var(--bg)',
-        border: '1px solid var(--line)',
-        typeColor: 'var(--muted)',
-      };
+function logStyles(type) {
+  if (type === 'error') {
+    return {
+      background: 'oklch(0.16 0.05 25)',
+      border: '1px solid oklch(0.45 0.14 25)',
+      typeColor: 'var(--danger)',
+    };
   }
+  if (type === 'recover') {
+    return {
+      background: 'oklch(0.16 0.04 155)',
+      border: '1px solid oklch(0.42 0.1 155)',
+      typeColor: 'var(--ok)',
+    };
+  }
+  if (type === 'plan') {
+    return {
+      background: 'oklch(0.16 0.04 250)',
+      border: '1px solid oklch(0.40 0.08 250)',
+      typeColor: 'oklch(0.72 0.12 250)',
+    };
+  }
+  if (type === 'handoff') {
+    return {
+      background: 'oklch(0.16 0.04 75)',
+      border: '1px solid oklch(0.42 0.1 75)',
+      typeColor: 'var(--accent)',
+    };
+  }
+  return {
+    background: 'var(--bg)',
+    border: '1px solid var(--line)',
+    typeColor: 'var(--muted)',
+  };
 }
 
 export default function App() {
@@ -120,16 +121,16 @@ export default function App() {
   const statsRef = useRef(stats);
 
   useEffect(() => {
+    logEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [logs]);
+
+  useEffect(() => {
     logsRef.current = logs;
   }, [logs]);
 
   useEffect(() => {
     statsRef.current = stats;
   }, [stats]);
-
-  useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  }, [logs]);
 
   useEffect(() => {
     return () => timersRef.current.forEach(clearTimeout);
@@ -141,14 +142,28 @@ export default function App() {
     setRunning(false);
     setFinished(false);
     setLogs([]);
-    logsRef.current = [];
     setActiveAgent(null);
     setSeenAgents(new Set());
     setMentions({});
     setScanning([]);
-    const empty = { found: 0, drafted: 0, shipped: 0, queued: 0, plays: 0 };
-    setStats(empty);
-    statsRef.current = empty;
+    setStats({ found: 0, drafted: 0, shipped: 0, queued: 0, plays: 0 });
+  }
+
+  function downloadProof(currentLogs = logsRef.current, currentStats = statsRef.current) {
+    const md = buildProofOfRun({
+      logs: currentLogs,
+      stats: currentStats,
+      finishedAt: new Date().toISOString(),
+    });
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `vigil-proof-of-run-${Date.now()}.md`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   }
 
   function startRun() {
@@ -156,7 +171,7 @@ export default function App() {
     setRunning(true);
     const start = performance.now();
 
-    RUN_EVENTS.forEach((ev, idx) => {
+    RUN_EVENTS.forEach((ev) => {
       const id = setTimeout(() => {
         setActiveAgent(ev.agent);
         setSeenAgents((prev) => new Set(prev).add(ev.agent));
@@ -267,7 +282,7 @@ export default function App() {
           });
         }
 
-        if (idx === RUN_EVENTS.length - 1) {
+        if (ev === RUN_EVENTS[RUN_EVENTS.length - 1]) {
           setRunning(false);
           setFinished(true);
           setActiveAgent(null);
@@ -275,23 +290,6 @@ export default function App() {
       }, ev.t);
       timersRef.current.push(id);
     });
-  }
-
-  function downloadProof() {
-    const md = buildProofOfRun({
-      logs: logsRef.current,
-      stats: statsRef.current,
-      finishedAt: new Date().toISOString(),
-    });
-    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `vigil-proof-of-run-${Date.now()}.md`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
   }
 
   function approve(id) {
@@ -326,13 +324,13 @@ export default function App() {
 
   const mentionList = Object.values(mentions);
   const queued = mentionList.filter((m) => m.status === 'queued');
-  const recoveries = logs.filter((l) => l.type === 'recover').length;
-  const errors = logs.filter((l) => l.type === 'error').length;
+  const canDownloadProof = logs.length > 0;
 
   return (
     <div className="min-h-screen">
+      {/* Top bar */}
       <header
-        className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 px-4 py-3 md:px-6"
+        className="sticky top-0 z-20 flex items-center justify-between gap-4 px-4 py-3 md:px-6"
         style={{
           background: 'oklch(0.10 0 0 / 0.85)',
           borderBottom: '1px solid var(--line)',
@@ -353,19 +351,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <nav className="flex flex-wrap items-center gap-3 text-xs" style={{ color: 'var(--muted)' }}>
-          <a href="/pitch.html" className="hover:underline" style={{ color: 'var(--ink)' }}>
-            Pitch slides
-          </a>
-          <a href="/PROOF_OF_RUN.md" className="hover:underline" style={{ color: 'var(--ink)' }}>
-            Proof of a Run
-          </a>
-          <span className="hidden sm:inline" aria-hidden>
-            ·
-          </span>
-          <span className="hidden sm:inline">~24s demo cycle</span>
-        </nav>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           {(running || finished) && (
             <span
               className="mono hidden items-center gap-2 rounded-full px-3 py-1 text-[11px] sm:inline-flex"
@@ -385,23 +371,34 @@ export default function App() {
                   style={{ background: running ? 'var(--primary)' : 'var(--ok)' }}
                 />
               </span>
-              {running ? 'Crew running (~24s)' : 'Run complete'}
+              {running ? 'Crew running' : 'Run complete'}
             </span>
           )}
-          {finished && (
-            <button
-              type="button"
-              onClick={downloadProof}
-              className="rounded-md px-3 py-2 text-sm font-semibold transition"
-              style={{
-                background: 'var(--surface)',
-                border: '1px solid var(--primary)',
-                color: 'var(--primary)',
-              }}
-            >
-              Download Proof of a Run
-            </button>
-          )}
+          <a
+            href="/pitch.html"
+            className="rounded-md px-3 py-2 text-xs font-medium transition"
+            style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              color: 'var(--ink)',
+            }}
+          >
+            Pitch slides
+          </a>
+          <button
+            type="button"
+            onClick={() => downloadProof()}
+            disabled={!canDownloadProof}
+            className="rounded-md px-3 py-2 text-xs font-medium transition disabled:opacity-40"
+            style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              color: canDownloadProof ? 'var(--ink)' : 'var(--muted)',
+            }}
+            title={canDownloadProof ? 'Download markdown Proof of a Run' : 'Start a run first'}
+          >
+            Download Proof of a Run
+          </button>
           <button
             type="button"
             onClick={running ? undefined : startRun}
@@ -417,6 +414,7 @@ export default function App() {
         </div>
       </header>
 
+      {/* Hero pitch — compact for demo */}
       <section className="px-4 pb-6 pt-8 md:px-6 md:pt-10">
         <div className="mx-auto max-w-6xl">
           <p
@@ -433,113 +431,61 @@ export default function App() {
           </h1>
           <p className="mt-4 max-w-2xl text-base md:text-lg" style={{ color: 'var(--muted)', textWrap: 'pretty' }}>
             Five Claude agents listen, triage, draft, ship, and invent the next post — a GTM crew that runs while
-            founders build. Demo brand: <span style={{ color: 'var(--ink)' }}>{BRAND.name}</span>. After a run,
-            download the <span style={{ color: 'var(--ink)' }}>Proof of a Run</span> for judges.
+            founders build. Demo brand: <span style={{ color: 'var(--ink)' }}>{BRAND.name}</span>.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm" style={{ color: 'var(--muted)' }}>
             <span style={{ color: 'var(--ink)' }}>Customer:</span> seed / Series A teams without a social team
             <span aria-hidden>·</span>
             <span style={{ color: 'var(--ink)' }}>Problem:</span> mentions die unanswered; proactive GTM never ships
           </div>
-          <div className="mt-4 flex flex-wrap gap-3 text-sm">
-            <a href="/pitch.html" style={{ color: 'var(--accent)' }}>
-              Pitch slides →
+          <p className="mt-4 text-xs" style={{ color: 'var(--muted)' }}>
+            Submission artifacts:{' '}
+            <a href="/pitch.html" style={{ color: 'var(--primary)' }}>
+              /pitch.html
             </a>
-            <span style={{ color: 'var(--line)' }}>|</span>
-            <button
-              type="button"
-              onClick={downloadProof}
-              disabled={logs.length === 0}
-              className="bg-transparent p-0 text-sm underline disabled:opacity-40"
-              style={{ color: 'var(--accent)', border: 0, cursor: 'pointer' }}
-            >
-              Download Proof of a run*
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Agent design — judging criteria */}
-      <section className="px-4 pb-4 md:px-6">
-        <div
-          className="mx-auto max-w-6xl rounded-xl p-4 md:p-5"
-          style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
-        >
-          <h2 className="mb-3 text-sm font-semibold">Agent design (for judges)</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <p className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
-                How many
-              </p>
-              <p className="text-sm" style={{ color: 'var(--muted)' }}>
-                <strong style={{ color: 'var(--ink)' }}>{AGENT_DESIGN.count} agents</strong> — Scout, Analyst, Voice,
-                Publisher, Strategist
-              </p>
-            </div>
-            <div>
-              <p className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
-                Plan & handoff
-              </p>
-              <p className="text-sm" style={{ color: 'var(--muted)' }}>
-                Each agent plans before acting. Scout→Analyst→Voice→Publisher; Analyst→Strategist for amplify; low
-                confidence→human.
-              </p>
-            </div>
-            <div>
-              <p className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
-                Run length
-              </p>
-              <p className="text-sm" style={{ color: 'var(--muted)' }}>
-                Demo cycle {AGENT_DESIGN.runDuration.demoCycle}. Production: continuous 90s listen loop until paused.
-              </p>
-            </div>
-            <div>
-              <p className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--primary)' }}>
-                Error recovery
-              </p>
-              <p className="text-sm" style={{ color: 'var(--muted)' }}>
-                Rate limits → backoff retry. Tone fail → rewrite. Publish 503 → retry. Brand risk → human queue.
-              </p>
-            </div>
-          </div>
+            {' · '}
+            <span style={{ color: 'var(--ink)' }}>PROOF_OF_RUN.md</span> in repo · download live proof after a run
+          </p>
         </div>
       </section>
 
       <main className="mx-auto grid max-w-6xl gap-4 px-4 pb-16 md:px-6 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Left column */}
         <div className="flex flex-col gap-4">
-          {/* Agent Design — judging panel */}
+          {/* Agent design — judging answers */}
           <section
-            id="agent-design"
             className="rounded-xl p-4"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
+            aria-label="Agent design"
           >
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-sm font-semibold">Agent design</h2>
               <span className="mono text-[10px] uppercase" style={{ color: 'var(--primary)' }}>
-                {AGENT_DESIGN.count} agents · ~24s cycle · errors recover
+                {AGENT_DESIGN.count} agents · for judges
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
                 <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  How many agents
+                  How many
                 </h3>
                 <p className="text-sm">
-                  <strong>{AGENT_DESIGN.count}</strong> — Scout, Analyst, Voice, Publisher, Strategist
+                  <strong style={{ color: 'var(--ink)' }}>{AGENT_DESIGN.count}</strong> — Scout, Analyst, Voice,
+                  Publisher, Strategist
                 </p>
               </div>
               <div>
                 <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  How long a run lasts
+                  Run duration
                 </h3>
                 <p className="text-sm" style={{ color: 'var(--muted)' }}>
-                  Demo: <span style={{ color: 'var(--ink)' }}>~24s</span> sped-up cycle. Production:{' '}
-                  <span style={{ color: 'var(--ink)' }}>24/7</span> listen (poll 90s) until founder pauses.
+                  Demo cycle: <span style={{ color: 'var(--ink)' }}>{AGENT_DESIGN.runDuration.demoCycle}</span>.
+                  Production: continuous 24/7 listen (90s poll) — a shift never ends until paused.
                 </p>
               </div>
               <div className="sm:col-span-2">
                 <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  How they plan
+                  Plan
                 </h3>
                 <ul className="list-disc space-y-1 pl-4 text-sm" style={{ color: 'var(--muted)' }}>
                   {AGENT_DESIGN.plan.map((p) => (
@@ -551,34 +497,31 @@ export default function App() {
               </div>
               <div>
                 <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  How they hand off
+                  Handoffs
                 </h3>
-                <ul className="space-y-1 text-sm" style={{ color: 'var(--muted)' }}>
-                  {AGENT_DESIGN.handoffs.map((h) => (
-                    <li key={h} className="mono text-[11px]" style={{ color: 'var(--accent)' }}>
-                      {h}
-                    </li>
+                <ul className="list-disc space-y-1 pl-4 text-sm" style={{ color: 'var(--muted)' }}>
+                  {AGENT_DESIGN.handoffs.map((p) => (
+                    <li key={p}>{p}</li>
                   ))}
                 </ul>
               </div>
               <div>
                 <h3 className="mono mb-1 text-[10px] uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                  How they recover
+                  Error recovery
                 </h3>
                 <ul className="list-disc space-y-1 pl-4 text-sm" style={{ color: 'var(--muted)' }}>
-                  {AGENT_DESIGN.recovery.map((r) => (
-                    <li key={r}>{r}</li>
+                  {AGENT_DESIGN.recovery.map((p) => (
+                    <li key={p}>{p}</li>
                   ))}
                 </ul>
               </div>
             </div>
-            {(errors > 0 || recoveries > 0) && (
-              <p className="mono mt-3 text-[11px]" style={{ color: 'var(--ok)' }}>
-                This run: {errors} errors → {recoveries} recoveries (live in the log)
-              </p>
-            )}
+            <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
+              Task → workflow: {AGENT_DESIGN.runDuration.taskToWorkflow}
+            </p>
           </section>
 
+          {/* Agents */}
           <section
             className="rounded-xl p-4"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
@@ -601,6 +544,7 @@ export default function App() {
             </div>
           </section>
 
+          {/* Platforms */}
           <section
             className="rounded-xl p-4"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
@@ -642,6 +586,7 @@ export default function App() {
             </div>
           </section>
 
+          {/* Mentions */}
           <section
             className="rounded-xl p-4"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
@@ -726,6 +671,7 @@ export default function App() {
           </section>
         </div>
 
+        {/* Right: live log + stats */}
         <div className="flex flex-col gap-4">
           <section
             className="grid grid-cols-2 gap-2 sm:grid-cols-5 lg:grid-cols-2 xl:grid-cols-5"
@@ -767,11 +713,11 @@ export default function App() {
             <div className="flex-1 space-y-2 overflow-y-auto p-3" style={{ maxHeight: 520 }}>
               {logs.length === 0 && (
                 <p className="py-10 text-center text-sm" style={{ color: 'var(--muted)' }}>
-                  Agent handoffs, plans, errors, and recoveries stream here (~24s).
+                  Agent handoffs and decisions will stream here.
                 </p>
               )}
               {logs.map((l) => {
-                const style = logStyle(l.type);
+                const style = logStyles(l.type);
                 return (
                   <div
                     key={l.id}
@@ -784,13 +730,15 @@ export default function App() {
                     <div className="mb-1 flex flex-wrap items-center gap-2">
                       <span style={{ color: 'var(--primary)' }}>[{l.agent}]</span>
                       <span
-                        className="rounded px-1.5 py-0.5 text-[10px] uppercase tracking-wide"
-                        style={{ color: style.typeColor, background: 'oklch(0 0 0 / 0.25)' }}
+                        className="uppercase tracking-wider"
+                        style={{ color: style.typeColor }}
                       >
                         {l.type}
                       </span>
                       <span style={{ color: 'var(--muted)' }}>{l.at}</span>
-                      {l.to && <span style={{ color: 'var(--accent)' }}>→ {l.to}</span>}
+                      {l.to && (
+                        <span style={{ color: 'var(--accent)' }}>→ {l.to}</span>
+                      )}
                       {l.platform && <PlatformBadge id={l.platform} />}
                     </div>
                     <div style={{ color: 'var(--ink)' }}>{l.text}</div>
@@ -819,34 +767,11 @@ export default function App() {
             </section>
           )}
 
-          {finished && (
-            <section
-              className="rounded-xl p-4"
-              style={{
-                background: 'oklch(0.16 0.04 160)',
-                border: '1px solid var(--primary)',
-              }}
-            >
-              <h2 className="text-sm font-semibold">Proof of a Run ready</h2>
-              <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>
-                Download the markdown transcript (design answers + full agent log) for the Accel submission form.
-              </p>
-              <button
-                type="button"
-                onClick={downloadProof}
-                className="mt-3 rounded-md px-4 py-2 text-sm font-semibold"
-                style={{ background: 'var(--primary)', color: 'var(--bg)' }}
-              >
-                Download Proof of a Run
-              </button>
-            </section>
-          )}
-
           <section
             className="rounded-xl p-4 text-sm"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
           >
-            <h2 className="mb-2 text-sm font-semibold">Judge quick links</h2>
+            <h2 className="mb-2 text-sm font-semibold">Submission links</h2>
             <ul className="space-y-1.5" style={{ color: 'var(--muted)' }}>
               <li>
                 <a href="/pitch.html" style={{ color: 'var(--primary)' }}>
@@ -854,17 +779,26 @@ export default function App() {
                 </a>
               </li>
               <li>
-                <a href="#agent-design" style={{ color: 'var(--primary)' }}>
-                  Agent design panel (this page)
-                </a>
+                Static proof file:{' '}
+                <span style={{ color: 'var(--ink)' }}>PROOF_OF_RUN.md</span> (repo root)
               </li>
               <li>
-                After run: <span style={{ color: 'var(--ink)' }}>Download Proof of a Run</span>
+                Live proof:{' '}
+                <button
+                  type="button"
+                  onClick={() => downloadProof()}
+                  disabled={!canDownloadProof}
+                  className="underline disabled:no-underline disabled:opacity-40"
+                  style={{ color: canDownloadProof ? 'var(--primary)' : 'var(--muted)' }}
+                >
+                  Download Proof of a Run
+                </button>{' '}
+                (after / during a run)
               </li>
             </ul>
             <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
-              Scripted live run for the demo (no API keys). Production wires Claude + platform APIs; same handoff
-              graph and recovery rules.
+              This demo is a scripted live run (no API keys). Production wires Claude + platform APIs; same handoff
+              graph.
             </p>
           </section>
         </div>
