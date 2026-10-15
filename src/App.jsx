@@ -324,7 +324,7 @@ export default function App() {
 
   const mentionList = Object.values(mentions);
   const queued = mentionList.filter((m) => m.status === 'queued');
-  const canDownloadProof = finished;
+  const canDownloadProof = logs.length > 0;
   const recoveries = logs.filter((l) => l.type === 'recover').length;
   const errors = logs.filter((l) => l.type === 'error').length;
 
