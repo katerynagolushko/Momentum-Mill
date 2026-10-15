@@ -324,7 +324,9 @@ export default function App() {
 
   const mentionList = Object.values(mentions);
   const queued = mentionList.filter((m) => m.status === 'queued');
-  const canDownloadProof = logs.length > 0;
+  const canDownloadProof = finished;
+  const recoveries = logs.filter((l) => l.type === 'recover').length;
+  const errors = logs.filter((l) => l.type === 'error').length;
 
   return (
     <div className="min-h-screen">
@@ -371,7 +373,7 @@ export default function App() {
                   style={{ background: running ? 'var(--primary)' : 'var(--ok)' }}
                 />
               </span>
-              {running ? 'Crew running' : 'Run complete'}
+              {running ? 'Crew running (~24s)' : 'Run complete'}
             </span>
           )}
           <a
@@ -385,17 +387,28 @@ export default function App() {
           >
             Pitch slides
           </a>
+          <a
+            href="/PROOF_OF_RUN.md"
+            className="rounded-md px-3 py-2 text-xs font-medium transition"
+            style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              color: 'var(--ink)',
+            }}
+          >
+            Proof of a Run
+          </a>
           <button
             type="button"
             onClick={() => downloadProof()}
             disabled={!canDownloadProof}
             className="rounded-md px-3 py-2 text-xs font-medium transition disabled:opacity-40"
             style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--line)',
-              color: canDownloadProof ? 'var(--ink)' : 'var(--muted)',
+              background: canDownloadProof ? 'oklch(0.18 0.04 160)' : 'var(--surface)',
+              border: `1px solid ${canDownloadProof ? 'var(--primary)' : 'var(--line)'}`,
+              color: canDownloadProof ? 'var(--primary)' : 'var(--muted)',
             }}
-            title={canDownloadProof ? 'Download markdown Proof of a Run' : 'Start a run first'}
+            title={canDownloadProof ? 'Download markdown Proof of a Run' : 'Finish a crew run first'}
           >
             Download Proof of a Run
           </button>
@@ -519,6 +532,11 @@ export default function App() {
             <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
               Task → workflow: {AGENT_DESIGN.runDuration.taskToWorkflow}
             </p>
+            {(errors > 0 || recoveries > 0) && (
+              <p className="mono mt-2 text-[11px]" style={{ color: 'var(--ok)' }}>
+                This run: {errors} errors → {recoveries} recoveries (live in the log)
+              </p>
+            )}
           </section>
 
           {/* Agents */}
@@ -767,6 +785,29 @@ export default function App() {
             </section>
           )}
 
+          {finished && (
+            <section
+              className="rounded-xl p-4"
+              style={{
+                background: 'oklch(0.16 0.04 160)',
+                border: '1px solid var(--primary)',
+              }}
+            >
+              <h2 className="text-sm font-semibold">Proof of a Run ready</h2>
+              <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>
+                Download the markdown transcript (agent design answers + full log) for the Accel submission form.
+              </p>
+              <button
+                type="button"
+                onClick={() => downloadProof()}
+                className="mt-3 rounded-md px-4 py-2 text-sm font-semibold"
+                style={{ background: 'var(--primary)', color: 'var(--bg)' }}
+              >
+                Download Proof of a Run
+              </button>
+            </section>
+          )}
+
           <section
             className="rounded-xl p-4 text-sm"
             style={{ background: 'var(--surface)', border: '1px solid var(--line)' }}
@@ -779,8 +820,10 @@ export default function App() {
                 </a>
               </li>
               <li>
-                Static proof file:{' '}
-                <span style={{ color: 'var(--ink)' }}>PROOF_OF_RUN.md</span> (repo root)
+                Static proof:{' '}
+                <a href="/PROOF_OF_RUN.md" style={{ color: 'var(--primary)' }}>
+                  /PROOF_OF_RUN.md
+                </a>
               </li>
               <li>
                 Live proof:{' '}
@@ -793,7 +836,7 @@ export default function App() {
                 >
                   Download Proof of a Run
                 </button>{' '}
-                (after / during a run)
+                (after a finished run)
               </li>
             </ul>
             <p className="mt-3 text-xs" style={{ color: 'var(--muted)' }}>
