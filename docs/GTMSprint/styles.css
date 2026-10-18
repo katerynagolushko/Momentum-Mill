@@ -1267,6 +1267,7 @@ a:focus-visible,
 .partners {
   padding: 1.2rem var(--pad-x) 0.15rem;
   border-top: 0;
+  overflow: hidden;
 }
 
 .partners__label {
@@ -1278,23 +1279,37 @@ a:focus-visible,
   color: var(--dim);
 }
 
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: logo-marquee 46s linear infinite;
+}
+
+.logo-track:hover,
+.logo-track:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 .logos {
   list-style: none;
   display: flex;
+  flex: none;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(0.65rem, 1.8vw, 1.75rem);
+  justify-content: flex-start;
+  gap: 2.1rem;
+  width: max-content;
   margin: 0;
-  padding: 0;
-}
-
-.logo-track > .logos + .logos {
-  display: none;
+  padding: 0 2.1rem 0 0;
 }
 
 .logos li {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   min-width: 0;
   margin: 0;
   display: flex;
@@ -1490,39 +1505,6 @@ a:focus-visible,
     --overlap: 0.64rem;
   }
 
-  .partners {
-    overflow: hidden;
-  }
-
-  .logo-track {
-    display: flex;
-    width: max-content;
-    animation: logo-marquee 46s linear infinite;
-  }
-
-  .logo-track > .logos,
-  .logo-track > .logos + .logos {
-    display: flex;
-    flex: none;
-    width: max-content;
-    justify-content: flex-start;
-    gap: 2.1rem;
-    padding-right: 2.1rem;
-    overflow: visible;
-  }
-
-  .logos li {
-    flex: 0 0 auto;
-    width: auto;
-    height: auto;
-    min-height: 0;
-  }
-
-  @keyframes logo-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
   .partners + .how {
     padding-top: 4.75rem;
   }
@@ -1558,66 +1540,7 @@ a:focus-visible,
   }
 }
 
-/* Under 1280px eight marks do not fit in one static row. */
-@media (min-width: 900px) and (max-width: 1279px) {
-  .partners {
-    overflow: hidden;
-  }
-
-  .logo-track {
-    display: flex;
-    width: max-content;
-    animation: logo-marquee 46s linear infinite;
-  }
-
-  .logo-track > .logos,
-  .logo-track > .logos + .logos {
-    display: flex;
-    flex: none;
-    width: max-content;
-    justify-content: flex-start;
-    gap: 2.1rem;
-    padding-right: 2.1rem;
-    overflow: visible;
-  }
-
-  .logos li {
-    flex: 0 0 auto;
-    width: auto;
-    height: auto;
-    min-height: 0;
-  }
-
-  @keyframes logo-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-}
-
-@media (min-width: 900px) and (max-width: 1279px) and (prefers-reduced-motion: reduce) {
-  .logo-track {
-    display: block;
-    width: auto;
-    animation: none;
-    transform: none;
-  }
-
-  .logo-track > .logos + .logos {
-    display: none;
-  }
-
-  .logo-track > .logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: auto;
-    max-width: 100%;
-    gap: 1rem 1.35rem;
-    padding-right: 0;
-  }
-}
-
-@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .logo-track {
     display: block;
     width: auto;
