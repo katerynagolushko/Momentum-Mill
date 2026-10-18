@@ -6,7 +6,7 @@
     <title>GTM Sprint</title>
     <meta
       name="description"
-      content="A 1-week sprint to get customers. 8–15 Nov 2026. London. Free, no equity."
+      content="A 1-week sprint to get customers. 8–14 Nov 2026. London. Free, no equity."
     />
     <link rel="icon" href="./public/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261014um-lockup" />
+    <link rel="stylesheet" href="./styles.css?v=20261018prizes" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -125,6 +125,13 @@
           ],
         },
         partnersLabel: "Community partners",
+        prizes: {
+          title: "Prizes",
+          items: [
+            "EWOR fast track application and access to their entrepreneurship platform",
+            "Full list of prizes announced soon",
+          ],
+        },
         cta: {
           line: "Wanna get involved?",
           mail: "kateryna@momentummill.com",
@@ -162,7 +169,7 @@
         <div class="hero__copy">
           <p class="hero__sub" data-copy="hook"></p>
           <h1 class="hero__hook" data-copy="promise"></h1>
-          <p class="hero__fact">8–15 Nov 2026 · London · Free, no equity</p>
+          <p class="hero__fact">8–14 Nov 2026 · London · Free, no equity</p>
           <a class="hero__mentors" href="./mentors/">
             <span class="hero__mentors-faces">
               <img src="./public/mentors/elias-nuevo.jpg" alt="" width="400" height="400" />
@@ -192,6 +199,11 @@
               <img src="./public/partners/unicorn-mafia-lockup.png" alt="Unicorn Mafia" width="326" height="278" />
             </li>
             <li>
+              <a href="https://www.ewor.com" target="_blank" rel="noopener">
+                <img src="./public/partners/ewor.svg" alt="EWOR" width="81" height="20" />
+              </a>
+            </li>
+            <li>
               <img src="./public/partners/tower.png?v=white" alt="Tower" width="1024" height="317" />
             </li>
             <li>
@@ -215,6 +227,11 @@
               <img src="./public/partners/unicorn-mafia-lockup.png" alt="Unicorn Mafia" width="326" height="278" />
             </li>
             <li>
+              <a href="https://www.ewor.com" tabindex="-1" target="_blank" rel="noopener">
+                <img src="./public/partners/ewor.svg" alt="EWOR" width="81" height="20" />
+              </a>
+            </li>
+            <li>
               <img src="./public/partners/tower.png?v=white" alt="Tower" width="1024" height="317" />
             </li>
             <li>
@@ -229,6 +246,10 @@
 
       <section class="how" id="how" aria-label="How it works">
         <div data-copy="how"></div>
+      </section>
+
+      <section class="prizes" id="prizes" aria-label="Prizes">
+        <div class="split__copy walk__inner" data-copy="prizes"></div>
       </section>
 
       <section class="walk" id="gets" aria-label="What you walk away with">
@@ -261,6 +282,7 @@
     <nav class="section-nav" aria-label="On this page">
       <a href="#top"><span class="section-nav__tip">Sprint</span></a>
       <a href="#how"><span class="section-nav__tip">How it works</span></a>
+      <a href="#prizes"><span class="section-nav__tip">Prizes</span></a>
       <a href="#gets"><span class="section-nav__tip">Walk away</span></a>
       <a href="#why"><span class="section-nav__tip">Why</span></a>
       <a href="#faq"><span class="section-nav__tip">FAQ</span></a>
@@ -339,6 +361,24 @@
                     ? '<figure class="step__photo"><img src="' + s.photo.src + '" alt="' + s.photo.alt +
                       '" loading="lazy" onerror="this.style.visibility=\'hidden\'" /></figure>'
                     : "") +
+                  "</li>"
+                );
+              })
+              .join("") +
+            "</ol>";
+        }
+
+        var prizes = $("prizes");
+        if (prizes && C.prizes) {
+          prizes.innerHTML =
+            '<h2 class="split__title">' + C.prizes.title + "</h2>" +
+            '<ol class="gets">' +
+            C.prizes.items
+              .map(function (item, i) {
+                return (
+                  "<li>" +
+                  '<span class="gets__num">0' + (i + 1) + "</span>" +
+                  '<span class="gets__what">' + item + "</span>" +
                   "</li>"
                 );
               })
