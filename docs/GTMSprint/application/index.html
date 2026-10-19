@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./application.css?v=20261011form3" />
+    <link rel="stylesheet" href="./application.css?v=20261019form4" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -67,11 +67,13 @@
           </div>
           <div class="field">
             <label class="field__label" for="f-email">Email</label>
-            <input class="input" id="f-email" name="email" type="email" autocomplete="email" required />
+            <input class="input" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required aria-describedby="f-email-error" />
+            <p class="field__error" id="f-email-error" hidden></p>
           </div>
           <div class="field">
             <label class="field__label" for="f-linkedin">LinkedIn</label>
-            <input class="input" id="f-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/..." required />
+            <input class="input" id="f-linkedin" name="linkedin" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="https://linkedin.com/in/..." required aria-describedby="f-linkedin-error" />
+            <p class="field__error" id="f-linkedin-error" hidden></p>
           </div>
         </div>
 
@@ -84,7 +86,8 @@
           </div>
           <div class="field">
             <label class="field__label" for="f-site">Website or product link</label>
-            <input class="input" id="f-site" name="website" type="url" placeholder="https://" required />
+            <input class="input" id="f-site" name="website" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="url" placeholder="https://" required aria-describedby="f-site-error" />
+            <p class="field__error" id="f-site-error" hidden></p>
           </div>
           <div class="field">
             <label class="field__label" for="f-what">What does it do? One or two lines.</label>
@@ -100,6 +103,33 @@
               <option>Steady revenue, want to grow it</option>
             </select>
           </div>
+          <fieldset class="field" id="revenue-field" hidden>
+            <legend class="field__label" id="revenue-label">Roughly how much revenue?</legend>
+            <p class="field__hint" id="revenue-hint">Monthly recurring revenue, in USD.</p>
+            <div class="chips" id="revenue-group" role="radiogroup" aria-labelledby="revenue-label" aria-describedby="revenue-hint revenue-error">
+              <label class="chip">
+                <input type="radio" name="monthly_revenue" value="Under $1k MRR" disabled />
+                <span>Under $1k</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="monthly_revenue" value="$1–10k MRR" disabled />
+                <span>$1–10k</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="monthly_revenue" value="$10–50k MRR" disabled />
+                <span>$10–50k</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="monthly_revenue" value="$50–100k MRR" disabled />
+                <span>$50–100k</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="monthly_revenue" value="$100k+ MRR" disabled />
+                <span>$100k+</span>
+              </label>
+            </div>
+            <p class="field__error" id="revenue-error" hidden></p>
+          </fieldset>
           <div class="field">
             <label class="field__label" for="f-buyer">Who do you sell to?</label>
             <input class="input" id="f-buyer" name="icp" type="text" placeholder="e.g. Heads of Ops at 50–200 person logistics companies" />
@@ -124,19 +154,29 @@
             <label class="field__label" for="f-funding">Funding so far <span class="field__opt">(optional)</span></label>
             <input class="input" id="f-funding" name="funding" type="text" placeholder="e.g. Bootstrapped, or $500k pre-seed from angels" />
           </div>
-          <div class="field">
-            <label class="field__label" for="f-deck">Deck link <span class="field__opt">(optional)</span></label>
-            <input class="input" id="f-deck" name="deck" type="url" placeholder="https://" />
+          <div class="field" id="deck-field">
+            <label class="field__label" for="f-deck">Deck <span class="field__opt">(optional)</span></label>
+            <p class="field__hint" id="deck-hint">Paste a link, upload a file, or both.</p>
+            <input class="input" id="f-deck" name="deck" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="https://" aria-describedby="deck-hint f-deck-error" />
+            <div class="file">
+              <input class="file__input" id="f-deck-file" name="attachment" type="file" accept=".pdf,.ppt,.pptx,.key,application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation" aria-describedby="deck-hint f-deck-error" />
+              <label class="file__btn" for="f-deck-file">Upload a file</label>
+              <span class="file__name" id="deck-file-name" aria-live="polite">PDF, PowerPoint, or Keynote · 10 MB max</span>
+              <button class="file__clear" id="deck-file-clear" type="button" hidden>Remove</button>
+            </div>
+            <p class="field__error" id="f-deck-error" hidden></p>
           </div>
           <fieldset class="field">
             <legend class="field__label">If accepted, we'll ask for one recorded sales call by 5 Nov 2026 for feedback. OK with that?</legend>
             <div class="yesno">
               <label class="check">
                 <input type="radio" name="sales_call_ok" value="Yes" />
+                <span class="check__mark" aria-hidden="true"></span>
                 <span>Yes</span>
               </label>
               <label class="check">
                 <input type="radio" name="sales_call_ok" value="No" />
+                <span class="check__mark" aria-hidden="true"></span>
                 <span>No</span>
               </label>
             </div>
@@ -146,10 +186,12 @@
             <div class="yesno">
               <label class="check">
                 <input type="radio" name="commit_and_camera" value="Yes" required />
+                <span class="check__mark" aria-hidden="true"></span>
                 <span>Yes</span>
               </label>
               <label class="check">
                 <input type="radio" name="commit_and_camera" value="No" />
+                <span class="check__mark" aria-hidden="true"></span>
                 <span>No</span>
               </label>
             </div>
@@ -242,109 +284,6 @@
       </footer>
     </main>
 
-    <script>
-      (function () {
-        var cfg = window.FORM_CONFIG || {};
-        var form = document.getElementById("apply-form");
-        var blocks = form.querySelectorAll(".block");
-        var errorEl = document.getElementById("form-error");
-        var done = document.getElementById("done");
-
-        function currentRole() {
-          var r = form.querySelector('input[name="role"]:checked');
-          return r ? r.value : "";
-        }
-
-        function showRole(role) {
-          blocks.forEach(function (b) {
-            var on = (b.getAttribute("data-for") || "").split(" ").indexOf(role) !== -1;
-            b.hidden = !on;
-            // Only fields that are visible are required and sent.
-            b.querySelectorAll("input, select, textarea").forEach(function (el) {
-              el.disabled = !on;
-            });
-          });
-          var linkedin = document.getElementById("f-linkedin");
-          if (linkedin) linkedin.required = role !== "founder";
-        }
-
-        form.addEventListener("change", function (e) {
-          if (e.target.name === "role") {
-            showRole(e.target.value);
-            if (history.replaceState) {
-              history.replaceState(null, "", "?as=" + e.target.value);
-            }
-          }
-        });
-
-        // Preselect from ?as=founder or ?as=gtm (used by buttons on the main page).
-        var as = new URLSearchParams(location.search).get("as");
-        if (as === "founder" || as === "gtm") {
-          var radio = form.querySelector('input[name="role"][value="' + as + '"]');
-          if (radio) radio.checked = true;
-        }
-        showRole(currentRole());
-
-        function showDone(role, note) {
-          form.hidden = true;
-          done.hidden = false;
-          done.querySelectorAll("[data-done]").forEach(function (p) {
-            p.hidden = p.getAttribute("data-done") !== role;
-          });
-          var noteEl = document.getElementById("done-note");
-          if (note) {
-            noteEl.textContent = note;
-            noteEl.hidden = false;
-          }
-          done.focus();
-          window.scrollTo({ top: 0 });
-        }
-
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          errorEl.hidden = true;
-          var role = currentRole();
-          if (!role) {
-            errorEl.textContent = "Pick Founder or Mentor first.";
-            errorEl.hidden = false;
-            return;
-          }
-          if (!form.checkValidity()) {
-            var bad = form.querySelector(":invalid");
-            errorEl.textContent = "Please fill in the highlighted fields.";
-            errorEl.hidden = false;
-            form.classList.add("form--checked");
-            if (bad) bad.focus();
-            return;
-          }
-
-          var data = { role: role === "gtm" ? "Mentor" : "Founder" };
-          new FormData(form).forEach(function (v, k) {
-            if (k === "role") return;
-            data[k] = data[k] ? data[k] + "; " + v : v;
-          });
-          data._subject = "GTM Sprint application: " + data.role + " - " + (data.name || "");
-          data._template = "table";
-          data._captcha = "false";
-
-          var btn = form.querySelector(".form__submit");
-          btn.disabled = true;
-          btn.textContent = "Sending...";
-
-          fetch(cfg.endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify(data),
-          })
-            .then(function (r) {
-              if (!r.ok) throw new Error("bad status");
-              showDone(role);
-            })
-            .catch(function () {
-              showDone(role, "Your answers didn't send. Email them to kateryna@momentummill.com.");
-            });
-        });
-      })();
-    </script>
+    <script type="module" src="./application.js?v=20261019form4"></script>
   </body>
 </html>

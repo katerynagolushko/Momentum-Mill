@@ -100,7 +100,7 @@ a:focus-visible {
 /* -- Apply page -- */
 .apply {
   max-width: var(--page-max);
-  margin: 0;
+  margin: 0 auto;
   padding: 2.75rem var(--gutter) 4.5rem;
 }
 
@@ -177,6 +177,10 @@ a:focus-visible {
   line-height: 1.35;
 }
 
+.field legend.field__label {
+  float: none;
+}
+
 .field__opt,
 .field__hint {
   color: var(--dim);
@@ -228,7 +232,8 @@ select.input option {
   border-color: var(--fg);
 }
 
-.form--checked .input:invalid {
+.form--checked .input:invalid,
+.input[aria-invalid="true"] {
   border-color: #ff6b6b;
 }
 
@@ -294,18 +299,201 @@ select.input option {
 }
 
 .check {
+  position: relative;
   display: flex;
   gap: 0.65rem;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
 }
 
 .check input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.check__mark {
   flex: none;
-  width: 1.15rem;
-  height: 1.15rem;
-  margin: 0.15rem 0 0;
-  accent-color: #fff;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.check:hover input:not(:checked):not(:disabled) + .check__mark {
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.form--checked .check input:invalid + .check__mark {
+  border-color: #ff6b6b;
+}
+
+/* Selected yes/no mark is a solid white disc so it stays obvious on black. */
+.check input:checked + .check__mark {
+  border-color: #fff;
+  background: #fff;
+}
+
+.check input:focus-visible + .check__mark {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.6rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.chip:hover span {
+  border-color: var(--fg);
+}
+
+.chip input:checked + span {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.chip input:focus-visible + span {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.field--invalid .chip span {
+  border-color: #ff6b6b;
+}
+
+.file {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.9rem;
+}
+
+.file__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.file__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.6rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--fg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.file__btn:hover {
+  border-color: var(--fg);
+}
+
+.file__input:focus-visible + .file__btn {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.file__input[aria-invalid="true"] + .file__btn {
+  border-color: #ff6b6b;
+}
+
+.file__name {
+  color: var(--dim);
+  font-size: 0.92rem;
+}
+
+.file__name--set {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.file__clear {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--dim);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.file__clear:hover {
+  color: var(--fg);
+}
+
+.file__clear:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.field__error {
+  margin: 0;
+  color: #ff6b6b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+@media (forced-colors: active) {
+  .check__mark {
+    border-color: ButtonText;
+    background: transparent;
+  }
+
+  .check input:checked + .check__mark {
+    background: Highlight;
+    border-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip span,
+  .file__btn,
+  .check__mark {
+    transition: none;
+  }
 }
 
 .yesno {
