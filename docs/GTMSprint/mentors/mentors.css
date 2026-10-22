@@ -210,6 +210,32 @@ a:focus-visible {
   text-wrap: pretty;
 }
 
+.card__logos {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.8rem;
+  margin: 0.2rem 0 0;
+  padding: 0;
+}
+
+.card__logos li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  min-width: 0;
+}
+
+.card__logos img {
+  display: block;
+  height: 22px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .card__link {
   justify-self: start;
   font-weight: 500;

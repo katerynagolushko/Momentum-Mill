@@ -1271,12 +1271,12 @@ a:focus-visible,
 }
 
 .partners__label {
-  margin: 0 0 0.55rem;
-  font-size: 0.8rem;
+  margin: 0 0 0.9rem;
+  font-size: var(--type-h);
   font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.2;
-  color: var(--dim);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #fff;
 }
 
 .logo-track {
