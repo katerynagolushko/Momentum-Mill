@@ -11,10 +11,10 @@
     <link rel="icon" href="./public/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,401,500,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261022partners" />
+    <link rel="stylesheet" href="./styles.css?v=20261023page" />
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -70,8 +70,8 @@
                 "Record your progress with our help",
               ],
               photo: {
-                src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
-                alt: "Mentors and founders working at a whiteboard wall",
+                src: "./public/candidates/stage-pitch.jpg",
+                alt: "Three people at a table in front of a GTM Sprint whiteboard",
               },
             },
             {
@@ -85,8 +85,8 @@
                 "Conversions",
               ],
               photo: {
-                src: "./public/candidates/stage-pitch.jpg",
-                alt: "Three people at a table in front of a GTM Sprint whiteboard",
+                src: "./public/candidates/sw-phoenix-mentor-reair.jpg",
+                alt: "A guy standing and talking at a whiteboard wall",
               },
             },
           ],
@@ -101,10 +101,6 @@
             { what: "Tested pitch" },
             { what: "GTM mentors", href: "./mentors/" },
           ],
-        },
-        why: {
-          title: "Why are we doing this:",
-          body: "In the world that is all about building there is not enough talk about what's next. Being able to sell your vision is gonna be the new moat.<br>Come if you want to lock in all the way on sales and get all the support possible.",
         },
         faq: {
           title: "FAQ",
@@ -131,11 +127,11 @@
             },
           ],
         },
-        partnersLabel: "Community partners",
+        partnersLabel: "Partners",
         prizes: {
           title: "Prizes",
           items: [
-            "EWOR fast track application and access to their entrepreneurship platform",
+            '<a href="https://ewor.com" target="_blank" rel="noopener">EWOR</a>, up to 500k investment, fast track application',
             "Full list of prizes announced soon",
           ],
         },
@@ -189,8 +185,9 @@
         </div>
       </section>
 
-      <section class="partners" id="partners" aria-label="Community partners">
+      <section class="partners" id="partners" aria-label="Partners">
         <p class="partners__label" data-copy="partnersLabel"></p>
+        <p class="partners__line">In the era of AI, building became easy, but selling did not.</p>
         <div class="logo-track">
           <ul class="logos">
             <li>
@@ -218,6 +215,9 @@
             </li>
             <li>
               <img src="./public/partners/ldn-calling.png?v=letters" alt="LDN Calling" width="403" height="356" />
+            </li>
+            <li>
+              <img src="./public/partners/apify.png" alt="Apify" width="638" height="200" />
             </li>
           </ul>
           <ul class="logos" aria-hidden="true">
@@ -247,8 +247,41 @@
             <li>
               <img src="./public/partners/ldn-calling.png?v=letters" alt="LDN Calling" width="403" height="356" />
             </li>
+            <li>
+              <img src="./public/partners/apify.png" alt="Apify" width="638" height="200" />
+            </li>
           </ul>
         </div>
+      </section>
+
+      <section class="tool" id="tool" aria-label="Tools and sponsors">
+        <p class="tool__line">
+          If you want your tool used by founders and filmed all week,
+          <button class="tool__apply" type="button" id="tool-open">click here to apply</button>
+        </p>
+        <dialog class="film__dialog" id="tool-dialog" aria-label="Apply as a tool or sponsor">
+          <form class="film__form" id="tool-form">
+            <label class="film__field">
+              <span>What is your role?</span>
+              <input name="role" type="text" required autocomplete="organization-title" />
+            </label>
+            <label class="film__field">
+              <span>What is your company?</span>
+              <input name="company" type="text" required autocomplete="organization" />
+            </label>
+            <label class="film__field">
+              <span>How would you like to get involved?</span>
+              <textarea name="involve" rows="4" required></textarea>
+            </label>
+            <div class="film__actions">
+              <button class="btn" type="submit">Submit</button>
+              <button class="btn btn--ghost" type="button" data-close>Close</button>
+            </div>
+            <p class="film__error" id="tool-error" hidden></p>
+          </form>
+          <p class="film__thanks" id="tool-thanks" tabindex="-1" hidden>Thank you for applying, Kateryna will reach out to you ASAP</p>
+          <button class="btn btn--ghost film__done-close" type="button" data-close hidden>Close</button>
+        </dialog>
       </section>
 
       <section class="how" id="how" aria-label="How it works">
@@ -263,8 +296,28 @@
         <div class="split__copy walk__inner" data-copy="gets"></div>
       </section>
 
-      <section class="why" id="why" aria-label="Why are we doing this">
-        <div class="why__inner" data-copy="why"></div>
+      <section class="film" id="film" aria-label="Film the sprint">
+        <p class="film__line">Tech influencers and media people, we need your help to make it special and film the progress.</p>
+        <button class="btn" type="button" id="film-open">Click here to partner up</button>
+        <dialog class="film__dialog" id="film-dialog" aria-label="Partner up">
+          <form class="film__form" id="film-form">
+            <label class="film__field">
+              <span>Who are you? A link to your social media or company you work at</span>
+              <input name="who" type="text" required autocomplete="organization" />
+            </label>
+            <label class="film__field">
+              <span>Why would you like to get involved?</span>
+              <textarea name="why" rows="4" required></textarea>
+            </label>
+            <div class="film__actions">
+              <button class="btn" type="submit">Submit</button>
+              <button class="btn btn--ghost" type="button" data-close>Close</button>
+            </div>
+            <p class="film__error" id="film-error" hidden></p>
+          </form>
+          <p class="film__thanks" id="film-thanks" tabindex="-1" hidden>Thank you for applying, Kateryna will reach out to you ASAP</p>
+          <button class="btn btn--ghost film__done-close" type="button" data-close hidden>Close</button>
+        </dialog>
       </section>
 
       <section class="faq" id="faq" aria-label="FAQ">
@@ -286,15 +339,6 @@
     </main>
 
     <a class="sticky-apply btn" href="https://luma.com/6056xrdf" aria-hidden="true" tabindex="-1">Apply</a>
-    <nav class="section-nav" aria-label="On this page">
-      <a href="#top"><span class="section-nav__tip">Sprint</span></a>
-      <a href="#how"><span class="section-nav__tip">How it works</span></a>
-      <a href="#prizes"><span class="section-nav__tip">Prizes</span></a>
-      <a href="#gets"><span class="section-nav__tip">Walk away</span></a>
-      <a href="#why"><span class="section-nav__tip">Why</span></a>
-      <a href="#faq"><span class="section-nav__tip">FAQ</span></a>
-      <a href="#apply"><span class="section-nav__tip">Apply</span></a>
-    </nav>
 
     <script>
       (function () {
@@ -416,13 +460,6 @@
             "</ol>";
         }
 
-        var why = $("why");
-        if (why && C.why) {
-          why.innerHTML =
-            '<h2 class="why__title">' + C.why.title + "</h2>" +
-            '<p class="why__body">' + C.why.body + "</p>";
-        }
-
         var faq = $("faq");
         if (faq && C.faq && C.faq.items) {
           faq.innerHTML =
@@ -465,12 +502,6 @@
 
         var sticky = document.querySelector(".sticky-apply");
         var headerApply = document.querySelector(".sitenav__apply");
-        var sectionNav = document.querySelector(".section-nav");
-        var sectionLinks = sectionNav ? [].slice.call(sectionNav.querySelectorAll("a")) : [];
-        var sectionEls = sectionLinks
-          .map(function (a) { return document.querySelector(a.getAttribute("href")); })
-          .filter(Boolean);
-        var awakeTimer = 0;
         var ticking = false;
 
         function headerApplyScrolled(fraction) {
@@ -495,17 +526,6 @@
             }
             document.body.classList.toggle("has-sticky-apply", show);
           }
-          if (sectionEls.length) {
-            var marker = window.innerHeight * 0.34;
-            var current = sectionEls[0];
-            sectionEls.forEach(function (el) {
-              if (el.getBoundingClientRect().top <= marker) current = el;
-            });
-            sectionLinks.forEach(function (a) {
-              if (a.getAttribute("href") === "#" + current.id) a.setAttribute("aria-current", "true");
-              else a.removeAttribute("aria-current");
-            });
-          }
         }
 
         function requestSync() {
@@ -514,21 +534,120 @@
           window.requestAnimationFrame(syncChrome);
         }
 
-        function wakeNav() {
-          if (!sectionNav) return;
-          sectionNav.classList.add("is-awake");
-          window.clearTimeout(awakeTimer);
-          awakeTimer = window.setTimeout(function () {
-            sectionNav.classList.remove("is-awake");
-          }, 850);
-        }
-
-        window.addEventListener("scroll", function () {
-          wakeNav();
-          requestSync();
-        }, { passive: true });
+        window.addEventListener("scroll", requestSync, { passive: true });
         window.addEventListener("resize", requestSync);
         requestSync();
+
+        function bindPartnerForm(cfg) {
+          var openBtn = document.getElementById(cfg.open);
+          var dialog = document.getElementById(cfg.dialog);
+          var form = document.getElementById(cfg.form);
+          var thanks = document.getElementById(cfg.thanks);
+          var error = document.getElementById(cfg.error);
+          if (!openBtn || !dialog || !form) return;
+          openBtn.addEventListener("click", function () {
+            try {
+              if (typeof dialog.showModal === "function") dialog.showModal();
+              else dialog.setAttribute("open", "");
+            } catch (err) {
+              if (typeof dialog.show === "function") dialog.show();
+              else dialog.setAttribute("open", "");
+            }
+            var first = form.querySelector("input, textarea");
+            if (first && !form.hidden) first.focus();
+          });
+          dialog.querySelectorAll("[data-close]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              if (typeof dialog.close === "function") dialog.close();
+              else dialog.removeAttribute("open");
+            });
+          });
+          form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+            var submitBtn = form.querySelector("[type='submit']");
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.textContent = "Sending...";
+            }
+            if (error) error.hidden = true;
+            var fields = {};
+            Array.prototype.forEach.call(form.elements, function (el) {
+              if (!el.name || el.type === "submit" || el.type === "button") return;
+              fields[el.name] = String(el.value || "").trim();
+            });
+            var payload = cfg.payload(fields);
+            payload._template = "table";
+            payload._captcha = "false";
+            payload["Request type"] = cfg.type;
+            fetch("https://formsubmit.co/ajax/kateryna@momentummill.com", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify(payload),
+            })
+              .then(function (response) {
+                return response.json().then(function (body) {
+                  if (!response.ok || String(body && body.success) === "false") {
+                    throw new Error((body && body.message) || "bad status");
+                  }
+                  return body;
+                });
+              })
+              .then(function () {
+                form.hidden = true;
+                dialog.querySelectorAll(".film__done-close").forEach(function (btn) {
+                  btn.hidden = false;
+                });
+                if (thanks) {
+                  thanks.hidden = false;
+                  thanks.focus();
+                }
+              })
+              .catch(function () {
+                if (submitBtn) {
+                  submitBtn.disabled = false;
+                  submitBtn.textContent = "Submit";
+                }
+                if (error) {
+                  error.textContent = "That didn't send. Email kateryna@momentummill.com.";
+                  error.hidden = false;
+                }
+              });
+          });
+        }
+
+        bindPartnerForm({
+          open: "film-open",
+          dialog: "film-dialog",
+          form: "film-form",
+          thanks: "film-thanks",
+          error: "film-error",
+          type: "Media",
+          payload: function (fields) {
+            return {
+              _subject: "GTM Sprint partner request — Media",
+              "Who are you": fields.who,
+              "Why would you like to get involved": fields.why,
+            };
+          },
+        });
+
+        bindPartnerForm({
+          open: "tool-open",
+          dialog: "tool-dialog",
+          form: "tool-form",
+          thanks: "tool-thanks",
+          error: "tool-error",
+          type: "Tool/Sponsor",
+          payload: function (fields) {
+            return {
+              _subject: "GTM Sprint partner request — Tool/Sponsor",
+              "What is your role": fields.role,
+              "What is your company": fields.company,
+              "How would you like to get involved": fields.involve,
+            };
+          },
+        });
       })();
     </script>
   </body>
