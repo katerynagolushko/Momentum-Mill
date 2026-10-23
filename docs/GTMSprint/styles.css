@@ -311,12 +311,19 @@ a:focus-visible,
 
 .tool__line {
   margin: 0;
-  max-width: 44rem;
+  max-width: none;
   color: #fff;
   font-size: var(--type-s);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.4;
+}
+
+@media (min-width: 900px) {
+  .tool__line {
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    white-space: nowrap;
+  }
 }
 
 .tool__apply {
@@ -1356,7 +1363,7 @@ a:focus-visible,
 }
 
 .partners__label {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.9rem;
   font-size: var(--type-h);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -1365,7 +1372,7 @@ a:focus-visible,
 }
 
 .partners__line {
-  margin: 0 0 1.05rem;
+  margin: 0 0 0.55rem;
   text-align: center;
   color: #fff;
   font-weight: 400;
