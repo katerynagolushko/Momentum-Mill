@@ -251,14 +251,15 @@
             </li>
           </ul>
         </div>
-      </section>
-
-      <section class="tool" id="tool" aria-label="Tools and sponsors">
         <p class="tool__line">
           If you want your tool used by founders and filmed all week,
           <button class="tool__apply" type="button" id="tool-open">click here to apply</button>
         </p>
+      </section>
+
+      <section class="tool" id="tool" aria-label="Tools and sponsors">
         <dialog class="film__dialog" id="tool-dialog" aria-label="Apply as a tool or sponsor">
+          <button class="film__x" type="button" data-close aria-label="Close">×</button>
           <form class="film__form" id="tool-form">
             <label class="film__field">
               <span>What is your role?</span>
@@ -274,12 +275,10 @@
             </label>
             <div class="film__actions">
               <button class="btn" type="submit">Submit</button>
-              <button class="btn btn--ghost" type="button" data-close>Close</button>
             </div>
             <p class="film__error" id="tool-error" hidden></p>
           </form>
           <p class="film__thanks" id="tool-thanks" tabindex="-1" hidden>Thank you for applying, Kateryna will reach out to you ASAP</p>
-          <button class="btn btn--ghost film__done-close" type="button" data-close hidden>Close</button>
         </dialog>
       </section>
 
@@ -300,6 +299,7 @@
         <p class="film__line">Tech influencers and media people, we need your help to make it special and film the progress.</p>
         <button class="btn" type="button" id="film-open">Click here to partner up</button>
         <dialog class="film__dialog" id="film-dialog" aria-label="Partner up">
+          <button class="film__x" type="button" data-close aria-label="Close">×</button>
           <form class="film__form" id="film-form">
             <label class="film__field">
               <span>Who are you? A link to your social media or company you work at</span>
@@ -311,12 +311,10 @@
             </label>
             <div class="film__actions">
               <button class="btn" type="submit">Submit</button>
-              <button class="btn btn--ghost" type="button" data-close>Close</button>
             </div>
             <p class="film__error" id="film-error" hidden></p>
           </form>
           <p class="film__thanks" id="film-thanks" tabindex="-1" hidden>Thank you for applying, Kateryna will reach out to you ASAP</p>
-          <button class="btn btn--ghost film__done-close" type="button" data-close hidden>Close</button>
         </dialog>
       </section>
 
@@ -556,11 +554,29 @@
             var first = form.querySelector("input, textarea");
             if (first && !form.hidden) first.focus();
           });
+          function closeDialog() {
+            if (typeof dialog.close === "function") dialog.close();
+            else dialog.removeAttribute("open");
+          }
           dialog.querySelectorAll("[data-close]").forEach(function (btn) {
             btn.addEventListener("click", function () {
-              if (typeof dialog.close === "function") dialog.close();
-              else dialog.removeAttribute("open");
+              closeDialog();
             });
+          });
+          dialog.addEventListener("click", function (event) {
+            if (event.target !== dialog) return;
+            var rect = dialog.getBoundingClientRect();
+            var inside =
+              event.clientX >= rect.left &&
+              event.clientX <= rect.right &&
+              event.clientY >= rect.top &&
+              event.clientY <= rect.bottom;
+            if (!inside) closeDialog();
+          });
+          dialog.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") return;
+            event.preventDefault();
+            closeDialog();
           });
           form.addEventListener("submit", function (event) {
             event.preventDefault();
@@ -595,9 +611,6 @@
               })
               .then(function () {
                 form.hidden = true;
-                dialog.querySelectorAll(".film__done-close").forEach(function (btn) {
-                  btn.hidden = false;
-                });
                 if (thanks) {
                   thanks.hidden = false;
                   thanks.focus();
