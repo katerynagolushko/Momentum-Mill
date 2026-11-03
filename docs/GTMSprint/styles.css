@@ -1621,8 +1621,9 @@ a:focus-visible,
 }
 
 .logos img[alt="Needle"] {
-  height: 1.82rem;
-  max-height: 1.82rem;
+  /* Source file has vertical padding, so the box is taller than the mark. */
+  height: 2.2rem;
+  max-height: 2.2rem;
   max-width: none;
 }
 
