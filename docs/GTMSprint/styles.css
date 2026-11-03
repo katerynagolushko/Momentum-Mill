@@ -1619,3 +1619,15 @@ a:focus-visible,
     padding-right: 0;
   }
 }
+
+.logos img[alt="Needle"] {
+  height: 1.82rem;
+  max-height: 1.82rem;
+  max-width: none;
+}
+
+.logos img[alt="lemlist"] {
+  height: 1.9rem;
+  max-height: 1.9rem;
+  max-width: none;
+}
