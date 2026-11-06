@@ -1632,3 +1632,10 @@ a:focus-visible,
   max-height: 1.9rem;
   max-width: none;
 }
+
+.logos img[alt="Clean"] {
+  /* The mark is taller than the word, so the box is a little taller than the wordmarks. */
+  height: 2.25rem;
+  max-height: 2.25rem;
+  max-width: none;
+}
