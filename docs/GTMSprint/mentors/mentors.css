@@ -191,26 +191,60 @@ a:focus-visible {
   line-height: 1.35;
 }
 
-.card__tag {
-  display: inline-block;
-  margin: 0 0.4rem 0 0;
-  padding: 0.05rem 0.4rem 0.1rem;
-  border: 1px solid var(--line);
-  color: var(--fg);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.4;
-  vertical-align: 0.05em;
+.card__chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.65rem 0 0;
+  padding: 0;
+  max-width: 100%;
 }
 
-.card__blurb {
+.card__chips li {
+  max-width: 100%;
   margin: 0;
-  max-width: 38rem;
-  text-wrap: pretty;
+  padding: 0.18rem 0.5rem 0.22rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--fg);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  white-space: normal;
 }
 
-.card__blurb a {
+.card__points {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  max-width: 38rem;
+}
+
+.card__points li {
+  position: relative;
+  margin: 0;
+  padding-left: 0.85rem;
+  line-height: 1.35;
+}
+
+.card__points li + li {
+  margin-top: 0.22rem;
+}
+
+.card__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: var(--fg);
+}
+
+.card__points a {
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
@@ -220,9 +254,10 @@ a:focus-visible {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem 0.8rem;
-  margin: 0.2rem 0 0;
+  gap: 0.7rem 1rem;
+  margin: 0.45rem 0 0;
   padding: 0;
+  max-width: 100%;
 }
 
 .card__logos li {
@@ -234,9 +269,10 @@ a:focus-visible {
 
 .card__logos img {
   display: block;
-  height: 22px;
+  height: 2.4rem;
   width: auto;
   max-width: 100%;
+  max-height: 2.4rem;
   object-fit: contain;
   object-position: left center;
 }
