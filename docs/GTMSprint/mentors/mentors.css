@@ -210,6 +210,11 @@ a:focus-visible {
   text-wrap: pretty;
 }
 
+.card__blurb a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .card__logos {
   list-style: none;
   display: flex;
