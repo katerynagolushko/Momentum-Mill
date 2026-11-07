@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vigil — Pitch · Accel AI Innovate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: oklch(0.1 0 0);
+        --ink: oklch(0.96 0 0);
+        --muted: oklch(0.68 0 0);
+        --primary: oklch(0.62 0.12 160);
+        --accent: oklch(0.78 0.14 75);
+        --line: oklch(0.28 0 0);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Outfit, sans-serif;
+      }
+      .deck {
+        height: 100%;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+      }
+      .slide {
+        min-height: 100vh;
+        scroll-snap-align: start;
+        padding: 8vh 8vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid var(--line);
+        background:
+          radial-gradient(900px 400px at 0% 0%, oklch(0.22 0.06 160 / 0.4), transparent 60%),
+          var(--bg);
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        letter-spacing: -0.03em;
+        margin: 0 0 1rem;
+        max-width: 16ch;
+        text-wrap: balance;
+      }
+      h2 {
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        letter-spacing: -0.02em;
+        margin: 0 0 1rem;
+        text-wrap: balance;
+      }
+      p,
+      li {
+        color: var(--muted);
+        font-size: clamp(1rem, 1.6vw, 1.25rem);
+        max-width: 48ch;
+        line-height: 1.5;
+      }
+      ul {
+        padding-left: 1.2rem;
+      }
+      li {
+        margin: 0.4rem 0;
+      }
+      strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .nav {
+        position: fixed;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        display: flex;
+        gap: 0.5rem;
+        z-index: 10;
+      }
+      .nav a,
+      .nav button {
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--line);
+        background: oklch(0.15 0 0);
+        color: var(--ink);
+        padding: 0.55rem 0.9rem;
+        border-radius: 0.4rem;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .nav a.primary {
+        background: var(--accent);
+        color: oklch(0.15 0 0);
+        border-color: transparent;
+      }
+      .grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        margin-top: 1.5rem;
+        max-width: 900px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: oklch(0.15 0 0);
+        border-radius: 0.6rem;
+        padding: 1rem;
+      }
+      .card b {
+        display: block;
+        color: var(--primary);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.35rem;
+      }
+      .card span {
+        color: var(--ink);
+        font-size: 0.95rem;
+      }
+      code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85em;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+      <section class="slide" id="s1">
+        <div class="eyebrow">Accel AI Innovate · London</div>
+        <h1>Vigil</h1>
+        <p>
+          Your brand’s always-on social GTM crew. Five Claude agents listen, triage, reply, and invent the next post —
+          while founders build.
+        </p>
+      </section>
+
+      <section class="slide" id="s2">
+        <div class="eyebrow">Customer & problem</div>
+        <h2>Seed teams don’t have a social desk. Mentions die anyway.</h2>
+        <ul>
+          <li><strong>Customer:</strong> Seed / Series A founders without community / social hire</li>
+          <li><strong>Problem:</strong> X, LinkedIn, Reddit, Instagram go quiet; proactive GTM never ships</li>
+          <li><strong>Why now:</strong> Long-running agents can own the desk, not just answer one prompt</li>
+        </ul>
+      </section>
+
+      <section class="slide" id="s3">
+        <div class="eyebrow">Agent design · 5 agents</div>
+        <h2>From task → workflow</h2>
+        <div class="grid">
+          <div class="card"><b>Scout</b><span>Long-running listen (4 platforms, 90s poll)</span></div>
+          <div class="card"><b>Analyst</b><span>Triage urgency × risk → pick handoff</span></div>
+          <div class="card"><b>Voice</b><span>Draft in brand voice + tone self-check</span></div>
+          <div class="card"><b>Publisher</b><span>Auto-ship or human gate; retry on fail</span></div>
+          <div class="card"><b>Strategist</b><span>Proactive threads & amplify plays</span></div>
+        </div>
+      </section>
+
+      <section class="slide" id="s4">
+        <div class="eyebrow">Plan · handoff · recover · duration</div>
+        <h2>Built for long runs, not one-shot chats</h2>
+        <ul>
+          <li><strong>Plan:</strong> each agent writes a short plan before acting (visible in logs)</li>
+          <li><strong>Handoff:</strong> Scout→Analyst→Voice→Publisher; Analyst→Strategist for amplify</li>
+          <li><strong>Recover:</strong> rate limits, tone fails, publish 503s — backoff, rewrite, retry</li>
+          <li><strong>Duration:</strong> demo cycle ~24s sped-up; production never ends until paused</li>
+        </ul>
+      </section>
+
+      <section class="slide" id="s5">
+        <div class="eyebrow">Real output</div>
+        <h2>A run ends in something usable</h2>
+        <ul>
+          <li>1 X reply <strong>shipped</strong> (after recover from API 503)</li>
+          <li>1 Reddit reply <strong>queued</strong> for founder approve</li>
+          <li>2 <strong>proactive plays</strong> (founder thread + LinkedIn amplify)</li>
+        </ul>
+        <p style="margin-top: 1.5rem">
+          Demo → <code>/</code> · Proof → download in app · This deck → <code>/pitch.html</code>
+        </p>
+      </section>
+
+      <section class="slide" id="s6">
+        <div class="eyebrow">Ask</div>
+        <h2>We’re building the always-on GTM desk for technical founders.</h2>
+        <p>Live demo next. Watch the crew plan, hand off, fail, recover, and ship.</p>
+      </section>
+    </div>
+
+    <div class="nav">
+      <a href="/">Open demo</a>
+      <a class="primary" href="/" onclick="/* stay */">Start crew run →</a>
+    </div>
+  </body>
+</html>
