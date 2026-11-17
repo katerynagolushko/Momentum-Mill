@@ -7,6 +7,14 @@
   "redirects": [
     { "source": "/mentors", "destination": "/mentors/", "permanent": true },
     { "source": "/agenda", "destination": "/agenda/", "permanent": true },
-    { "source": "/application", "destination": "/application/", "permanent": true }
+    { "source": "/application", "destination": "/application/", "permanent": true },
+    { "source": "/portfolio", "destination": "/portfolio/", "permanent": true },
+    { "source": "/portfolio/luminocare", "destination": "/portfolio/luminocare/", "permanent": true },
+    { "source": "/portfolio/counterlabs", "destination": "/portfolio/counterlabs/", "permanent": true },
+    { "source": "/portfolio/pillr", "destination": "/portfolio/pillr/", "permanent": true },
+    { "source": "/portfolio/chatobserver", "destination": "/portfolio/chatobserver/", "permanent": true },
+    { "source": "/portfolio/dori", "destination": "/portfolio/dori/", "permanent": true },
+    { "source": "/portfolio/trainerflow", "destination": "/portfolio/trainerflow/", "permanent": true },
+    { "source": "/portfolio/inkless", "destination": "/portfolio/inkless/", "permanent": true }
   ]
 }
