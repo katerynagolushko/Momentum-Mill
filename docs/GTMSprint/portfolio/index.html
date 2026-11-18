@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Young+Serif&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body class="paper">
+  <body>
     <a class="skip" href="#main">Skip to content</a>
     <header class="nav">
       <a class="brand" href="/">gs</a>
@@ -25,115 +25,129 @@
         <a class="btn" href="mailto:kateryna@momentummill.com?subject=Next%20GTM%20Sprint%20cohort">Join</a>
       </nav>
     </header>
-    <main id="main" class="sheet">
+    <main id="main" class="folio">
       <h1 class="lede">Out of 30 early-stage startups in GTM Sprint 2026, these are the 7 finalists that got the most traction in one week.</h1>
       <ul class="board">
-          <li>
-            <a class="card" href="https://luminocare.co.uk" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><img class="icon" src="/public/portfolio/luminocare.png" alt="" /></span>
-              <h3 class="name">Luminocare</h3>
-              <ul class="chips"><li>Home care</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win">Winner, Existing Ventures</p>
-              <p class="desc">AI agents for home care providers.</p>
-              <ul class="facts">
-                <li>80+ cold calls</li>
-                <li>£20k pre-purchase order</li>
-                <li>4 ongoing conversations</li>
-              </ul>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://counterlabs.ai" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><img class="icon" src="/public/portfolio/counterlabs.png" alt="" /></span>
-              <h3 class="name">CounterLabs</h3>
-              <ul class="chips"><li>Retail</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win">Winner, Emerging Ventures</p>
-              <p class="desc">Turns store CCTV into shopper insight.</p>
-              <ul class="facts">
-                <li>30+ shops visited</li>
-                <li>20 store managers met</li>
-              </ul>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://chatobserver.com" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><img class="icon" src="/public/portfolio/chatobserver.png" alt="" /></span>
-              <h3 class="name">Chatobserver</h3>
-              <ul class="chips"><li>AI search visibility</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win"></p>
-              <p class="desc">Workspace for brand visibility in AI search.</p>
-              <ul class="facts">
-                <li>50+ contacts, 25 emails</li>
-                <li>10 meetings held</li>
-                <li>5+ new customers</li>
-              </ul>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://pillr.org" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><span class="ink ink--serif">Pillr</span></span>
-              <h3 class="name">Pillr</h3>
-              <ul class="chips"><li>Legal &amp; accounting</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win"></p>
-              <p class="desc">AI agent for accountants and law firms' marketing</p>
-              <ul class="facts">
-                <li>450 outreach touches</li>
-                <li>3 to 6 paying firms</li>
-                <li>£16k contract signed</li>
-              </ul>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://trydori.io" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><img class="icon" src="/public/portfolio/dori.svg" alt="" /></span>
-              <h3 class="name">Dori</h3>
-              <ul class="chips"><li>Product research</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win"></p>
-              <p class="desc">Synthetic customers for product testing.</p>
-              <ul class="facts">
-                <li>30 personal conversations</li>
-                <li>4 pilots</li>
-                <li>£35k contract value</li>
-              </ul>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://thetrainerflow.com" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><img class="word" src="/public/portfolio/trainerflow.png" alt="Trainerflow" /></span>
-              <h3 class="name">TrainerFlow</h3>
-              <ul class="chips"><li>Fitness</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win"></p>
-              <p class="desc">Operating system for personal trainers.</p>
-              <ul class="facts">
-                <li>130 messages sent</li>
-                <li>21 replies</li>
-                <li>5 coaches want to try it</li>
-              </ul>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://inkless.design/" target="_blank" rel="noopener noreferrer">
-              <span class="logo"><span class="ink">Inkless</span></span>
-              <h3 class="name">Inkless</h3>
-              <ul class="chips"><li>Design</li></ul>
-              <p class="batch">SPRINT: Nov 2026</p>
-              <p class="win"></p>
-              <p class="desc">AI design canvas.</p>
-              <ul class="facts">
-                <li>2 events run</li>
-                <li>20 signups, 70% conversion</li>
-                <li>6h to 28h app usage</li>
-              </ul>
-            </a>
-          </li>
-        </ul>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="Luminocare, Home care" data-name="Luminocare" data-market="Home care" data-sprint="SPRINT: Nov 2026" data-win="Winner, Existing Ventures" data-desc="AI agents for home care providers." data-url="https://luminocare.co.uk" data-logo="/public/portfolio/marks/luminocare-light.png" data-facts="80+ cold calls|£20k pre-purchase order|4 ongoing conversations">
+            <img class="company__mark is-icon" src="/public/portfolio/marks/luminocare-metal.png" alt="" />
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">Home care</span>
+              <span class="company__copy">
+                <span class="company__title">Luminocare</span>
+                <span class="company__blurb">AI agents for home care providers.</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="CounterLabs, Retail" data-name="CounterLabs" data-market="Retail" data-sprint="SPRINT: Nov 2026" data-win="Winner, Emerging Ventures" data-desc="Turns store CCTV into shopper insight." data-url="https://counterlabs.ai" data-logo="/public/portfolio/marks/counterlabs-light.png" data-facts="30+ shops visited|20 store managers met">
+            <img class="company__mark is-icon is-tall" src="/public/portfolio/marks/counterlabs-metal.png" alt="" />
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">Retail</span>
+              <span class="company__copy">
+                <span class="company__title">CounterLabs</span>
+                <span class="company__blurb">Turns store CCTV into shopper insight.</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="Chatobserver, AI search visibility" data-name="Chatobserver" data-market="AI search visibility" data-sprint="SPRINT: Nov 2026" data-win="" data-desc="Workspace for brand visibility in AI search." data-url="https://chatobserver.com" data-logo="/public/portfolio/marks/chatobserver-light.png" data-facts="50+ contacts, 25 emails|10 meetings held|5+ new customers">
+            <img class="company__mark is-icon" src="/public/portfolio/marks/chatobserver-metal.png" alt="" />
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">AI search visibility</span>
+              <span class="company__copy">
+                <span class="company__title">Chatobserver</span>
+                <span class="company__blurb">Workspace for brand visibility in AI search.</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="Pillr, Legal and accounting" data-name="Pillr" data-face="serif" data-market="Legal &amp; accounting" data-sprint="SPRINT: Nov 2026" data-win="" data-desc="AI agent for accountants and law firms' marketing" data-url="https://pillr.org" data-logo="" data-facts="450 outreach touches|3 to 6 paying firms|£16k contract signed">
+            <span class="company__type is-serif">Pillr</span>
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">Legal &amp; accounting</span>
+              <span class="company__copy">
+                <span class="company__title">Pillr</span>
+                <span class="company__blurb">AI agent for accountants and law firms' marketing</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="Dori, Product research" data-name="Dori" data-market="Product research" data-sprint="SPRINT: Nov 2026" data-win="" data-desc="Synthetic customers for product testing." data-url="https://trydori.io" data-logo="/public/portfolio/marks/dori-light.svg" data-facts="30 personal conversations|4 pilots|£35k contract value">
+            <img class="company__mark is-icon" src="/public/portfolio/marks/dori-metal.svg" alt="" />
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">Product research</span>
+              <span class="company__copy">
+                <span class="company__title">Dori</span>
+                <span class="company__blurb">Synthetic customers for product testing.</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="TrainerFlow, Fitness" data-name="TrainerFlow" data-market="Fitness" data-sprint="SPRINT: Nov 2026" data-win="" data-desc="Operating system for personal trainers." data-url="https://thetrainerflow.com" data-logo="/public/portfolio/marks/trainerflow-light.png" data-facts="130 messages sent|21 replies|5 coaches want to try it">
+            <img class="company__mark is-word" src="/public/portfolio/marks/trainerflow-metal.png" alt="" />
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">Fitness</span>
+              <span class="company__copy">
+                <span class="company__title">TrainerFlow</span>
+                <span class="company__blurb">Operating system for personal trainers.</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="company" aria-haspopup="dialog" aria-label="Inkless, Design" data-name="Inkless" data-market="Design" data-sprint="SPRINT: Nov 2026" data-win="" data-desc="AI design canvas." data-url="https://inkless.design/" data-logo="" data-facts="2 events run|20 signups, 70% conversion|6h to 28h app usage">
+            <span class="company__type">Inkless</span>
+            <span class="company__mask" aria-hidden="true">
+              <span class="company__where">Design</span>
+              <span class="company__copy">
+                <span class="company__title">Inkless</span>
+                <span class="company__blurb">AI design canvas.</span>
+                <span class="company__stage">SPRINT: Nov 2026</span>
+              </span>
+            </span>
+            <span class="company__arrow" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="11" height="11"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+        </li>
+      </ul>
     </main>
+    <dialog class="drawer" id="company-dialog" aria-labelledby="drawer-title">
+      <button type="button" class="drawer__x" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="drawer__body"></div>
+    </dialog>
     <section class="close">
       <h2>Sell or die.</h2>
       <a class="btn" href="mailto:kateryna@momentummill.com?subject=Next%20GTM%20Sprint%20cohort">Join the next cohort</a>
