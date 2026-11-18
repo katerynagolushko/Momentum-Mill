@@ -283,17 +283,9 @@ body.paper .sheet {
   padding-top: calc(var(--nav) + clamp(2rem, 4vw, 3.25rem));
 }
 
-.sheet__top {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 16rem;
-  gap: 1.1rem 1.25rem;
-  align-items: end;
-  margin-bottom: 1.6rem;
-}
-
 .lede {
-  margin: 0;
-  max-width: none;
+  margin: 0 0 1.6rem;
+  max-width: 68rem;
   font-size: clamp(1.2rem, 1.45vw, 1.45rem);
   font-weight: 500;
   line-height: 1.3;
@@ -302,37 +294,41 @@ body.paper .sheet {
   color: #000;
 }
 
-.sheet__top .slot {
-  min-height: 0;
-  aspect-ratio: 16 / 9;
-  height: auto;
-}
-
 .board {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.85rem 1.15rem;
+  --board-gap: 1.15rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.85rem var(--board-gap);
   margin: 0;
   padding: 0;
   list-style: none;
-  align-items: stretch;
+}
+
+.board > li {
+  display: flex;
+  flex: 0 0 calc((100% - 3 * var(--board-gap)) / 4);
+  max-width: calc((100% - 3 * var(--board-gap)) / 4);
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-rows: auto 1.45em 1.75rem 1.35em 2.6em 2.9em auto;
+  row-gap: 0.42rem;
+  align-content: start;
+  width: 100%;
   height: 100%;
   color: #000;
   text-align: left;
 }
 
 .logo {
-  display: grid;
-  place-items: center;
+  position: relative;
+  display: block;
   aspect-ratio: 16 / 10;
   background: #fff;
   border: 1px solid var(--line);
+  container-type: inline-size;
 }
 
 .card:hover .logo,
@@ -340,32 +336,48 @@ body.paper .sheet {
   border-color: #000;
 }
 
+.logo img,
+.logo .ink {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .logo img.icon {
+  height: 45%;
   width: auto;
-  height: auto;
-  max-width: 42%;
-  max-height: 48%;
+  max-width: 58%;
   object-fit: contain;
 }
 
 .logo img.word {
-  width: auto;
+  width: 63%;
   height: auto;
-  max-width: 86%;
-  max-height: 56%;
+  max-height: 62%;
   object-fit: contain;
 }
 
 .logo .ink {
+  width: 63%;
   color: #000;
-  font-size: clamp(1.55rem, 1.6vw, 1.9rem);
+  font-size: 15.5cqi;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
+  text-align: center;
+}
+
+.name,
+.chips,
+.batch,
+.win,
+.desc,
+.facts {
+  margin: 0;
 }
 
 .name {
-  margin: 0.75rem 0 0;
   font-family: var(--mono);
   font-size: 1.02rem;
   font-weight: 500;
@@ -377,15 +389,16 @@ body.paper .sheet {
 .chips {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 0.3rem;
-  min-height: 1.45rem;
-  margin: 0.45rem 0 0;
+  height: 1.75rem;
+  overflow: hidden;
   padding: 0;
   list-style: none;
 }
 
 .chips li {
-  background: var(--chip);
+  background: #e3edff;
   color: #000;
   font-size: 0.68rem;
   font-weight: 500;
@@ -395,7 +408,6 @@ body.paper .sheet {
 
 .batch,
 .win {
-  margin: 0.45rem 0 0;
   color: var(--blue);
   font-size: 0.76rem;
   font-weight: 700;
@@ -404,12 +416,13 @@ body.paper .sheet {
 }
 
 .win {
-  min-height: 2.5em;
+  height: 2.6em;
+  overflow: hidden;
 }
 
 .desc {
-  margin: 0.5rem 0 0;
-  min-height: 2.7em;
+  height: 2.9em;
+  overflow: hidden;
   color: #000;
   font-size: 0.95rem;
   font-weight: 500;
@@ -418,7 +431,6 @@ body.paper .sheet {
 }
 
 .facts {
-  margin: 0.65rem 0 0;
   padding: 0 0 0 1.05rem;
   color: #000;
   font-size: 0.92rem;
@@ -595,8 +607,9 @@ body.paper .sheet {
 }
 
 @media (max-width: 1040px) {
-  .board {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .board > li {
+    flex-basis: calc((100% - var(--board-gap)) / 2);
+    max-width: calc((100% - var(--board-gap)) / 2);
   }
 
   .people {
@@ -632,7 +645,6 @@ body.paper .sheet {
 
   .results,
   .week,
-  .sheet__top,
   .offers,
   .faq div {
     grid-template-columns: 1fr;
@@ -645,8 +657,7 @@ body.paper .sheet {
     aspect-ratio: 16 / 9;
   }
 
-  .week .slot,
-  .sheet__top .slot {
+  .week .slot {
     height: auto;
     min-height: 0;
     aspect-ratio: 16 / 9;
@@ -675,8 +686,9 @@ body.paper .sheet {
 }
 
 @media (max-width: 640px) {
-  .board {
-    grid-template-columns: 1fr;
+  .board > li {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 
   .hero h1 {
