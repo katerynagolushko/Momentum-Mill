@@ -200,24 +200,16 @@ h3 {
 .hero h1 {
   margin: 0;
   max-width: 12em;
-  font-size: clamp(2.35rem, 6.4vw, 5.25rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.hero h1 span {
-  display: block;
-}
-
-.hero h1 span + span {
-  margin-top: 0.5em;
+  font-size: clamp(2.8rem, 7vw, 5.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
 }
 
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, max-content));
   gap: 1.4rem 2.2rem;
-  margin: 1.15rem 0 1.2rem;
+  margin: 1.35rem 0 1.35rem;
   padding: 0;
   list-style: none;
 }
@@ -815,7 +807,7 @@ body.paper .sheet {
   }
 
   .hero h1 {
-    font-size: 2.35rem;
+    font-size: 3.35rem;
   }
 }
 
