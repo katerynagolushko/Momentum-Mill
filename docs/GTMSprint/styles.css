@@ -638,6 +638,15 @@ body.paper .sheet {
   letter-spacing: -0.03em;
 }
 
+.faq a {
+  border-bottom: 2px solid #fff;
+}
+
+.faq a:hover {
+  color: #1f4bff;
+  border-bottom-color: #1f4bff;
+}
+
 .close {
   background: #000;
   color: #fff;
