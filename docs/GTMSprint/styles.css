@@ -627,27 +627,69 @@ body.paper .sheet {
 
 .faq {
   margin: 0;
-}
-
-.faq div {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 1rem;
-  align-items: baseline;
-  padding: 0.85rem 0;
   border-top: 1px solid #fff;
 }
 
-.faq div:last-child {
+.faq__item {
+  margin: 0;
   border-bottom: 1px solid #fff;
 }
 
-.faq dt,
-.faq dd {
-  margin: 0;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__q {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-weight: 700;
   letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.faq__icon {
+  position: relative;
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.9rem;
+  height: 2px;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.faq__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq__item[open] .faq__icon::after {
+  opacity: 0;
+}
+
+.faq__a {
+  max-width: 42rem;
+  padding: 0 2rem 1.15rem 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
 }
 
 .faq a {
@@ -665,8 +707,16 @@ body.paper .sheet {
   padding: clamp(4rem, 9vw, 6.5rem) var(--gutter);
 }
 
-.close h2 {
+.close h2,
+.close__line {
   margin: 0 0 1.25rem;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.close h2 {
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
@@ -715,9 +765,7 @@ body.paper .sheet {
   }
 
   .results,
-  .week,
-  .offers,
-  .faq div {
+  .week {
     grid-template-columns: 1fr;
   }
 
