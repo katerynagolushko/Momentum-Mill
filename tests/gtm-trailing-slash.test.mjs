@@ -52,7 +52,7 @@ function filesFor(htmlPath) {
 test("every directory page redirects to its trailing-slash URL", () => {
   const config = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"));
   const pages = directoryPages();
-  assert.deepEqual(pages, ["agenda", "application", "mentors"]);
+  assert.deepEqual(pages, ["agenda", "application", "mentors", "portfolio"]);
   assert.ok(Array.isArray(config.redirects));
 
   for (const page of pages) {

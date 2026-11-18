@@ -5,8 +5,25 @@
   "buildCommand": "",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/mentors", "destination": "/mentors/", "permanent": true },
-    { "source": "/agenda", "destination": "/agenda/", "permanent": true },
-    { "source": "/application", "destination": "/application/", "permanent": true }
+    {
+      "source": "/mentors",
+      "destination": "/mentors/",
+      "permanent": true
+    },
+    {
+      "source": "/agenda",
+      "destination": "/agenda/",
+      "permanent": true
+    },
+    {
+      "source": "/application",
+      "destination": "/application/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio/",
+      "permanent": true
+    }
   ]
 }

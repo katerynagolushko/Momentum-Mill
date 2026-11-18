@@ -1,8 +1,8 @@
 :root {
   --bg: #000000;
   --fg: #ffffff;
-  --dim: #b5b5b5;
-  --line: rgba(255, 255, 255, 0.18);
+  --dim: #ffffff;
+  --line: #ffffff;
   --font: "Satoshi", "Helvetica Neue", Helvetica, sans-serif;
   --space: clamp(1.25rem, 3vw, 2.5rem);
   --type-h: clamp(2.4rem, 5vw, 3.6rem);
