@@ -557,7 +557,7 @@ body.paper .sheet {
   min-height: 0;
   overflow: hidden;
   border: 1px solid #fff;
-  padding: 0.7rem 0.75rem;
+  padding: 0.65rem 0;
   background: #000;
 }
 
@@ -576,38 +576,15 @@ body.paper .sheet {
   display: block;
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 3.5rem;
+  max-width: 76%;
+  max-height: 3.4rem;
   min-width: 0;
   object-fit: contain;
 }
 
 .logos img[alt="EWOR"] {
-  width: 100%;
+  width: 76%;
   height: auto;
-  max-height: none;
-}
-
-.logos img[alt="Unicorn Mafia"] {
-  width: 100%;
-  height: auto;
-  max-height: 3.5rem;
-}
-
-.logos img[alt="Founder Matcha"],
-.logos img[alt="GTMengineer.dev"] {
-  width: 100%;
-  max-width: none;
-  height: auto;
-  max-height: none;
-}
-
-.logos img[alt="Founder Matcha"] {
-  transform: scale(1.15, 1.65);
-}
-
-.logos img[alt="GTMengineer.dev"] {
-  transform: scale(1.15, 1.9);
 }
 
 .offers {
