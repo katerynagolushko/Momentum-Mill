@@ -776,6 +776,10 @@ body.paper .sheet {
     aspect-ratio: 16 / 9;
   }
 
+  .results .scores p:first-child {
+    border-top: 0;
+  }
+
   .week .slot {
     height: auto;
     min-height: 0;
