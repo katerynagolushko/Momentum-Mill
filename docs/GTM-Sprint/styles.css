@@ -487,11 +487,6 @@ a:focus-visible,
   max-width: min(12rem, 100%);
 }
 
-.logos img[alt="Hurdle"] {
-  max-height: 2.45rem;
-  max-width: min(9.5rem, 100%);
-}
-
 .logos img[alt="Founder Matcha"] {
   max-height: 2.15rem;
   max-width: min(12.5rem, 100%);
