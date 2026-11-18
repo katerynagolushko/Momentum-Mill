@@ -398,13 +398,13 @@ body.paper .sheet {
 }
 
 .company__mark.is-word {
-  max-width: 62%;
-  max-height: 20%;
+  max-width: 70%;
+  max-height: 28%;
 }
 
 .company__type {
   color: #142328;
-  font-size: 14.5cqi;
+  font-size: 23cqi;
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -414,7 +414,7 @@ body.paper .sheet {
 .company__type.is-serif {
   font-family: "Young Serif", Georgia, "Times New Roman", serif;
   font-weight: 400;
-  font-size: 20cqi;
+  font-size: 31cqi;
   letter-spacing: -0.03em;
 }
 
