@@ -201,8 +201,16 @@ h3 {
   margin: 0;
   max-width: 12em;
   font-size: clamp(2.35rem, 6.4vw, 5.25rem);
-  line-height: 0.96;
+  line-height: 1;
   letter-spacing: -0.04em;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero h1 span + span {
+  margin-top: 0.5em;
 }
 
 .hero__stats {
@@ -337,6 +345,10 @@ body.paper .sheet {
   height: 100%;
   color: #000;
   text-align: left;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  background: transparent;
 }
 
 .logo {
