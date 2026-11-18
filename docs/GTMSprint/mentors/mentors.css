@@ -107,8 +107,16 @@ a:focus-visible {
 }
 
 .mentors__head {
-  max-width: 38rem;
+  max-width: 46rem;
   margin: 0 0 2.75rem;
+}
+
+.mentors__intro {
+  margin: 0 0 0.55rem;
+  font-size: var(--type-s);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
 }
 
 .mentors__title {
