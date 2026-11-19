@@ -24,6 +24,11 @@
       "source": "/portfolio",
       "destination": "/portfolio/",
       "permanent": true
+    },
+    {
+      "source": "/press",
+      "destination": "/press/",
+      "permanent": true
     }
   ]
 }
