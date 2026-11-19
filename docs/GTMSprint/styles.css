@@ -193,8 +193,12 @@ h3 {
 .hero__copy {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.9fr);
+  gap: 1.25rem 2rem;
+  align-items: end;
   width: 100%;
-  padding: calc(var(--nav) + 1.5rem) var(--gutter) 1.6rem;
+  padding: 0 var(--gutter) 1.5rem;
 }
 
 .hero h1 {
@@ -217,31 +221,41 @@ h3 {
 
 .hero__winners {
   display: grid;
-  gap: 0.4rem;
-  max-width: 44rem;
-  margin: 1.4rem 0 0;
+  grid-template-columns: 1.35fr 0.8fr;
+  gap: 0.7rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.hero__winners li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.9rem;
+.hero__winners img {
+  width: 100%;
+  height: 11rem;
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+.hero__winners img.is-mark {
+  object-fit: contain;
+  object-position: center;
+  padding: 1.5rem;
 }
 
 .hero__name {
-  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.15;
 }
 
 .hero__meta {
-  font-size: 1rem;
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.92rem;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .hero__next {
@@ -330,28 +344,45 @@ h3 {
 }
 
 .picks {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0;
-  padding: 0.9rem 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0;
   list-style: none;
 }
 
 .picks li {
-  font-size: 1.05rem;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
+  padding: 0.7rem 0 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.picks li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.picks strong {
+  display: block;
+  font-size: clamp(2.8rem, 5.4vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
 }
 
 .picks span {
   display: block;
-  margin-bottom: 0.2rem;
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  margin-top: 0.35rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.guest {
+  margin: 1.15rem 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
 .jump {
@@ -385,6 +416,7 @@ h3 {
   height: 100%;
   min-height: 14rem;
   object-fit: cover;
+  object-position: center 40%;
   background: #000;
 }
 
@@ -1147,9 +1179,16 @@ body.paper .sheet {
     font-size: 1.45rem;
   }
 
-  .picks {
+  .hero__copy {
     grid-template-columns: 1fr;
-    gap: 1rem;
+  }
+
+  .hero__winners {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero__winners img {
+    height: 8.5rem;
   }
 
   .results,
