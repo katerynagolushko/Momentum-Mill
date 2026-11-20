@@ -55,6 +55,9 @@
         (win ? '<p class="drawer__win">' + text(win) + "</p>" : "") +
         '<ul class="drawer__facts">' + items + "</ul>" +
         '<p class="drawer__desc">' + text(button.getAttribute("data-desc")) + "</p>" +
+        '<p class="drawer__who">Founder: ' + text(button.getAttribute("data-founder")) + "</p>" +
+        '<p class="drawer__quote">' + text(button.getAttribute("data-quote")) + "</p>" +
+        '<p class="drawer__week">' + text(button.getAttribute("data-week")) + "</p>" +
       "</div>" +
       '<a class="btn drawer__go" href="' + text(button.getAttribute("data-url")) + '" target="_blank" rel="noopener noreferrer">Visit website ↗</a>';
   }

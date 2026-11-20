@@ -100,6 +100,20 @@ a:focus-visible {
   color: var(--fg);
 }
 
+.top__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem 1rem;
+  font-size: var(--type-b);
+  font-weight: 500;
+}
+
+.top__links a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .mentors {
   max-width: var(--page-max);
   margin: 0 auto;
