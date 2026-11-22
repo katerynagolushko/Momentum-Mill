@@ -17,10 +17,15 @@
       if (play && typeof play.catch === "function") play.catch(function () {});
     }
   }
-  if (!reduce) return;
   document.querySelectorAll("video.slot").forEach(function (video) {
-    video.removeAttribute("autoplay");
-    video.pause();
+    if (reduce) {
+      video.removeAttribute("autoplay");
+      video.pause();
+      return;
+    }
+    video.muted = true;
+    var play = video.play();
+    if (play && typeof play.catch === "function") play.catch(function () {});
   });
 })();
 
