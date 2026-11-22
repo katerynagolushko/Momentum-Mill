@@ -723,12 +723,13 @@ body.paper .sheet {
 
 .week {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.7fr);
-  gap: 1.15rem;
-  align-items: stretch;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
 }
 
 .steps {
+  grid-column: 1 / 4;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
@@ -1123,7 +1124,7 @@ body.paper .sheet {
   .week .reel__preview {
     height: auto;
     min-height: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 2;
   }
 
   .results .slot--talk {
@@ -1132,6 +1133,7 @@ body.paper .sheet {
   }
 
   .steps {
+    grid-column: auto;
     grid-template-columns: 1fr;
   }
 
@@ -1467,7 +1469,8 @@ body.paper .sheet {
   position: relative;
   display: block;
   width: 100%;
-  min-height: 14rem;
+  aspect-ratio: 3 / 4;
+  min-height: 0;
   padding: 0;
   border: 0;
   background: #000;
@@ -1477,9 +1480,11 @@ body.paper .sheet {
 }
 
 .reel__preview {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: 14rem;
+  min-height: 0;
   object-fit: cover;
 }
 
