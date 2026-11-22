@@ -84,34 +84,58 @@
         <div class="week">
           <ol class="steps">
             <li>
-              <img src="/public/photos/day1.jpg" alt="Founders in the room at kickoff" style="object-position: center 22%" />
+              <img src="/public/photos/day1.jpg" alt="Founders in the room at kickoff" style="object-position: center 42%" />
               <div class="steps__body">
                 <h3>Day 1</h3>
-                <p>Kickoff. Workshops, experiment lock-ins and tooling setup.</p>
-                <p class="steps__chip">30 startups</p>
+                <p>Workshops, then each team locks two experiments.</p>
+                <ul class="steps__chips">
+                  <li class="steps__chip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3.5h10M3 8h10M3 12.5h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Max 2 experiments</li>
+                  <li class="steps__chip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 11.5 6.2 8.2l2 2L13 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Tooling setup</li>
+                  <li class="steps__chip is-stat">30 startups</li>
+                </ul>
               </div>
             </li>
             <li>
               <img src="/public/photos/selling.jpg" alt="Two founders talking during the selling days" style="object-position: center 30%" />
               <div class="steps__body">
                 <h3>Days 2 to 6</h3>
-                <p>Selling. Mentor matching and daily progress logs.</p>
-                <p class="steps__chip">Daily logs</p>
+                <p>Run the experiments, log progress, collect evidence.</p>
+                <ul class="steps__chips">
+                  <li class="steps__chip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h8v11H4zM6 5.5h4M6 8h4M6 10.5h2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Daily logs</li>
+                  <li class="steps__chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="5.2" cy="5.5" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10.8" cy="5.5" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2.6 12.2c.5-1.6 1.6-2.4 2.6-2.4s2.1.8 2.6 2.4M8.2 12.2c.5-1.6 1.6-2.4 2.6-2.4s2.1.8 2.6 2.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Mentor matching</li>
+                  <li class="steps__chip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.5h4.2L12 5.2V13.5H5zM9 2.7V5.4h2.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Evidence</li>
+                </ul>
               </div>
             </li>
             <li>
               <img src="/public/photos/demoday.jpg" alt="LuminoCare with the Demo Day winner cheque" style="object-position: center 28%" />
               <div class="steps__body">
                 <h3>Day 7</h3>
-                <p>Demo Day. Winners named for the EWOR fast-track.</p>
-                <p class="steps__chip">EWOR fast-track</p>
+                <p>Final submission, a live spot-check, then the winners.</p>
+                <ul class="steps__chips">
+                  <li class="steps__chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/></svg>Live spot-check</li>
+                  <li class="steps__chip is-stat">2 winners - EWOR fast-track</li>
+                </ul>
               </div>
             </li>
           </ol>
-          <button type="button" class="reel" data-reel-open aria-haspopup="dialog" aria-controls="reel-dialog">
-            <video class="slot reel__preview" autoplay muted loop playsinline preload="metadata" poster="/videos/recap.jpg" src="/videos/recap-preview.mp4" aria-hidden="true"></video>
-            <span class="reel__label">Watch the kick off day recap</span>
-          </button>
+          <div class="week__tools">
+            <article class="log">
+              <p class="log__kicker">Sprint platform</p>
+              <h3 class="log__title">Experiment log</h3>
+              <p>Each team logged up to two experiments. Mentors and judges tracked them.</p>
+              <ul>
+                <li>Hypothesis</li>
+                <li>Channel</li>
+                <li>Target</li>
+                <li>Success metric</li>
+              </ul>
+            </article>
+            <button type="button" class="reel" data-reel-open aria-haspopup="dialog" aria-controls="reel-dialog">
+              <video class="slot reel__preview" autoplay muted loop playsinline preload="metadata" poster="/videos/recap.jpg" src="/videos/recap-preview.mp4" aria-hidden="true"></video>
+              <span class="reel__label">Watch the kick off day recap</span>
+            </button>
+          </div>
         </div>
       </section>
 

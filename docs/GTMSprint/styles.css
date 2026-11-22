@@ -731,6 +731,7 @@ body.paper .sheet {
 
 .steps h3 {
   margin: 0;
+  color: #1f4bff;
   font-size: clamp(1.85rem, 2.6vw, 2.7rem);
   letter-spacing: -0.04em;
   line-height: 0.95;
@@ -743,13 +744,110 @@ body.paper .sheet {
   line-height: 1.35;
 }
 
+.steps__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
 .steps__chip {
-  margin-top: auto;
-  background: #1f4bff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  border: 1px solid #fff;
+  background: #000;
   color: #fff;
+  font-size: 0.86rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  padding: 0.28rem 0.55rem;
+  line-height: 1.2;
+  padding: 0.28rem 0.5rem;
+}
+
+.steps__chip svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+  color: #1f4bff;
+}
+
+.steps__chip.is-stat {
+  border-color: #1f4bff;
+  background: #1f4bff;
+}
+
+.week__tools {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  border: 1px solid #fff;
+  background: #000;
+  color: #fff;
+  padding: 0.95rem 1rem 1rem;
+}
+
+.log__kicker {
+  margin: 0;
+  color: #1f4bff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.log__title {
+  margin: 0;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.log p {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.log ul {
+  margin: 0.2rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #fff;
+}
+
+.log li {
+  padding: 0.55rem 0 0.55rem 0.7rem;
+  border-bottom: 1px solid #fff;
+  border-left: 3px solid #1f4bff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 801px) {
+  .week__tools {
+    grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.2fr);
+  }
+
+  .week__tools .reel,
+  .week__tools .reel__preview {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .week__tools .reel__preview {
+    position: absolute;
+    inset: 0;
+  }
 }
 
 .people {
