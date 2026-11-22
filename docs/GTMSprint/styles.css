@@ -692,35 +692,64 @@ body.paper .sheet {
 
 .week {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.7fr);
-  gap: 1.15rem;
-  align-items: stretch;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
 }
 
 .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.85rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.steps li {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid #fff;
+  background: #000;
+}
+
 .steps img {
+  display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
 }
 
+.steps__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.9rem 0.95rem 1rem;
+}
+
 .steps h3 {
-  margin: 0.65rem 0 0.15rem;
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  margin: 0;
+  font-size: clamp(1.85rem, 2.6vw, 2.7rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 .steps p {
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
+  line-height: 1.35;
+}
+
+.steps__chip {
+  margin-top: auto;
+  background: #1f4bff;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding: 0.28rem 0.55rem;
 }
 
 .people {
@@ -1066,7 +1095,7 @@ body.paper .sheet {
   }
 
   .steps img {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 3 / 2;
   }
 
   .people {
@@ -1397,7 +1426,6 @@ body.paper .sheet {
   position: relative;
   display: block;
   width: 100%;
-  min-height: 14rem;
   padding: 0;
   border: 0;
   background: #000;
@@ -1406,10 +1434,15 @@ body.paper .sheet {
   font: inherit;
 }
 
+.reel,
+.reel__preview {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 21 / 9;
+}
+
 .reel__preview {
   width: 100%;
-  height: 100%;
-  min-height: 14rem;
   object-fit: cover;
 }
 
