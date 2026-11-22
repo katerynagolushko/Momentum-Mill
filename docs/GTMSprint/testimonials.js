@@ -1,6 +1,4 @@
-/* Testimonials. To publish a clip, drop the file in /videos and set `video`
-   (and `poster`) on that entry. The carousel loops it muted. A click opens
-   the same file with sound. The carousel does not advance on its own. */
+/* Testimonials. Each slide is a photo. The carousel does not advance on its own. */
 (function () {
   var quotes = [
     {
@@ -20,11 +18,12 @@
       show: true,
       placeholder: true,
       quote: "",
-      name: "CounterLabs",
-      role: "Emerging Ventures winner",
-      credit: "",
-      linkedin: "https://counterlabs.ai",
-      portrait: "",
+      name: "Sam Coyne",
+      role: "Founder at CounterLabs",
+      credit: "GTM Sprint 2026 winner (Emerging Ventures)",
+      linkedin: "https://www.linkedin.com/in/sam-coyne-8870541a6",
+      portrait: "/public/testimonials/sam-coyne.jpg",
+      alt: "Sam Coyne presenting CounterLabs at GTM Sprint",
       video: "",
       poster: ""
     },
@@ -36,10 +35,10 @@
       role: "Needle",
       credit: "Sponsor",
       linkedin: "https://www.linkedin.com/in/oeken",
-      portrait: "",
-      video: "/videos/onur-eken.mp4",
-      poster: "/videos/onur-eken.jpg",
-      focus: "68% 42%"
+      portrait: "/public/testimonials/onur-eken.jpg",
+      alt: "Onur Eken presenting Needle at GTM Sprint",
+      video: "",
+      poster: ""
     },
     {
       show: true,
@@ -49,7 +48,8 @@
       role: "Senior Software Engineer at VEED",
       credit: "Built and sold Nocodelytics",
       linkedin: "https://www.linkedin.com/in/sarwech",
-      portrait: "/public/mentors/sarwech-shar.jpg",
+      portrait: "/public/testimonials/sarwech-shar.jpg",
+      alt: "Sarwech Shar",
       video: "",
       poster: ""
     }
