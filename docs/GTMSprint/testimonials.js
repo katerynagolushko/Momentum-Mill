@@ -15,7 +15,8 @@
       poster: ""
     },
     {
-      show: true,
+      // Hidden until his quote is ready. The photo stays at /public/testimonials/sam-coyne.jpg.
+      show: false,
       placeholder: true,
       quote: "",
       name: "Sam Coyne",

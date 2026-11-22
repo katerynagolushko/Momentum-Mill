@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-29 -34 182 182" role="img" aria-label="Inkless">
+  <path d="M8 8 L109 62 L62 75 L43 124 Z" fill="#100F0F" stroke="#100F0F" stroke-linejoin="round" stroke-width="30"/>
+  <path d="M8 8 L109 62 L62 75 L43 124 Z" fill="#2F4BFF" stroke="#2F4BFF" stroke-linejoin="round" stroke-width="18"/>
+  <circle cx="38" cy="40" r="12" fill="#fff"/>
+  <circle cx="62" cy="50" r="12" fill="#fff"/>
+  <circle cx="41" cy="43" r="5.5" fill="#100F0F"/>
+  <circle cx="65" cy="53" r="5.5" fill="#100F0F"/>
+</svg>
