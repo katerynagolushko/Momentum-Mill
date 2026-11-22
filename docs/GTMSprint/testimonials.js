@@ -42,10 +42,10 @@
     },
     {
       show: true,
-      placeholder: true,
-      quote: "",
+      quote:
+        "I haven't seen teams make so much progress in such a short period of time. In one week founders went from cold outreach to real customer conversations, pilots and pre-orders. Most startups take months to get there, if they ever do.",
       name: "Sarwech Shar",
-      role: "Senior Software Engineer at VEED",
+      role: "AI and Growth at VEED",
       credit: "Built and sold Nocodelytics",
       linkedin: "https://www.linkedin.com/in/sarwech",
       portrait: "/public/testimonials/sarwech-shar.jpg",
