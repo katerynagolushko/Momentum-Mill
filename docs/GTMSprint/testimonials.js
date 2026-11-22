@@ -13,7 +13,6 @@
       linkedin: "https://www.linkedin.com/in/min-thant-kyaw-3075901b7/",
       portrait: "/public/photos/demoday-winners.jpg",
       alt: "Min Thant Kyaw and his LuminoCare co-founder with the winner cheque",
-      fit: "contain",
       video: "",
       poster: ""
     },
