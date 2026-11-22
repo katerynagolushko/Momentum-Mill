@@ -11,7 +11,9 @@
       role: "Co-founder at LuminoCare",
       credit: "GTM Sprint 2026 winner (Existing Ventures)",
       linkedin: "https://www.linkedin.com/in/min-thant-kyaw-3075901b7/",
-      portrait: "/public/testimonials/min-thant-kyaw.jpg",
+      portrait: "/public/photos/demoday-winners.jpg",
+      alt: "Min Thant Kyaw and his LuminoCare co-founder with the winner cheque",
+      fit: "contain",
       video: "",
       poster: ""
     },
@@ -108,9 +110,10 @@
     } else if (quote.portrait) {
       var photo = document.createElement("img");
       photo.src = quote.portrait;
-      photo.alt = quote.name ? quote.name : "";
-      photo.width = 800;
-      photo.height = 800;
+      photo.alt = quote.alt || quote.name || "";
+      photo.width = 1240;
+      photo.height = 1000;
+      if (quote.fit) photo.style.objectFit = quote.fit;
       media.appendChild(photo);
     } else {
       var hold = document.createElement("p");
