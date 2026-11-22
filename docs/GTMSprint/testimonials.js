@@ -31,7 +31,7 @@
     {
       show: true,
       quote:
-        "From Needle's perspective it was pretty good: 20+ people used our product, and around 10 got positive replies from leads. Thanks for hosting, well done!",
+        "As a sponsor, GTM Sprint delivered real value for Needle. More than 20 founders used our product during the week, and around 10 of them landed meetings with their ICP. It's rare to see a programme where founders utilized tools so well and so fast.",
       name: "Onur Eken",
       role: "Needle",
       credit: "Sponsor",
@@ -51,6 +51,22 @@
       linkedin: "https://www.linkedin.com/in/sarwech",
       portrait: "/public/testimonials/sarwech-shar.jpg",
       alt: "Sarwech Shar",
+      video: "",
+      poster: ""
+    },
+    {
+      // PLACEHOLDER - needs real founder quote/approval before going live.
+      show: true,
+      placeholder: true,
+      quote:
+        "GTM Sprint pushed us to stop polishing and start talking to users. In one week we got 30 new signups with 70% weekly retention, and learned more about who our product is for than in the months before.",
+      name: "Inkless team",
+      role: "AI design canvas",
+      credit: "GTM Sprint 2026 finalist",
+      linkedin: "",
+      portrait: "/public/portfolio/marks/inkless.svg",
+      alt: "Inkless logo",
+      logo: true,
       video: "",
       poster: ""
     }
@@ -113,6 +129,7 @@
       photo.alt = quote.alt || quote.name || "";
       photo.width = 1240;
       photo.height = 1000;
+      if (quote.logo) photo.className = "is-logo";
       if (quote.fit) photo.style.objectFit = quote.fit;
       media.appendChild(photo);
     } else {

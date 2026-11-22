@@ -1130,6 +1130,12 @@ body.paper .sheet {
   color: #fff;
 }
 
+.voice__media img.is-logo {
+  object-fit: contain;
+  padding: 14%;
+  box-sizing: border-box;
+}
+
 .voice__media img,
 .voice__film,
 .voice__hold {
