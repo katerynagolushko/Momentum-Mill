@@ -1669,3 +1669,122 @@ body.paper .sheet {
     transition: none;
   }
 }
+
+/* Deck stack. Off until stack.js adds html.is-stacking, so the page
+   stays as authored when motion is reduced or the script does not run. */
+html.is-stacking {
+  --stack-scale: 0.046;
+  --stack-dim: 0.46;
+}
+
+html.is-stacking .nav {
+  z-index: 30;
+}
+
+html.is-stacking .skip {
+  z-index: 40;
+}
+
+html.is-stacking main {
+  background: #1f4bff;
+}
+
+html.is-stacking main > section {
+  position: sticky;
+  top: var(--stack-top, 0px);
+  z-index: var(--stack-i, 1);
+  background: #000;
+  transform: scale(calc(1 - var(--stack-p, 0) * var(--stack-scale)));
+  transform-origin: center top;
+  border-radius: calc(var(--stack-p, 0) * 1.5rem);
+  overflow: clip;
+}
+
+html.is-stacking main > section:not(.hero) {
+  min-height: calc(100svh - var(--nav));
+}
+
+html.is-stacking main > section::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: #1f4bff;
+  opacity: var(--arrive, 0);
+  pointer-events: none;
+}
+
+html.is-stacking main > section::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  opacity: calc(var(--stack-p, 0) * var(--stack-dim));
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  html.is-stacking {
+    --stack-scale: 0.02;
+    --stack-dim: 0.16;
+  }
+
+  html.is-stacking main > section {
+    border-radius: 0;
+  }
+
+  html.is-stacking main > section.section {
+    padding-top: calc(var(--nav) + 1.25rem);
+  }
+
+  html.is-stacking .close {
+    padding-top: calc(var(--nav) + 1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.is-stacking main {
+    background: #000;
+  }
+
+  html.is-stacking main > section {
+    position: relative;
+    top: auto !important;
+    min-height: 0;
+    transform: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  html.is-stacking .hero {
+    min-height: 100svh;
+    background: #000;
+  }
+
+  html.is-stacking main > section::before,
+  html.is-stacking main > section::after {
+    content: none;
+  }
+}
+
+@media print {
+  html.is-stacking main {
+    background: #000;
+  }
+
+  html.is-stacking main > section {
+    position: static;
+    transform: none;
+    min-height: 0;
+  }
+
+  html.is-stacking main > section::before,
+  html.is-stacking main > section::after {
+    content: none;
+  }
+}
