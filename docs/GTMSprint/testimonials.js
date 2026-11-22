@@ -64,9 +64,8 @@
       role: "AI design canvas",
       credit: "GTM Sprint 2026 finalist",
       linkedin: "",
-      portrait: "/public/portfolio/marks/inkless.svg",
-      alt: "Inkless logo",
-      logo: true,
+      portrait: "/public/testimonials/inkless-founder.jpg",
+      alt: "Inkless founder speaking at GTM Sprint",
       video: "",
       poster: ""
     }
