@@ -30,6 +30,49 @@
 })();
 
 (function () {
+  function bind(dialog, closeSelector, onOpen) {
+    if (!dialog) return;
+    var video = dialog.querySelector("video");
+    var closer = dialog.querySelector(closeSelector);
+    function shut() {
+      if (video) {
+        video.pause();
+      }
+      if (typeof dialog.close === "function" && dialog.open) dialog.close();
+      else dialog.removeAttribute("open");
+    }
+    if (closer) closer.addEventListener("click", shut);
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) shut();
+    });
+    dialog.addEventListener("close", function () {
+      if (video) video.pause();
+    });
+    return { video: video, shut: shut };
+  }
+
+  var reel = document.getElementById("reel-dialog");
+  bind(reel, "[data-reel-close]");
+  document.querySelectorAll("[data-reel-open]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      if (!reel) return;
+      var video = reel.querySelector("video");
+      if (typeof reel.showModal === "function") reel.showModal();
+      else reel.setAttribute("open", "");
+      if (video) {
+        video.muted = false;
+        video.currentTime = 0;
+        var play = video.play();
+        if (play && play.catch) play.catch(function () {});
+      }
+    });
+  });
+
+  var clip = document.getElementById("clip-dialog");
+  bind(clip, "[data-clip-close]");
+})();
+
+(function () {
   var dialog = document.querySelector(".drawer");
   if (!dialog) return;
   var slot = dialog.querySelector(".drawer__body");
