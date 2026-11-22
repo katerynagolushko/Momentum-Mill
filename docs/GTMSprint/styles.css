@@ -330,6 +330,10 @@ h3 {
   border-bottom-color: #1f4bff;
 }
 
+.jump + .people {
+  margin-top: 1.15rem;
+}
+
 .note {
   margin: 0.75rem 0 0;
   max-width: 36rem;
