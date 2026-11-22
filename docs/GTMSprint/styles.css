@@ -330,7 +330,7 @@ h3 {
   border-bottom-color: #1f4bff;
 }
 
-.jump + .people {
+.note + .people {
   margin-top: 1.15rem;
 }
 
@@ -757,6 +757,10 @@ body.paper .sheet {
   max-width: 6.2rem;
   object-fit: contain;
   object-position: left center;
+}
+
+.people li:last-child .mark {
+  margin-top: -0.7rem;
 }
 
 .logos {
