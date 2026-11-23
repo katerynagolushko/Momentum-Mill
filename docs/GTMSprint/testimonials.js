@@ -75,7 +75,7 @@
       role: "EWOR",
       credit: "Partner",
       linkedin: "https://www.linkedin.com/in/leonardozussner/",
-      portrait: "",
+      portrait: "/public/testimonials/leonardo-zussner.jpg",
       alt: "Leonardo Zussner",
       video: "",
       poster: ""
