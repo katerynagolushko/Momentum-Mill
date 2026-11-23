@@ -33,7 +33,7 @@
       quote:
         "As a sponsor, GTM Sprint delivered real value for Needle. More than 20 founders used our product during the week, and around 10 of them landed meetings with their ICP. It's rare to see a programme where founders utilized tools so well and so fast.",
       name: "Onur Eken",
-      role: "Needle",
+      role: "Founder at Needle",
       credit: "Sponsor",
       linkedin: "https://www.linkedin.com/in/oeken",
       portrait: "/public/testimonials/onur-eken.jpg",
@@ -70,7 +70,7 @@
     {
       show: true,
       quote:
-        "In early-stage investing, you never know whether a founder can do the hardest job: selling. I've talked to 300+ founders, and from a few conversations it's impossible to tell how good they'll be at closing customers. At GTM Sprint I watched teams do outreach, get creative when their first approach didn't work, and turn customer conversations into contracts, all in one week. This is a game changer for early-stage investing.",
+        "I've talked to 300+ founders, and in early-stage investing you never know whether a founder can do the hardest job: selling. At GTM Sprint I watched teams do outreach, get creative when their first approach didn't work, and turn conversations into contracts in one week. This is a game changer for early-stage investing.",
       name: "Leonardo Zussner",
       role: "EWOR",
       credit: "Partner",
