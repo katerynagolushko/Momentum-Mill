@@ -33,7 +33,7 @@
       quote:
         "As a sponsor, GTM Sprint delivered real value for Needle. More than 20 founders used our product during the week, and around 10 of them landed meetings with their ICP. It's rare to see a programme where founders utilized tools so well and so fast.",
       name: "Onur Eken",
-      role: "Needle",
+      role: "Founder at Needle",
       credit: "Sponsor",
       linkedin: "https://www.linkedin.com/in/oeken",
       portrait: "/public/testimonials/onur-eken.jpg",
@@ -55,17 +55,28 @@
       poster: ""
     },
     {
-      // PLACEHOLDER - needs real founder quote/approval before going live.
       show: true,
-      placeholder: true,
       quote:
         "GTM Sprint pushed us to stop polishing and start talking to users. In one week we got 30 new signups with 70% weekly retention, and learned more about who our product is for than in the months before.",
-      name: "Inkless team",
-      role: "AI design canvas",
+      name: "Raveena M.",
+      role: "Founder at Inkless",
       credit: "GTM Sprint 2026 finalist",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/raveena-m-19a272342",
       portrait: "/public/testimonials/inkless-founder.jpg",
-      alt: "Inkless founder speaking at GTM Sprint",
+      alt: "Raveena M. speaking at GTM Sprint",
+      video: "",
+      poster: ""
+    },
+    {
+      show: true,
+      quote:
+        "I've talked to 300+ founders, and in early-stage investing you never know whether a founder can do the hardest job: selling. At GTM Sprint I watched teams do outreach, get creative when their first approach didn't work, and turn conversations into contracts in one week. This is a game changer for early-stage investing.",
+      name: "Leonardo Zussner",
+      role: "EWOR",
+      credit: "Partner",
+      linkedin: "https://www.linkedin.com/in/leonardozussner/",
+      portrait: "/public/testimonials/leonardo-zussner.jpg",
+      alt: "Leonardo Zussner",
       video: "",
       poster: ""
     }
@@ -213,25 +224,26 @@
   root.appendChild(bar);
   mount.appendChild(root);
 
+  var phoneQuery = window.matchMedia("(max-width: 640px)");
+  function phone() { return phoneQuery.matches; }
+
   function videos() {
     return track.querySelectorAll("video");
   }
 
-  function go(nextIndex) {
-    index = (nextIndex + slides.length) % slides.length;
-    track.style.transform = "translateX(" + (-index * 100) + "%)";
+  function mark(active) {
     dotButtons.forEach(function (dot, i) {
-      if (i === index) dot.setAttribute("aria-current", "true");
+      if (i === active) dot.setAttribute("aria-current", "true");
       else dot.removeAttribute("aria-current");
     });
     var nodes = track.children;
     for (var i = 0; i < nodes.length; i++) {
       nodes[i].hidden = false;
-      if (i === index) nodes[i].removeAttribute("aria-hidden");
+      if (i === active) nodes[i].removeAttribute("aria-hidden");
       else nodes[i].setAttribute("aria-hidden", "true");
     }
     videos().forEach(function (video, i) {
-      if (i === index && !reduce) {
+      if (i === active && !reduce) {
         video.muted = true;
         var play = video.play();
         if (play && play.catch) play.catch(function () {});
@@ -241,15 +253,60 @@
     });
   }
 
+  function scrollToSlide(i, behavior) {
+    var slide = track.children[i];
+    if (!slide) return;
+    var left = slide.getBoundingClientRect().left - viewport.getBoundingClientRect().left + viewport.scrollLeft;
+    left -= Math.max(0, (viewport.clientWidth - slide.clientWidth) / 2);
+    viewport.scrollTo({ left: left, behavior: behavior || "auto" });
+  }
+
+  function go(nextIndex) {
+    index = (nextIndex + slides.length) % slides.length;
+    if (phone()) {
+      track.style.transform = "none";
+      scrollToSlide(index, reduce ? "auto" : "smooth");
+    } else {
+      track.style.transform = "translateX(" + (-index * 100) + "%)";
+    }
+    mark(index);
+  }
+
+  if ("IntersectionObserver" in window) {
+    var seen = new IntersectionObserver(function (entries) {
+      if (!phone()) return;
+      var best = null;
+      entries.forEach(function (entry) {
+        if (!best || entry.intersectionRatio > best.intersectionRatio) best = entry;
+      });
+      if (!best || best.intersectionRatio < 0.55) return;
+      var i = Array.prototype.indexOf.call(track.children, best.target);
+      if (i < 0 || i === index) return;
+      index = i;
+      mark(index);
+    }, { root: viewport, threshold: [0.55, 0.75] });
+    Array.prototype.forEach.call(track.children, function (slide) { seen.observe(slide); });
+  }
+
+  phoneQuery.addEventListener("change", function () {
+    if (phone()) {
+      track.style.transform = "none";
+      scrollToSlide(index, "auto");
+    } else {
+      viewport.scrollLeft = 0;
+      go(index);
+    }
+  });
+
   var startX = 0;
   var dragging = false;
   viewport.addEventListener("pointerdown", function (event) {
-    if (event.target.closest("a, button")) return;
+    if (phone() || event.target.closest("a, button")) return;
     dragging = true;
     startX = event.clientX;
   });
   viewport.addEventListener("pointerup", function (event) {
-    if (!dragging) return;
+    if (phone() || !dragging) return;
     dragging = false;
     var delta = event.clientX - startX;
     if (delta > 48) go(index - 1);

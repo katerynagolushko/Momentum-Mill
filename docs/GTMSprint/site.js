@@ -5,6 +5,7 @@
   if (hero) {
     var next = hero.getAttribute("data-src");
     if (next && hero.getAttribute("src") !== next) {
+      if (!mobile) hero.setAttribute("preload", "auto");
       hero.setAttribute("src", next);
       hero.load();
     }
