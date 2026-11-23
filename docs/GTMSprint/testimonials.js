@@ -270,7 +270,7 @@ function openClip(src, poster) {
   if (!dialog || !video) return;
   video.poster = poster || "";
   video.src = src;
-  video.muted = false;
+  video.muted = true;
   if (typeof dialog.showModal === "function") dialog.showModal();
   else dialog.setAttribute("open", "");
   var play = video.play();

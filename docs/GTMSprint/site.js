@@ -60,7 +60,7 @@
       if (typeof reel.showModal === "function") reel.showModal();
       else reel.setAttribute("open", "");
       if (video) {
-        video.muted = false;
+        video.muted = true;
         video.currentTime = 0;
         var play = video.play();
         if (play && play.catch) play.catch(function () {});
