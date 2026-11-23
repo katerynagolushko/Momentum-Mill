@@ -55,17 +55,28 @@
       poster: ""
     },
     {
-      // PLACEHOLDER - needs real founder quote/approval before going live.
       show: true,
-      placeholder: true,
       quote:
         "GTM Sprint pushed us to stop polishing and start talking to users. In one week we got 30 new signups with 70% weekly retention, and learned more about who our product is for than in the months before.",
-      name: "Inkless team",
-      role: "AI design canvas",
+      name: "Raveena M.",
+      role: "Founder at Inkless",
       credit: "GTM Sprint 2026 finalist",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/raveena-m-19a272342",
       portrait: "/public/testimonials/inkless-founder.jpg",
-      alt: "Inkless founder speaking at GTM Sprint",
+      alt: "Raveena M. speaking at GTM Sprint",
+      video: "",
+      poster: ""
+    },
+    {
+      show: true,
+      quote:
+        "In early-stage investing, you never know whether a founder can do the hardest job: selling. I've talked to 300+ founders, and from a few conversations it's impossible to tell how good they'll be at closing customers. At GTM Sprint I watched teams do outreach, get creative when their first approach didn't work, and turn customer conversations into contracts, all in one week. This is a game changer for early-stage investing.",
+      name: "Leonardo Zussner",
+      role: "EWOR",
+      credit: "Partner",
+      linkedin: "https://www.linkedin.com/in/leonardozussner/",
+      portrait: "",
+      alt: "Leonardo Zussner",
       video: "",
       poster: ""
     }
