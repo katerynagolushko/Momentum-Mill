@@ -34,7 +34,6 @@
         "As a sponsor, GTM Sprint delivered real value for Needle. More than 20 founders used our product during the week, and around 10 of them landed meetings with their ICP. It's rare to see a programme where founders utilized tools so well and so fast.",
       name: "Onur Eken",
       role: "Founder at Needle",
-      role2: "Scout at EWOR",
       credit: "Sponsor",
       linkedin: "https://www.linkedin.com/in/oeken",
       portrait: "/public/testimonials/onur-eken.jpg",
@@ -73,7 +72,7 @@
       quote:
         "I've talked to 300+ founders, and in early-stage investing you never know whether a founder can do the hardest job: selling. At GTM Sprint I watched teams do outreach, get creative when their first approach didn't work, and turn conversations into contracts in one week. This is a game changer for early-stage investing.",
       name: "Leonardo Zussner",
-      role: "EWOR",
+      role: "Scout at EWOR",
       credit: "Partner",
       linkedin: "https://www.linkedin.com/in/leonardozussner/",
       portrait: "/public/testimonials/leonardo-zussner.jpg",
@@ -174,12 +173,6 @@
         role.className = "voice__role";
         role.textContent = quote.role;
         id.appendChild(role);
-      }
-      if (quote.role2) {
-        var role2 = document.createElement("p");
-        role2.className = "voice__role";
-        role2.textContent = quote.role2;
-        id.appendChild(role2);
       }
       if (quote.credit) {
         var credit = document.createElement("p");
