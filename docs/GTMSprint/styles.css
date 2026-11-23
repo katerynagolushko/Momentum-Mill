@@ -926,6 +926,13 @@ body.paper .sheet {
   height: auto;
 }
 
+.logos img[alt="Founder Matcha"] {
+  width: 92%;
+  max-width: 92%;
+  max-height: none;
+}
+
+
 .offers {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
