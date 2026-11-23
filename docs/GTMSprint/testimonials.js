@@ -34,6 +34,7 @@
         "As a sponsor, GTM Sprint delivered real value for Needle. More than 20 founders used our product during the week, and around 10 of them landed meetings with their ICP. It's rare to see a programme where founders utilized tools so well and so fast.",
       name: "Onur Eken",
       role: "Founder at Needle",
+      role2: "Scout at EWOR",
       credit: "Sponsor",
       linkedin: "https://www.linkedin.com/in/oeken",
       portrait: "/public/testimonials/onur-eken.jpg",
@@ -173,6 +174,12 @@
         role.className = "voice__role";
         role.textContent = quote.role;
         id.appendChild(role);
+      }
+      if (quote.role2) {
+        var role2 = document.createElement("p");
+        role2.className = "voice__role";
+        role2.textContent = quote.role2;
+        id.appendChild(role2);
       }
       if (quote.credit) {
         var credit = document.createElement("p");
